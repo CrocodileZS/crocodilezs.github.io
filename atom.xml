@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>鰐魚先生的水族館</title>
+  
+  <subtitle>言念君子，溫其如玉。</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="https://www.crocodilezs.top/"/>
+  <updated>2019-08-09T03:37:06.210Z</updated>
+  <id>https://www.crocodilezs.top/</id>
+  
+  <author>
+    <name>CrocodileZS</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>《第一行代码》Chap1.开始启程</title>
+    <link href="https://www.crocodilezs.top/%E3%80%8A%E7%AC%AC%E4%B8%80%E8%A1%8C%E4%BB%A3%E7%A0%81%E3%80%8BChap1-%E5%BC%80%E5%A7%8B%E5%90%AF%E7%A8%8B/"/>
+    <id>https://www.crocodilezs.top/《第一行代码》Chap1-开始启程/</id>
+    <published>2019-08-08T17:29:30.000Z</published>
+    <updated>2019-08-09T03:37:06.210Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;Chap1-开始启程——你的第一行Android代码&quot;&gt;&lt;a href=&quot;#Chap1-开始启程——你的第一行Android代码&quot; class=&quot;headerlink&quot; title=&quot;Chap1 开始启程——你的第一行Android代码&quot;&gt;&lt;/a&gt;Chap1 开始
+      
+    
+    </summary>
+    
+    
+      <category term="Android开发" scheme="https://www.crocodilezs.top/tags/Android%E5%BC%80%E5%8F%91/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>新博客的第一篇文章</title>
+    <link href="https://www.crocodilezs.top/newpapername/"/>
+    <id>https://www.crocodilezs.top/newpapername/</id>
+    <published>2019-08-07T09:20:00.000Z</published>
+    <updated>2019-08-07T09:21:15.357Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;欢迎&lt;/p&gt;
+
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="https://www.crocodilezs.top/hello-world/"/>
+    <id>https://www.crocodilezs.top/hello-world/</id>
+    <published>2019-08-07T03:35:33.514Z</published>
+    <updated>2019-08-07T03:35:33.514Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+</feed>
