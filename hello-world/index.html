@@ -20,6 +20,7 @@
 
 <link rel="stylesheet" href="https://fonts.loli.net/css?family=Noto Serif SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+  <link rel="stylesheet" href="/lib/fancybox/source/jquery.fancybox.css">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/ilyabirman-likely@2/release/likely.css">
   <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
 
@@ -35,7 +36,7 @@
     back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
     save_scroll: true,
     copycode: {"enable":true,"show_result":true,"style":null},
-    fancybox: false,
+    fancybox: true,
     mediumzoom: false,
     lazyload: false,
     pangu: false,
@@ -120,9 +121,10 @@
 
 </head>
 
+<!-- 用于canvas_nest的代码 -->
+<!-- 
 
-
-
+ -->
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
 
@@ -300,6 +302,8 @@
 <p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
 
     </div>
+
+    
 
     
     
@@ -549,11 +553,8 @@
   </div>
 
   
-    
-    
-  
-  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
   <script src="/lib/jquery/index.js?v=3.4.1"></script>
+  <script src="/lib/fancybox/source/jquery.fancybox.pack.js"></script>
   <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
   <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
 
@@ -619,6 +620,7 @@
 <script src="/js/post-details.js?v=7.3.0"></script>
 
 
+  <script type="text/javascript" src="dist/canvas-nest.js"></script>
 </body>
 </html>
 

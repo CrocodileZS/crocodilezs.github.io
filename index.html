@@ -20,6 +20,7 @@
 
 <link rel="stylesheet" href="https://fonts.loli.net/css?family=Noto Serif SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+  <link rel="stylesheet" href="/lib/fancybox/source/jquery.fancybox.css">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/ilyabirman-likely@2/release/likely.css">
   <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
 
@@ -35,7 +36,7 @@
     back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
     save_scroll: true,
     copycode: {"enable":true,"show_result":true,"style":null},
-    fancybox: false,
+    fancybox: true,
     mediumzoom: false,
     lazyload: false,
     pangu: false,
@@ -116,9 +117,10 @@
 
 </head>
 
+<!-- 用于canvas_nest的代码 -->
+<!-- 
 
-
-
+ -->
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
 
@@ -266,11 +268,19 @@
                 
               
 
-              <time title="创建时间：2019-08-09 01:29:30 / 修改时间：11:37:06" itemprop="dateCreated datePublished" datetime="2019-08-09T01:29:30+08:00">2019-08-09</time>
+              <time title="创建时间：2019-08-09 01:29:30" itemprop="dateCreated datePublished" datetime="2019-08-09T01:29:30+08:00">2019-08-09</time>
             </span>
           
             
 
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-08-17 19:32:17" itemprop="dateModified" datetime="2019-08-17T19:32:17+08:00">2019-08-17</time>
+              </span>
             
           
 
@@ -285,64 +295,33 @@
     <div class="post-body" itemprop="articleBody">
 
       
+        <div class="post-gallery" itemscope itemtype="http://schema.org/ImageGallery">
+            <div class="post-gallery-row">
+              <img src="/images/abstract/img_0039.jpg" itemprop="contentUrl">
+            
           
-            <h1 id="Chap1-开始启程——你的第一行Android代码"><a href="#Chap1-开始启程——你的第一行Android代码" class="headerlink" title="Chap1 开始启程——你的第一行Android代码"></a>Chap1 开始启程——你的第一行Android代码</h1><h2 id="1-1了解全貌——Android王国简介"><a href="#1-1了解全貌——Android王国简介" class="headerlink" title="1.1了解全貌——Android王国简介"></a>1.1了解全貌——Android王国简介</h2><h3 id="1-1-3-Android开发应用特色"><a href="#1-1-3-Android开发应用特色" class="headerlink" title="1.1.3 Android开发应用特色"></a>1.1.3 Android开发应用特色</h3><h4 id="01-四大组件"><a href="#01-四大组件" class="headerlink" title="01 四大组件"></a>01 四大组件</h4><p>Android系统四大组件分别是活动（<code>Activity</code>）、服务（<code>Service</code>）、广播接收器（<code>Broadcast Reciever</code>）和内容提供器（<code>Content Provider</code>）。</p>
-<ul>
-<li>活动应用程序的门面，所有能看到的东西都放在活动中。</li>
-<li>服务一直在后台默默运行。</li>
-<li>广播接收器允许你的应用接受来自各处的广播消息，比如电话、短信等。</li>
-<li>内容提供器则为应用程序之间共享数据提供了可能，比如可以通过内容提供器读取系统电话簿中的联系人。  </li>
-</ul>
-<h4 id="02-丰富的系统控件"><a href="#02-丰富的系统控件" class="headerlink" title="02 丰富的系统控件"></a>02 丰富的系统控件</h4><h4 id="03-SQLite数据库"><a href="#03-SQLite数据库" class="headerlink" title="03 SQLite数据库"></a>03 SQLite数据库</h4><h4 id="04-强大的多媒体"><a href="#04-强大的多媒体" class="headerlink" title="04 强大的多媒体"></a>04 强大的多媒体</h4><h4 id="05-地理位置定位"><a href="#05-地理位置定位" class="headerlink" title="05 地理位置定位"></a>05 地理位置定位</h4><h3 id="1-3-4-分析你的第一个Android程序"><a href="#1-3-4-分析你的第一个Android程序" class="headerlink" title="1.3.4 分析你的第一个Android程序"></a>1.3.4 分析你的第一个Android程序</h3><h4 id="01-gradle-和-idea-Android"><a href="#01-gradle-和-idea-Android" class="headerlink" title="01 .gradle 和.idea  Android"></a>01 .gradle 和.idea  Android</h4><p>Studio自动生成的一些文件</p>
-<h4 id="02-app-项目中代码、资源的存放"><a href="#02-app-项目中代码、资源的存放" class="headerlink" title="02 app 项目中代码、资源的存放"></a>02 app 项目中代码、资源的存放</h4><h4 id="03-build-存放编译时自动生成的文件"><a href="#03-build-存放编译时自动生成的文件" class="headerlink" title="03 build 存放编译时自动生成的文件"></a>03 build 存放编译时自动生成的文件</h4><h4 id="04-gitignore"><a href="#04-gitignore" class="headerlink" title="04 .gitignore"></a>04 .gitignore</h4><p>用来将制定的目录或文件排除在版本控制之外</p>
-<h4 id="05-build-gradle"><a href="#05-build-gradle" class="headerlink" title="05 build.gradle"></a>05 build.gradle</h4><p>不需要修改、项目全局的gradle构建脚本</p>
-<p>……</p>
-<p>除了app目录之外，大多数的文件和目录都是自动生成的，我们并不需要进行修改。</p>
-<h4 id="app目录下的结构"><a href="#app目录下的结构" class="headerlink" title="app目录下的结构"></a>app目录下的结构</h4><ol>
-<li>build<br>包含编译时生成的文件</li>
-<li>libs<br>把第三方jar包放在libs目录下，放在这里的jar包都会被自动添加到构筑路径中去。</li>
-<li>androidTest<br>编写Android Test测试用例，可以对项目进行一些自动化测试</li>
-<li>java<br>存放所有java代码</li>
-<li>res<br>存放项目中使用到的所有图片、布局、字符串等资源。<ol>
-<li>图片放在drawable目录下</li>
-<li>布局放在layout目录下</li>
-<li>字符串放在values目录下</li>
-</ol>
-</li>
-<li>AndroidManifest.xml<br>整个Android项目的配置文件，在程序中定义的四大组件都需要在这个文件里注册，可以给应用程序添加权限声明。</li>
-<li>test<br>编写Unit Test测试用例的，是对项目进行自动化测试的另一种方式</li>
-<li>.gitignore<br>将app模板内的指定的目录或文件排除在版本控制之外</li>
-</ol>
-<p><code>AndroidManifest.xml</code>文件</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">activity</span> <span class="attr">android:name</span>=<span class="string">".HelloWorldActivity"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">intent-filter</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span>=<span class="string">"android.intent.action.MAIN"</span> /&gt;</span></span><br><span class="line">        //表示HelloWorldActivity是这个项目的主活动</span><br><span class="line">        <span class="tag">&lt;<span class="name">category</span> <span class="attr">android:name</span>=<span class="string">"android.intent.category.LAUNCHER"</span> /&gt;</span></span><br><span class="line">        //点击图标，首先启动的就是这个活动</span><br><span class="line">    <span class="tag">&lt;/<span class="name">intent-filter</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">activity</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
-<p><code>HelloWorldActivity.java</code></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example.helloworld;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> android.support.v7.app.AppCompatActivity;</span><br><span class="line"><span class="keyword">import</span> android.os.Bundle;</span><br><span class="line"><span class="keyword">import</span> android.util.Log;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloWorldActivity</span> <span class="keyword">extends</span> <span class="title">AppCompatActivity</span> </span>&#123;<span class="comment">//继承</span></span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.hello_world_layout);</span><br><span class="line">        Log.d(<span class="string">"HelloWorldAcitivity"</span>,<span class="string">"onCreate execute"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><em>Android程序的设计讲究逻辑和视图分离，因此是不推荐在活动中直接编写界面的，更加通用的一种做法是，在布局文件中编写界面，然后在活动中引入进来。</em></p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">android.support.constraint.ConstraintLayout</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">xmlns:app</span>=<span class="string">"http://schemas.android.com/apk/res-auto"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">xmlns:tools</span>=<span class="string">"http://schemas.android.com/tools"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">tools:context</span>=<span class="string">".HelloWorldActivity"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">TextView</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_width</span>=<span class="string">"wrap_content"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:text</span>=<span class="string">"Hello World!"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">app:layout_constraintBottom_toBottomOf</span>=<span class="string">"parent"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">app:layout_constraintLeft_toLeftOf</span>=<span class="string">"parent"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">app:layout_constraintRight_toRightOf</span>=<span class="string">"parent"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">app:layout_constraintTop_toTopOf</span>=<span class="string">"parent"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">android.support.constraint.ConstraintLayout</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="1-3-5详解项目中的资源"><a href="#1-3-5详解项目中的资源" class="headerlink" title="1.3.5详解项目中的资源"></a>1.3.5详解项目中的资源</h3><p><img src="https://s2.ax1x.com/2019/03/19/An0crj.png" alt="res目录下的结构">  </p>
-<p><code>res</code>目录下的结构<br><code>drawable</code>开头的文件就是用来存放图片的。<br><code>mipmap</code>开头的文件夹是用来存放应用图标的。<br><code>values</code>用来存放字符串、样式、颜色等配置。<br><code>layout</code>存放布局。  </p>
-<p>res/values/strings.xml</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">resources</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">string</span> <span class="attr">name</span>=<span class="string">"app_name"</span>&gt;</span>HelloWorld<span class="tag">&lt;/<span class="name">string</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">resources</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>有两种方式来引用这个字符串</p>
-<ul>
-<li>在代码中： R.string.app_name</li>
-<li>在XML中：@string/app_name</li>
-</ul>
-<h3 id="1-3-6详解build-gradle文件"><a href="#1-3-6详解build-gradle文件" class="headerlink" title="1.3.6详解build.gradle文件"></a>1.3.6详解build.gradle文件</h3><p>最外层目录下的build.gradle文件部分代码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">buildscript &#123;</span><br><span class="line">    </span><br><span class="line">    repositories &#123;</span><br><span class="line">        google()</span><br><span class="line">        jcenter()</span><br><span class="line">        //jcenter代码托管仓库，可以在项目中轻松引用jcenter上的开源项目</span><br><span class="line">    &#125;</span><br><span class="line">    dependencies &#123;</span><br><span class="line">        classpath &apos;com.android.tools.build:gradle:3.1.4&apos;</span><br><span class="line">        //声明用Gradle来构建Android项目</span><br><span class="line"></span><br><span class="line">        // NOTE: Do not place your application dependencies here; they belong</span><br><span class="line">        // in the individual module build.gradle files</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">app目录内的build.gradle文件</span><br><span class="line">apply plugin: &apos;com.android.application&apos;</span><br><span class="line">//应用了一个插件，一般有两种值可以选。</span><br><span class="line">//com.android.application 表示应用程序模块,可以直接运行</span><br><span class="line">//com.android.library 表示这是一个库模块，依附于别的应用程序模块来运行</span><br><span class="line"></span><br><span class="line">android &#123;</span><br><span class="line">    compileSdkVersion 28 //指定项目的编译版本</span><br><span class="line">    defaultConfig &#123;//更多细节配置</span><br><span class="line">        applicationId &quot;com.example.helloworld&quot;//指定项目包名</span><br><span class="line">        minSdkVersion 15//项目最低兼容的系统版本</span><br><span class="line">        targetSdkVersion 28</span><br><span class="line">        versionCode 1</span><br><span class="line">        versionName &quot;1.0&quot;</span><br><span class="line">        testInstrumentationRunner &quot;android.support.test.runner.AndroidJUnitRunner&quot;</span><br><span class="line">    &#125;</span><br><span class="line">    buildTypes &#123;//指定生成安装文件的相关配置</span><br><span class="line">    //buildTypes通常有两个子包 debug（测试版的配置）和release（正式版的配置）</span><br><span class="line">        release &#123;</span><br><span class="line">            minifyEnabled false //是否对项目的代码进行混淆</span><br><span class="line">            proguardFiles getDefaultProguardFile(&apos;proguard-android.txt&apos;), &apos;proguard-rules.pro&apos;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">dependencies &#123;//指定当前项目所有的依赖关系</span><br><span class="line">    //本地依赖 对本地的Jar包或目录添加依赖关系</span><br><span class="line">    //库依赖 对项目的库模块添加依赖关系</span><br><span class="line">    //远程依赖 对jcenter库上的开源项目添加依赖关系</span><br><span class="line">    implementation fileTree(dir: &apos;libs&apos;, include: [&apos;*.jar&apos;])//本地依赖</span><br><span class="line">    implementation &apos;com.android.support:appcompat-v7:28.0.0&apos;//远程依赖</span><br><span class="line">    implementation &apos;com.android.support.constraint:constraint-layout:1.1.3&apos;</span><br><span class="line">    testImplementation &apos;junit:junit:4.12&apos;</span><br><span class="line">    androidTestImplementation &apos;com.android.support.test:runner:1.0.2&apos;</span><br><span class="line">    androidTestImplementation &apos;com.android.support.test.espresso:espresso-core:3.0.2&apos;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="1-4-前行必备——掌握日志工具的使用"><a href="#1-4-前行必备——掌握日志工具的使用" class="headerlink" title="1.4 前行必备——掌握日志工具的使用"></a>1.4 前行必备——掌握日志工具的使用</h2><p><code>Log.v( )</code> verbose<br><code>Log.d( )</code>  debug<br><code>Log.i( )</code> info<br><code>Log.w( )</code>  warn<br><code>Log.e( )</code> error  </p>
-<p><em>Log.d(“HelloWorldAcitivity”,”onCreate execute”);</em></p>
-<p>“tag”:当前类名，对打印信息进行过滤<br>“msg”:要打印的具体内容</p>
-
+          </div>
+        </div>
           
+            <p>
+              Chap1 开始启程——你的第一行Android代码1.1了解全貌——Android王国简介1.1.3 Android开发应用特色01 四大组件Android系统四大组件分别是活动（Activity）、服务（Service）、广播接收器（Broadcast Reciever）和内容提供器（Conte
+              ...
+            </p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/《第一行代码》Chap1-开始启程/" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
         
       
     </div>
+
+    
 
     
     
@@ -397,11 +376,19 @@
                 
               
 
-              <time title="创建时间：2019-08-07 17:20:00 / 修改时间：17:21:15" itemprop="dateCreated datePublished" datetime="2019-08-07T17:20:00+08:00">2019-08-07</time>
+              <time title="创建时间：2019-08-07 17:20:00" itemprop="dateCreated datePublished" datetime="2019-08-07T17:20:00+08:00">2019-08-07</time>
             </span>
           
             
 
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-08-17 19:32:45" itemprop="dateModified" datetime="2019-08-17T19:32:45+08:00">2019-08-17</time>
+              </span>
             
           
 
@@ -416,13 +403,34 @@
     <div class="post-body" itemprop="articleBody">
 
       
+        <div class="post-gallery" itemscope itemtype="http://schema.org/ImageGallery">
+            <div class="post-gallery-row">
+              <img src="/images/abstract/img_0039.jpg" itemprop="contentUrl">
+            
           
-            <p>欢迎</p>
 
+          </div>
+        </div>
           
+            <p>
+              欢迎
+
+              
+            </p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/newpapername/" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
         
       
     </div>
+
+    
 
     
     
@@ -493,24 +501,24 @@
 
       
           
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
+            <p>
+              Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in 
+              ...
+            </p>
+          <!--noindex-->
           
+            <div class="post-button text-center">
+              <a class="btn" href="/hello-world/" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
         
       
     </div>
+
+    
 
     
     
@@ -681,11 +689,8 @@
   </div>
 
   
-    
-    
-  
-  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
   <script src="/lib/jquery/index.js?v=3.4.1"></script>
+  <script src="/lib/fancybox/source/jquery.fancybox.pack.js"></script>
   <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
   <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
 
@@ -747,6 +752,7 @@
 
 
   
+  <script type="text/javascript" src="dist/canvas-nest.js"></script>
 </body>
 </html>
 
