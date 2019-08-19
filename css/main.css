@@ -1768,7 +1768,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #4b2ac6;
+  background: #1ac24b;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2016,7 +2016,7 @@ pre .javascript .function {
   animation: iconAnimate 1.33s ease-in-out infinite;
 }
 .with-love {
-  color: #FFA07A;
+  color: #e71313;
   display: inline-block;
   margin: 0 5px;
 }
@@ -2482,7 +2482,7 @@ embed {
   display: inline-block;
 }
 body {
-  background: url("/images/jake-givens-ocwmWiNAWGs-unsplash.jpg");
+  background: url("/images/");
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -2490,7 +2490,7 @@ body {
 }
 .main-inner {
   background: #fff;
-  opacity: 0.8;
+  opacity: 1;
 }
 .header-inner {
   opacity: 1;
@@ -2502,14 +2502,18 @@ body {
   background-attachment: fixed;
   background-position: center;
 }
-.post {
-  margin-top: 30px;
-  margin-bottom: 30px;
-  padding: 30px;
-  background: rgba(255,255,255,0) none repeat scroll !important;
-  -webkit-box-shadow: 0 0 5px rgba(202,203,203,0.5);
-  -moz-box-shadow: 0 0 5px rgba(202,203,204,0.5);
+pre .addition {
+  background: #e6ffed;
 }
-.footer-inner {
-  color: #000;
+pre .deletion {
+  background: #ffeef0;
+}
+.highlight figcaption {
+  margin: 0em;
+  padding: 0.5em;
+  background: #eee;
+  border-bottom: 1px solid #e9e9e9;
+}
+.highlight figcaption a {
+  color: #5073b8;
 }
