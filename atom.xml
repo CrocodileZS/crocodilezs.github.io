@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.crocodilezs.top/"/>
-  <updated>2019-09-18T17:00:31.273Z</updated>
+  <updated>2019-09-18T17:11:57.264Z</updated>
   <id>https://www.crocodilezs.top/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>记一次和李京老师面谈</title>
-    <link href="https://www.crocodilezs.top/%E8%AE%B0%E4%B8%80%E6%AC%A1%E5%92%8C%E6%9D%8E%E4%BA%AC%E8%80%81%E5%B8%88%E9%9D%A2%E8%B0%88/"/>
-    <id>https://www.crocodilezs.top/记一次和李京老师面谈/</id>
+    <title>记和李京老师的一次面谈</title>
+    <link href="https://www.crocodilezs.top/%E8%AE%B0%E5%92%8C%E6%9D%8E%E4%BA%AC%E8%80%81%E5%B8%88%E7%9A%84%E4%B8%80%E6%AC%A1%E9%9D%A2%E8%B0%88/"/>
+    <id>https://www.crocodilezs.top/记和李京老师的一次面谈/</id>
     <published>2019-09-18T07:20:50.000Z</published>
-    <updated>2019-09-18T17:00:31.273Z</updated>
+    <updated>2019-09-18T17:11:57.264Z</updated>
     
     <summary type="html">
     
@@ -40,14 +40,24 @@
     <link href="https://www.crocodilezs.top/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%882%EF%BC%89/"/>
     <id>https://www.crocodilezs.top/数据库系统原理学习笔记（2）/</id>
     <published>2019-09-17T09:48:50.000Z</published>
-    <updated>2019-09-18T16:55:52.051Z</updated>
+    <updated>2019-09-18T17:06:23.762Z</updated>
     
     <summary type="html">
     
-      
-      
-        &lt;h1 id=&quot;Chap2-Introduction-to-the-Relational-Model-关系模型介绍&quot;&gt;&lt;a href=&quot;#Chap2-Introduction-to-the-Relational-Model-关系模型介绍&quot; class=&quot;headerlink&quot; t
-      
+      &lt;h1 id=&quot;Chap2-Introduction-to-the-Relational-Model-关系模型介绍&quot;&gt;&lt;a href=&quot;#Chap2-Introduction-to-the-Relational-Model-关系模型介绍&quot; class=&quot;headerlink&quot; title=&quot;Chap2. Introduction to the Relational Model(关系模型介绍)&quot;&gt;&lt;/a&gt;Chap2. Introduction to the Relational Model(关系模型介绍)&lt;/h1&gt;&lt;div class=&quot;note success&quot;&gt;
+    本章最好通过举例来理解定义。
+&lt;/div&gt;
+
+&lt;h2 id=&quot;Introduction-to-Chapter-2&quot;&gt;&lt;a href=&quot;#Introduction-to-Chapter-2&quot; class=&quot;headerlink&quot; title=&quot;Introduction to Chapter 2&quot;&gt;&lt;/a&gt;Introduction to Chapter 2&lt;/h2&gt;&lt;h3 id=&quot;Relational-data-model&quot;&gt;&lt;a href=&quot;#Relational-data-model&quot; class=&quot;headerlink&quot; title=&quot;Relational data model&quot;&gt;&lt;/a&gt;Relational data model&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;relational data structure (syntax)语法&lt;/li&gt;
+&lt;li&gt;integrity constraints (semantic) 完整性约束（语义）&lt;ul&gt;
+&lt;li&gt;constraints on &lt;strong&gt;attributes of schemas&lt;/strong&gt;, e.g. value domain, type&lt;/li&gt;
+&lt;li&gt;constraints on &lt;strong&gt;dependencies among attributes of a schema&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;constraints on &lt;strong&gt;dependencies among attributes of different schemas&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;operations on the model&lt;/li&gt;
+&lt;/ul&gt;
     
     </summary>
     

@@ -76,7 +76,7 @@
 <meta property="og:image" content="https://s2.ax1x.com/2019/09/19/nbiDr6.jpg">
 <meta property="og:image" content="https://s2.ax1x.com/2019/09/19/nbi2PH.jpg">
 <meta property="og:image" content="https://s2.ax1x.com/2019/09/19/nbiWRA.md.jpg">
-<meta property="og:updated_time" content="2019-09-18T16:55:52.051Z">
+<meta property="og:updated_time" content="2019-09-18T17:06:23.762Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据库系统原理学习笔记（2）">
 <meta name="twitter:description" content="Chap2. Introduction to the Relational Model(关系模型介绍)     本章最好通过举例来理解定义。   Introduction to Chapter 2Relational data model relational data structure (syntax)语法 integrity constraints (semantic) 完整性约束（语义）">
@@ -321,7 +321,7 @@
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span>3.1k</span>
+              <span>3k</span>
             </span>
           
             <span class="post-meta-item" title="阅读时长">
@@ -358,6 +358,8 @@
 </li>
 <li>operations on the model</li>
 </ul>
+<a id="more"></a>
+
 <p><img src="https://s2.ax1x.com/2019/09/18/nTlHFx.jpg" alt="Fig.2.1 The instructor relation"></p>
 <h2 id="2-1-Structure-of-Relational-Databases（关系数据库）"><a href="#2-1-Structure-of-Relational-Databases（关系数据库）" class="headerlink" title="2.1 Structure of Relational Databases（关系数据库）"></a>2.1 Structure of Relational Databases（关系数据库）</h2><p>attributes(or columns)<br>tuples(or rows)</p>
 <h3 id="Basic-structures"><a href="#Basic-structures" class="headerlink" title="Basic structures"></a>Basic structures</h3><p><strong>关系（relation）</strong>定义为：一系列域上的笛卡尔积的子集。<br><strong>Attributes ：</strong>$A_1, A_2, … ,A_n$<br><strong>domain</strong> of relation’s attributes $D_1, D_2,…D_n$</p>
@@ -383,20 +385,16 @@
 <li><strong>candidate key</strong>（候选码）<br> 候选码是最小的超码。</li>
 <li><strong>Primary key:</strong> A relation may have several candidate keys. Primary key is chosen as principal means to identify tuples.</li>
 <li><strong>Primary attributes //non-primary attributes</strong> </li>
-<li><strong>foreign key&amp;referencing relation &amp; referenced relation</strong><br>这里比较容易混，注意看定义。<ul>
-<li><strong>Def.</strong> If X is one or more attributes in relation r1, and X is also the primary-key of another relation schema r2.</li>
-<li>X is called a foreign key from r1 referencing r2 X是由r1参照/关联r2的外键</li>
-<li>r1 is called the referencing relation of the foreign key</li>
-<li>r2 is called the referenced relation of the foreign key </li>
-<li>e.g. <code>dept_name</code> in <code>instructor-schema</code> and <code>department-schema</code>, <code>dept_name</code> in <code>instructor</code> is a foreign key from <code>instructor</code> referencing <code>department</code>. </li>
-</ul>
-</li>
+<li><strong>foreign key&amp;referencing relation &amp; referenced relation</strong><br>这里比较容易混，注意看定义。  </li>
+</ol>
+<p><strong>Def.</strong> If X is one or more attributes in relation r1, and X is also the primary-key of another relation schema r2.<br>X is called a foreign key from r1 referencing r2 X是由r1参照/关联r2的外键<br>r1 is called the referencing relation of the foreign key<br>r2 is called the referenced relation of the foreign key<br>e.g. <code>dept_name</code> in <code>instructor-schema</code> and <code>department-schema</code>, <code>dept_name</code> in <code>instructor</code> is a foreign key from <code>instructor</code> referencing <code>department</code>.   </p>
+<ol start="6">
 <li><strong>schema diagram</strong>(模式图)、<strong>node</strong>、<strong>directed arc</strong></li>
 <li><strong>Referential integrity constraint(参照完整性约束)</strong>：在参照关系中，任意元组在特定关系中的取值必然等于被参照关系中某个元组在特定关系上的取值。</li>
 </ol>
 <h2 id="2-5-Query-language-查询语言"><a href="#2-5-Query-language-查询语言" class="headerlink" title="2.5 Query language(查询语言)"></a>2.5 Query language(查询语言)</h2><p>procedural 过程化的：用户指导系统对数据库执行一系列操作以计算所需结果。<br>non-procedural 非过程化的：用户只需描述所需信息，而不用给出获取该信息的具体过程。</p>
 <h2 id="2-6-basic-relation-algebra-operations-基本关系运算"><a href="#2-6-basic-relation-algebra-operations-基本关系运算" class="headerlink" title="2.6 basic relation algebra operations 基本关系运算"></a>2.6 basic relation algebra operations 基本关系运算</h2><ol>
-<li><p>Select Operation - selection of rows(tuples)<br>$\sigma_p(r) = {t | t \in r  &amp; p(t)}$<br><img src="https://s2.ax1x.com/2019/09/19/nbiyVO.jpg" alt="eg1"></p>
+<li><p>Select Operation - selection of rows(tuples)<br>$\sigma_p(r)$<br><img src="https://s2.ax1x.com/2019/09/19/nbiyVO.jpg" alt="eg1"></p>
 </li>
 <li><p>Project Operation<br>将元组投影到某些属性上<br>$\prod_{A_1, A_2, …A_k}(r)$<br>筛选后还要去重<br><img src="https://s2.ax1x.com/2019/09/19/nbicIe.md.jpg" alt="eg2"></p>
 </li>
@@ -457,8 +455,8 @@
 
             <div class="post-nav-prev post-nav-item">
               
-                <a href="/记一次和李京老师面谈/" rel="prev" title="记一次和李京老师面谈">
-                  记一次和李京老师面谈 <i class="fa fa-chevron-right"></i>
+                <a href="/记和李京老师的一次面谈/" rel="prev" title="记和李京老师的一次面谈">
+                  记和李京老师的一次面谈 <i class="fa fa-chevron-right"></i>
                 </a>
               
             </div>
