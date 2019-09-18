@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.crocodilezs.top/"/>
-  <updated>2019-09-16T16:20:40.177Z</updated>
+  <updated>2019-09-18T17:00:31.273Z</updated>
   <id>https://www.crocodilezs.top/</id>
   
   <author>
@@ -15,6 +15,80 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>记一次和李京老师面谈</title>
+    <link href="https://www.crocodilezs.top/%E8%AE%B0%E4%B8%80%E6%AC%A1%E5%92%8C%E6%9D%8E%E4%BA%AC%E8%80%81%E5%B8%88%E9%9D%A2%E8%B0%88/"/>
+    <id>https://www.crocodilezs.top/记一次和李京老师面谈/</id>
+    <published>2019-09-18T07:20:50.000Z</published>
+    <updated>2019-09-18T17:00:31.273Z</updated>
+    
+    <summary type="html">
+    
+      &lt;blockquote class=&quot;blockquote-center&quot;&gt;&lt;p&gt;内省不疚，夫何惧何忧？&lt;/p&gt;
+&lt;div style=&quot;text-align:right&quot;&gt;——《论语·颜渊》&lt;/div&gt;&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="参省乎己" scheme="https://www.crocodilezs.top/categories/%E5%8F%82%E7%9C%81%E4%B9%8E%E5%B7%B1/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>数据库系统原理学习笔记（2）</title>
+    <link href="https://www.crocodilezs.top/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%882%EF%BC%89/"/>
+    <id>https://www.crocodilezs.top/数据库系统原理学习笔记（2）/</id>
+    <published>2019-09-17T09:48:50.000Z</published>
+    <updated>2019-09-18T16:55:52.051Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;Chap2-Introduction-to-the-Relational-Model-关系模型介绍&quot;&gt;&lt;a href=&quot;#Chap2-Introduction-to-the-Relational-Model-关系模型介绍&quot; class=&quot;headerlink&quot; t
+      
+    
+    </summary>
+    
+      <category term="数据库系统原理" scheme="https://www.crocodilezs.top/categories/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>机器学习课堂笔记（2）</title>
+    <link href="https://www.crocodilezs.top/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B0%EF%BC%882%EF%BC%89/"/>
+    <id>https://www.crocodilezs.top/机器学习课堂笔记（2）/</id>
+    <published>2019-09-17T05:03:50.000Z</published>
+    <updated>2019-09-17T17:54:35.693Z</updated>
+    
+    <summary type="html">
+    
+      &lt;div class=&quot;note warning&quot;&gt;
+    机器学习的第二次课程。感觉新专业课程安排的不够合理，有很多机器学习的先修课程都在和机器学习同时进行。🤦‍♂️ Anyway,努力学习吧。&lt;br&gt;
+    在本次课程中还没有做到的事：&lt;br&gt;
+    1. 多查看笔记里的概念类内容，作到掌握。&lt;br&gt;
+    2. 近一步理解笔记里出现的公式。&lt;br&gt;
+    3. 对机器学习历史里出现的算法做进一步了解。&lt;br&gt;
+    4. 对笔记里提到的算法进行各种实践！只有理论不可以的。🙌
+&lt;/div&gt;
+
+&lt;h1 id=&quot;第二次上课&quot;&gt;&lt;a href=&quot;#第二次上课&quot; class=&quot;headerlink&quot; title=&quot;第二次上课&quot;&gt;&lt;/a&gt;第二次上课&lt;/h1&gt;&lt;h2 id=&quot;复习&quot;&gt;&lt;a href=&quot;#复习&quot; class=&quot;headerlink&quot; title=&quot;复习&quot;&gt;&lt;/a&gt;复习&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;Def of Machine Learning&lt;blockquote class=&quot;blockquote-center&quot;&gt;&lt;p&gt;A compute program is said to learn from experience E with respect to same task T and some performance measure P, if its performance on T, as measure by P, improves with experience E.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;/li&gt;
+&lt;/ul&gt;
+    
+    </summary>
+    
+      <category term="机器学习" scheme="https://www.crocodilezs.top/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+      <category term="机器学习, 几何模型, 线性分类" scheme="https://www.crocodilezs.top/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%87%A0%E4%BD%95%E6%A8%A1%E5%9E%8B-%E7%BA%BF%E6%80%A7%E5%88%86%E7%B1%BB/"/>
+    
+  </entry>
   
   <entry>
     <title>数据科学导论学习笔记（1）</title>
