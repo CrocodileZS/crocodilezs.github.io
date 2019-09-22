@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[「学生宿舍管理系统」实验报告]]></title>
+    <url>%2F%E5%91%A8%E5%AE%87%E6%B4%8B_%E3%80%8C%E5%AD%A6%E7%94%9F%E5%AE%BF%E8%88%8D%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F%E3%80%8D%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A%2F</url>
+    <content type="text"><![CDATA[「学生宿舍管理系统」实验报告（第一次作业） 班级： 2017211317 学号： 2017211133 班内序： 11 姓名： 周宇洋 问题描述使用Python语言，设计一个小型的学生宿舍管理系统，系统用户为宿舍管理员。 功能要求 学生信息：学号、姓名、性别（男/女）、宿舍房间号、联系电话。 系统功能 可按学号查找某一位学生的具体信息 可以录入新的学生信息 可以显示现有的所有学生信息 程序要求 使用函数、列表、字典、字符串、条件循环等解决问题； 程序规模在80~200行左右。 任务分析实现宿舍管理程序的三个功能。添加的功能包括：可以利用学生的姓名进行查找。错误处理：在功能选择、输入学号、姓名、性别、宿舍房间号、联系电话时都有可能出现数据格式不正确的情况，需要请求用户重新输入。在查找失败时，需要向用户提供查找失败信息。 模块划分共有一个主函数和三个模块函数： search_stu可按照学号查找某一位学生的具体信息。（这里做了一个功能拓展，可以通过学生姓名来进行查找，如果有重名的同学都会查找出来） add_stu模块录入新的学生信息 show_all_students显示现有的所有学生信息 main函数进行功能选择 数据结构和关键算法 导入prettytable模块，使输出结果更为美观。 stu_info是一个$n * 5$ 的数组，其中$n$为学生数量 程序代码search_stu函数def search_stu(): "按照学号或姓名查找某一位学生的具体信息" find = -1 t = PrettyTable(["学号","姓名","性别","宿舍房间号","联系电话"]) sea = input("请输入要搜索的学号或姓名： ") if sea.isdigit() == True: for i in range(len(stu_info)): if stu_info[i][0] == sea: find = i t.add_row(stu_info[i]) if sea.isalpha() == True: count = 0 for i in range(len(stu_info)): if stu_info[i][1] == sea: find = i t.add_row(stu_info[i]) if find == -1: print("抱歉，未查找到该学生。") else: print(t) add_stu函数def add_stu(): "录入新的学生信息" print("-"*50) print("新增学生") num = input("请输入学号： ") while num.isdigit() != True: num = input("输入错误，请重新输入： ") name = input("请输入姓名： ") while name.isalpha() != True: name = input("输入错误，请重新输入： ") sex = input("请输入性别：（男/女） ") while sex != "男" and sex != "女": sex = input("输入错误，请重新输入： ") room_no = input("请输入房间号： ") while room_no.isdigit() != True: room_no = input("输入错误，请重新输入： ") tel = input("请输入电话：") while tel.isdigit() != True: tel = input("输入错误，请重新输入： ") stu = [num, name, sex, room_no, tel] stu_info.append(stu) print("添加"+num+"成功") show_all_students函数def show_all_students(): for i in range(len(stu_info)): table.add_row(stu_info[i]) print(table) 主函数def main(): while True: print("*"*50) print("欢迎使用【宿舍管理系统】") print("1.查找学生") print("2.新增学生") print("3.显示全部") print("0.退出系统") print("*"*50) print() instruct = input("请选择希望执行的操作：") if instruct == "1": search_stu() elif instruct == "2": add_stu() elif instruct == "3": show_all_students() elif instruct == "0": print("欢迎再次使用【宿舍管理系统】") break else: print("输入错误，请重新输入指令！") 执行结果功能2. 录入学生信息 功能3.显示所有学生信息 功能1. 根据学号或姓名进行查找 根据学号查找 根据姓名查找 可见，重名的学生被查找出来 功能0. 退出系统 错误处理]]></content>
+      <categories>
+        <category>数据科学导论</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[口译英语学习笔记（2）]]></title>
     <url>%2F%E5%8F%A3%E8%AF%91%E8%8B%B1%E8%AF%AD%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%882%EF%BC%89%2F</url>
     <content type="text"><![CDATA[李平老师说，这门选修课即使选的人再少她也会坚持讲下去。因为组建口译班是她一直想做的事，现在她一定要实现自己的这个梦想。选这门课的同学里有一个东营的小姐姐，理想是去做同传，并且现在正在着手准备相关的考试。希望她们都可以实现自己的理想。坚持做自己喜欢的事情是一定是有意义的，因为至少以后回想起来不会后悔。 Chap2. 关于记忆 -- Gains -- 记忆的分类 immidiate memory - 启动注意 short-term memory - 信息处理（对口译非常重要） long-term memory 后台处理 Technics Visualization Logical restructing Time Sequence Put yourself in Emotion -- Problems -- 对细节记忆不准确；在对较长的内容进行记忆时容易走神，后半段都会忘掉；对专业相关的内容记忆会更加准确；听力不好。 -- Solutions -- 训练长时间集中注意力；训练听力]]></content>
