@@ -231,7 +231,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.crocodilezs.top/hello-world/">
+    <link itemprop="mainEntityOfPage" href="https://www.crocodilezs.top/基于链接内容的社区发现（一）/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="CrocodileZS">
@@ -247,7 +247,7 @@
         
           <h1 class="post-title" itemprop="name headline">
               
-              <a href="/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
+              <a href="/基于链接内容的社区发现（一）/" class="post-title-link" itemprop="url">基于链接内容的社区发现算法（一）</a>
             
           </h1>
         
@@ -263,7 +263,20 @@
                 
               
 
-              <time title="创建时间：2019-08-07 11:35:33" itemprop="dateCreated datePublished" datetime="2019-08-07T11:35:33+08:00">2019-08-07</time>
+              <time title="创建时间：2019-04-17 10:48:50" itemprop="dateCreated datePublished" datetime="2019-04-17T10:48:50+08:00">2019-04-17</time>
+            </span>
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/论文/" itemprop="url" rel="index"><span itemprop="name">论文</span></a></span>
+
+                
+                
+              
             </span>
           
 
@@ -280,7 +293,7 @@
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span>430</span>
+              <span>2k</span>
             </span>
           
             <span class="post-meta-item" title="阅读时长">
@@ -290,7 +303,7 @@
               
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
               
-              <span>1 分钟</span>
+              <span>3 分钟</span>
             </span>
           
 
@@ -303,22 +316,21 @@
     <div class="post-body" itemprop="articleBody">
 
       
+          <h1 id="Robust-Detection-of-Link-Communities-in-Large-Social-Network-by-Exploiting-Link-Semantics"><a href="#Robust-Detection-of-Link-Communities-in-Large-Social-Network-by-Exploiting-Link-Semantics" class="headerlink" title="Robust Detection of Link Communities in Large Social Network by Exploiting Link Semantics"></a>Robust Detection of Link Communities in Large Social Network by Exploiting Link Semantics</h1><h2 id="ZHOU-YUYANG"><a href="#ZHOU-YUYANG" class="headerlink" title="ZHOU YUYANG"></a>ZHOU YUYANG</h2><hr>
+<p><a href="https://www.aaai.org/ocs/index.php/AAAI/AAAI18/paper/viewPaper/17345" target="_blank" rel="noopener">Robust Detection of Link Communities in Large Social Network by Exploiting Link Semantics </a></p>
+<p>这篇论文是我加入张老师实验室读的第一篇论文，寒假里草草读了一遍，感叹了自己垃圾的英文水平，上周除了上课和作业基本没做什么，一直在研读这篇论文。很幸运的是上周关于这篇论文的汇报我做的非常精彩，也不枉自己上周那么辛苦的肝了。  </p>
+<p>这篇博客用来记录自己研读时候的思考和整理。  </p>
+<p><img src="https://s2.ax1x.com/2019/04/11/A7J9ts.png" alt="1.1"></p>
+<p>整个论文的整体内容我将从四个方面介绍。分别是社区发现算法的背景和现存的方法、论文提出的模型和方法、试验和结论与讨论。</p>
+          <!--noindex-->
           
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
+            <div class="post-button text-center">
+              <a class="btn" href="/基于链接内容的社区发现（一）/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
           
+          <!--/noindex-->
         
       
     </div>
@@ -404,7 +416,9 @@
         
           
         
-        <span class="site-state-item-count">5</span>
+          
+        
+        <span class="site-state-item-count">6</span>
         <span class="site-state-item-name">分类</span>
         </a>
       </div>
