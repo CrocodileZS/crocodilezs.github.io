@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="generator" content="Hexo 3.9.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/rainbow.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/rainbow.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/rainbow.png?v=7.3.0">
+  <link rel="mask-icon" href="/images/rainbow.svg?v=7.3.0" color="#222">
+  <meta name="baidu-site-verification" content="MBR3SWgP01">
+
+<link rel="stylesheet" href="/css/main.css?v=7.3.0">
+
+<link rel="stylesheet" href="https://fonts.loli.net/css?family=Noto Serif SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+  <link rel="stylesheet" href="/lib/fancybox/source/jquery.fancybox.css">
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.3.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":true},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
+    save_scroll: true,
+    copycode: {"enable":true,"show_result":true,"style":"flat"},
+    fancybox: true,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    }
+  };
+</script>
+
+  <meta name="description" content="算法设计与分析实验报告 2019.4.4插入排序（Insert Sort）、归并排序（Merge Sort）和快速排序（Quick Sort）一、算法简介1.插入排序算法（Insert Sort Algorithm） 直接插入排序(Straight Insertion Sort)的基本思想是：把n个待排序的元素看成为一个有序表和一个无序表。开始时有序表中只包含1个元素，无序表中包含有n-1个元素，">
+<meta name="keywords" content="插入排序,归并排序,快速排序">
+<meta property="og:type" content="article">
+<meta property="og:title" content="插入排序（Insert Sort）、归并排序（Merge Sort）和快速排序（Quick Sort）">
+<meta property="og:url" content="https://www.crocodilezs.top/201904/插入排序归并排序和快速排序/index.html">
+<meta property="og:site_name" content="鰐魚先生的水族館">
+<meta property="og:description" content="算法设计与分析实验报告 2019.4.4插入排序（Insert Sort）、归并排序（Merge Sort）和快速排序（Quick Sort）一、算法简介1.插入排序算法（Insert Sort Algorithm） 直接插入排序(Straight Insertion Sort)的基本思想是：把n个待排序的元素看成为一个有序表和一个无序表。开始时有序表中只包含1个元素，无序表中包含有n-1个元素，">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-09-27T08:22:38.286Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="插入排序（Insert Sort）、归并排序（Merge Sort）和快速排序（Quick Sort）">
+<meta name="twitter:description" content="算法设计与分析实验报告 2019.4.4插入排序（Insert Sort）、归并排序（Merge Sort）和快速排序（Quick Sort）一、算法简介1.插入排序算法（Insert Sort Algorithm） 直接插入排序(Straight Insertion Sort)的基本思想是：把n个待排序的元素看成为一个有序表和一个无序表。开始时有序表中只包含1个元素，无序表中包含有n-1个元素，">
+  <link rel="alternate" href="/atom.xml" title="鰐魚先生的水族館" type="application/atom+xml">
+  <link rel="canonical" href="https://www.crocodilezs.top/201904/插入排序归并排序和快速排序/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>插入排序（Insert Sort）、归并排序（Merge Sort）和快速排序（Quick Sort） | 鰐魚先生的水族館</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  <div class="container sidebar-position-left">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">鰐魚先生的水族館</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">言念君子，溫其如玉。</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-tags">
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-about">
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>关于</a>
+
+  </li>
+  </ul>
+
+    
+
+</nav>
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content page-post-detail">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.crocodilezs.top/201904/插入排序归并排序和快速排序/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CrocodileZS">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/tom.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鰐魚先生的水族館">
+    </span>
+      <header class="post-header">
+
+        
+          <h1 class="post-title" itemprop="name headline">插入排序（Insert Sort）、归并排序（Merge Sort）和快速排序（Quick Sort）
+
+            
+          </h1>
+        
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2019-04-04 20:48:50" itemprop="dateCreated datePublished" datetime="2019-04-04T20:48:50+08:00">2019-04-04</time>
+            </span>
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/算法/" itemprop="url" rel="index"><span itemprop="name">算法</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/201904/插入排序归并排序和快速排序/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/201904/插入排序归并排序和快速排序/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+          
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span>8.2k</span>
+            </span>
+          
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span>14 分钟</span>
+            </span>
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="算法设计与分析实验报告-2019-4-4"><a href="#算法设计与分析实验报告-2019-4-4" class="headerlink" title="算法设计与分析实验报告 2019.4.4"></a>算法设计与分析实验报告 2019.4.4</h1><h3 id="插入排序（Insert-Sort）、归并排序（Merge-Sort）和快速排序（Quick-Sort）"><a href="#插入排序（Insert-Sort）、归并排序（Merge-Sort）和快速排序（Quick-Sort）" class="headerlink" title="插入排序（Insert Sort）、归并排序（Merge Sort）和快速排序（Quick Sort）"></a>插入排序（Insert Sort）、归并排序（Merge Sort）和快速排序（Quick Sort）</h3><h2 id="一、算法简介"><a href="#一、算法简介" class="headerlink" title="一、算法简介"></a>一、算法简介</h2><h4 id="1-插入排序算法（Insert-Sort-Algorithm）"><a href="#1-插入排序算法（Insert-Sort-Algorithm）" class="headerlink" title="1.插入排序算法（Insert Sort Algorithm）"></a>1.插入排序算法（Insert Sort Algorithm）</h4><ul>
+<li><strong>直接插入排序(Straight Insertion Sort)的基本思想是</strong>：<br>把n个待排序的元素看成为一个有序表和一个无序表。开始时有序表中只包含1个元素，无序表中包含有n-1个元素，排序过程中每次==从无序表中取==出第一个元素，将它==插入到有序表中==的适当位置，使之成为新的有序表，重复n-1次可完成排序过程。</li>
+<li><strong>我们需要做的工作只有两个：</strong>   <ul>
+<li>取出无序区中的第1个数，并找出它在有序区对应的位置。  </li>
+<li>将无序区的数据插入到有序区；若有必要的话，则对有序区中的相关数据进行移位。</li>
+</ul>
+</li>
+</ul>
+<a id="more"></a>
+
+<h4 id="2-归并排序算法（Merge-Sort-Algorithm）"><a href="#2-归并排序算法（Merge-Sort-Algorithm）" class="headerlink" title="2.归并排序算法（Merge Sort Algorithm）"></a>2.归并排序算法（Merge Sort Algorithm）</h4><ul>
+<li><strong>归并排序的操作：</strong><br>将已有序的子序列合并，得到完全有序的序列；即先使每个子序列有序，再使子序列段间有序。若将两个有序表合并成一个有序表，称为二路归并。</li>
+<li><strong>归并排序的应用场景：</strong><br>速度仅次于快速排序，为稳定排序算法，一般用于==对总体无序，但是各子项相对有序的数列==<h4 id="3-快速排序算法（Quick-Sort-Algorithm）"><a href="#3-快速排序算法（Quick-Sort-Algorithm）" class="headerlink" title="3.快速排序算法（Quick Sort Algorithm）"></a>3.快速排序算法（Quick Sort Algorithm）</h4></li>
+<li><strong>快速排序的思想：</strong><br>通过一趟排序将要排序的数据分割成独立的两部分，其中一部分的所有数据都比另外一部分的所有数据都要小，然后再按此方法对这两部分数据分别进行快速排序，整个排序过程可以递归进行，以此达到整个数据变成有序序列。</li>
+<li><strong>适用场景：</strong><br>快速排序是==不稳定的==。它不需要额外的存储空间。它的应用场景是大规模的数据排序，并且实际性能要好于归并排序。</li>
+</ul>
+<h2 id="二、程序"><a href="#二、程序" class="headerlink" title="二、程序"></a>二、程序</h2><h3 id="Ⅰ、算法程序"><a href="#Ⅰ、算法程序" class="headerlink" title="Ⅰ、算法程序"></a>Ⅰ、算法程序</h3><h4 id="1-插入排序算法（Insert-Sort-Algorithm）-1"><a href="#1-插入排序算法（Insert-Sort-Algorithm）-1" class="headerlink" title="1.插入排序算法（Insert Sort Algorithm）"></a>1.插入排序算法（Insert Sort Algorithm）</h4><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*Insertion Sorting*/</span></span><br><span class="line"><span class="comment">/*每次从无序的队列中选择一个插入，</span></span><br><span class="line"><span class="comment"> *直到所有元素都排序完成。*/</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">InsertSortUp</span><span class="params">(<span class="keyword">int</span> A[], <span class="keyword">int</span> n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; i++) &#123;</span><br><span class="line">		<span class="keyword">int</span> swap = A[i];</span><br><span class="line">		<span class="keyword">int</span> j;</span><br><span class="line">		<span class="keyword">for</span> (j = i<span class="number">-1</span> ; A[j] &gt; swap &amp;&amp; j &gt;= <span class="number">0</span>; j--)</span><br><span class="line">			A[j+<span class="number">1</span>] = A[j];</span><br><span class="line">		A[j+<span class="number">1</span>] = swap;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-归并排序算法（Merge-Sort-Algorithm）-1"><a href="#2-归并排序算法（Merge-Sort-Algorithm）-1" class="headerlink" title="2.归并排序算法（Merge Sort Algorithm）"></a>2.归并排序算法（Merge Sort Algorithm）</h4><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*MergeSort*/</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Merge</span><span class="params">(<span class="keyword">int</span> A[], <span class="keyword">int</span> p, <span class="keyword">int</span> q, <span class="keyword">int</span> r)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="comment">//创造左右两个数组L、R，将已经排好的两部分放进去 </span></span><br><span class="line">	<span class="keyword">int</span> n1 = q - p + <span class="number">1</span>, n2 = r - q;</span><br><span class="line">	<span class="keyword">int</span> L[n1], R[n2];</span><br><span class="line">	<span class="keyword">int</span> i,j;</span><br><span class="line">	<span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; n1; i++)</span><br><span class="line">		L[i] = A[p + i];</span><br><span class="line">	<span class="keyword">for</span> (j = <span class="number">0</span>; j &lt; n2; j++)</span><br><span class="line">		R[j] = A[q + <span class="number">1</span> + j];</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">	//开始对两个数组进行归并 </span><br><span class="line">	i = 0; j = 0;</span><br><span class="line">	for (int k = p; k &lt;= r; k++) &#123;</span><br><span class="line">		if(i == n1)&#123;//如果左边数组已经全放进去 </span><br><span class="line">			while(j &lt; n2)	A[k++] = R[j++];</span><br><span class="line">		&#125; else if ( j == n2)&#123;//如果右边数组已经全放进去 </span><br><span class="line">			while(i &lt; n1)	A[k++] = L[i++];</span><br><span class="line">		&#125; else&#123;//比较两个数组，把小的数放进A数组，指针后移 </span><br><span class="line">			if (L[i] &lt;= R[j]) &#123;</span><br><span class="line">				A[k] = L[i];</span><br><span class="line">				i++;</span><br><span class="line">			&#125;</span><br><span class="line">			else &#123;</span><br><span class="line">				A[k] = R[j];</span><br><span class="line">				j++;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">void MergeSortUp(int A[], int p,int r)</span><br><span class="line">&#123;</span><br><span class="line">	if (p &lt; r) &#123;</span><br><span class="line">		int q = (p + r) / 2;</span><br><span class="line">		MergeSortUp(A, p, q);</span><br><span class="line">		MergeSortUp(A, q + 1, r);</span><br><span class="line">		Merge(A, p, q, r);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-快速排序算法（Quick-Sort-Algorithm）-1"><a href="#3-快速排序算法（Quick-Sort-Algorithm）-1" class="headerlink" title="3.快速排序算法（Quick Sort Algorithm）"></a>3.快速排序算法（Quick Sort Algorithm）</h4><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*QuickSort*/</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">swap</span><span class="params">(<span class="keyword">int</span> A[], <span class="keyword">int</span> i, <span class="keyword">int</span> j)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> x = A[i];</span><br><span class="line">	A[i] = A[j];</span><br><span class="line">	A[j] = x;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">partition</span><span class="params">(<span class="keyword">int</span> A[], <span class="keyword">int</span> p, <span class="keyword">int</span> r)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> x = A[p];</span><br><span class="line">	<span class="keyword">int</span> i = p;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> j = p + <span class="number">1</span>; j &lt;= r; j++) &#123;</span><br><span class="line">		<span class="keyword">if</span> (A[j] &lt; x) &#123;</span><br><span class="line">			i = i + <span class="number">1</span>;</span><br><span class="line">			swap(A, i, j);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	swap(A, p, i);</span><br><span class="line">	<span class="keyword">return</span> i;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">void QuickSortUp(int A[], int p, int r)</span><br><span class="line">&#123;</span><br><span class="line">	if (p &lt; r) &#123;</span><br><span class="line">		int q = partition(A, p, r);</span><br><span class="line">		QuickSortUp(A, p, q - 1);</span><br><span class="line">		QuickSortUp(A, q + 1, r);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Ⅱ、测试程序"><a href="#Ⅱ、测试程序" class="headerlink" title="Ⅱ、测试程序"></a>Ⅱ、测试程序</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*Test*/</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;ctime&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> size 10000 <span class="comment">//size为数据规模</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">"InsertSort.cpp"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">"MergeSort.cpp"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">"QuickSort.cpp"</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> A[size];</span><br><span class="line"><span class="keyword">clock_t</span> start,finish;</span><br><span class="line"><span class="keyword">double</span> runtime_insert,runtime_merge,runtime_quick;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">/*Generating test data set*/</span><br><span class="line">void tstdata(int n)</span><br><span class="line">&#123;</span><br><span class="line">	FILE *fp;</span><br><span class="line">	if((fp = fopen(&quot;tstdata.txt&quot;,&quot;w+&quot;))== NULL)</span><br><span class="line">		printf(&quot;cant open the file.\n&quot;);</span><br><span class="line">	else&#123;</span><br><span class="line">		srand(time(NULL));</span><br><span class="line">		for (int i = 1; i &lt;= n; i++) &#123;</span><br><span class="line">			if(i!=n) fprintf(fp,&quot;%d &quot;,rand());</span><br><span class="line">	      else fprintf(fp,&quot;%d\n&quot;,rand());</span><br><span class="line">		&#125;</span><br><span class="line">		fclose(fp);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">/*output function*/</span><br><span class="line">int output(char *filename,int A[])</span><br><span class="line">&#123;</span><br><span class="line">    FILE * fp;</span><br><span class="line">    if((fp = fopen(filename,&quot;w+&quot;))==NULL)&#123;</span><br><span class="line">      printf(&quot;cant open the file.\n&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    else&#123;</span><br><span class="line">	   for(int i=0;i&lt;size;i++)&#123;</span><br><span class="line">		   if(i!=size-1) fprintf(fp,&quot;%d &quot;,A[i]);</span><br><span class="line">		   else fprintf(fp,&quot;%d\n&quot;,A[i]);</span><br><span class="line">	   &#125;</span><br><span class="line">	   fclose(fp);</span><br><span class="line">	 &#125;</span><br><span class="line">    </span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">main()</span><br><span class="line">&#123;</span><br><span class="line">	int i=0;</span><br><span class="line">	</span><br><span class="line">	/*generating test data*/</span><br><span class="line">	/*tstdata(size);</span><br><span class="line">	printf(&quot;Data set has been created.\n&quot;);*/</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	/*get the test data*/</span><br><span class="line">	FILE *fp;</span><br><span class="line">	if((fp = fopen(&quot;tstdata.txt&quot;,&quot;r&quot;))==NULL)&#123;</span><br><span class="line">		printf(&quot;cant open the file.\n&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">	while(fscanf(fp, &quot;%d&quot;, &amp;A[i]) != EOF) </span><br><span class="line">        i++;</span><br><span class="line">   fclose(fp);</span><br><span class="line">	 for(i=0;i&lt;size;i++)&#123;</span><br><span class="line">	 	printf(&quot;%d &quot;,A[i]);</span><br><span class="line">	 &#125; </span><br><span class="line">	 printf(&quot;\n&quot;);</span><br><span class="line">	 printf(&quot;Array has been created.\n&quot;);</span><br><span class="line">	   </span><br><span class="line">	    </span><br><span class="line">	/*copy the test data set*/</span><br><span class="line">	int A1[size],A2[size],A3[size];</span><br><span class="line">	for(int i=0;i&lt;size;i++)&#123;</span><br><span class="line">		A1[i]=A[i];</span><br><span class="line">		A2[i]=A[i];</span><br><span class="line">		A3[i]=A[i];</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">    /*Insert Sorting*/</span><br><span class="line">	printf(&quot;Insert Sorting...\n&quot;);</span><br><span class="line">	</span><br><span class="line">	start = clock();</span><br><span class="line">	InsertSortUp(A1,size);</span><br><span class="line">	finish = clock();</span><br><span class="line">	</span><br><span class="line">	output(&quot;InsertSortUp.txt&quot;,A1);</span><br><span class="line">	runtime_insert = (double)(finish - start)/CLOCKS_PER_SEC;</span><br><span class="line">	printf(&quot;Insert Sort has been finished.\nTime Cost:%lf\n&quot;,runtime_insert);</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">    /*Merge Sorting*/</span><br><span class="line">	printf(&quot;Merge Sorting...\n&quot;);</span><br><span class="line">	</span><br><span class="line">	start = clock();</span><br><span class="line">	MergeSortUp(A2,0,size-1);</span><br><span class="line">	finish = clock();</span><br><span class="line">	</span><br><span class="line">	output(&quot;MergeSortUp.txt&quot;,A2);</span><br><span class="line">	runtime_merge = (double)(finish-start)/CLOCKS_PER_SEC;</span><br><span class="line">	printf(&quot;Merge Sort has been finished.\nTime Cost:%lf\n&quot;,runtime_merge);</span><br><span class="line"></span><br><span class="line">    /*Quick Sorting*/</span><br><span class="line">	printf(&quot;Quick Sorting...\n&quot;);</span><br><span class="line">	</span><br><span class="line">	start = clock();</span><br><span class="line">	QuickSortUp(A3,0,size-1);</span><br><span class="line">	finish = clock();</span><br><span class="line">	</span><br><span class="line">	output(&quot;QuickSortUp.txt&quot;,A3);</span><br><span class="line">	runtime_quick = (double)(finish-start)/CLOCKS_PER_SEC;</span><br><span class="line">	printf(&quot;Quick Sort has been finished.\nTime Cost:%lf\n&quot;,runtime_quick);</span><br><span class="line">	</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="三、测试数据集生成及测试"><a href="#三、测试数据集生成及测试" class="headerlink" title="三、测试数据集生成及测试"></a>三、测试数据集生成及测试</h2><ul>
+<li><strong>我为算法的测试准备了12个测试数据集，其中数据量分别为10,000\50,000\100,000</strong>  </li>
+<li><strong>每个数据量下有==随机生成数据集（用于测试平均复杂度）==和==逆序数据集（用于测试最坏情况）==</strong>  </li>
+<li><strong>为了减小误差，每个类型的数据集都准备了两个，这样便生成了3x2x2=12个数据集</strong></li>
+<li><strong>算法的正确性测试在数据量很小的时候进行了手动验证，所以这里我们仅着重比较时间复杂度</strong></li>
+</ul>
+<h3 id="Ⅰ、测试数据集生成"><a href="#Ⅰ、测试数据集生成" class="headerlink" title="Ⅰ、测试数据集生成"></a>Ⅰ、测试数据集生成</h3><p>通过main函数中的/<em>generating test data</em>/部分生成“随机生成测试集”，详细测试数据见附件。<br>通过快速排序算法生成相应的“逆序数据集”进行排序算法的时间复杂度测试，详细数据见附件。</p>
+<h3 id="Ⅱ、测试过程"><a href="#Ⅱ、测试过程" class="headerlink" title="Ⅱ、测试过程"></a>Ⅱ、测试过程</h3><p>测试结果如下表：（详见附件）</p>
+<table>
+<thead>
+<tr>
+<th>data set</th>
+<th>Insert Sort(s)</th>
+<th>Merge Sort(s)</th>
+<th>Quick Sort(s)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>S1:10,000\rand array(average condition)</td>
+<td>0.082</td>
+<td>0.001</td>
+<td>0.002</td>
+</tr>
+<tr>
+<td>S2:10,000\rand array(average condition)</td>
+<td>0.069</td>
+<td>0.002</td>
+<td>0.001</td>
+</tr>
+<tr>
+<td>S3:10,000\reserve array(worst condition)</td>
+<td>0.469</td>
+<td>0.003</td>
+<td>0.554</td>
+</tr>
+<tr>
+<td>S4:10,000\reserve array(worst condition)</td>
+<td>0.463</td>
+<td>0.003</td>
+<td>0.546</td>
+</tr>
+<tr>
+<td>S5:50,000\rand array(average condition)</td>
+<td>1.718</td>
+<td>0.009</td>
+<td>0.009</td>
+</tr>
+<tr>
+<td>S6:50,000\rand array(average condition)</td>
+<td>1.881</td>
+<td>0.01</td>
+<td>0.009</td>
+</tr>
+<tr>
+<td>S7:50,000\reserve array(worst condition)</td>
+<td>8.54</td>
+<td>0.015</td>
+<td>/</td>
+</tr>
+<tr>
+<td>S8:50,000\reserve array(worst condition)</td>
+<td>7.956</td>
+<td>0.015</td>
+<td>/</td>
+</tr>
+<tr>
+<td>S9:100,000\rand array(average condition)</td>
+<td>7.023</td>
+<td>0.022</td>
+<td>0.017</td>
+</tr>
+<tr>
+<td>S10:100,000\rand array(average condition)</td>
+<td>6.86</td>
+<td>0.02</td>
+<td>0.018</td>
+</tr>
+<tr>
+<td>S11:100,000\reserve array(worst condition)</td>
+<td>31.549</td>
+<td>0.027</td>
+<td>/</td>
+</tr>
+<tr>
+<td>S12:100,000\reserve array(worst condition)</td>
+<td>30.989</td>
+<td>0.029</td>
+<td>/</td>
+</tr>
+</tbody></table>
+<p><em>注：50,000和100,000数据量下，最坏情况下快速排序算法程序没法完成排序</em></p>
+<h2 id="四、算法复杂度分析"><a href="#四、算法复杂度分析" class="headerlink" title="四、算法复杂度分析"></a>四、算法复杂度分析</h2><h4 id="1-插入排序算法（Insert-Sort-Algorithm）-2"><a href="#1-插入排序算法（Insert-Sort-Algorithm）-2" class="headerlink" title="1.插入排序算法（Insert Sort Algorithm）"></a>1.插入排序算法（Insert Sort Algorithm）</h4><ul>
+<li>最优情况：<br>最少比较一次，移动两次。<br>Cmin = n-1；Mmin=（n-1）×2；</li>
+<li>最坏情况：<br>最多比较i次，移动i＋2次（逆序）（i=1，2，…，n-1）<br>Cmax=1+2+…+（n-1）=（n2-n）/2<br>M max=3+4+…+（n+1）=（n2+3n-4）/2<br>Cave=（n2+n-2）/4<br>M ave=（n2+7n-8）/4</li>
+<li>故直接插入排序的时间复杂度为O（n2），它的时间复杂度和待排序列的顺序有关。</li>
+</ul>
+<h4 id="2-归并排序算法（Merge-Sort-Algorithm）-2"><a href="#2-归并排序算法（Merge-Sort-Algorithm）-2" class="headerlink" title="2.归并排序算法（Merge Sort Algorithm）"></a>2.归并排序算法（Merge Sort Algorithm）</h4><p>通过迭代作图法可知，归并算法的算法复杂度为O(nlogn)，它的时间复杂度和待排序列的顺序无关。</p>
+<h4 id="3-快速排序算法（Quick-Sort-Algorithm）-2"><a href="#3-快速排序算法（Quick-Sort-Algorithm）-2" class="headerlink" title="3.快速排序算法（Quick Sort Algorithm）"></a>3.快速排序算法（Quick Sort Algorithm）</h4><ul>
+<li>最坏情况：<br>顺序或逆序时，一次partition只能解决一个元素的位置 排列，所以最坏情况下的时间复杂度为O(n^2)</li>
+<li>平均情况：<br>O(logn),枢轴元素两边的待排序列分的越平均，时间复杂度越小。</li>
+</ul>
+<h2 id="五、算法优化"><a href="#五、算法优化" class="headerlink" title="五、算法优化"></a>五、算法优化</h2><h3 id="1-归并排序的“哨兵”"><a href="#1-归并排序的“哨兵”" class="headerlink" title="1.归并排序的“哨兵”"></a>1.归并排序的“哨兵”</h3><p>在归并排序中，将两个已经排号的序列整合在一起时，之前我们是这样做的：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">if(i == n1)&#123;//如果左边数组已经全放进去 </span><br><span class="line">			while(j &lt; n2)	A[k++] = R[j++];</span><br><span class="line">		&#125; else if ( j == n2)&#123;//如果右边数组已经全放进去 </span><br><span class="line">			while(i &lt; n1)	A[k++] = L[i++];</span><br><span class="line">		&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果在待排的两个序列的最右端添加一个==哨兵==，即最大值MAX，就不用判断有序列已经选完了的问题，能够有效的减少判断的次数。</p>
+<h3 id="2-快速排序枢轴元素pivot的选取"><a href="#2-快速排序枢轴元素pivot的选取" class="headerlink" title="2.快速排序枢轴元素pivot的选取"></a>2.快速排序枢轴元素pivot的选取</h3><p>pivot的选择对于快速排序时间复杂度的影响十分的大。从上面的“逆序测试数据”可知，如果每次选择的pivot都是最大/最小值，快速排序的复杂度可能会达到O(n^2)。<br>每次运行过程中，随机选取pivot, 通常能得到比较好的结果。<br>我采用了一种==三者取中==的方法，即选取第一个、最后一个以及中间的元素的中位数作为pivot，这样能够有效的避免“worst condition”的出现。<br>代码如下：(摘自csdn博客)</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">//median-of-three pivot rule</span><br><span class="line">private static int choosePivotMedianOfThree(int[] a, int l, int r) &#123;	</span><br><span class="line">	int mid = 0;</span><br><span class="line">	if ((r-l+1) % 2 == 0) &#123;</span><br><span class="line">		mid = l + (r-l+1)/2 - 1;</span><br><span class="line">	&#125; else &#123;</span><br><span class="line">		mid = l + (r-l+1)/2;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	//只需要找出中位数即可，不需要交换</span><br><span class="line">    //有的版本也可以进行交换</span><br><span class="line">	if (((a[l]-a[mid]) * (a[l]-a[r])) &lt;= 0) &#123;</span><br><span class="line">		return l;</span><br><span class="line">	&#125; else if (((a[mid]-a[l]) * (a[mid]-a[r])) &lt;= 0) 	&#123;</span><br><span class="line">		return mid;</span><br><span class="line">	&#125; else &#123;</span><br><span class="line">		return r;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">--------------------- </span><br><span class="line">/*作者：xinyuexy </span><br><span class="line"> *来源：CSDN </span><br><span class="line"> *原文：https://blog.csdn.net/qq_31903733/article/details/82945605 </span><br><span class="line"> *版权声明：本文为博主原创文章，转载请附上博文链接！*/</span><br></pre></td></tr></table></figure>
+
+<p>再将选取的pivot与队列第一个元素交换即可。</p>
+<h3 id="3-快速排序稳定性的改善"><a href="#3-快速排序稳定性的改善" class="headerlink" title="3.快速排序稳定性的改善"></a>3.快速排序稳定性的改善</h3><p>快速排序是“不稳定”的原因在于，partition的最后一步，pivot和指针i位置的元素交换。<br>举例：</p>
+<ul>
+<li>3  1  3’  5   2   6  1’(大小相同的元素用’区分)</li>
+<li>3  1  2   5   3’  6  1’</li>
+<li>3  1  2   1’  3’  6  5<br>(这时候还没问题)</li>
+<li>1’ 1  2   3   3’  6  5<br>(最后一步1’和1的顺序发生变化)</li>
+</ul>
+<p>解决方法：每次partition的最后一步时，遍历待排数组A[i]之前的部分，将与A[i]大小相同的元素整体后移。</p>
+<h2 id="六、实验心得"><a href="#六、实验心得" class="headerlink" title="六、实验心得"></a>六、实验心得</h2><ul>
+<li>本次实验我学习了三种重要算法：插入排序算法、归并排序算法和快速排序算法，了解了它们的原理和适用的情景。</li>
+<li>我认为相对于快速排序，归并排序更具有健壮性，它不会因为序列的顺序影响时间复杂度，而且它是一个稳定的排序。可能由于数据集不够大，我还没能充分体会到快速排序在时间上的优势。</li>
+<li>最坏情况下的时间复杂度和平均时间复杂度相差非常大，在以后分析算法时要兼顾两者。</li>
+</ul>
+<h2 id="七、附录大纲"><a href="#七、附录大纲" class="headerlink" title="七、附录大纲"></a>七、附录大纲</h2><ul>
+<li>Test.cpp<br>测试程序，包括数据集生成，待排序列输出等等。</li>
+<li>InsertSort.cpp<br>插入排序算法</li>
+<li>MergeSort.cpp<br>归并排序算法</li>
+<li>QuickSort.cpp<br>快速排序算法</li>
+<li>12个测试数据集txt</li>
+<li>12个测试结果的截图</li>
+</ul>
+
+    </div>
+
+    
+
+    
+    
+    
+      
+
+        
+      
+
+      <footer class="post-footer">
+          
+            
+          
+          <div class="post-tags">
+            
+              <a href="/tags/插入排序/" rel="tag"># 插入排序</a>
+            
+              <a href="/tags/归并排序/" rel="tag"># 归并排序</a>
+            
+              <a href="/tags/快速排序/" rel="tag"># 快速排序</a>
+            
+          </div>
+        
+
+        
+  <div class="post-widgets">
+    <div class="social-share">
+      
+      
+        <div id="needsharebutton-postbottom">
+          <span class="btn">
+            <i class="fa fa-share-alt" aria-hidden="true"></i>
+          </span>
+        </div>
+      
+    </div>
+  
+  </div>
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/201909/实验室苦逼搬砖暑假生活纪实/" rel="next" title="暑假实验室">
+                  <i class="fa fa-chevron-left"></i> 暑假实验室
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+                <a href="/201904/30天自制操作系统（15）/" rel="prev" title="30天自制操作系统（15）">
+                  30天自制操作系统（15） <i class="fa fa-chevron-right"></i>
+                </a>
+              
+            </div>
+          </div>
+        
+      </footer>
+    
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+    
+    <div class="comments" id="comments"></div>
+  
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image"
+      src="/images/tom.jpg"
+      alt="CrocodileZS">
+  <p class="site-author-name" itemprop="name">CrocodileZS</p>
+  <div class="site-description motion-element" itemprop="description"></div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">47</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+  <div class="feed-link motion-element">
+    <a href="/atom.xml" rel="alternate">
+      <i class="fa fa-rss"></i>RSS
+    </a>
+  </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="mailto:ammo@bupt.edu.cn" title="E-Mail &rarr; mailto:ammo@bupt.edu.cn" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://instagram.com/crocodile_zs" title="Instagram &rarr; https://instagram.com/crocodile_zs" rel="noopener" target="_blank"><i class="fa fa-fw fa-instagram"></i>Instagram</a>
+      </span>
+    
+  </div>
+
+
+  <div class="links-of-blogroll motion-element links-of-blogroll-block">
+    <div class="links-of-blogroll-title">
+      <i class="fa  fa-fw fa-link"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="http://www.wangxiaofeng.me/" title="http://www.wangxiaofeng.me/" rel="noopener" target="_blank">不许联想</a>
+        </li>
+      
+    </ul>
+  </div>
+
+        </div>
+      </div>
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#算法设计与分析实验报告-2019-4-4"><span class="nav-text">算法设计与分析实验报告 2019.4.4</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#插入排序（Insert-Sort）、归并排序（Merge-Sort）和快速排序（Quick-Sort）"><span class="nav-text">插入排序（Insert Sort）、归并排序（Merge Sort）和快速排序（Quick Sort）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一、算法简介"><span class="nav-text">一、算法简介</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-插入排序算法（Insert-Sort-Algorithm）"><span class="nav-text">1.插入排序算法（Insert Sort Algorithm）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-归并排序算法（Merge-Sort-Algorithm）"><span class="nav-text">2.归并排序算法（Merge Sort Algorithm）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-快速排序算法（Quick-Sort-Algorithm）"><span class="nav-text">3.快速排序算法（Quick Sort Algorithm）</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、程序"><span class="nav-text">二、程序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Ⅰ、算法程序"><span class="nav-text">Ⅰ、算法程序</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-插入排序算法（Insert-Sort-Algorithm）-1"><span class="nav-text">1.插入排序算法（Insert Sort Algorithm）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-归并排序算法（Merge-Sort-Algorithm）-1"><span class="nav-text">2.归并排序算法（Merge Sort Algorithm）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-快速排序算法（Quick-Sort-Algorithm）-1"><span class="nav-text">3.快速排序算法（Quick Sort Algorithm）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Ⅱ、测试程序"><span class="nav-text">Ⅱ、测试程序</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、测试数据集生成及测试"><span class="nav-text">三、测试数据集生成及测试</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Ⅰ、测试数据集生成"><span class="nav-text">Ⅰ、测试数据集生成</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Ⅱ、测试过程"><span class="nav-text">Ⅱ、测试过程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、算法复杂度分析"><span class="nav-text">四、算法复杂度分析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-插入排序算法（Insert-Sort-Algorithm）-2"><span class="nav-text">1.插入排序算法（Insert Sort Algorithm）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-归并排序算法（Merge-Sort-Algorithm）-2"><span class="nav-text">2.归并排序算法（Merge Sort Algorithm）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-快速排序算法（Quick-Sort-Algorithm）-2"><span class="nav-text">3.快速排序算法（Quick Sort Algorithm）</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五、算法优化"><span class="nav-text">五、算法优化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-归并排序的“哨兵”"><span class="nav-text">1.归并排序的“哨兵”</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-快速排序枢轴元素pivot的选取"><span class="nav-text">2.快速排序枢轴元素pivot的选取</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-快速排序稳定性的改善"><span class="nav-text">3.快速排序稳定性的改善</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#六、实验心得"><span class="nav-text">六、实验心得</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#七、附录大纲"><span class="nav-text">七、附录大纲</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">鰐魚先生</span>
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+    <span class="post-meta-divider">|</span>
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+
+    
+  
+  <div id="needsharebutton-float">
+    <span class="btn">
+      <i class="fa fa-share-alt" aria-hidden="true"></i>
+    </span>
+  </div>
+<script src="/lib/needsharebutton/needsharebutton.js"></script>
+<script>
+    pbOptions = {};
+      pbOptions.iconStyle = "default";
+    
+      pbOptions.boxForm = "horizontal";
+    
+      pbOptions.position = "bottomCenter";
+    
+      pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+    
+    new needShareButton('#needsharebutton-postbottom', pbOptions);
+    flOptions = {};
+      flOptions.iconStyle = "box";
+    
+      flOptions.boxForm = "horizontal";
+    
+      flOptions.position = "middleRight";
+    
+      flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+    
+    new needShareButton('#needsharebutton-float', flOptions);
+</script>
+
+
+  </div>
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+  <script src="/lib/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+<script src="/js/utils.js?v=7.3.0"></script>
+  <script src="/js/motion.js?v=7.3.0"></script>
+
+
+  <script src="/js/schemes/muse.js?v=7.3.0"></script>
+
+
+<script src="/js/next-boot.js?v=7.3.0"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+  <script src="/js/scrollspy.js?v=7.3.0"></script>
+<script src="/js/post-details.js?v=7.3.0"></script>
+
+
+    
+
+<script>
+NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', function() {
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: '9VEOQepq1oDMG0XHxBOrKuwU-gzGzoHsz',
+    appKey: 'XVzSWQhACVUcrVzQDF0AJlb8',
+    placeholder: 'ヽ(✿ﾟ▽ﾟ)ノ',
+    avatar: 'zhouyuyang17@163.com',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false,
+    lang: 'zh-cn' || 'zh-cn',
+    path: location.pathname
+  });
+}, window.Valine);
+</script>
+
+  <script type="text/javascript" src="/lib/zclip/clipboard.min.js"></script>	
+<script type="text/javascript" src="/js/src/custom.js"></script>
+</body>
+</html>

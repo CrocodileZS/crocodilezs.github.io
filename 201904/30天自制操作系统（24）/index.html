@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="generator" content="Hexo 3.9.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/rainbow.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/rainbow.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/rainbow.png?v=7.3.0">
+  <link rel="mask-icon" href="/images/rainbow.svg?v=7.3.0" color="#222">
+  <meta name="baidu-site-verification" content="MBR3SWgP01">
+
+<link rel="stylesheet" href="/css/main.css?v=7.3.0">
+
+<link rel="stylesheet" href="https://fonts.loli.net/css?family=Noto Serif SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+  <link rel="stylesheet" href="/lib/fancybox/source/jquery.fancybox.css">
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.3.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":true},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
+    save_scroll: true,
+    copycode: {"enable":true,"show_result":true,"style":"flat"},
+    fancybox: true,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    }
+  };
+</script>
+
+  <meta name="description" content="DAY24_窗口操作1.窗口切换(1) 目标：实现切换窗口顺序得功能。 先实现按下F11时，将最下面得那个窗口放到最上面。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="30天自制操作系统（24）">
+<meta property="og:url" content="https://www.crocodilezs.top/201904/30天自制操作系统（24）/index.html">
+<meta property="og:site_name" content="鰐魚先生的水族館">
+<meta property="og:description" content="DAY24_窗口操作1.窗口切换(1) 目标：实现切换窗口顺序得功能。 先实现按下F11时，将最下面得那个窗口放到最上面。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-09-27T10:14:29.303Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="30天自制操作系统（24）">
+<meta name="twitter:description" content="DAY24_窗口操作1.窗口切换(1) 目标：实现切换窗口顺序得功能。 先实现按下F11时，将最下面得那个窗口放到最上面。">
+  <link rel="alternate" href="/atom.xml" title="鰐魚先生的水族館" type="application/atom+xml">
+  <link rel="canonical" href="https://www.crocodilezs.top/201904/30天自制操作系统（24）/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>30天自制操作系统（24） | 鰐魚先生的水族館</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  <div class="container sidebar-position-left">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">鰐魚先生的水族館</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">言念君子，溫其如玉。</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-tags">
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-about">
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>关于</a>
+
+  </li>
+  </ul>
+
+    
+
+</nav>
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content page-post-detail">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.crocodilezs.top/201904/30天自制操作系统（24）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CrocodileZS">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/tom.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鰐魚先生的水族館">
+    </span>
+      <header class="post-header">
+
+        
+          <h1 class="post-title" itemprop="name headline">30天自制操作系统（24）
+
+            
+          </h1>
+        
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2019-04-28 15:13:50" itemprop="dateCreated datePublished" datetime="2019-04-28T15:13:50+08:00">2019-04-28</time>
+            </span>
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/操作系统/" itemprop="url" rel="index"><span itemprop="name">操作系统</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/201904/30天自制操作系统（24）/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/201904/30天自制操作系统（24）/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+          
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span>3.3k</span>
+            </span>
+          
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span>5 分钟</span>
+            </span>
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="DAY24-窗口操作"><a href="#DAY24-窗口操作" class="headerlink" title="DAY24_窗口操作"></a>DAY24_窗口操作</h1><h2 id="1-窗口切换-1"><a href="#1-窗口切换-1" class="headerlink" title="1.窗口切换(1)"></a>1.窗口切换(1)</h2><ul>
+<li>目标：实现切换窗口顺序得功能。</li>
+<li>先实现按下F11时，将最下面得那个窗口放到最上面。</li>
+</ul>
+<a id="more"></a>
+
+<hr>
+<p>修改bootpack.c</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> (i == <span class="number">256</span> + <span class="number">0x57</span> &amp;&amp; shtctl-&gt;top &gt; <span class="number">2</span>) &#123; <span class="comment">/* F11 */</span> </span><br><span class="line">    sheet_updown(shtctl-&gt;sheets[<span class="number">1</span>], shtctl-&gt;top - <span class="number">1</span>); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-窗口切换-2"><a href="#2-窗口切换-2" class="headerlink" title="2. 窗口切换(2)"></a>2. 窗口切换(2)</h2><p>我们需要按照从上到下得顺序，判断鼠标得位置落在哪个图层得范围内，并且还需要确保该位置不是透明色区域。</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> (j = shtctl-&gt;top - <span class="number">1</span>; j &gt; <span class="number">0</span>; j--) &#123; </span><br><span class="line">     sht = shtctl-&gt;sheets[j]; </span><br><span class="line">     x = mx - sht-&gt;vx0; </span><br><span class="line">     y = my - sht-&gt;vy0; </span><br><span class="line">     <span class="keyword">if</span> (<span class="number">0</span> &lt;= x &amp;&amp; x &lt; sht-&gt;bxsize &amp;&amp; <span class="number">0</span> &lt;= y &amp;&amp; y &lt; sht-&gt;bysize) &#123; </span><br><span class="line">         <span class="keyword">if</span> (sht-&gt;buf[y * sht-&gt;bxsize + x] != sht-&gt;col_inv) &#123; </span><br><span class="line">             sheet_updown(sht, shtctl-&gt;top - <span class="number">1</span>); </span><br><span class="line">             <span class="keyword">break</span>; </span><br><span class="line">         &#125; </span><br><span class="line">     &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-移动窗口"><a href="#3-移动窗口" class="headerlink" title="3.移动窗口"></a>3.移动窗口</h2><p>当鼠标左键点击窗口时，如果点击位置位于窗口的标题栏区域，则进入“窗口移动模式”，使窗口的位置追随鼠标指针的移动，当放开鼠标左键时，退出“窗口移动模式”，返回通常模式。</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> (mmx &lt; <span class="number">0</span>) &#123; </span><br><span class="line">     <span class="comment">/*如果处于通常模式*/</span> </span><br><span class="line">     <span class="comment">/*按照从上到下的顺序寻找鼠标所指向的图层*/</span> </span><br><span class="line">     <span class="keyword">for</span> (j = shtctl-&gt;top - <span class="number">1</span>; j &gt; <span class="number">0</span>; j--) &#123; </span><br><span class="line">         sht = shtctl-&gt;sheets[j]; </span><br><span class="line">         x = mx - sht-&gt;vx0; </span><br><span class="line">         y = my - sht-&gt;vy0; </span><br><span class="line">         <span class="keyword">if</span> (<span class="number">0</span> &lt;= x &amp;&amp; x &lt; sht-&gt;bxsize &amp;&amp; <span class="number">0</span> &lt;= y &amp;&amp; y &lt; sht-&gt;bysize) &#123; </span><br><span class="line">            <span class="keyword">if</span> (sht-&gt;buf[y * sht-&gt;bxsize + x] != sht-&gt;col_inv) &#123; </span><br><span class="line">                sheet_updown(sht, shtctl-&gt;top - <span class="number">1</span>); </span><br><span class="line">                <span class="keyword">if</span> (<span class="number">3</span> &lt;= x &amp;&amp; x &lt; sht-&gt;bxsize - <span class="number">3</span> &amp;&amp; <span class="number">3</span> &lt;= y &amp;&amp; y &lt; <span class="number">21</span>) &#123; </span><br><span class="line">                    mmx = mx; <span class="comment">/*进入窗口移动模式*/</span> </span><br><span class="line">                    mmy = my; </span><br><span class="line">                &#125; </span><br><span class="line">            <span class="keyword">break</span>; </span><br><span class="line">            &#125; </span><br><span class="line">        &#125; </span><br><span class="line">    &#125; </span><br><span class="line">    </span><br><span class="line">&#125; <span class="keyword">else</span> &#123; </span><br><span class="line">     <span class="comment">/*如果处于窗口移动模式*/</span> </span><br><span class="line">     x = mx - mmx; <span class="comment">/*计算鼠标的移动距离*/</span> </span><br><span class="line">     y = my - mmy; </span><br><span class="line">     sheet_slide(sht, sht-&gt;vx0 + x, sht-&gt;vy0 + y); </span><br><span class="line">     mmx = mx; <span class="comment">/*更新为移动后的坐标*/</span> </span><br><span class="line">     mmy = my; </span><br><span class="line">     &#125; </span><br><span class="line">     &#125; <span class="keyword">else</span> &#123; </span><br><span class="line">     <span class="comment">/*没有按下左键*/</span> </span><br><span class="line">    mmx = <span class="number">-1</span>; <span class="comment">/*返回通常模式*/</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-用鼠标关闭窗口"><a href="#4-用鼠标关闭窗口" class="headerlink" title="4.用鼠标关闭窗口"></a>4.用鼠标关闭窗口</h2><h2 id="5-将输入切换到应用程序窗口"><a href="#5-将输入切换到应用程序窗口" class="headerlink" title="5.将输入切换到应用程序窗口"></a>5.将输入切换到应用程序窗口</h2><p>按下Tab键时将键盘输入切换到当前输入窗口下面一层的窗口中，若当前窗口为最下层，则切换到最上层窗口。</p>
+<hr>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> (key_win == sht_win) &#123; <span class="comment">/*发送至任务A */</span> </span><br><span class="line"> <span class="keyword">if</span> (cursor_x &lt; <span class="number">128</span>) &#123; </span><br><span class="line"> <span class="comment">/*显示一个字符并将光标后移一位*/</span> </span><br><span class="line"> s[<span class="number">1</span>] = <span class="number">0</span>; </span><br><span class="line">putfonts8_asc_sht(sht_win, cursor_x, <span class="number">28</span>, COL8_000000, COL8_FFFFFF, s, <span class="number">1</span>); </span><br><span class="line"> cursor_x += <span class="number">8</span>;</span><br><span class="line"> &#125; </span><br><span class="line"> &#125; <span class="keyword">else</span> &#123; <span class="comment">/*发送至命令行窗口*/</span> </span><br><span class="line"> fifo32_put(&amp;key_win-&gt;task-&gt;fifo, s[<span class="number">0</span>] + <span class="number">256</span>); </span><br><span class="line"> &#125; </span><br><span class="line"> &#125; </span><br><span class="line"> <span class="keyword">if</span> (i == <span class="number">256</span> + <span class="number">0x0e</span>) &#123; <span class="comment">/*退格键*/</span> </span><br><span class="line"> <span class="keyword">if</span> (key_win == sht_win) &#123; <span class="comment">/*发送至任务A */</span> </span><br><span class="line"> <span class="keyword">if</span> (cursor_x &gt; <span class="number">8</span>) &#123; </span><br><span class="line"> <span class="comment">/*用空格擦除光标后将光标前移一位*/</span> </span><br><span class="line"> putfonts8_asc_sht(sht_win, cursor_x, <span class="number">28</span>, COL8_000000, COL8_FFFFFF, <span class="string">" </span></span><br><span class="line"><span class="string"> "</span>, <span class="number">1</span>); </span><br><span class="line"> cursor_x -= <span class="number">8</span>; </span><br><span class="line"> &#125; </span><br><span class="line"> &#125; <span class="keyword">else</span> &#123; <span class="comment">/*发送至命令行窗口*/</span> </span><br><span class="line"> fifo32_put(&amp;key_win-&gt;task-&gt;fifo, <span class="number">8</span> + <span class="number">256</span>); </span><br><span class="line"> &#125; </span><br><span class="line"> &#125; </span><br><span class="line"> <span class="keyword">if</span> (i == <span class="number">256</span> + <span class="number">0x1c</span>) &#123; <span class="comment">/*回车键*/</span> </span><br><span class="line"> <span class="keyword">if</span> (key_win != sht_win) &#123; <span class="comment">/*发送至命令行窗口*/</span> </span><br><span class="line"> fifo32_put(&amp;key_win-&gt;task-&gt;fifo, <span class="number">10</span> + <span class="number">256</span>); </span><br><span class="line"> &#125; </span><br><span class="line"> &#125; </span><br><span class="line"> <span class="keyword">if</span> (i == <span class="number">256</span> + <span class="number">0x0f</span>) &#123; <span class="comment">/* Tab键*/</span> </span><br><span class="line"> cursor_c = keywin_off(key_win, sht_win, cursor_c, cursor_x); </span><br><span class="line"> j = key_win-&gt;height - <span class="number">1</span>; </span><br><span class="line"> <span class="keyword">if</span> (j == <span class="number">0</span>) &#123; </span><br><span class="line"> j = shtctl-&gt;top - <span class="number">1</span>; </span><br><span class="line"> &#125; </span><br><span class="line"> key_win = shtctl-&gt;sheets[j]; </span><br><span class="line"><span class="comment">/*到此结束*/</span> cursor_c = keywin_on(key_win, sht_win, cursor_c); </span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="6-用鼠标切换输入窗口"><a href="#6-用鼠标切换输入窗口" class="headerlink" title="6.用鼠标切换输入窗口"></a>6.用鼠标切换输入窗口</h2><p>目标：让操作系统可以通过简单的点击就能完成输入切换。  </p>
+<h2 id="7-定时器API"><a href="#7-定时器API" class="headerlink" title="7.定时器API"></a>7.定时器API</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">获取定时器（alloc）</span><br><span class="line">EDX=16 </span><br><span class="line">EAX=定时器句柄（由操作系统返回）</span><br><span class="line"></span><br><span class="line">设置定时器的发送数据（init）</span><br><span class="line">EDX=17 </span><br><span class="line">EBX=定时器句柄</span><br><span class="line">EAX=数据</span><br><span class="line"></span><br><span class="line">定时器时间设定（set）</span><br><span class="line">EDX=18 </span><br><span class="line">EBX=定时器句柄</span><br><span class="line">EAX=时间</span><br><span class="line"></span><br><span class="line">释放定时器（free）</span><br><span class="line">EDX=19 </span><br><span class="line">EBX=定时器句柄</span><br></pre></td></tr></table></figure>
+
+<h2 id="8-取消定时器"><a href="#8-取消定时器" class="headerlink" title="8.取消定时器"></a>8.取消定时器</h2><p>问题：<br>应用程序设置了一个1秒的定时器，当定时器到达指定时间时会产生超时，并向任务发送事先设置的数据。问题是，如果这时应用程序已经结束了，定时器的数据就会被发送到命令行窗口，而命令行窗口肯定是一头雾水。</p>
+
+    </div>
+
+    
+
+    
+    
+    
+      
+
+        
+      
+
+      <footer class="post-footer">
+
+        
+  <div class="post-widgets">
+    <div class="social-share">
+      
+      
+        <div id="needsharebutton-postbottom">
+          <span class="btn">
+            <i class="fa fa-share-alt" aria-hidden="true"></i>
+          </span>
+        </div>
+      
+    </div>
+  
+  </div>
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/201908/「迁移学习简明手册」学习笔记（1）/" rel="next" title="「迁移学习简明手册」学习笔记（1）">
+                  <i class="fa fa-chevron-left"></i> 「迁移学习简明手册」学习笔记（1）
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+                <a href="/201904/30天自制操作系统（25）/" rel="prev" title="30天自制操作系统（25）">
+                  30天自制操作系统（25） <i class="fa fa-chevron-right"></i>
+                </a>
+              
+            </div>
+          </div>
+        
+      </footer>
+    
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+    
+    <div class="comments" id="comments"></div>
+  
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image"
+      src="/images/tom.jpg"
+      alt="CrocodileZS">
+  <p class="site-author-name" itemprop="name">CrocodileZS</p>
+  <div class="site-description motion-element" itemprop="description"></div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">47</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+  <div class="feed-link motion-element">
+    <a href="/atom.xml" rel="alternate">
+      <i class="fa fa-rss"></i>RSS
+    </a>
+  </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="mailto:ammo@bupt.edu.cn" title="E-Mail &rarr; mailto:ammo@bupt.edu.cn" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://instagram.com/crocodile_zs" title="Instagram &rarr; https://instagram.com/crocodile_zs" rel="noopener" target="_blank"><i class="fa fa-fw fa-instagram"></i>Instagram</a>
+      </span>
+    
+  </div>
+
+
+  <div class="links-of-blogroll motion-element links-of-blogroll-block">
+    <div class="links-of-blogroll-title">
+      <i class="fa  fa-fw fa-link"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="http://www.wangxiaofeng.me/" title="http://www.wangxiaofeng.me/" rel="noopener" target="_blank">不许联想</a>
+        </li>
+      
+    </ul>
+  </div>
+
+        </div>
+      </div>
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#DAY24-窗口操作"><span class="nav-text">DAY24_窗口操作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-窗口切换-1"><span class="nav-text">1.窗口切换(1)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-窗口切换-2"><span class="nav-text">2. 窗口切换(2)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-移动窗口"><span class="nav-text">3.移动窗口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-用鼠标关闭窗口"><span class="nav-text">4.用鼠标关闭窗口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-将输入切换到应用程序窗口"><span class="nav-text">5.将输入切换到应用程序窗口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-用鼠标切换输入窗口"><span class="nav-text">6.用鼠标切换输入窗口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-定时器API"><span class="nav-text">7.定时器API</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-取消定时器"><span class="nav-text">8.取消定时器</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">鰐魚先生</span>
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+    <span class="post-meta-divider">|</span>
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+
+    
+  
+  <div id="needsharebutton-float">
+    <span class="btn">
+      <i class="fa fa-share-alt" aria-hidden="true"></i>
+    </span>
+  </div>
+<script src="/lib/needsharebutton/needsharebutton.js"></script>
+<script>
+    pbOptions = {};
+      pbOptions.iconStyle = "default";
+    
+      pbOptions.boxForm = "horizontal";
+    
+      pbOptions.position = "bottomCenter";
+    
+      pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+    
+    new needShareButton('#needsharebutton-postbottom', pbOptions);
+    flOptions = {};
+      flOptions.iconStyle = "box";
+    
+      flOptions.boxForm = "horizontal";
+    
+      flOptions.position = "middleRight";
+    
+      flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+    
+    new needShareButton('#needsharebutton-float', flOptions);
+</script>
+
+
+  </div>
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+  <script src="/lib/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+<script src="/js/utils.js?v=7.3.0"></script>
+  <script src="/js/motion.js?v=7.3.0"></script>
+
+
+  <script src="/js/schemes/muse.js?v=7.3.0"></script>
+
+
+<script src="/js/next-boot.js?v=7.3.0"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+  <script src="/js/scrollspy.js?v=7.3.0"></script>
+<script src="/js/post-details.js?v=7.3.0"></script>
+
+
+    
+
+<script>
+NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', function() {
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: '9VEOQepq1oDMG0XHxBOrKuwU-gzGzoHsz',
+    appKey: 'XVzSWQhACVUcrVzQDF0AJlb8',
+    placeholder: 'ヽ(✿ﾟ▽ﾟ)ノ',
+    avatar: 'zhouyuyang17@163.com',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false,
+    lang: 'zh-cn' || 'zh-cn',
+    path: location.pathname
+  });
+}, window.Valine);
+</script>
+
+  <script type="text/javascript" src="/lib/zclip/clipboard.min.js"></script>	
+<script type="text/javascript" src="/js/src/custom.js"></script>
+</body>
+</html>

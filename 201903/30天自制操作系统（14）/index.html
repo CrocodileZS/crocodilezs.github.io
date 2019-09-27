@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="generator" content="Hexo 3.9.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/rainbow.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/rainbow.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/rainbow.png?v=7.3.0">
+  <link rel="mask-icon" href="/images/rainbow.svg?v=7.3.0" color="#222">
+  <meta name="baidu-site-verification" content="MBR3SWgP01">
+
+<link rel="stylesheet" href="/css/main.css?v=7.3.0">
+
+<link rel="stylesheet" href="https://fonts.loli.net/css?family=Noto Serif SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+  <link rel="stylesheet" href="/lib/fancybox/source/jquery.fancybox.css">
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.3.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":true},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
+    save_scroll: true,
+    copycode: {"enable":true,"show_result":true,"style":"flat"},
+    fancybox: true,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    }
+  };
+</script>
+
+  <meta name="description" content="DAY14_高分辨率及键盘输入1. 继续测试性能 之前我们通过“消除位移处理”缩短时间，对于很多“位移”情况，改进才能看到效果。所以我们使用大量的定时器，然后对性能进行比较。  2.提高分辨率（1） 由于画面切换中我们要使用BIOS，所以就需要改写asmhead.nas的“画面模式设定”部分了。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="30天自制操作系统（14）">
+<meta property="og:url" content="https://www.crocodilezs.top/201903/30天自制操作系统（14）/index.html">
+<meta property="og:site_name" content="鰐魚先生的水族館">
+<meta property="og:description" content="DAY14_高分辨率及键盘输入1. 继续测试性能 之前我们通过“消除位移处理”缩短时间，对于很多“位移”情况，改进才能看到效果。所以我们使用大量的定时器，然后对性能进行比较。  2.提高分辨率（1） 由于画面切换中我们要使用BIOS，所以就需要改写asmhead.nas的“画面模式设定”部分了。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://s2.ax1x.com/2019/03/31/ArbywT.jpg">
+<meta property="og:updated_time" content="2019-09-27T09:47:32.757Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="30天自制操作系统（14）">
+<meta name="twitter:description" content="DAY14_高分辨率及键盘输入1. 继续测试性能 之前我们通过“消除位移处理”缩短时间，对于很多“位移”情况，改进才能看到效果。所以我们使用大量的定时器，然后对性能进行比较。  2.提高分辨率（1） 由于画面切换中我们要使用BIOS，所以就需要改写asmhead.nas的“画面模式设定”部分了。">
+<meta name="twitter:image" content="https://s2.ax1x.com/2019/03/31/ArbywT.jpg">
+  <link rel="alternate" href="/atom.xml" title="鰐魚先生的水族館" type="application/atom+xml">
+  <link rel="canonical" href="https://www.crocodilezs.top/201903/30天自制操作系统（14）/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>30天自制操作系统（14） | 鰐魚先生的水族館</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  <div class="container sidebar-position-left">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">鰐魚先生的水族館</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">言念君子，溫其如玉。</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-tags">
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-about">
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>关于</a>
+
+  </li>
+  </ul>
+
+    
+
+</nav>
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content page-post-detail">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.crocodilezs.top/201903/30天自制操作系统（14）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CrocodileZS">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/tom.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鰐魚先生的水族館">
+    </span>
+      <header class="post-header">
+
+        
+          <h1 class="post-title" itemprop="name headline">30天自制操作系统（14）
+
+            
+          </h1>
+        
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2019-03-25 15:21:50" itemprop="dateCreated datePublished" datetime="2019-03-25T15:21:50+08:00">2019-03-25</time>
+            </span>
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/操作系统/" itemprop="url" rel="index"><span itemprop="name">操作系统</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/201903/30天自制操作系统（14）/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/201903/30天自制操作系统（14）/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+          
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span>2.3k</span>
+            </span>
+          
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span>4 分钟</span>
+            </span>
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="DAY14-高分辨率及键盘输入"><a href="#DAY14-高分辨率及键盘输入" class="headerlink" title="DAY14_高分辨率及键盘输入"></a>DAY14_高分辨率及键盘输入</h1><h2 id="1-继续测试性能"><a href="#1-继续测试性能" class="headerlink" title="1. 继续测试性能"></a>1. 继续测试性能</h2><ul>
+<li>之前我们通过“消除位移处理”缩短时间，对于很多“位移”情况，改进才能看到效果。所以我们使用大量的定时器，然后对性能进行比较。</li>
+</ul>
+<h2 id="2-提高分辨率（1）"><a href="#2-提高分辨率（1）" class="headerlink" title="2.提高分辨率（1）"></a>2.提高分辨率（1）</h2><ul>
+<li>由于画面切换中我们要使用BIOS，所以就需要改写asmhead.nas的“画面模式设定”部分了。</li>
+</ul>
+<a id="more"></a>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">; 设定画面模式</span><br><span class="line">     MOV BX,0x4101 ; VBE的640x480x8bi彩色</span><br><span class="line">     MOV AX,0x4f02 </span><br><span class="line">     INT 0x10 </span><br><span class="line">     MOV BYTE [VMODE],8 ; 记下画面模式（参考C语言）</span><br><span class="line">     MOV WORD [SCRNX],640 </span><br><span class="line">     MOV WORD [SCRNY],480 </span><br><span class="line">     MOV DWORD [VRAM],0xe0000000</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-提高分辨率（2）"><a href="#3-提高分辨率（2）" class="headerlink" title="3.提高分辨率（2）"></a>3.提高分辨率（2）</h2><ul>
+<li>将程序改写，使在真机上运行</li>
+</ul>
+<h2 id="4-键盘输入（1）"><a href="#4-键盘输入（1）" class="headerlink" title="4.键盘输入（1）"></a>4.键盘输入（1）</h2><ul>
+<li>按照下表，在键盘按键的基础上加上0x80就可以得到键弹起时的数值<br><img src="https://s2.ax1x.com/2019/03/31/ArbywT.jpg" alt="14.1"></li>
+</ul>
+<h2 id="5-键盘输入（2）"><a href="#5-键盘输入（2）" class="headerlink" title="5.键盘输入（2）"></a>5.键盘输入（2）</h2><ul>
+<li>问题：每一个按键都需要一个if，程序会变长，我们进行修改：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">static char keytable[0x54] = &#123; </span><br><span class="line">     0, 0, &apos;1&apos;, &apos;2&apos;, &apos;3&apos;, &apos;4&apos;, &apos;5&apos;, &apos;6&apos;, &apos;7&apos;, &apos;8&apos;, &apos;9&apos;, &apos;0&apos;, &apos;-&apos;, &apos;^&apos;, 0, 0, </span><br><span class="line">     &apos;Q&apos;, &apos;W&apos;, &apos;E&apos;, &apos;R&apos;, &apos;T&apos;, &apos;Y&apos;, &apos;U&apos;, &apos;I&apos;, &apos;O&apos;, &apos;P&apos;, &apos;@&apos;, &apos;[&apos;, 0, 0, &apos;A&apos;, &apos;S&apos;, </span><br><span class="line">     &apos;D&apos;, &apos;F&apos;, &apos;G&apos;, &apos;H&apos;, &apos;J&apos;, &apos;K&apos;, &apos;L&apos;, &apos;;&apos;, &apos;:&apos;, 0, 0, &apos;]&apos;, &apos;Z&apos;, &apos;X&apos;, &apos;C&apos;, &apos;V&apos;, </span><br><span class="line">     &apos;B&apos;, &apos;N&apos;, &apos;M&apos;, &apos;,&apos;, &apos;.&apos;, &apos;/&apos;, 0, &apos;*&apos;, 0, &apos; &apos;, 0, 0, 0, 0, 0, 0, </span><br><span class="line">     0, 0, 0, 0, 0, 0, 0, &apos;7&apos;, &apos;8&apos;, &apos;9&apos;, &apos;-&apos;, &apos;4&apos;, &apos;5&apos;, &apos;6&apos;, &apos;+&apos;, &apos;1&apos;, </span><br><span class="line">     &apos;2&apos;, &apos;3&apos;, &apos;0&apos;, &apos;.&apos; </span><br><span class="line">     &#125;; </span><br><span class="line"> if (256 &lt;= i &amp;&amp; i &lt;= 511) &#123; /* 键盘数据 */ </span><br><span class="line">     sprintf(s, &quot;%02X&quot;, i - 256); </span><br><span class="line">     putfonts8_asc_sht(sht_back, 0, 16, COL8_FFFFFF, COL8_008484, s, 2); </span><br><span class="line">         if (i &lt; 256 + 0x54) &#123; </span><br><span class="line">             if (keytable[i - 256] != 0) &#123; </span><br><span class="line">             s[0] = keytable[i - 256]; </span><br><span class="line">             s[1] = 0; </span><br><span class="line">             putfonts8_asc_sht(sht_win, 40, 28, COL8_000000, COL8_C6C6C6, s, 1); </span><br><span class="line">             &#125; </span><br><span class="line">        &#125; </span><br><span class="line"> &#125; else if (512 &lt;= i &amp;&amp; i &lt;= 767) &#123; /* 鼠标数据 */</span><br></pre></td></tr></table></figure>
+
+<h2 id="6-追记内容（1）"><a href="#6-追记内容（1）" class="headerlink" title="6.追记内容（1）"></a>6.追记内容（1）</h2><p>==在窗口中添加一些画，改变鼠标和字符的显示位置以及颜色。按下BackSpace，还可以改写已经输入的字符==</p>
+<h2 id="7-追记内容（2）"><a href="#7-追记内容（2）" class="headerlink" title="7.追记内容（2）"></a>7.追记内容（2）</h2><p>==使用鼠标移动窗口==<br>添加的程序</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">if ((mdec.btn &amp; 0x01) != 0) &#123; </span><br><span class="line"> /* 按下左键、移动sht_win */</span><br><span class="line"> sheet_slide(sht_win, mx - 80, my - 8); </span><br><span class="line">/* 到这里结束！ */ &#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>即使窗口跑到了画面外，也没有问题。因为我们已经针对鼠标指针提前采取了对策，这就如<br>同图层跑到了画面外面也可以动起来一样。</li>
+</ul>
+
+    </div>
+
+    
+
+    
+    
+    
+      
+
+        
+      
+
+      <footer class="post-footer">
+
+        
+  <div class="post-widgets">
+    <div class="social-share">
+      
+      
+        <div id="needsharebutton-postbottom">
+          <span class="btn">
+            <i class="fa fa-share-alt" aria-hidden="true"></i>
+          </span>
+        </div>
+      
+    </div>
+  
+  </div>
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/201903/30天自制操作系统（13）/" rel="next" title="30天自制操作系统（13）">
+                  <i class="fa fa-chevron-left"></i> 30天自制操作系统（13）
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+                <a href="/201904/算法笔记0403/" rel="prev" title="算法作业笔记0403">
+                  算法作业笔记0403 <i class="fa fa-chevron-right"></i>
+                </a>
+              
+            </div>
+          </div>
+        
+      </footer>
+    
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+    
+    <div class="comments" id="comments"></div>
+  
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image"
+      src="/images/tom.jpg"
+      alt="CrocodileZS">
+  <p class="site-author-name" itemprop="name">CrocodileZS</p>
+  <div class="site-description motion-element" itemprop="description"></div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">47</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+  <div class="feed-link motion-element">
+    <a href="/atom.xml" rel="alternate">
+      <i class="fa fa-rss"></i>RSS
+    </a>
+  </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="mailto:ammo@bupt.edu.cn" title="E-Mail &rarr; mailto:ammo@bupt.edu.cn" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://instagram.com/crocodile_zs" title="Instagram &rarr; https://instagram.com/crocodile_zs" rel="noopener" target="_blank"><i class="fa fa-fw fa-instagram"></i>Instagram</a>
+      </span>
+    
+  </div>
+
+
+  <div class="links-of-blogroll motion-element links-of-blogroll-block">
+    <div class="links-of-blogroll-title">
+      <i class="fa  fa-fw fa-link"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="http://www.wangxiaofeng.me/" title="http://www.wangxiaofeng.me/" rel="noopener" target="_blank">不许联想</a>
+        </li>
+      
+    </ul>
+  </div>
+
+        </div>
+      </div>
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#DAY14-高分辨率及键盘输入"><span class="nav-text">DAY14_高分辨率及键盘输入</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-继续测试性能"><span class="nav-text">1. 继续测试性能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-提高分辨率（1）"><span class="nav-text">2.提高分辨率（1）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-提高分辨率（2）"><span class="nav-text">3.提高分辨率（2）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-键盘输入（1）"><span class="nav-text">4.键盘输入（1）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-键盘输入（2）"><span class="nav-text">5.键盘输入（2）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-追记内容（1）"><span class="nav-text">6.追记内容（1）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-追记内容（2）"><span class="nav-text">7.追记内容（2）</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">鰐魚先生</span>
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+    <span class="post-meta-divider">|</span>
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+
+    
+  
+  <div id="needsharebutton-float">
+    <span class="btn">
+      <i class="fa fa-share-alt" aria-hidden="true"></i>
+    </span>
+  </div>
+<script src="/lib/needsharebutton/needsharebutton.js"></script>
+<script>
+    pbOptions = {};
+      pbOptions.iconStyle = "default";
+    
+      pbOptions.boxForm = "horizontal";
+    
+      pbOptions.position = "bottomCenter";
+    
+      pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+    
+    new needShareButton('#needsharebutton-postbottom', pbOptions);
+    flOptions = {};
+      flOptions.iconStyle = "box";
+    
+      flOptions.boxForm = "horizontal";
+    
+      flOptions.position = "middleRight";
+    
+      flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+    
+    new needShareButton('#needsharebutton-float', flOptions);
+</script>
+
+
+  </div>
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+  <script src="/lib/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+<script src="/js/utils.js?v=7.3.0"></script>
+  <script src="/js/motion.js?v=7.3.0"></script>
+
+
+  <script src="/js/schemes/muse.js?v=7.3.0"></script>
+
+
+<script src="/js/next-boot.js?v=7.3.0"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+  <script src="/js/scrollspy.js?v=7.3.0"></script>
+<script src="/js/post-details.js?v=7.3.0"></script>
+
+
+    
+
+<script>
+NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', function() {
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: '9VEOQepq1oDMG0XHxBOrKuwU-gzGzoHsz',
+    appKey: 'XVzSWQhACVUcrVzQDF0AJlb8',
+    placeholder: 'ヽ(✿ﾟ▽ﾟ)ノ',
+    avatar: 'zhouyuyang17@163.com',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false,
+    lang: 'zh-cn' || 'zh-cn',
+    path: location.pathname
+  });
+}, window.Valine);
+</script>
+
+  <script type="text/javascript" src="/lib/zclip/clipboard.min.js"></script>	
+<script type="text/javascript" src="/js/src/custom.js"></script>
+</body>
+</html>

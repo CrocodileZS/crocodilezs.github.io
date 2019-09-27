@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="generator" content="Hexo 3.9.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/rainbow.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/rainbow.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/rainbow.png?v=7.3.0">
+  <link rel="mask-icon" href="/images/rainbow.svg?v=7.3.0" color="#222">
+  <meta name="baidu-site-verification" content="MBR3SWgP01">
+
+<link rel="stylesheet" href="/css/main.css?v=7.3.0">
+
+<link rel="stylesheet" href="https://fonts.loli.net/css?family=Noto Serif SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+  <link rel="stylesheet" href="/lib/fancybox/source/jquery.fancybox.css">
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.3.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":true},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
+    save_scroll: true,
+    copycode: {"enable":true,"show_result":true,"style":"flat"},
+    fancybox: true,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    }
+  };
+</script>
+
+  <meta name="description" content="DAY15_多任务（1）1.挑战任务切换 多任务：多个应用程序同时运行的状态（也就是同时打开好几个窗口的状态）。 实际上这些程序==并没有在同时运行==，只是看上去好像是在同时运行一样。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="30天自制操作系统（15）">
+<meta property="og:url" content="https://www.crocodilezs.top/201904/30天自制操作系统（15）/index.html">
+<meta property="og:site_name" content="鰐魚先生的水族館">
+<meta property="og:description" content="DAY15_多任务（1）1.挑战任务切换 多任务：多个应用程序同时运行的状态（也就是同时打开好几个窗口的状态）。 实际上这些程序==并没有在同时运行==，只是看上去好像是在同时运行一样。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://s2.ax1x.com/2019/04/07/Af2OaT.jpg">
+<meta property="og:updated_time" content="2019-09-27T09:52:29.705Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="30天自制操作系统（15）">
+<meta name="twitter:description" content="DAY15_多任务（1）1.挑战任务切换 多任务：多个应用程序同时运行的状态（也就是同时打开好几个窗口的状态）。 实际上这些程序==并没有在同时运行==，只是看上去好像是在同时运行一样。">
+<meta name="twitter:image" content="https://s2.ax1x.com/2019/04/07/Af2OaT.jpg">
+  <link rel="alternate" href="/atom.xml" title="鰐魚先生的水族館" type="application/atom+xml">
+  <link rel="canonical" href="https://www.crocodilezs.top/201904/30天自制操作系统（15）/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>30天自制操作系统（15） | 鰐魚先生的水族館</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  <div class="container sidebar-position-left">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">鰐魚先生的水族館</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">言念君子，溫其如玉。</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-tags">
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-about">
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>关于</a>
+
+  </li>
+  </ul>
+
+    
+
+</nav>
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content page-post-detail">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.crocodilezs.top/201904/30天自制操作系统（15）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CrocodileZS">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/tom.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鰐魚先生的水族館">
+    </span>
+      <header class="post-header">
+
+        
+          <h1 class="post-title" itemprop="name headline">30天自制操作系统（15）
+
+            
+          </h1>
+        
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2019-04-07 16:14:50" itemprop="dateCreated datePublished" datetime="2019-04-07T16:14:50+08:00">2019-04-07</time>
+            </span>
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/操作系统/" itemprop="url" rel="index"><span itemprop="name">操作系统</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/201904/30天自制操作系统（15）/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/201904/30天自制操作系统（15）/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+          
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span>2.6k</span>
+            </span>
+          
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span>4 分钟</span>
+            </span>
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="DAY15-多任务（1）"><a href="#DAY15-多任务（1）" class="headerlink" title="DAY15_多任务（1）"></a>DAY15_多任务（1）</h1><h2 id="1-挑战任务切换"><a href="#1-挑战任务切换" class="headerlink" title="1.挑战任务切换"></a>1.挑战任务切换</h2><ul>
+<li><strong>多任务</strong>：多个应用程序同时运行的状态（也就是同时打开好几个窗口的状态）。</li>
+<li>实际上这些程序==并没有在同时运行==，只是看上去好像是在同时运行一样。<br><img src="https://s2.ax1x.com/2019/04/07/Af2OaT.jpg" alt="15.1"></li>
+</ul>
+<a id="more"></a>
+
+<ul>
+<li>在一般的操作系统中，这个切换的动作每0.01～0.03秒就会进行一次。当然，切换的速度越快，让人觉得程序是在同时运行的效果也就越好。不过，CPU进行程序切换（我们称为“任务切换”）这个动作本身就需要消耗一定的时间，这个时间大约为0.0001秒左右，不同的CPU及操作系统所需的时间也有所不同。</li>
+<li>CPU处理方式：当你向CPU发出任务切换的指令时，CPU会先把寄存器中的值全部写入内存中，这样做是为了当以后切换回这个程序的时候，可以从中断的地方继续运行。接下来，为了运行下一个程序，CPU会把所有寄存器中的值从内存中读取出来（当然，这个读取的地址和刚刚写入的地址一定是不同的，不然就相当于什么都没变嘛），这样就完成了一次切换。我们前面所说的任务切换所需要的时间，正是对内存进行写入和读取操作所消耗的时间。</li>
+<li>TSS 任务状态段 task status segment</li>
+<li>EIP 扩展指令指针寄存器 extended instruction pointer：CPU用来记录下一条需要执行的指令位于内存中哪个地址的寄存器，因此它才被称为“指令指针”。如果没有这个寄存器，记性不好的CPU就会忘记自己正在运行哪里的程序，于是程序就没办法正常运行了。每执行一条指令，EIP寄存器中的值就会自动累加，从而保证一直指向下一条指令所在的内存地址。</li>
+</ul>
+<h3 id="实际任务切换"><a href="#实际任务切换" class="headerlink" title="实际任务切换"></a>实际任务切换</h3><ul>
+<li><p>创建两个TSS</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">struct TSS32 tss_a, tss_b;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>向它们的Idtr和iomap分别存入合适的值</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">tss_a.ldtr = 0; </span><br><span class="line">tss_a.iomap = 0x40000000; </span><br><span class="line">tss_b.ldtr = 0; </span><br><span class="line">tss_b.iomap = 0x40000000;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>将它们两个在GDT中进行定义</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">struct SEGMENT_DESCRIPTOR *gdt = (struct SEGMENT_DESCRIPTOR *) ADR_GDT; </span><br><span class="line"> </span><br><span class="line">set_segmdesc(gdt + 3, 103, (int) &amp;tss_a, AR_TSS32); </span><br><span class="line">set_segmdesc(gdt + 4, 103, (int) &amp;tss_b, AR_TSS32);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>我们向TR寄存器存入3 * 8这个值，这是因为我们刚才把当前运行的任务定义为GDT的3号。</p>
+</li>
+<li><p>要进行任务切换，我们必须执行far模式的跳转指令</p>
+</li>
+</ul>
+<hr>
+<ul>
+<li>在eip中，我们需要定义在切换到这个任务的时候，要从哪里开始运行。</li>
+</ul>
+<h2 id="2-任务切换进阶"><a href="#2-任务切换进阶" class="headerlink" title="2.任务切换进阶"></a>2.任务切换进阶</h2><ul>
+<li>目标：从任务A切换到任务B，再切换回任务A</li>
+</ul>
+<h2 id="3-做个简单的多任务（1）"><a href="#3-做个简单的多任务（1）" class="headerlink" title="3.做个简单的多任务（1）"></a>3.做个简单的多任务（1）</h2><ul>
+<li>目标：实现更快速的，来回交替的任务切换。这样我们就可以告别光标停住、鼠标卡死、键盘打不了字的情况，让两个任务看上去好像在同时运行一样。</li>
+<li>把taskswitch写成一个函数<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">_farjmp: ; void farjmp(int eip, int cs); </span><br><span class="line"> JMP FAR [ESP+4] ; eip, cs </span><br><span class="line"> RET</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="4-做个简单的多任务（2）"><a href="#4-做个简单的多任务（2）" class="headerlink" title="4.做个简单的多任务（2）"></a>4.做个简单的多任务（2）</h2><h2 id="5-提高运行速度"><a href="#5-提高运行速度" class="headerlink" title="5.提高运行速度"></a>5.提高运行速度</h2><ul>
+<li>因为我们的程序每计1个数就在画面上显示一次，但1秒钟之内刷新100次以上的话，人眼根本就分辨不出来，所以我们不需要计1个数就刷新一次，只要每隔0.01秒刷新一次就足够了。</li>
+</ul>
+<h2 id="6-测试运行速度"><a href="#6-测试运行速度" class="headerlink" title="6.测试运行速度"></a>6.测试运行速度</h2><p>向task_b_main添加代码测试运行速度</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">void task_b_main(struct SHEET *sht_back) </span><br><span class="line">&#123; </span><br><span class="line">     struct FIFO32 fifo; </span><br><span class="line">     struct TIMER *timer_ts, *timer_put, *timer_1s; </span><br><span class="line">     int i, fifobuf[128], count = 0, count0 = 0; </span><br><span class="line">     char s[12]; </span><br><span class="line">     （中略）</span><br><span class="line">     timer_1s = timer_alloc(); </span><br><span class="line">     timer_init(timer_1s, &amp;fifo, 100); </span><br><span class="line">     timer_settime(timer_1s, 100); </span><br><span class="line">     for (;;) &#123; </span><br><span class="line">         count++; </span><br><span class="line">         io_cli(); </span><br><span class="line">         if (fifo32_status(&amp;fifo) == 0) &#123; </span><br><span class="line">            io_sti(); </span><br><span class="line">         &#125; else &#123; </span><br><span class="line">             i = fifo32_get(&amp;fifo);</span><br><span class="line">             io_sti(); </span><br><span class="line">             if (i == 1) &#123; </span><br><span class="line">                （中略）</span><br><span class="line">             &#125; else if (i == 2) &#123; </span><br><span class="line">                （中略）</span><br><span class="line">             &#125; else if (i == 100) &#123; </span><br><span class="line">                 sprintf(s, &quot;%11d&quot;, count - count0); </span><br><span class="line">                 putfonts8_asc_sht(sht_back, 0, 128, COL8_FFFFFF, COL8_008484, s, 11); </span><br><span class="line">                 count0 = count; </span><br><span class="line">                 timer_settime(timer_1s, 100); </span><br><span class="line">            &#125; </span><br><span class="line">         &#125; </span><br><span class="line">     &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="7-多任务进阶"><a href="#7-多任务进阶" class="headerlink" title="7.多任务进阶"></a>7.多任务进阶</h2><ul>
+<li>真正的多任务，是要做到在程序本身不知道的情况下进行任务切换。</li>
+<li>果使用这样的设计，即便在程序中不进行任务切换的处理（比如忘记写了，或者因为bug没能正常切换之类的），也一定会正常完成切换。之前那种多任务的话，如果任务B因为发生bug而无法进行切换，那么当切换到任务B以后，其他的任务就再也无法运行了，这样会造成无论是按键盘还是动鼠标都毫无反应的悲剧。</li>
+</ul>
+
+    </div>
+
+    
+
+    
+    
+    
+      
+
+        
+      
+
+      <footer class="post-footer">
+
+        
+  <div class="post-widgets">
+    <div class="social-share">
+      
+      
+        <div id="needsharebutton-postbottom">
+          <span class="btn">
+            <i class="fa fa-share-alt" aria-hidden="true"></i>
+          </span>
+        </div>
+      
+    </div>
+  
+  </div>
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/201904/插入排序归并排序和快速排序/" rel="next" title="插入排序（Insert Sort）、归并排序（Merge Sort）和快速排序（Quick Sort）">
+                  <i class="fa fa-chevron-left"></i> 插入排序（Insert Sort）、归并排序（Merge Sort）和快速排序（Quick Sort）
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+                <a href="/201904/30天自制操作系统（16）/" rel="prev" title="30天自制操作系统（16）">
+                  30天自制操作系统（16） <i class="fa fa-chevron-right"></i>
+                </a>
+              
+            </div>
+          </div>
+        
+      </footer>
+    
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+    
+    <div class="comments" id="comments"></div>
+  
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image"
+      src="/images/tom.jpg"
+      alt="CrocodileZS">
+  <p class="site-author-name" itemprop="name">CrocodileZS</p>
+  <div class="site-description motion-element" itemprop="description"></div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">47</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+  <div class="feed-link motion-element">
+    <a href="/atom.xml" rel="alternate">
+      <i class="fa fa-rss"></i>RSS
+    </a>
+  </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="mailto:ammo@bupt.edu.cn" title="E-Mail &rarr; mailto:ammo@bupt.edu.cn" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://instagram.com/crocodile_zs" title="Instagram &rarr; https://instagram.com/crocodile_zs" rel="noopener" target="_blank"><i class="fa fa-fw fa-instagram"></i>Instagram</a>
+      </span>
+    
+  </div>
+
+
+  <div class="links-of-blogroll motion-element links-of-blogroll-block">
+    <div class="links-of-blogroll-title">
+      <i class="fa  fa-fw fa-link"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="http://www.wangxiaofeng.me/" title="http://www.wangxiaofeng.me/" rel="noopener" target="_blank">不许联想</a>
+        </li>
+      
+    </ul>
+  </div>
+
+        </div>
+      </div>
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#DAY15-多任务（1）"><span class="nav-text">DAY15_多任务（1）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-挑战任务切换"><span class="nav-text">1.挑战任务切换</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#实际任务切换"><span class="nav-text">实际任务切换</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-任务切换进阶"><span class="nav-text">2.任务切换进阶</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-做个简单的多任务（1）"><span class="nav-text">3.做个简单的多任务（1）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-做个简单的多任务（2）"><span class="nav-text">4.做个简单的多任务（2）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-提高运行速度"><span class="nav-text">5.提高运行速度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-测试运行速度"><span class="nav-text">6.测试运行速度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-多任务进阶"><span class="nav-text">7.多任务进阶</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">鰐魚先生</span>
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+    <span class="post-meta-divider">|</span>
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+
+    
+  
+  <div id="needsharebutton-float">
+    <span class="btn">
+      <i class="fa fa-share-alt" aria-hidden="true"></i>
+    </span>
+  </div>
+<script src="/lib/needsharebutton/needsharebutton.js"></script>
+<script>
+    pbOptions = {};
+      pbOptions.iconStyle = "default";
+    
+      pbOptions.boxForm = "horizontal";
+    
+      pbOptions.position = "bottomCenter";
+    
+      pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+    
+    new needShareButton('#needsharebutton-postbottom', pbOptions);
+    flOptions = {};
+      flOptions.iconStyle = "box";
+    
+      flOptions.boxForm = "horizontal";
+    
+      flOptions.position = "middleRight";
+    
+      flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+    
+    new needShareButton('#needsharebutton-float', flOptions);
+</script>
+
+
+  </div>
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+  <script src="/lib/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+<script src="/js/utils.js?v=7.3.0"></script>
+  <script src="/js/motion.js?v=7.3.0"></script>
+
+
+  <script src="/js/schemes/muse.js?v=7.3.0"></script>
+
+
+<script src="/js/next-boot.js?v=7.3.0"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+  <script src="/js/scrollspy.js?v=7.3.0"></script>
+<script src="/js/post-details.js?v=7.3.0"></script>
+
+
+    
+
+<script>
+NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', function() {
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: '9VEOQepq1oDMG0XHxBOrKuwU-gzGzoHsz',
+    appKey: 'XVzSWQhACVUcrVzQDF0AJlb8',
+    placeholder: 'ヽ(✿ﾟ▽ﾟ)ノ',
+    avatar: 'zhouyuyang17@163.com',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false,
+    lang: 'zh-cn' || 'zh-cn',
+    path: location.pathname
+  });
+}, window.Valine);
+</script>
+
+  <script type="text/javascript" src="/lib/zclip/clipboard.min.js"></script>	
+<script type="text/javascript" src="/js/src/custom.js"></script>
+</body>
+</html>

@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="generator" content="Hexo 3.9.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/rainbow.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/rainbow.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/rainbow.png?v=7.3.0">
+  <link rel="mask-icon" href="/images/rainbow.svg?v=7.3.0" color="#222">
+  <meta name="baidu-site-verification" content="MBR3SWgP01">
+
+<link rel="stylesheet" href="/css/main.css?v=7.3.0">
+
+<link rel="stylesheet" href="https://fonts.loli.net/css?family=Noto Serif SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+  <link rel="stylesheet" href="/lib/fancybox/source/jquery.fancybox.css">
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.3.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":true},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
+    save_scroll: true,
+    copycode: {"enable":true,"show_result":true,"style":"flat"},
+    fancybox: true,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    }
+  };
+</script>
+
+  <meta name="description" content="Robust Detection of Link Communities in Large Social Network by Exploiting Link SemanticsZHOU YUYANG Robust Detection of Link Communities in Large Social Network by Exploiting Link Semantics  这篇论文是我加入">
+<meta name="keywords" content="社区发现">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基于链接内容的社区发现算法（一）">
+<meta property="og:url" content="https://www.crocodilezs.top/201904/基于链接内容的社区发现（一）/index.html">
+<meta property="og:site_name" content="鰐魚先生的水族館">
+<meta property="og:description" content="Robust Detection of Link Communities in Large Social Network by Exploiting Link SemanticsZHOU YUYANG Robust Detection of Link Communities in Large Social Network by Exploiting Link Semantics  这篇论文是我加入">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://s2.ax1x.com/2019/04/11/A7J9ts.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/04/11/A7GvnS.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/04/11/A7Jipq.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/04/11/A7JChn.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/04/11/A7JF10.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/04/11/A7JVnU.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/04/11/A7JkcV.md.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/04/11/A7JZBF.md.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/04/11/A7Je74.md.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/04/11/A7JQ91.md.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/04/11/A7JnAJ.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/04/11/A7JGnO.md.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/04/11/A7JKhR.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/04/11/A7JuN9.md.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/04/11/A7J1c6.md.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/04/11/A7Ja4A.md.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/04/11/A7JJBD.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/04/11/A7JYHe.md.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/04/11/A7Jw9I.md.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/04/11/A7Jsu8.png">
+<meta property="og:updated_time" content="2019-09-26T13:44:04.643Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="基于链接内容的社区发现算法（一）">
+<meta name="twitter:description" content="Robust Detection of Link Communities in Large Social Network by Exploiting Link SemanticsZHOU YUYANG Robust Detection of Link Communities in Large Social Network by Exploiting Link Semantics  这篇论文是我加入">
+<meta name="twitter:image" content="https://s2.ax1x.com/2019/04/11/A7J9ts.png">
+  <link rel="alternate" href="/atom.xml" title="鰐魚先生的水族館" type="application/atom+xml">
+  <link rel="canonical" href="https://www.crocodilezs.top/201904/基于链接内容的社区发现（一）/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>基于链接内容的社区发现算法（一） | 鰐魚先生的水族館</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  <div class="container sidebar-position-left">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">鰐魚先生的水族館</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">言念君子，溫其如玉。</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-tags">
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-about">
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>关于</a>
+
+  </li>
+  </ul>
+
+    
+
+</nav>
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content page-post-detail">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.crocodilezs.top/201904/基于链接内容的社区发现（一）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CrocodileZS">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/tom.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鰐魚先生的水族館">
+    </span>
+      <header class="post-header">
+
+        
+          <h1 class="post-title" itemprop="name headline">基于链接内容的社区发现算法（一）
+
+            
+          </h1>
+        
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2019-04-17 10:48:50" itemprop="dateCreated datePublished" datetime="2019-04-17T10:48:50+08:00">2019-04-17</time>
+            </span>
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/论文/" itemprop="url" rel="index"><span itemprop="name">论文</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/201904/基于链接内容的社区发现（一）/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/201904/基于链接内容的社区发现（一）/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+          
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span>2k</span>
+            </span>
+          
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span>3 分钟</span>
+            </span>
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="Robust-Detection-of-Link-Communities-in-Large-Social-Network-by-Exploiting-Link-Semantics"><a href="#Robust-Detection-of-Link-Communities-in-Large-Social-Network-by-Exploiting-Link-Semantics" class="headerlink" title="Robust Detection of Link Communities in Large Social Network by Exploiting Link Semantics"></a>Robust Detection of Link Communities in Large Social Network by Exploiting Link Semantics</h1><h2 id="ZHOU-YUYANG"><a href="#ZHOU-YUYANG" class="headerlink" title="ZHOU YUYANG"></a>ZHOU YUYANG</h2><hr>
+<p><a href="https://www.aaai.org/ocs/index.php/AAAI/AAAI18/paper/viewPaper/17345" target="_blank" rel="noopener">Robust Detection of Link Communities in Large Social Network by Exploiting Link Semantics </a></p>
+<p>这篇论文是我加入张老师实验室读的第一篇论文，寒假里草草读了一遍，感叹了自己垃圾的英文水平，上周除了上课和作业基本没做什么，一直在研读这篇论文。很幸运的是上周关于这篇论文的汇报我做的非常精彩，也不枉自己上周那么辛苦的肝了。  </p>
+<p>这篇博客用来记录自己研读时候的思考和整理。  </p>
+<p><img src="https://s2.ax1x.com/2019/04/11/A7J9ts.png" alt="1.1"></p>
+<p>整个论文的整体内容我将从四个方面介绍。分别是社区发现算法的背景和现存的方法、论文提出的模型和方法、试验和结论与讨论。</p>
+<a id="more"></a>
+
+<h2 id="1-Background"><a href="#1-Background" class="headerlink" title="1. Background"></a>1. Background</h2><p><img src="https://s2.ax1x.com/2019/04/11/A7GvnS.png" alt="1.2">  </p>
+<h3 id="1-1-社交网络的发展"><a href="#1-1-社交网络的发展" class="headerlink" title="1.1 社交网络的发展"></a>1.1 社交网络的发展</h3><ul>
+<li>社交对于世界各地各领域的人们来讲都越来越重要。随着社交网络的发展，越来越多的信息开始在互联网中聚集。</li>
+<li>对于这些大数据的分析能够让我们更加熟悉网络的深层结构、了解用户行为和未来趋势。</li>
+<li>社交网络中的一个重要的问题便是社区发现，通过社区发现我们能够为用户提供个性化推荐和异常行为的识别。</li>
+<li>所谓的“社区发现”，就是将出现在社交网络中的用户节点划分成不同的组别。每个组的用户结点都有着某些相同的特征。</li>
+</ul>
+<h3 id="1-2-现存的方法"><a href="#1-2-现存的方法" class="headerlink" title="1.2 现存的方法"></a>1.2 现存的方法</h3><p><img src="https://s2.ax1x.com/2019/04/11/A7Jipq.png" alt="1.3"></p>
+<ul>
+<li>我们通常用一个图来表示社交网络。其中的点表示用户结点，其中的边表示用户之间的联系。</li>
+<li>最初人们社区发现的算法是根据网络的<font color="FF0000">拓扑结构</font>，即让我们划分后的各个社区间的边的数量最少，社区内部点之间的边尽可能的多</li>
+<li>之后，社区发现的算法得到改进，我们通过节点内容进行社区划分，即使得同一个社区内的结点内容尽可能多的相似。通过结点内容进行社区发现能够大大提升我们社区发现的效率。</li>
+<li>同时我们发现，用户之间的链接，即图中的边也含有大量的信息。</li>
+</ul>
+<p><img src="https://s2.ax1x.com/2019/04/11/A7JChn.png" alt="1.4"></p>
+<p>这张图形象的表示了我们的方法和其他方法的区别。其中右边的图是基于结点内容进行社区发现的算法示意图，左边的图是我们基于链接内容进行社区发现的图。<br>我们可以看出现有的其他方法的问题：</p>
+<ul>
+<li>1.只考虑了节点内容。考虑节点内容进行社区发现在有些时候有很高的效率。以微博用户的社区发现为例，当我们提供的内容是用户简介时，基于节点内容进行社区发现是很可以的。但是当我们提供的内容是用户之间发送的消息时，这其实是一种“链接内容”，我们需要将链接内容转换成节点内容，比如用户A发送的所有消息算成用户A的节点内容。这时候势必导致社区划分的不准确。</li>
+<li>2.假设网络拓扑社区和结点内容社区的用户结点是一样的。两个用户间联系紧密，构成一个拓扑社区，但是他们聊天的内容可能是很五花八门的，两个人可能被分到不同的节点内容社区中去，这个时候现有的方法社区发现的效率就会下降。</li>
+<li>3.每个社区仅仅有一个话题。比如右边的图把Music和Movies混在一起当作一个话题，而我们的方法（左边）含有两个话题。</li>
+<li>4.仅仅用单个词汇进行社区标签。有时候我们可能会不知所云。而我们的方法用句子进行标签，便于理解。</li>
+</ul>
+<p><img src="https://s2.ax1x.com/2019/04/11/A7JF10.png" alt="1.5"></p>
+<h2 id="2-The-Model-and-Method"><a href="#2-The-Model-and-Method" class="headerlink" title="2.The Model and Method"></a>2.The Model and Method</h2><h3 id="2-1综述"><a href="#2-1综述" class="headerlink" title="2.1综述"></a>2.1综述</h3><p>详见图片  </p>
+<p><img src="https://s2.ax1x.com/2019/04/11/A7JVnU.png" alt="1.6"></p>
+<h3 id="2-2-详细分析"><a href="#2-2-详细分析" class="headerlink" title="2.2 详细分析"></a>2.2 详细分析</h3><p>我们先来看看我们进行社区发现需要考虑哪一些因素：</p>
+<ul>
+<li>拓扑角度：结点、链接</li>
+<li>内容角度：单词、句子、话题</li>
+<li>社区和话题群聚(topic cluster)</li>
+</ul>
+<h4 id="变量介绍"><a href="#变量介绍" class="headerlink" title="变量介绍"></a>变量介绍</h4><p>详见图片(难理解的内容都已经用中文进行注释)  </p>
+<p><img src="https://s2.ax1x.com/2019/04/11/A7JkcV.md.png" alt="1.7"></p>
+<p><img src="https://s2.ax1x.com/2019/04/11/A7JZBF.md.png" alt="1.8"></p>
+<p><img src="https://s2.ax1x.com/2019/04/11/A7Je74.md.png" alt="1.9"></p>
+<p><img src="https://s2.ax1x.com/2019/04/11/A7JQ91.md.png" alt="1.10"></p>
+<p>所有变量的详细关系如下图所示  </p>
+<p><img src="https://s2.ax1x.com/2019/04/11/A7JnAJ.png" alt="1.11"></p>
+<p>为了便于理解，我自己又画了一个图。</p>
+<p><img src="https://s2.ax1x.com/2019/04/11/A7JGnO.md.png" alt="1.12"></p>
+<p>图左半部分就是根据拓扑结构进行社区发现，右半部分是根据节点内容进行社区发现。</p>
+<p>现在，我们的模型已经建立起来了，我们的目标为以下三点：</p>
+<p><img src="https://s2.ax1x.com/2019/04/11/A7JKhR.png" alt="1.13"></p>
+<h3 id="具体算法"><a href="#具体算法" class="headerlink" title="具体算法"></a>具体算法</h3><p>我们算法的整体思想是这样的：首先我们根据某标准把网络中的所有节点划分到不同的社区中（E-step），然后我们将提取每个社区中的关键词，来进行社区标注。（M-step）<br>我们再根据标注进行有监督的学习，对社区进行更精准的划分，以此来一遍遍迭代。  </p>
+<p>下面我们运用了极大似然的思想进行EM算法。<br>E-step：</p>
+<p><img src="https://s2.ax1x.com/2019/04/11/A7JuN9.md.png" alt="1.14"></p>
+<p><img src="https://s2.ax1x.com/2019/04/11/A7J1c6.md.png" alt="1.15"></p>
+<p><img src="https://s2.ax1x.com/2019/04/11/A7Ja4A.md.png" alt="1.16"></p>
+<p>我们进行期望化的变量是p，p代表着链接&lt;i,j&gt;被分配到哪个社区中。<br>现在p的取值是Jensen不等式的取等条件。</p>
+<p>M-step：</p>
+<p><img src="https://s2.ax1x.com/2019/04/11/A7JJBD.png" alt="1.17"></p>
+<p>下面我们要求式(3)的最大值，tau、 omega_ri、 y_rj都是可以通过直接求导求出来的。剩下的psai和fai的最大值我们再一次通过EM算法来求。引入变量p和h，运用JENSEN公式，p和h在取等条件时式子取到最大值。</p>
+<p><img src="https://s2.ax1x.com/2019/04/11/A7JYHe.md.png" alt="1.18"></p>
+<p><img src="https://s2.ax1x.com/2019/04/11/A7Jw9I.md.png" alt="1.19"></p>
+<p>下面我们给出整个算法的伪代码，看懂这个图整个算法的思路就差不多了。</p>
+<p><img src="https://s2.ax1x.com/2019/04/11/A7Jsu8.png" alt="1.20"></p>
+
+    </div>
+
+    
+
+    
+    
+    
+      
+
+        
+      
+
+      <footer class="post-footer">
+          
+            
+          
+          <div class="post-tags">
+            
+              <a href="/tags/社区发现/" rel="tag"># 社区发现</a>
+            
+          </div>
+        
+
+        
+  <div class="post-widgets">
+    <div class="social-share">
+      
+      
+        <div id="needsharebutton-postbottom">
+          <span class="btn">
+            <i class="fa fa-share-alt" aria-hidden="true"></i>
+          </span>
+        </div>
+      
+    </div>
+  
+  </div>
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/201904/基于链接内容的社区发现（二）/" rel="next" title="基于链接内容的社区发现算法（二）">
+                  <i class="fa fa-chevron-left"></i> 基于链接内容的社区发现算法（二）
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+                <a href="/201904/30天自制操作系统（21）/" rel="prev" title="30天自制操作系统（21）">
+                  30天自制操作系统（21） <i class="fa fa-chevron-right"></i>
+                </a>
+              
+            </div>
+          </div>
+        
+      </footer>
+    
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+    
+    <div class="comments" id="comments"></div>
+  
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image"
+      src="/images/tom.jpg"
+      alt="CrocodileZS">
+  <p class="site-author-name" itemprop="name">CrocodileZS</p>
+  <div class="site-description motion-element" itemprop="description"></div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">47</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+  <div class="feed-link motion-element">
+    <a href="/atom.xml" rel="alternate">
+      <i class="fa fa-rss"></i>RSS
+    </a>
+  </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="mailto:ammo@bupt.edu.cn" title="E-Mail &rarr; mailto:ammo@bupt.edu.cn" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://instagram.com/crocodile_zs" title="Instagram &rarr; https://instagram.com/crocodile_zs" rel="noopener" target="_blank"><i class="fa fa-fw fa-instagram"></i>Instagram</a>
+      </span>
+    
+  </div>
+
+
+  <div class="links-of-blogroll motion-element links-of-blogroll-block">
+    <div class="links-of-blogroll-title">
+      <i class="fa  fa-fw fa-link"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="http://www.wangxiaofeng.me/" title="http://www.wangxiaofeng.me/" rel="noopener" target="_blank">不许联想</a>
+        </li>
+      
+    </ul>
+  </div>
+
+        </div>
+      </div>
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Robust-Detection-of-Link-Communities-in-Large-Social-Network-by-Exploiting-Link-Semantics"><span class="nav-text">Robust Detection of Link Communities in Large Social Network by Exploiting Link Semantics</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ZHOU-YUYANG"><span class="nav-text">ZHOU YUYANG</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Background"><span class="nav-text">1. Background</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-社交网络的发展"><span class="nav-text">1.1 社交网络的发展</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-现存的方法"><span class="nav-text">1.2 现存的方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-The-Model-and-Method"><span class="nav-text">2.The Model and Method</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1综述"><span class="nav-text">2.1综述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-详细分析"><span class="nav-text">2.2 详细分析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#变量介绍"><span class="nav-text">变量介绍</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#具体算法"><span class="nav-text">具体算法</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">鰐魚先生</span>
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+    <span class="post-meta-divider">|</span>
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+
+    
+  
+  <div id="needsharebutton-float">
+    <span class="btn">
+      <i class="fa fa-share-alt" aria-hidden="true"></i>
+    </span>
+  </div>
+<script src="/lib/needsharebutton/needsharebutton.js"></script>
+<script>
+    pbOptions = {};
+      pbOptions.iconStyle = "default";
+    
+      pbOptions.boxForm = "horizontal";
+    
+      pbOptions.position = "bottomCenter";
+    
+      pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+    
+    new needShareButton('#needsharebutton-postbottom', pbOptions);
+    flOptions = {};
+      flOptions.iconStyle = "box";
+    
+      flOptions.boxForm = "horizontal";
+    
+      flOptions.position = "middleRight";
+    
+      flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+    
+    new needShareButton('#needsharebutton-float', flOptions);
+</script>
+
+
+  </div>
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+  <script src="/lib/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+<script src="/js/utils.js?v=7.3.0"></script>
+  <script src="/js/motion.js?v=7.3.0"></script>
+
+
+  <script src="/js/schemes/muse.js?v=7.3.0"></script>
+
+
+<script src="/js/next-boot.js?v=7.3.0"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+  <script src="/js/scrollspy.js?v=7.3.0"></script>
+<script src="/js/post-details.js?v=7.3.0"></script>
+
+
+    
+
+<script>
+NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', function() {
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: '9VEOQepq1oDMG0XHxBOrKuwU-gzGzoHsz',
+    appKey: 'XVzSWQhACVUcrVzQDF0AJlb8',
+    placeholder: 'ヽ(✿ﾟ▽ﾟ)ノ',
+    avatar: 'zhouyuyang17@163.com',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false,
+    lang: 'zh-cn' || 'zh-cn',
+    path: location.pathname
+  });
+}, window.Valine);
+</script>
+
+  <script type="text/javascript" src="/lib/zclip/clipboard.min.js"></script>	
+<script type="text/javascript" src="/js/src/custom.js"></script>
+</body>
+</html>

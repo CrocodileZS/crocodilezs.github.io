@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="generator" content="Hexo 3.9.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/rainbow.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/rainbow.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/rainbow.png?v=7.3.0">
+  <link rel="mask-icon" href="/images/rainbow.svg?v=7.3.0" color="#222">
+  <meta name="baidu-site-verification" content="MBR3SWgP01">
+
+<link rel="stylesheet" href="/css/main.css?v=7.3.0">
+
+<link rel="stylesheet" href="https://fonts.loli.net/css?family=Noto Serif SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+  <link rel="stylesheet" href="/lib/fancybox/source/jquery.fancybox.css">
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.3.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":true},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
+    save_scroll: true,
+    copycode: {"enable":true,"show_result":true,"style":"flat"},
+    fancybox: true,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    }
+  };
+</script>
+
+  <meta name="description" content="DAY18_dir命令1.控制光标闪烁(1) 在Windows中，只有可以接受键盘输入的窗口有光标闪烁，而其他的窗口中是不显示光标的。 对HariMain进行改写">
+<meta property="og:type" content="article">
+<meta property="og:title" content="30天自制操作系统（18）">
+<meta property="og:url" content="https://www.crocodilezs.top/201904/30天自制操作系统（18）/index.html">
+<meta property="og:site_name" content="鰐魚先生的水族館">
+<meta property="og:description" content="DAY18_dir命令1.控制光标闪烁(1) 在Windows中，只有可以接受键盘输入的窗口有光标闪烁，而其他的窗口中是不显示光标的。 对HariMain进行改写">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-09-27T09:55:41.114Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="30天自制操作系统（18）">
+<meta name="twitter:description" content="DAY18_dir命令1.控制光标闪烁(1) 在Windows中，只有可以接受键盘输入的窗口有光标闪烁，而其他的窗口中是不显示光标的。 对HariMain进行改写">
+  <link rel="alternate" href="/atom.xml" title="鰐魚先生的水族館" type="application/atom+xml">
+  <link rel="canonical" href="https://www.crocodilezs.top/201904/30天自制操作系统（18）/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>30天自制操作系统（18） | 鰐魚先生的水族館</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  <div class="container sidebar-position-left">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">鰐魚先生的水族館</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">言念君子，溫其如玉。</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-tags">
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-about">
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>关于</a>
+
+  </li>
+  </ul>
+
+    
+
+</nav>
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content page-post-detail">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.crocodilezs.top/201904/30天自制操作系统（18）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CrocodileZS">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/tom.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鰐魚先生的水族館">
+    </span>
+      <header class="post-header">
+
+        
+          <h1 class="post-title" itemprop="name headline">30天自制操作系统（18）
+
+            
+          </h1>
+        
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2019-04-07 21:14:50" itemprop="dateCreated datePublished" datetime="2019-04-07T21:14:50+08:00">2019-04-07</time>
+            </span>
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/操作系统/" itemprop="url" rel="index"><span itemprop="name">操作系统</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/201904/30天自制操作系统（18）/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/201904/30天自制操作系统（18）/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+          
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span>3.3k</span>
+            </span>
+          
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span>5 分钟</span>
+            </span>
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="DAY18-dir命令"><a href="#DAY18-dir命令" class="headerlink" title="DAY18_dir命令"></a>DAY18_dir命令</h1><h3 id="1-控制光标闪烁-1"><a href="#1-控制光标闪烁-1" class="headerlink" title="1.控制光标闪烁(1)"></a>1.控制光标闪烁(1)</h3><ul>
+<li>在Windows中，只有可以接受键盘输入的窗口有光标闪烁，而其他的窗口中是不显示光标的。</li>
+<li>对HariMain进行改写</li>
+</ul>
+<a id="more"></a>
+
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">    <span class="comment">/*从此开始*/</span> <span class="keyword">if</span> (cursor_c &gt;= <span class="number">0</span>) &#123; </span><br><span class="line">        boxfill8(sht_win-&gt;buf, sht_win-&gt;bxsize, cursor_c, cursor_x, <span class="number">28</span>, cursor_x + <span class="number">7</span>, <span class="number">43</span>); </span><br><span class="line">    <span class="comment">/*到此结束*/</span> &#125; </span><br><span class="line">         sheet_refresh(sht_win, cursor_x, <span class="number">28</span>, cursor_x + <span class="number">8</span>, <span class="number">44</span>); </span><br><span class="line">     &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="number">512</span> &lt;= i &amp;&amp; i &lt;= <span class="number">767</span>) &#123; <span class="comment">/*鼠标数据*/</span> </span><br><span class="line">     （中略）</span><br><span class="line">     &#125; <span class="keyword">else</span> <span class="keyword">if</span> (i &lt;= <span class="number">1</span>) &#123; <span class="comment">/*光标用定时器*/</span> </span><br><span class="line">    <span class="comment">/*从此开始*/</span> <span class="keyword">if</span> (i != <span class="number">0</span>) &#123; </span><br><span class="line">         timer_init(timer, &amp;fifo, <span class="number">0</span>); <span class="comment">/*下次置0 */</span> </span><br><span class="line">     <span class="keyword">if</span> (cursor_c &gt;= <span class="number">0</span>) &#123; </span><br><span class="line">        cursor_c = COL8_000000; </span><br><span class="line">     &#125; </span><br><span class="line">     &#125; <span class="keyword">else</span> &#123; </span><br><span class="line">         timer_init(timer, &amp;fifo, <span class="number">1</span>); <span class="comment">/*下次置1 */</span> </span><br><span class="line">         <span class="keyword">if</span> (cursor_c &gt;= <span class="number">0</span>) &#123; </span><br><span class="line">         cursor_c = COL8_FFFFFF; </span><br><span class="line">        &#125; </span><br><span class="line">     &#125; </span><br><span class="line">     timer_settime(timer, <span class="number">50</span>); </span><br><span class="line">     <span class="keyword">if</span> (cursor_c &gt;= <span class="number">0</span>) &#123; </span><br><span class="line">     boxfill8(sht_win-&gt;buf, sht_win-&gt;bxsize, cursor_c, cursor_x, <span class="number">28</span>, cursor_x + </span><br><span class="line">     <span class="number">7</span>, <span class="number">43</span>); </span><br><span class="line">     sheet_refresh(sht_win, cursor_x, <span class="number">28</span>, cursor_x + <span class="number">8</span>, <span class="number">44</span>); </span><br><span class="line">    <span class="comment">/*到此结束*/</span> &#125; </span><br><span class="line">     &#125; </span><br><span class="line">     &#125; </span><br><span class="line">     &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-控制光标闪烁-2"><a href="#2-控制光标闪烁-2" class="headerlink" title="2.控制光标闪烁(2)"></a>2.控制光标闪烁(2)</h3><ul>
+<li>实现命令行窗口中光标闪烁的控制。</li>
+<li>像传递按键编码一样，我们可以使用FIFO来实现。</li>
+<li>我们先将光标开始闪烁定义为2，停止闪烁定义为3。</li>
+</ul>
+<hr>
+<h3 id="3-对回车键的支持"><a href="#3-对回车键的支持" class="headerlink" title="3.对回车键的支持"></a>3.对回车键的支持</h3><ul>
+<li>应该对输入的字符进行判断，然后执行相应的命令<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">    <span class="comment">/*从此开始*/</span> <span class="keyword">if</span> (i == <span class="number">256</span> + <span class="number">0x1c</span>) &#123; <span class="comment">/*回车键*/</span> </span><br><span class="line">     <span class="keyword">if</span> (key_to != <span class="number">0</span>) &#123; <span class="comment">/*发送至命令行窗口*/</span> </span><br><span class="line">        fifo32_put(&amp;task_cons-&gt;fifo, <span class="number">10</span> + <span class="number">256</span>); </span><br><span class="line"> &#125; </span><br><span class="line"><span class="comment">/*到此结束*/</span> &#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="4-对窗口滚动的支持"><a href="#4-对窗口滚动的支持" class="headerlink" title="4.对窗口滚动的支持"></a>4.对窗口滚动的支持</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">void console_task(struct SHEET *sheet) </span><br><span class="line">&#123; </span><br><span class="line"> （中略）</span><br><span class="line"> int x, y;</span><br><span class="line">  （中略）</span><br><span class="line"> for (;;) &#123; </span><br><span class="line">     io_cli(); </span><br><span class="line">     if (fifo32_status(&amp;task-&gt;fifo) == 0) &#123; </span><br><span class="line">     （中略）</span><br><span class="line"> &#125; else &#123; </span><br><span class="line">    （中略）</span><br><span class="line"> if (256 &lt;= i &amp;&amp; i &lt;= 511) &#123; /*键盘数据（通过任务A） */ </span><br><span class="line"> if (i == 8 + 256) &#123; </span><br><span class="line">     /*退格键*/ </span><br><span class="line">     （中略）</span><br><span class="line"> &#125; else if (i == 10 + 256) &#123; </span><br><span class="line">     /* Enter */ </span><br><span class="line">     /*用空格将光标擦除*/ </span><br><span class="line">     putfonts8_asc_sht(sheet, cursor_x, cursor_y, COL8_FFFFFF, COL8_000000, &quot; &quot;, 1); </span><br><span class="line">/*从此开始 */ if (cursor_y &lt; 28 + 112) &#123; </span><br><span class="line"> cursor_y += 16; /*换行*/ </span><br><span class="line"> &#125; else &#123; </span><br><span class="line">     /*滚动*/ </span><br><span class="line">     for (y = 28; y &lt; 28 + 112; y++) &#123; </span><br><span class="line">     for (x = 8; x &lt; 8 + 240; x++) &#123; </span><br><span class="line">     sheet-&gt;buf[x + y * sheet-&gt;bxsize] = sheet-&gt;buf[x + (y + 16) * </span><br><span class="line">     sheet-&gt;bxsize]; </span><br><span class="line">    &#125; </span><br><span class="line"> &#125; </span><br><span class="line"> for (y = 28 + 112; y &lt; 28 + 128; y++) &#123; </span><br><span class="line">    for (x = 8; x &lt; 8 + 240; x++) &#123; </span><br><span class="line">        sheet-&gt;buf[x + y * sheet-&gt;bxsize] = COL8_000000; </span><br><span class="line">    &#125; </span><br><span class="line"> &#125; </span><br><span class="line"> sheet_refresh(sheet, 8, 28, 8 + 240, 28 + 128); </span><br><span class="line"> &#125; </span><br><span class="line"> /*显示提示符*/ </span><br><span class="line"> putfonts8_asc_sht(sheet, 8, cursor_y, COL8_FFFFFF, COL8_000000, &quot;&gt;&quot;, 1); </span><br><span class="line">/*到此为止*/ cursor_x = 16; </span><br><span class="line"> &#125; else &#123; </span><br><span class="line"> /*一般字符*/ </span><br><span class="line"> （中略）</span><br><span class="line"> &#125; </span><br><span class="line"> &#125; </span><br><span class="line"> （中略）</span><br><span class="line"> &#125; </span><br><span class="line"> &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-mem命令"><a href="#5-mem命令" class="headerlink" title="5.mem命令"></a>5.mem命令</h3><p>我们已经实现了屏幕滚动，现在该是到了让它执行命令的时候了。<br>mem命令就是memeory的缩写，也就是用来显示内存使用情况的命令。</p>
+<hr>
+<ul>
+<li>介绍一下重点。首先我们添加了memtotal和memman两个变量，它们是执行mem命令所必需的。关于memtotal，我们采用和sheet相同的方法从HariMain传递过来，因此我们还要改写一下HariMain。</li>
+<li>我们还添加了一个cmdline变量，也就是“命令行”（command line）的缩写。这个变量用来记录通过键盘输入的内容，在“键盘数据”处理的“一般字符”部分，将输入的内容顺次累积起来。</li>
+</ul>
+<h3 id="6-cls命令"><a href="#6-cls命令" class="headerlink" title="6.cls命令"></a>6.cls命令</h3><ul>
+<li>这个命令的作用是清除屏幕上的内容，也就是“clear screen”（清屏）的缩写。顺便补充个小知识，在Linux中清屏命令是“clear”。<br>代码精简：<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">if (c[0] == &apos;m&apos; &amp;&amp; c[1] == &apos;e&apos; &amp;&amp; c[2] == &apos;m&apos; &amp;&amp; c[3] == 0) &#123;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>改成：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">if (strcmp(cmdline, &quot;mem&quot;) == 0) &#123;</span><br></pre></td></tr></table></figure>
+
+<p>strcmp这个函数，只要声明#include&lt;string.h&gt;即可使用，因此在bootpack.c中我们也要用它。</p>
+<h3 id="7-dir命令"><a href="#7-dir命令" class="headerlink" title="7. dir命令"></a>7. dir命令</h3><ul>
+<li>我们的目标是制作可执行文件（比如.exe）来让它运行。</li>
+<li>过在此之前，我们先来制作一个显示磁盘内文件名称的命令吧。</li>
+<li>dir指令除了会显示文件名，还会显示文件的日期和大小。</li>
+</ul>
+
+    </div>
+
+    
+
+    
+    
+    
+      
+
+        
+      
+
+      <footer class="post-footer">
+
+        
+  <div class="post-widgets">
+    <div class="social-share">
+      
+      
+        <div id="needsharebutton-postbottom">
+          <span class="btn">
+            <i class="fa fa-share-alt" aria-hidden="true"></i>
+          </span>
+        </div>
+      
+    </div>
+  
+  </div>
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/201904/30天自制操作系统（17）/" rel="next" title="30天自制操作系统（17）">
+                  <i class="fa fa-chevron-left"></i> 30天自制操作系统（17）
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+                <a href="/201904/循环赛赛程安排/" rel="prev" title="循环赛赛程安排">
+                  循环赛赛程安排 <i class="fa fa-chevron-right"></i>
+                </a>
+              
+            </div>
+          </div>
+        
+      </footer>
+    
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+    
+    <div class="comments" id="comments"></div>
+  
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image"
+      src="/images/tom.jpg"
+      alt="CrocodileZS">
+  <p class="site-author-name" itemprop="name">CrocodileZS</p>
+  <div class="site-description motion-element" itemprop="description"></div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">47</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+  <div class="feed-link motion-element">
+    <a href="/atom.xml" rel="alternate">
+      <i class="fa fa-rss"></i>RSS
+    </a>
+  </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="mailto:ammo@bupt.edu.cn" title="E-Mail &rarr; mailto:ammo@bupt.edu.cn" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://instagram.com/crocodile_zs" title="Instagram &rarr; https://instagram.com/crocodile_zs" rel="noopener" target="_blank"><i class="fa fa-fw fa-instagram"></i>Instagram</a>
+      </span>
+    
+  </div>
+
+
+  <div class="links-of-blogroll motion-element links-of-blogroll-block">
+    <div class="links-of-blogroll-title">
+      <i class="fa  fa-fw fa-link"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="http://www.wangxiaofeng.me/" title="http://www.wangxiaofeng.me/" rel="noopener" target="_blank">不许联想</a>
+        </li>
+      
+    </ul>
+  </div>
+
+        </div>
+      </div>
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#DAY18-dir命令"><span class="nav-text">DAY18_dir命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-控制光标闪烁-1"><span class="nav-text">1.控制光标闪烁(1)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-控制光标闪烁-2"><span class="nav-text">2.控制光标闪烁(2)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-对回车键的支持"><span class="nav-text">3.对回车键的支持</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-对窗口滚动的支持"><span class="nav-text">4.对窗口滚动的支持</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-mem命令"><span class="nav-text">5.mem命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-cls命令"><span class="nav-text">6.cls命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-dir命令"><span class="nav-text">7. dir命令</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">鰐魚先生</span>
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+    <span class="post-meta-divider">|</span>
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+
+    
+  
+  <div id="needsharebutton-float">
+    <span class="btn">
+      <i class="fa fa-share-alt" aria-hidden="true"></i>
+    </span>
+  </div>
+<script src="/lib/needsharebutton/needsharebutton.js"></script>
+<script>
+    pbOptions = {};
+      pbOptions.iconStyle = "default";
+    
+      pbOptions.boxForm = "horizontal";
+    
+      pbOptions.position = "bottomCenter";
+    
+      pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+    
+    new needShareButton('#needsharebutton-postbottom', pbOptions);
+    flOptions = {};
+      flOptions.iconStyle = "box";
+    
+      flOptions.boxForm = "horizontal";
+    
+      flOptions.position = "middleRight";
+    
+      flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+    
+    new needShareButton('#needsharebutton-float', flOptions);
+</script>
+
+
+  </div>
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+  <script src="/lib/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+<script src="/js/utils.js?v=7.3.0"></script>
+  <script src="/js/motion.js?v=7.3.0"></script>
+
+
+  <script src="/js/schemes/muse.js?v=7.3.0"></script>
+
+
+<script src="/js/next-boot.js?v=7.3.0"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+  <script src="/js/scrollspy.js?v=7.3.0"></script>
+<script src="/js/post-details.js?v=7.3.0"></script>
+
+
+    
+
+<script>
+NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', function() {
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: '9VEOQepq1oDMG0XHxBOrKuwU-gzGzoHsz',
+    appKey: 'XVzSWQhACVUcrVzQDF0AJlb8',
+    placeholder: 'ヽ(✿ﾟ▽ﾟ)ノ',
+    avatar: 'zhouyuyang17@163.com',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false,
+    lang: 'zh-cn' || 'zh-cn',
+    path: location.pathname
+  });
+}, window.Valine);
+</script>
+
+  <script type="text/javascript" src="/lib/zclip/clipboard.min.js"></script>	
+<script type="text/javascript" src="/js/src/custom.js"></script>
+</body>
+</html>
