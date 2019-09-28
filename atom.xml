@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.crocodilezs.top/"/>
-  <updated>2019-09-27T04:43:22.538Z</updated>
+  <updated>2019-09-28T14:48:41.731Z</updated>
   <id>https://www.crocodilezs.top/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>沙河半日</title>
+    <link href="https://www.crocodilezs.top/201909/%E6%B2%99%E6%B2%B3%E5%8D%8A%E6%97%A5/"/>
+    <id>https://www.crocodilezs.top/201909/沙河半日/</id>
+    <published>2019-09-28T13:39:50.000Z</published>
+    <updated>2019-09-28T14:48:41.731Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;img src=&quot;https://s2.ax1x.com/2019/09/28/u1scM8.jpg&quot; alt=&quot;我和祖国共成长，青春筑梦新时代&quot;&gt;&lt;/p&gt;
+&lt;center&gt;今天很，，，温馨和感动。&lt;/center&gt;
+&lt;br&gt;
+&lt;br&gt;
+    
+    </summary>
+    
+      <category term="参省乎己" scheme="https://www.crocodilezs.top/categories/%E5%8F%82%E7%9C%81%E4%B9%8E%E5%B7%B1/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>「学生宿舍管理系统」实验报告</title>
@@ -201,6 +222,42 @@
     
     
       <category term="大数据" scheme="https://www.crocodilezs.top/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>实验室苦逼搬砖暑假生活纪实</title>
+    <link href="https://www.crocodilezs.top/201909/%E5%AE%9E%E9%AA%8C%E5%AE%A4%E8%8B%A6%E9%80%BC%E6%90%AC%E7%A0%96%E6%9A%91%E5%81%87%E7%94%9F%E6%B4%BB%E7%BA%AA%E5%AE%9E/"/>
+    <id>https://www.crocodilezs.top/201909/实验室苦逼搬砖暑假生活纪实/</id>
+    <published>2019-08-31T18:48:50.000Z</published>
+    <updated>2019-09-28T13:22:23.063Z</updated>
+    
+    <summary type="html">
+    
+      &lt;div class=&quot;note primary&quot;&gt;
+    记录一下自己暑假在实验室做的一些事情和收获吧。&lt;br&gt;
+    虽然进步很小很缓慢，但总归是有的。
+&lt;/div&gt;
+
+&lt;h1 id=&quot;7月13日&quot;&gt;&lt;a href=&quot;#7月13日&quot; class=&quot;headerlink&quot; title=&quot;7月13日&quot;&gt;&lt;/a&gt;7月13日&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;关于论文的主要内容，学长进行了讲解：&lt;br&gt;&lt;br&gt; &lt;strong&gt;任务目标：&lt;/strong&gt;通过迁移学习实现用户对齐问题，并将对齐结果与其他的用户对其方法进行比较：其中的方法包括“监督类型的”和“非监督类型的”，最终论文里要将我们的方法与其他至少三四种方法进行比较。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="机器学习" scheme="https://www.crocodilezs.top/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+      <category term="迁移学习" scheme="https://www.crocodilezs.top/tags/%E8%BF%81%E7%A7%BB%E5%AD%A6%E4%B9%A0/"/>
+    
+      <category term="Anaconda" scheme="https://www.crocodilezs.top/tags/Anaconda/"/>
+    
+      <category term="DRNE" scheme="https://www.crocodilezs.top/tags/DRNE/"/>
+    
+      <category term="IONE" scheme="https://www.crocodilezs.top/tags/IONE/"/>
+    
+      <category term="WGAN" scheme="https://www.crocodilezs.top/tags/WGAN/"/>
+    
+      <category term="PALE" scheme="https://www.crocodilezs.top/tags/PALE/"/>
     
   </entry>
   
@@ -429,51 +486,6 @@
     
       <category term="操作系统" scheme="https://www.crocodilezs.top/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
     
-    
-  </entry>
-  
-  <entry>
-    <title>30天自制操作系统（21）</title>
-    <link href="https://www.crocodilezs.top/201904/30%E5%A4%A9%E8%87%AA%E5%88%B6%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%EF%BC%8821%EF%BC%89/"/>
-    <id>https://www.crocodilezs.top/201904/30天自制操作系统（21）/</id>
-    <published>2019-04-21T03:14:50.000Z</published>
-    <updated>2019-09-27T10:05:23.059Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;DAY21-保护操作系统&quot;&gt;&lt;a href=&quot;#DAY21-保护操作系统&quot; class=&quot;headerlink&quot; title=&quot;DAY21_保护操作系统&quot;&gt;&lt;/a&gt;DAY21_保护操作系统&lt;/h1&gt;&lt;h2 id=&quot;1-攻克难题——字符串显示API&quot;&gt;&lt;a href=&quot;#1-攻克难题——字符串显示API&quot; class=&quot;headerlink&quot; title=&quot;1.攻克难题——字符串显示API&quot;&gt;&lt;/a&gt;1.攻克难题——字符串显示API&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;我们需要在API中做个改动，使其能够将应用程序传递的地址解释为代码段内地址。&lt;/li&gt;
-&lt;/ul&gt;
-    
-    </summary>
-    
-      <category term="操作系统" scheme="https://www.crocodilezs.top/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>基于链接内容的社区发现算法（一）</title>
-    <link href="https://www.crocodilezs.top/201904/%E5%9F%BA%E4%BA%8E%E9%93%BE%E6%8E%A5%E5%86%85%E5%AE%B9%E7%9A%84%E7%A4%BE%E5%8C%BA%E5%8F%91%E7%8E%B0%EF%BC%88%E4%B8%80%EF%BC%89/"/>
-    <id>https://www.crocodilezs.top/201904/基于链接内容的社区发现（一）/</id>
-    <published>2019-04-17T02:48:50.000Z</published>
-    <updated>2019-09-26T13:44:04.643Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;Robust-Detection-of-Link-Communities-in-Large-Social-Network-by-Exploiting-Link-Semantics&quot;&gt;&lt;a href=&quot;#Robust-Detection-of-Link-Communities-in-Large-Social-Network-by-Exploiting-Link-Semantics&quot; class=&quot;headerlink&quot; title=&quot;Robust Detection of Link Communities in Large Social Network by Exploiting Link Semantics&quot;&gt;&lt;/a&gt;Robust Detection of Link Communities in Large Social Network by Exploiting Link Semantics&lt;/h1&gt;&lt;h2 id=&quot;ZHOU-YUYANG&quot;&gt;&lt;a href=&quot;#ZHOU-YUYANG&quot; class=&quot;headerlink&quot; title=&quot;ZHOU YUYANG&quot;&gt;&lt;/a&gt;ZHOU YUYANG&lt;/h2&gt;&lt;hr&gt;
-&lt;p&gt;&lt;a href=&quot;https://www.aaai.org/ocs/index.php/AAAI/AAAI18/paper/viewPaper/17345&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Robust Detection of Link Communities in Large Social Network by Exploiting Link Semantics &lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;这篇论文是我加入张老师实验室读的第一篇论文，寒假里草草读了一遍，感叹了自己垃圾的英文水平，上周除了上课和作业基本没做什么，一直在研读这篇论文。很幸运的是上周关于这篇论文的汇报我做的非常精彩，也不枉自己上周那么辛苦的肝了。  &lt;/p&gt;
-&lt;p&gt;这篇博客用来记录自己研读时候的思考和整理。  &lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://s2.ax1x.com/2019/04/11/A7J9ts.png&quot; alt=&quot;1.1&quot;&gt;&lt;/p&gt;
-&lt;p&gt;整个论文的整体内容我将从四个方面介绍。分别是社区发现算法的背景和现存的方法、论文提出的模型和方法、试验和结论与讨论。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="论文" scheme="https://www.crocodilezs.top/categories/%E8%AE%BA%E6%96%87/"/>
-    
-    
-      <category term="社区发现" scheme="https://www.crocodilezs.top/tags/%E7%A4%BE%E5%8C%BA%E5%8F%91%E7%8E%B0/"/>
     
   </entry>
   
