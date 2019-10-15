@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.crocodilezs.top/"/>
-  <updated>2019-09-29T05:50:10.553Z</updated>
+  <updated>2019-10-15T14:26:16.208Z</updated>
   <id>https://www.crocodilezs.top/</id>
   
   <author>
@@ -15,6 +15,49 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>写于10月15日——博客正式对外开放之际</title>
+    <link href="https://www.crocodilezs.top/201909/%E5%86%99%E4%BA%8E%E5%8D%9A%E5%AE%A2%E6%AD%A3%E5%BC%8F%E5%AF%B9%E5%A4%96%E5%BC%80%E6%94%BE%E4%B9%8B%E9%99%85/"/>
+    <id>https://www.crocodilezs.top/201909/写于博客正式对外开放之际/</id>
+    <published>2019-10-15T12:51:12.000Z</published>
+    <updated>2019-10-15T14:26:16.208Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;img src=&quot;https://s2.ax1x.com/2019/10/15/KPwEYd.jpg&quot; alt&gt;&lt;/p&gt;
+&lt;blockquote class=&quot;blockquote-center&quot;&gt;&lt;p&gt;If you can quit, then quit.&lt;br&gt;&lt;br&gt;If you cant’t quit, you’re a writer.&lt;/p&gt;
+&lt;div style=&quot;text-align:right&quot;&gt;——R.A.Salvatore&lt;/div&gt;&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="参省乎己" scheme="https://www.crocodilezs.top/categories/%E5%8F%82%E7%9C%81%E4%B9%8E%E5%B7%B1/"/>
+    
+    
+      <category term="博客" scheme="https://www.crocodilezs.top/tags/%E5%8D%9A%E5%AE%A2/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>大数据技术基础课堂笔记（4）</title>
+    <link href="https://www.crocodilezs.top/201909/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%8A%80%E6%9C%AF%E5%9F%BA%E7%A1%80%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B0%EF%BC%884%EF%BC%89/"/>
+    <id>https://www.crocodilezs.top/201909/大数据技术基础课堂笔记（4）/</id>
+    <published>2019-09-30T02:04:50.000Z</published>
+    <updated>2019-09-30T04:25:54.802Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;hadoop存储格式&quot;&gt;&lt;a href=&quot;#hadoop存储格式&quot; class=&quot;headerlink&quot; title=&quot;hadoop存储格式&quot;&gt;&lt;/a&gt;&lt;code&gt;hadoop&lt;/code&gt;存储格式&lt;/h2&gt;&lt;h1 id=&quot;行式存储格式&quot;&gt;&lt;a href=&quot;#行式
+      
+    
+    </summary>
+    
+      <category term="大数据技术基础" scheme="https://www.crocodilezs.top/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%8A%80%E6%9C%AF%E5%9F%BA%E7%A1%80/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>沙河半日</title>
@@ -143,7 +186,7 @@
     <link href="https://www.crocodilezs.top/201909/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B0%EF%BC%882%EF%BC%89/"/>
     <id>https://www.crocodilezs.top/201909/机器学习课堂笔记（2）/</id>
     <published>2019-09-17T05:03:50.000Z</published>
-    <updated>2019-09-29T05:50:35.449Z</updated>
+    <updated>2019-09-29T05:55:19.312Z</updated>
     
     <summary type="html">
     
@@ -266,7 +309,7 @@
     <link href="https://www.crocodilezs.top/hexo-next%E4%B8%BB%E9%A2%98%E5%86%99%E4%BD%9C%E5%B0%9D%E8%AF%95/"/>
     <id>https://www.crocodilezs.top/hexo-next主题写作尝试/</id>
     <published>2019-08-19T02:48:50.000Z</published>
-    <updated>2019-09-27T14:15:40.310Z</updated>
+    <updated>2019-09-29T05:56:52.375Z</updated>
     
     <summary type="html">
     
@@ -390,7 +433,7 @@
     <link href="https://www.crocodilezs.top/201908/%E3%80%8C%E8%BF%81%E7%A7%BB%E5%AD%A6%E4%B9%A0%E7%AE%80%E6%98%8E%E6%89%8B%E5%86%8C%E3%80%8D%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%881%EF%BC%89/"/>
     <id>https://www.crocodilezs.top/201908/「迁移学习简明手册」学习笔记（1）/</id>
     <published>2019-04-25T05:03:50.000Z</published>
-    <updated>2019-09-27T04:58:40.328Z</updated>
+    <updated>2019-09-29T05:55:57.967Z</updated>
     
     <summary type="html">
     
@@ -448,43 +491,6 @@
     </summary>
     
       <category term="安卓开发" scheme="https://www.crocodilezs.top/categories/%E5%AE%89%E5%8D%93%E5%BC%80%E5%8F%91/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>30天自制操作系统（23）</title>
-    <link href="https://www.crocodilezs.top/201904/30%E5%A4%A9%E8%87%AA%E5%88%B6%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%EF%BC%8823%EF%BC%89/"/>
-    <id>https://www.crocodilezs.top/201904/30天自制操作系统（23）/</id>
-    <published>2019-04-21T07:50:50.000Z</published>
-    <updated>2019-09-27T10:12:47.706Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;DAY23-图形处理相关&quot;&gt;&lt;a href=&quot;#DAY23-图形处理相关&quot; class=&quot;headerlink&quot; title=&quot;DAY23_图形处理相关&quot;&gt;&lt;/a&gt;DAY23_图形处理相关&lt;/h1&gt;&lt;h2 id=&quot;1-编写malloc&quot;&gt;&lt;a href=&quot;#1-编写malloc&quot; class=&quot;headerlink&quot; title=&quot;1.编写malloc&quot;&gt;&lt;/a&gt;1.编写malloc&lt;/h2&gt;&lt;p&gt;如果api_malloc只是调用操作系统中的memman_alloc，并将分配到的内存空间地址返回给应用程序的话，是行不通的，因为通过memman_alloc所获得的内存空间并不位于应用程序的数据段范围内，应用程序是无法进行读写操作的。如果应用程序在不知情的情况下执行了读写操作，将会产生异常并强制结束。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="操作系统" scheme="https://www.crocodilezs.top/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>30天自制操作系统（22）</title>
-    <link href="https://www.crocodilezs.top/201904/30%E5%A4%A9%E8%87%AA%E5%88%B6%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%EF%BC%8822%EF%BC%89/"/>
-    <id>https://www.crocodilezs.top/201904/30天自制操作系统（22）/</id>
-    <published>2019-04-21T04:50:50.000Z</published>
-    <updated>2019-09-27T10:11:44.897Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;DAY22-用C语言编写应用程序&quot;&gt;&lt;a href=&quot;#DAY22-用C语言编写应用程序&quot; class=&quot;headerlink&quot; title=&quot;DAY22_用C语言编写应用程序&quot;&gt;&lt;/a&gt;DAY22_用C语言编写应用程序&lt;/h1&gt;&lt;h2 id=&quot;1-保护操作系统（5）&quot;&gt;&lt;a href=&quot;#1-保护操作系统（5）&quot; class=&quot;headerlink&quot; title=&quot;1.保护操作系统（5）&quot;&gt;&lt;/a&gt;1.保护操作系统（5）&lt;/h2&gt;&lt;p&gt;问题：在定时器上做手脚，光标闪烁变得异常缓慢，任务切换的速度也会变得缓慢。&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;[INSTRSET &amp;quot;i486p&amp;quot;] &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;[BITS 32] &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    MOV AL,0x34 &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    OUT 0x43,AL &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    MOV AL,0xff&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    OUT 0x40,AL &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    MOV AL,0xff &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    OUT 0x40,AL&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;; 上述代码的功能与下面代码相当&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;; io_out8(PIT_CTRL, 0x34); &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;; io_out8(PIT_CNT0, 0xff); &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;; io_out8(PIT_CNT0, 0xff); &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    MOV EDX,4 &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    INT 0x40&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-    
-    </summary>
-    
-      <category term="操作系统" scheme="https://www.crocodilezs.top/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
     
     
   </entry>
