@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="generator" content="Hexo 3.9.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/rainbow.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/rainbow.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/rainbow.png?v=7.3.0">
+  <link rel="mask-icon" href="/images/rainbow.svg?v=7.3.0" color="#222">
+  <meta name="baidu-site-verification" content="MBR3SWgP01">
+
+<link rel="stylesheet" href="/css/main.css?v=7.3.0">
+
+<link rel="stylesheet" href="https://fonts.loli.net/css?family=Noto Serif SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+  <link rel="stylesheet" href="/lib/fancybox/source/jquery.fancybox.css">
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.3.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":true},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
+    save_scroll: true,
+    copycode: {"enable":true,"show_result":true,"style":"flat"},
+    fancybox: true,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    }
+  };
+</script>
+
+  <meta name="description" content="Linux操作系统概述和实验环境介绍操作系统概念OS是管理和控制计算机硬件与软件资源的计算机程序，是直接在“裸机”上的最基本的系统软件。 Linux的应用 服务器端：Linux非常稳定，特别适合大型企业生产环境。 作为网络平台的后端服务器被使用。 作为应用服务器、数据库服务器被使用：解决海量数据、高并发的问题； 作为嵌入式操作系统被使用：智能控制、自动化、物联网等领域。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计算机系统基础实验一、Linux环境和GCC工具链">
+<meta property="og:url" content="https://www.crocodilezs.top/201910/计算机系统基础实验一/index.html">
+<meta property="og:site_name" content="鰐魚先生的水族館">
+<meta property="og:description" content="Linux操作系统概述和实验环境介绍操作系统概念OS是管理和控制计算机硬件与软件资源的计算机程序，是直接在“裸机”上的最基本的系统软件。 Linux的应用 服务器端：Linux非常稳定，特别适合大型企业生产环境。 作为网络平台的后端服务器被使用。 作为应用服务器、数据库服务器被使用：解决海量数据、高并发的问题； 作为嵌入式操作系统被使用：智能控制、自动化、物联网等领域。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-10-27T08:47:39.463Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="计算机系统基础实验一、Linux环境和GCC工具链">
+<meta name="twitter:description" content="Linux操作系统概述和实验环境介绍操作系统概念OS是管理和控制计算机硬件与软件资源的计算机程序，是直接在“裸机”上的最基本的系统软件。 Linux的应用 服务器端：Linux非常稳定，特别适合大型企业生产环境。 作为网络平台的后端服务器被使用。 作为应用服务器、数据库服务器被使用：解决海量数据、高并发的问题； 作为嵌入式操作系统被使用：智能控制、自动化、物联网等领域。">
+  <link rel="alternate" href="/atom.xml" title="鰐魚先生的水族館" type="application/atom+xml">
+  <link rel="canonical" href="https://www.crocodilezs.top/201910/计算机系统基础实验一/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>计算机系统基础实验一、Linux环境和GCC工具链 | 鰐魚先生的水族館</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  <div class="container sidebar-position-left">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">鰐魚先生的水族館</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">言念君子，溫其如玉。</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-tags">
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-about">
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>关于</a>
+
+  </li>
+  </ul>
+
+    
+
+</nav>
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content page-post-detail">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.crocodilezs.top/201910/计算机系统基础实验一/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CrocodileZS">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/tom.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鰐魚先生的水族館">
+    </span>
+      <header class="post-header">
+
+        
+          <h1 class="post-title" itemprop="name headline">计算机系统基础实验一、Linux环境和GCC工具链
+
+            
+          </h1>
+        
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2019-10-25 15:00:12" itemprop="dateCreated datePublished" datetime="2019-10-25T15:00:12+08:00">2019-10-25</time>
+            </span>
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/计算机系统基础/" itemprop="url" rel="index"><span itemprop="name">计算机系统基础</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/201910/计算机系统基础实验一/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/201910/计算机系统基础实验一/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+          
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span>2.7k</span>
+            </span>
+          
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span>5 分钟</span>
+            </span>
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="Linux操作系统概述和实验环境介绍"><a href="#Linux操作系统概述和实验环境介绍" class="headerlink" title="Linux操作系统概述和实验环境介绍"></a><code>Linux</code>操作系统概述和实验环境介绍</h1><h2 id="操作系统概念"><a href="#操作系统概念" class="headerlink" title="操作系统概念"></a>操作系统概念</h2><p><code>OS</code>是管理和控制计算机硬件与软件资源的计算机程序，是直接在“裸机”上的最基本的系统软件。</p>
+<h2 id="Linux的应用"><a href="#Linux的应用" class="headerlink" title="Linux的应用"></a><code>Linux</code>的应用</h2><ol>
+<li>服务器端：Linux非常稳定，特别适合大型企业生产环境。</li>
+<li>作为网络平台的后端服务器被使用。</li>
+<li>作为应用服务器、数据库服务器被使用：解决海量数据、高并发的问题；</li>
+<li>作为嵌入式操作系统被使用：智能控制、自动化、物联网等领域。</li>
+</ol>
+<a id="more"></a>
+
+<h2 id="Linux历史"><a href="#Linux历史" class="headerlink" title="Linux历史"></a><code>Linux</code>历史</h2><p>追溯到<code>UNIX</code><br>简单地说，<code>Linux</code>是对<code>UNIX</code>的重新实现。世界各地的<code>Linux</code>开发人员借鉴了<code>UNIX</code>的技术和用户界面，并且融入了很多独创的技术。<code>Linux</code>不属于<code>BSD</code>和<code>AT&amp;T</code>风格的<code>UNIX</code>中的任何一种。因此，严格来说，<code>Linux</code>是有别于<code>UNIX</code>的另一种操作系统。</p>
+<h2 id="Linux简介"><a href="#Linux简介" class="headerlink" title="Linux简介"></a><code>Linux</code>简介</h2><p><code>Linux</code>发现行版本举例：<code>Ubuntu</code>、<code>redhat</code></p>
+<h2 id="操作系统的三个部分"><a href="#操作系统的三个部分" class="headerlink" title="操作系统的三个部分"></a>操作系统的三个部分</h2><h3 id="内核"><a href="#内核" class="headerlink" title="内核"></a>内核</h3><p>操作系统五大管理功能一般都由操作系统内核负责。</p>
+<h3 id="外壳"><a href="#外壳" class="headerlink" title="外壳"></a>外壳</h3><ul>
+<li>外壳程序负责接收用户操作，提供与 用户的交互界面。</li>
+<li>一般操作系统提供给用户的界面主要有两种：文本界面、<code>GUI</code>图形界面。<h3 id="管理工具和附属软件"><a href="#管理工具和附属软件" class="headerlink" title="管理工具和附属软件"></a>管理工具和附属软件</h3></li>
+</ul>
+<h2 id="操作系统的功能"><a href="#操作系统的功能" class="headerlink" title="操作系统的功能"></a>操作系统的功能</h2><ol>
+<li><code>CPU</code>的控制与管理：处理器管理</li>
+<li>内存的分配与管理：存储器管理</li>
+<li>外部设备的控制与管理：设备管理</li>
+<li>文件管理</li>
+<li>作业管理和控制：用户接口</li>
+</ol>
+<h2 id="Shell"><a href="#Shell" class="headerlink" title="Shell"></a><code>Shell</code></h2><ol>
+<li>外壳程序对用户的输入命令进行解释，为用户提供一种通过操作系统使用计算机的操作环境。</li>
+<li><code>Windows</code>的图形界面，由一个成为<code>Explorer</code>的模块解释用户的输入。</li>
+<li>如<code>DOS</code>的命令行界面，<code>Command.com</code>是对命令输入进行解释的外壳程序(<code>Linux</code>的<code>Shell</code>)</li>
+<li>Shell命令：从命令行输入语句，每输入一次就能得到一次响应，这些语句就是<code>shell</code>命令。</li>
+<li><code>Shell</code>程序：又称<code>Shell</code>脚本。（把一系列的<code>shell</code>命令，按照一定的语法规则和控制结构，组织在一个文件中，然后由内核来一条接一条地解释和执行这些命令，这个文件就是shell程序，类似<code>DOS</code>/<code>Winsows</code>中的。bat批处理文件。）</li>
+<li>[username@computername ~]$<br>user name为当前用户名，computername 为当前计算机名 ，$表示当前用户是一般用户。 <h2 id="ssh-secure-shell"><a href="#ssh-secure-shell" class="headerlink" title="ssh secure shell"></a><code>ssh</code> secure shell</h2>把<code>Linux</code>终端搬到<code>Windows</code>下，连接到BUPT1.<h2 id="Shell常用命令"><a href="#Shell常用命令" class="headerlink" title="Shell常用命令"></a><code>Shell</code>常用命令</h2><h3 id="目录操作命令"><a href="#目录操作命令" class="headerlink" title="目录操作命令"></a>目录操作命令</h3>目录操作命令能够对当前的目录进行查看、创建、删除，以及显示当前工作目录和改变当前目录等操作。</li>
+</ol>
+<div note="class info">
+    1. /etc - 系统所需的重要配置和管理文件<br>
+    2. /dev - 存放device file（装置文件）<br>
+    3. /boot - 存放系统激活的相关文件，不可任意删除。<br>
+    4. /home - 登陆用户的主目录<br>
+    5. /lib - 存放系统激活时需要的系统函数库<br>
+    6. /usr/lib - 存放一些应用程序的共享函数库<br>
+    7. /mnt - 系统默认的挂载点(mount point)
+    8. /proc - 虚拟文件系统，不占用硬盘空间，目录下的文件均放置于内存中<br>
+    9. /root - 系统管理用户root的主目录<br>
+    10. /bin - 存放一些系统启动时所需的普通程序和系统程序<br>
+    11. /tmp - 存放临时文件
+    12. /var - 存放被系统修改过的数据。
+</div>
+
+<p>常用的目录操作命令包括：</p>
+<ol>
+<li>pwd 打印当前工作目录</li>
+<li>cd 改变当前所在目录</li>
+<li>ls 查看当前目录下的内容</li>
+<li>dir 类似ls命令</li>
+<li>mkdir 创建目录</li>
+<li>rmdir 删除空目录</li>
+</ol>
+<h3 id="文件操作命令"><a href="#文件操作命令" class="headerlink" title="文件操作命令"></a>文件操作命令</h3><ul>
+<li>在命令行环境下对文件进行操作将比在图形环境下操作文件更加快捷和高效</li>
+<li>文件操作主要包括：搜索文件、复制和移动文件、删除文件以及合并文件内容</li>
+</ul>
+<p>常用文件操作命令：  </p>
+<ul>
+<li><code>cat</code>  </li>
+<li><code>more</code>  </li>
+<li><code>less</code>  </li>
+<li><code>head</code></li>
+<li><code>tail</code></li>
+<li><code>cp</code></li>
+<li><code>mv</code></li>
+<li><code>rm</code></li>
+<li><code>find</code></li>
+<li><code>touch</code></li>
+<li><code>ln</code></li>
+</ul>
+<h3 id="使用帮助命令"><a href="#使用帮助命令" class="headerlink" title="使用帮助命令"></a>使用帮助命令</h3><ol>
+<li><code>man 命令名</code> </li>
+<li><code>whatis 命令名</code>  </li>
+<li><code>help 命令名</code>：适用于部分命令</li>
+</ol>
+<h2 id="Vi编辑器"><a href="#Vi编辑器" class="headerlink" title="Vi编辑器"></a>Vi编辑器</h2><h3 id="Vi简介"><a href="#Vi简介" class="headerlink" title="Vi简介"></a><code>Vi</code>简介</h3><ul>
+<li><code>Vi</code>编辑器是<code>Visual interface</code>的简称，它可以执行输出、删除、查找、替换、块操作等众多文本操作</li>
+<li><code>Vi</code>不是一个排版程序，只是一个文本编辑程序。</li>
+<li>是全屏幕文本编辑器，没有菜单，只有命令。</li>
+</ul>
+<h3 id="Vi的基本概念"><a href="#Vi的基本概念" class="headerlink" title="Vi的基本概念"></a><code>Vi</code>的基本概念</h3><ol>
+<li>命令行模式（command mode）<br>控制屏幕光标的移动、字符、字或行的删除、移动复制某区段及进入<code>Insert mode</code>下，或者到<code>last line mode</code>。</li>
+<li>插入模式（Insert mode）<br>只有在<code>Insert mode</code>下，才可以做文字输入，按ESC键可回到命令行模式。</li>
+<li>底行模式(last line mode)<br>将文件保存或退出vi，也可以设置编辑环境，如寻找字符串、列出行号。</li>
+</ol>
+<div class="note info">
+    $ vi test.txt<br>
+    即可进入vi（打开或新建文件）
+</div>
+
+<p>操作：</p>
+<ol>
+<li>命令行模式 —&gt;(i)  插入模式</li>
+<li>插入模式  —&gt;（ESC）  命令行模式</li>
+<li>如果处于「插入模式」，就只能一直输入文字，如果发现输错了字想用光标往回移动将该字删除，就得先回到「命令行模式」</li>
+<li>在「命令行模式」下，按下：进入底行模式<br><code>: w filename</code><br><code>: wq</code><br><code>: q!</code></li>
+</ol>
+<h2 id="GCC工具链"><a href="#GCC工具链" class="headerlink" title="GCC工具链"></a><code>GCC</code>工具链</h2><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><ol>
+<li><code>GCC</code>编译器能将<code>C</code>和<code>C++</code>语言源程序、汇编程序编译、链接成可执行文件。</li>
+<li>使用<code>GCC</code>编译器时，编译过程可以被细分为四个阶段：<ul>
+<li>预处理(Pre-Processing)</li>
+<li>编译(Compiling)</li>
+<li>汇编(Assembling)</li>
+<li>链接(Linking)</li>
+</ul>
+</li>
+</ol>
+<h3 id="GDB的概述"><a href="#GDB的概述" class="headerlink" title="GDB的概述"></a><code>GDB</code>的概述</h3><p><code>GDB</code>是一款GNU开发组织并发布的UNIX/Linux下的程序调试工具。它使你能够在程序运行时观察程序的内部结构和内存的使用情况。以下是<code>GDB</code>提供的一些功能：</p>
+<ol>
+<li>监视程序中变量的值</li>
+<li>设置断点以使程序在指定的代码行上停止运行</li>
+<li>能逐行执行代码</li>
+</ol>
+<h2 id="Objdump简介"><a href="#Objdump简介" class="headerlink" title="Objdump简介"></a><code>Objdump</code>简介</h2><p><code>Objdump</code>是以一种可阅读的格式让你更多地了解二进制文件可能带有地附加信息。<br>对于想进一步了解系统地程序员，这个命令没有没有更多意义，对于想进一步了解系统的程序员，应该掌握这种工具，至少你可以自己写写<code>shellcode</code>了，或者看看人家给的<code>exploit</code>中的<code>shellcode</code>是什么东西。<br><strong>把C语言源代码编译链接生成的可执行程序反汇编后得到对应的汇编代码，可以帮助我们理解C语言和汇编语言之间的对应关系。非常有助于深入理解C语言</strong></p>
+<div class="note warning">
+    至此，已经完成了计算机系统基础第一次实验的理论部分，其中有太多的东西还需要自己去实践、接下来开始实验！
+</div>
+    </div>
+
+    
+
+    
+    
+    
+      
+
+        
+      
+
+      <footer class="post-footer">
+
+        
+  <div class="post-widgets">
+    <div class="social-share">
+      
+      
+        <div id="needsharebutton-postbottom">
+          <span class="btn">
+            <i class="fa fa-share-alt" aria-hidden="true"></i>
+          </span>
+        </div>
+      
+    </div>
+  
+  </div>
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/201911/KNN与Naive_Bayes代码实现/" rel="next" title="KNN与Naive_Bayes代码实现">
+                  <i class="fa fa-chevron-left"></i> KNN与Naive_Bayes代码实现
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+                <a href="/201910/FINDS算法和ID3算法/" rel="prev" title="Finds算法和ID3算法">
+                  Finds算法和ID3算法 <i class="fa fa-chevron-right"></i>
+                </a>
+              
+            </div>
+          </div>
+        
+      </footer>
+    
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+    
+    <div class="comments" id="comments"></div>
+  
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image"
+      src="/images/tom.jpg"
+      alt="CrocodileZS">
+  <p class="site-author-name" itemprop="name">CrocodileZS</p>
+  <div class="site-description motion-element" itemprop="description"></div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">67</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">37</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+  <div class="feed-link motion-element">
+    <a href="/atom.xml" rel="alternate">
+      <i class="fa fa-rss"></i>RSS
+    </a>
+  </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="mailto:ammo@bupt.edu.cn" title="E-Mail &rarr; mailto:ammo@bupt.edu.cn" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://instagram.com/crocodile_zs" title="Instagram &rarr; https://instagram.com/crocodile_zs" rel="noopener" target="_blank"><i class="fa fa-fw fa-instagram"></i>Instagram</a>
+      </span>
+    
+  </div>
+
+
+  <div class="links-of-blogroll motion-element links-of-blogroll-block">
+    <div class="links-of-blogroll-title">
+      <i class="fa  fa-fw fa-link"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="http://www.wangxiaofeng.me/" title="http://www.wangxiaofeng.me/" rel="noopener" target="_blank">不许联想</a>
+        </li>
+      
+        <li class="links-of-blogroll-item">
+          <a href="https://idx0.dev/" title="https://idx0.dev/" rel="noopener" target="_blank">思维</a>
+        </li>
+      
+        <li class="links-of-blogroll-item">
+          <a href="https://128bit.top" title="https://128bit.top" rel="noopener" target="_blank">Dixeran</a>
+        </li>
+      
+        <li class="links-of-blogroll-item">
+          <a href="http://icontofig.leanote.com/" title="http://icontofig.leanote.com/" rel="noopener" target="_blank">Icontofig</a>
+        </li>
+      
+        <li class="links-of-blogroll-item">
+          <a href="https://www.nekomio.com" title="https://www.nekomio.com" rel="noopener" target="_blank">NekoMio</a>
+        </li>
+      
+        <li class="links-of-blogroll-item">
+          <a href="https://al0ha0e.github.io" title="https://al0ha0e.github.io" rel="noopener" target="_blank">Al0ha0e</a>
+        </li>
+      
+        <li class="links-of-blogroll-item">
+          <a href="http://gaokeyong.coding.me" title="http://gaokeyong.coding.me" rel="noopener" target="_blank">Keyong</a>
+        </li>
+      
+        <li class="links-of-blogroll-item">
+          <a href="http://poeroz.cn/" title="http://poeroz.cn/" rel="noopener" target="_blank">Poeroz</a>
+        </li>
+      
+    </ul>
+  </div>
+
+        </div>
+      </div>
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Linux操作系统概述和实验环境介绍"><span class="nav-text">Linux操作系统概述和实验环境介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#操作系统概念"><span class="nav-text">操作系统概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Linux的应用"><span class="nav-text">Linux的应用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Linux历史"><span class="nav-text">Linux历史</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Linux简介"><span class="nav-text">Linux简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#操作系统的三个部分"><span class="nav-text">操作系统的三个部分</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#内核"><span class="nav-text">内核</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#外壳"><span class="nav-text">外壳</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#管理工具和附属软件"><span class="nav-text">管理工具和附属软件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#操作系统的功能"><span class="nav-text">操作系统的功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Shell"><span class="nav-text">Shell</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ssh-secure-shell"><span class="nav-text">ssh secure shell</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Shell常用命令"><span class="nav-text">Shell常用命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#目录操作命令"><span class="nav-text">目录操作命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文件操作命令"><span class="nav-text">文件操作命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用帮助命令"><span class="nav-text">使用帮助命令</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Vi编辑器"><span class="nav-text">Vi编辑器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Vi简介"><span class="nav-text">Vi简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Vi的基本概念"><span class="nav-text">Vi的基本概念</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GCC工具链"><span class="nav-text">GCC工具链</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简介"><span class="nav-text">简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GDB的概述"><span class="nav-text">GDB的概述</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Objdump简介"><span class="nav-text">Objdump简介</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">鰐魚先生</span>
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+    <span class="post-meta-divider">|</span>
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+
+    
+  
+  <div id="needsharebutton-float">
+    <span class="btn">
+      <i class="fa fa-share-alt" aria-hidden="true"></i>
+    </span>
+  </div>
+<script src="/lib/needsharebutton/needsharebutton.js"></script>
+<script>
+    pbOptions = {};
+      pbOptions.iconStyle = "default";
+    
+      pbOptions.boxForm = "horizontal";
+    
+      pbOptions.position = "bottomCenter";
+    
+      pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+    
+    new needShareButton('#needsharebutton-postbottom', pbOptions);
+    flOptions = {};
+      flOptions.iconStyle = "box";
+    
+      flOptions.boxForm = "horizontal";
+    
+      flOptions.position = "middleRight";
+    
+      flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+    
+    new needShareButton('#needsharebutton-float', flOptions);
+</script>
+
+
+  </div>
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+  <script src="/lib/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+<script src="/js/utils.js?v=7.3.0"></script>
+  <script src="/js/motion.js?v=7.3.0"></script>
+
+
+  <script src="/js/schemes/muse.js?v=7.3.0"></script>
+
+
+<script src="/js/next-boot.js?v=7.3.0"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+  <script src="/js/scrollspy.js?v=7.3.0"></script>
+<script src="/js/post-details.js?v=7.3.0"></script>
+
+
+    
+
+<script>
+NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', function() {
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: '9VEOQepq1oDMG0XHxBOrKuwU-gzGzoHsz',
+    appKey: 'XVzSWQhACVUcrVzQDF0AJlb8',
+    placeholder: 'ヽ(✿ﾟ▽ﾟ)ノ',
+    avatar: 'zhouyuyang17@163.com',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false,
+    lang: 'zh-cn' || 'zh-cn',
+    path: location.pathname
+  });
+}, window.Valine);
+</script>
+
+  <script type="text/javascript" src="/lib/zclip/clipboard.min.js"></script>	
+<script type="text/javascript" src="/js/src/custom.js"></script>
+</body>
+</html>

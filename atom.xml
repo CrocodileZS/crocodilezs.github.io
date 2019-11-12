@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.crocodilezs.top/"/>
-  <updated>2019-10-15T14:58:27.203Z</updated>
+  <updated>2019-11-12T16:01:37.912Z</updated>
   <id>https://www.crocodilezs.top/</id>
   
   <author>
@@ -17,16 +17,303 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>数据预处理</title>
+    <link href="https://www.crocodilezs.top/201911/%E6%95%B0%E6%8D%AE%E9%A2%84%E5%A4%84%E7%90%86/"/>
+    <id>https://www.crocodilezs.top/201911/数据预处理/</id>
+    <published>2019-11-12T15:19:14.000Z</published>
+    <updated>2019-11-12T16:01:37.912Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;代码实现：（由于时间原因，这里忽略了各方法的参数的意义和方法）&lt;br&gt;4.1.3 数据可视化实例  &lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;显示各列名称&lt;/li&gt;
+&lt;li&gt;数据的快速统计汇总，包括平均数、最大最小点和分位点等&lt;/li&gt;
+&lt;li&gt;频度分布图&lt;/li&gt;
+&lt;li&gt;偏态和峰度&lt;/li&gt;
+&lt;li&gt;散点图 scatter plot&lt;/li&gt;
+&lt;li&gt;箱线图 box plot&lt;/li&gt;
+&lt;li&gt;相关矩阵 correlation matrix&lt;/li&gt;
+&lt;/ol&gt;
+    
+    </summary>
+    
+      <category term="数据科学导论" scheme="https://www.crocodilezs.top/categories/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6%E5%AF%BC%E8%AE%BA/"/>
+    
+    
+      <category term="数据预处理" scheme="https://www.crocodilezs.top/tags/%E6%95%B0%E6%8D%AE%E9%A2%84%E5%A4%84%E7%90%86/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Price Suggestion Chanllenge</title>
+    <link href="https://www.crocodilezs.top/201911/Price_Suggestion_Chanllenge/"/>
+    <id>https://www.crocodilezs.top/201911/Price_Suggestion_Chanllenge/</id>
+    <published>2019-11-12T08:22:10.000Z</published>
+    <updated>2019-11-12T14:33:43.984Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;Price-Suggestion-Chanllenge&quot;&gt;&lt;a href=&quot;#Price-Suggestion-Chanllenge&quot; class=&quot;headerlink&quot; title=&quot;Price Suggestion Chanllenge&quot;&gt;&lt;/a&gt;Price Suggestion Chanllenge&lt;/h1&gt;&lt;p&gt;[TOC]&lt;/p&gt;
+&lt;h2 id=&quot;实验题目&quot;&gt;&lt;a href=&quot;#实验题目&quot; class=&quot;headerlink&quot; title=&quot;实验题目&quot;&gt;&lt;/a&gt;实验题目&lt;/h2&gt;&lt;h3 id=&quot;题目背景&quot;&gt;&lt;a href=&quot;#题目背景&quot; class=&quot;headerlink&quot; title=&quot;题目背景&quot;&gt;&lt;/a&gt;题目背景&lt;/h3&gt;&lt;p&gt;考虑到网上销售的产品数量，产品定价在规模上变得更加困难。服装有很强的季节性定价趋势，受品牌影响很大，而电子产品价格根据产品规格波动。如何根据以往信息进行合理定价，有效地帮助商家进行商品的销售是一个有意义的问题。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="数据科学导论" scheme="https://www.crocodilezs.top/categories/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6%E5%AF%BC%E8%AE%BA/"/>
+    
+    
+      <category term="NLP" scheme="https://www.crocodilezs.top/tags/NLP/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>祝宇宙第一可爱的鳄鱼先生 🎂生日快乐🎂</title>
+    <link href="https://www.crocodilezs.top/201911/%E7%A5%9D%E5%AE%87%E5%AE%99%E7%AC%AC%E4%B8%80%E5%8F%AF%E7%88%B1%E7%9A%84%E9%B3%84%E9%B1%BC%E5%85%88%E7%94%9F%E7%94%9F%E6%97%A5%E5%BF%AB%E4%B9%90/"/>
+    <id>https://www.crocodilezs.top/201911/祝宇宙第一可爱的鳄鱼先生生日快乐/</id>
+    <published>2019-11-01T14:22:22.000Z</published>
+    <updated>2019-11-01T14:22:56.715Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+      <category term="参省乎己" scheme="https://www.crocodilezs.top/categories/%E5%8F%82%E7%9C%81%E4%B9%8E%E5%B7%B1/"/>
+    
+    
+      <category term="生日" scheme="https://www.crocodilezs.top/tags/%E7%94%9F%E6%97%A5/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Linux开发环境及应用作业1</title>
+    <link href="https://www.crocodilezs.top/201911/Linux%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E5%8F%8A%E5%BA%94%E7%94%A8%E4%BD%9C%E4%B8%9A%2020191031/"/>
+    <id>https://www.crocodilezs.top/201911/Linux开发环境及应用作业 20191031/</id>
+    <published>2019-10-31T14:10:14.000Z</published>
+    <updated>2019-11-12T15:19:11.497Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;Linux开发环境及应用作业-20191031&quot;&gt;&lt;a href=&quot;#Linux开发环境及应用作业-20191031&quot; class=&quot;headerlink&quot; title=&quot;Linux开发环境及应用作业 20191031&quot;&gt;&lt;/a&gt;&lt;code&gt;Linux&lt;/code&gt;开发环境及应用作业 20191031&lt;/h1&gt;&lt;h2 id=&quot;作业要求&quot;&gt;&lt;a href=&quot;#作业要求&quot; class=&quot;headerlink&quot; title=&quot;作业要求&quot;&gt;&lt;/a&gt;作业要求&lt;/h2&gt;&lt;p&gt;从因特网上搜索相关Web网页，处理网页&lt;code&gt;html&lt;/code&gt;数据，从中提取出当前时间点北京各监测站的 PM2.5浓度，输出格式如下。要求：写出各个处 理步骤，并给出解释。&lt;br&gt;2018-03-15 13:00:00,海淀区万柳,73&lt;br&gt;2018-03-15 13:00:00,昌平镇,67&lt;br&gt;2018-03-15 13:00:00,奥体中心,66&lt;br&gt;2018-03-15 14:00:00,海淀区万柳,73&lt;br&gt;2018-03-15 14:00:00,昌平镇,73&lt;br&gt;2018-03-15 14:00:00,奥体中心,75&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Linux" scheme="https://www.crocodilezs.top/categories/Linux/"/>
+    
+    
+      <category term="文本处理" scheme="https://www.crocodilezs.top/tags/%E6%96%87%E6%9C%AC%E5%A4%84%E7%90%86/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>神经网络作业报告</title>
+    <link href="https://www.crocodilezs.top/201911/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%BD%9C%E4%B8%9A%E6%8A%A5%E5%91%8A/"/>
+    <id>https://www.crocodilezs.top/201911/神经网络作业报告/</id>
+    <published>2019-10-28T17:32:10.000Z</published>
+    <updated>2019-11-12T14:33:52.646Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;神经网络作业报告&quot;&gt;&lt;a href=&quot;#神经网络作业报告&quot; class=&quot;headerlink&quot; title=&quot;神经网络作业报告&quot;&gt;&lt;/a&gt;神经网络作业报告&lt;/h1&gt;&lt;p&gt;[TOC]&lt;br&gt;本次作业部分源码的参考资料已注明&lt;/p&gt;
+&lt;h2 id=&quot;一、实验要求&quot;&gt;&lt;a href=&quot;#一、实验要求&quot; class=&quot;headerlink&quot; title=&quot;一、实验要求&quot;&gt;&lt;/a&gt;一、实验要求&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;推导具有单隐层的神经网络的前向传播和反向传播算法，并进行编程（可以使用&lt;code&gt;sklearn&lt;/code&gt;中的神经网络）。&lt;ul&gt;
+&lt;li&gt;探讨10，30，100，300，1000，不同隐藏节点数对网络性能的影响。&lt;/li&gt;
+&lt;li&gt;探讨不同学习率和迭代次数对网络性能的影响。&lt;/li&gt;
+&lt;li&gt;改变数据的标准化方法，探讨对训练的影响。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;查阅资料说明什么是&lt;code&gt;Hebb&lt;/code&gt;学习规则&lt;/li&gt;
+&lt;/ol&gt;
+    
+    </summary>
+    
+      <category term="机器学习" scheme="https://www.crocodilezs.top/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+      <category term="神经网络" scheme="https://www.crocodilezs.top/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Finds算法和ID3算法</title>
+    <link href="https://www.crocodilezs.top/201910/FINDS%E7%AE%97%E6%B3%95%E5%92%8CID3%E7%AE%97%E6%B3%95/"/>
+    <id>https://www.crocodilezs.top/201910/FINDS算法和ID3算法/</id>
+    <published>2019-10-28T04:21:10.000Z</published>
+    <updated>2019-11-12T16:05:55.377Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;FINDS-算法与-ID3-算法&quot;&gt;&lt;a href=&quot;#FINDS-算法与-ID3-算法&quot; class=&quot;headerlink&quot; title=&quot;FINDS 算法与 ID3 算法&quot;&gt;&lt;/a&gt;FINDS 算法与 ID3 算法&lt;/h1&gt;&lt;h2 id=&quot;作业要求&quot;&gt;&lt;a href=&quot;#作业要求&quot; class=&quot;headerlink&quot; title=&quot;作业要求&quot;&gt;&lt;/a&gt;作业要求&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;实现&lt;code&gt;FINDS&lt;/code&gt;算法&lt;/li&gt;
+&lt;li&gt;实现&lt;code&gt;ID3&lt;/code&gt;算法&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;不要调库自己写。如果有能力可以继续用课件里的数据集测试两个算法（用天气的4条记录测试&lt;code&gt;FINDS&lt;/code&gt;，用贷款的15条记录测试&lt;code&gt;ID3&lt;/code&gt;）给出训练误差测试误差等；  &lt;/li&gt;
+&lt;li&gt;再有能力可以使用更大的数据集测试算法。&lt;/li&gt;
+&lt;/ul&gt;
+    
+    </summary>
+    
+      <category term="机器学习" scheme="https://www.crocodilezs.top/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+      <category term="FindS" scheme="https://www.crocodilezs.top/tags/FindS/"/>
+    
+      <category term="ID3" scheme="https://www.crocodilezs.top/tags/ID3/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>计算机系统基础实验一、Linux环境和GCC工具链</title>
+    <link href="https://www.crocodilezs.top/201910/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80%E5%AE%9E%E9%AA%8C%E4%B8%80/"/>
+    <id>https://www.crocodilezs.top/201910/计算机系统基础实验一/</id>
+    <published>2019-10-25T07:00:12.000Z</published>
+    <updated>2019-10-27T08:47:39.463Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;Linux操作系统概述和实验环境介绍&quot;&gt;&lt;a href=&quot;#Linux操作系统概述和实验环境介绍&quot; class=&quot;headerlink&quot; title=&quot;Linux操作系统概述和实验环境介绍&quot;&gt;&lt;/a&gt;&lt;code&gt;Linux&lt;/code&gt;操作系统概述和实验环境介绍&lt;/h1&gt;&lt;h2 id=&quot;操作系统概念&quot;&gt;&lt;a href=&quot;#操作系统概念&quot; class=&quot;headerlink&quot; title=&quot;操作系统概念&quot;&gt;&lt;/a&gt;操作系统概念&lt;/h2&gt;&lt;p&gt;&lt;code&gt;OS&lt;/code&gt;是管理和控制计算机硬件与软件资源的计算机程序，是直接在“裸机”上的最基本的系统软件。&lt;/p&gt;
+&lt;h2 id=&quot;Linux的应用&quot;&gt;&lt;a href=&quot;#Linux的应用&quot; class=&quot;headerlink&quot; title=&quot;Linux的应用&quot;&gt;&lt;/a&gt;&lt;code&gt;Linux&lt;/code&gt;的应用&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;服务器端：Linux非常稳定，特别适合大型企业生产环境。&lt;/li&gt;
+&lt;li&gt;作为网络平台的后端服务器被使用。&lt;/li&gt;
+&lt;li&gt;作为应用服务器、数据库服务器被使用：解决海量数据、高并发的问题；&lt;/li&gt;
+&lt;li&gt;作为嵌入式操作系统被使用：智能控制、自动化、物联网等领域。&lt;/li&gt;
+&lt;/ol&gt;
+    
+    </summary>
+    
+      <category term="计算机系统基础" scheme="https://www.crocodilezs.top/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>KNN与Naive_Bayes代码实现</title>
+    <link href="https://www.crocodilezs.top/201911/KNN%E4%B8%8ENaive_Bayes%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0/"/>
+    <id>https://www.crocodilezs.top/201911/KNN与Naive_Bayes代码实现/</id>
+    <published>2019-10-25T04:32:50.000Z</published>
+    <updated>2019-11-12T14:26:36.231Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;KNN与Naive-Bayes代码实现&quot;&gt;&lt;a href=&quot;#KNN与Naive-Bayes代码实现&quot; class=&quot;headerlink&quot; title=&quot;KNN与Naive_Bayes代码实现&quot;&gt;&lt;/a&gt;KNN与Naive_Bayes代码实现&lt;/h1&gt;&lt;h2 id=&quot;任务要求&quot;&gt;&lt;a href=&quot;#任务要求&quot; class=&quot;headerlink&quot; title=&quot;任务要求&quot;&gt;&lt;/a&gt;任务要求&lt;/h2&gt;&lt;p&gt;采用Python实现分类算法：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;不得借助现成的工具包调库，例如SKlearn&lt;/li&gt;
+&lt;li&gt;至少实现k-近邻，朴素贝叶斯，逻辑回归，决策树与支持向量机中的其中一个算法。k-临近，朴素贝叶斯相对较简单，逻辑回归，决策树与支持向量机相对较难。&lt;/li&gt;
+&lt;li&gt;对breast cancer数据集调用编写的函数进行分类演示。&lt;/li&gt;
+&lt;li&gt;能力强的可以多实现几种算法&lt;/li&gt;
+&lt;/ul&gt;
+    
+    </summary>
+    
+      <category term="数据科学导论" scheme="https://www.crocodilezs.top/categories/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6%E5%AF%BC%E8%AE%BA/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>CS229-机器学习-吴恩达（一）</title>
+    <link href="https://www.crocodilezs.top/201910/CS229-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%90%B4%E6%81%A9%E8%BE%BE%EF%BC%88%E4%B8%80%EF%BC%89/"/>
+    <id>https://www.crocodilezs.top/201910/CS229-机器学习-吴恩达（一）/</id>
+    <published>2019-10-25T03:52:12.000Z</published>
+    <updated>2019-10-26T09:18:28.714Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;1-1-Welcome-to-machine-learning&quot;&gt;&lt;a href=&quot;#1-1-Welcome-to-machine-learning&quot; class=&quot;headerlink&quot; title=&quot;1-1 Welcome to machine learnin
+      
+    
+    </summary>
+    
+      <category term="机器学习" scheme="https://www.crocodilezs.top/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Fisher算法&amp;SVM&amp;K-Means及其优化</title>
+    <link href="https://www.crocodilezs.top/201911/Fisher%E7%AE%97%E6%B3%95&amp;SVM&amp;K-Means%E5%8F%8A%E5%85%B6%E4%BC%98%E5%8C%96/"/>
+    <id>https://www.crocodilezs.top/201911/Fisher算法&amp;SVM&amp;K-Means及其优化/</id>
+    <published>2019-10-22T04:21:10.000Z</published>
+    <updated>2019-11-12T14:33:23.844Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;Fisher算法-amp-SVM-amp-K-Means及其优化&quot;&gt;&lt;a href=&quot;#Fisher算法-amp-SVM-amp-K-Means及其优化&quot; class=&quot;headerlink&quot; title=&quot;Fisher算法&amp;amp;SVM&amp;amp;K-Means及其优化&quot;&gt;&lt;/a&gt;Fisher算法&amp;amp;SVM&amp;amp;K-Means及其优化&lt;/h1&gt;&lt;p&gt;部分源码的参考资料已注明&lt;/p&gt;
+&lt;h2 id=&quot;fisher算法及其实现&quot;&gt;&lt;a href=&quot;#fisher算法及其实现&quot; class=&quot;headerlink&quot; title=&quot;fisher算法及其实现&quot;&gt;&lt;/a&gt;&lt;code&gt;fisher&lt;/code&gt;算法及其实现&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;请实现&lt;code&gt;fisher&lt;/code&gt;算法，并采用自己随机生成2类数据（每类100个）的方式，验证自己的算法。&lt;br&gt;&lt;a href=&quot;https://blog.csdn.net/pengjian444/article/details/71138003&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;参考资料:https://blog.csdn.net/pengjian444/article/details/71138003&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+    
+    </summary>
+    
+      <category term="机器学习" scheme="https://www.crocodilezs.top/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+      <category term="Fisher" scheme="https://www.crocodilezs.top/tags/Fisher/"/>
+    
+      <category term="SVM" scheme="https://www.crocodilezs.top/tags/SVM/"/>
+    
+      <category term="K-Means" scheme="https://www.crocodilezs.top/tags/K-Means/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Linux开发环境及其应用学习笔记（二）</title>
+    <link href="https://www.crocodilezs.top/201910/Linux%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%9C%BA%E5%99%A8%E5%BA%94%E7%94%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89/"/>
+    <id>https://www.crocodilezs.top/201910/Linux开发环境机器应用学习笔记（二）/</id>
+    <published>2019-10-17T09:10:12.000Z</published>
+    <updated>2019-10-30T04:52:16.798Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;Chap1-开始使用Linux&quot;&gt;&lt;a href=&quot;#Chap1-开始使用Linux&quot; class=&quot;headerlink&quot; title=&quot;Chap1 开始使用Linux&quot;&gt;&lt;/a&gt;Chap1 开始使用Linux&lt;/h1&gt;&lt;h2 id=&quot;Linux发展过程&quot;&gt;&lt;a href=&quot;#Linux发展过程&quot; class=&quot;headerlink&quot; title=&quot;Linux发展过程&quot;&gt;&lt;/a&gt;Linux发展过程&lt;/h2&gt;&lt;h2 id=&quot;系统登陆与退出&quot;&gt;&lt;a href=&quot;#系统登陆与退出&quot; class=&quot;headerlink&quot; title=&quot;系统登陆与退出&quot;&gt;&lt;/a&gt;系统登陆与退出&lt;/h2&gt;&lt;h3 id=&quot;字符终端&quot;&gt;&lt;a href=&quot;#字符终端&quot; class=&quot;headerlink&quot; title=&quot;字符终端&quot;&gt;&lt;/a&gt;字符终端&lt;/h3&gt;&lt;p&gt; &lt;code&gt;UNIX&lt;/code&gt;和&lt;code&gt;Linux&lt;/code&gt;是多用户系统：主机连接多台字符终端，字符终端作为交互式输入输出设备。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Linux开发环境及其应用" scheme="https://www.crocodilezs.top/categories/Linux%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E5%8F%8A%E5%85%B6%E5%BA%94%E7%94%A8/"/>
+    
+    
+      <category term="Linux" scheme="https://www.crocodilezs.top/tags/Linux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Linux开发环境及其应用学习笔记（一）</title>
+    <link href="https://www.crocodilezs.top/201910/Linux%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%9C%BA%E5%99%A8%E5%BA%94%E7%94%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/"/>
+    <id>https://www.crocodilezs.top/201910/Linux开发环境机器应用学习笔记（一）/</id>
+    <published>2019-10-17T02:27:12.000Z</published>
+    <updated>2019-10-18T14:23:00.960Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Tips：  &lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;先修课：C语言、操作系统&lt;/li&gt;
+&lt;li&gt;上机实验：自己安装&lt;code&gt;VMware&lt;/code&gt;虚拟机和&lt;code&gt;Ubuntu&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;成绩考核：平时成绩+上机作业（30%），期末考试（70%）&lt;/li&gt;
+&lt;/ol&gt;
+    
+    </summary>
+    
+      <category term="Linux开发环境及其应用" scheme="https://www.crocodilezs.top/categories/Linux%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E5%8F%8A%E5%85%B6%E5%BA%94%E7%94%A8/"/>
+    
+    
+      <category term="Linux" scheme="https://www.crocodilezs.top/tags/Linux/"/>
+    
+  </entry>
+  
+  <entry>
     <title>写于10月15日——博客正式对外开放之际</title>
     <link href="https://www.crocodilezs.top/201909/%E5%86%99%E4%BA%8E%E5%8D%9A%E5%AE%A2%E6%AD%A3%E5%BC%8F%E5%AF%B9%E5%A4%96%E5%BC%80%E6%94%BE%E4%B9%8B%E9%99%85/"/>
     <id>https://www.crocodilezs.top/201909/写于博客正式对外开放之际/</id>
     <published>2019-10-15T12:51:12.000Z</published>
-    <updated>2019-10-15T14:58:27.203Z</updated>
+    <updated>2019-11-12T14:01:49.814Z</updated>
     
     <summary type="html">
     
       &lt;p&gt;&lt;img src=&quot;https://s2.ax1x.com/2019/10/15/KPwEYd.jpg&quot; alt&gt;&lt;/p&gt;
-&lt;blockquote class=&quot;blockquote-center&quot;&gt;&lt;p&gt;If you can quit, then quit.&lt;br&gt;&lt;br&gt;If you can’t quit, you’re a writer.&lt;/p&gt;
+&lt;blockquote class=&quot;blockquote-center&quot;&gt;&lt;p&gt;If you can quite, then quite.&lt;br&gt;&lt;br&gt;If you can’t quite, you’re a writer.&lt;/p&gt;
 &lt;div style=&quot;text-align:right&quot;&gt;——R.A.Salvatore&lt;/div&gt;&lt;/blockquote&gt;
     
     </summary>
@@ -43,14 +330,11 @@
     <link href="https://www.crocodilezs.top/201909/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%8A%80%E6%9C%AF%E5%9F%BA%E7%A1%80%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B0%EF%BC%884%EF%BC%89/"/>
     <id>https://www.crocodilezs.top/201909/大数据技术基础课堂笔记（4）/</id>
     <published>2019-09-30T02:04:50.000Z</published>
-    <updated>2019-09-30T04:25:54.802Z</updated>
+    <updated>2019-11-12T13:19:45.187Z</updated>
     
     <summary type="html">
     
-      
-      
-        &lt;h2 id=&quot;hadoop存储格式&quot;&gt;&lt;a href=&quot;#hadoop存储格式&quot; class=&quot;headerlink&quot; title=&quot;hadoop存储格式&quot;&gt;&lt;/a&gt;&lt;code&gt;hadoop&lt;/code&gt;存储格式&lt;/h2&gt;&lt;h1 id=&quot;行式存储格式&quot;&gt;&lt;a href=&quot;#行式
-      
+      &lt;h2 id=&quot;hadoop存储格式&quot;&gt;&lt;a href=&quot;#hadoop存储格式&quot; class=&quot;headerlink&quot; title=&quot;hadoop存储格式&quot;&gt;&lt;/a&gt;&lt;code&gt;hadoop&lt;/code&gt;存储格式&lt;/h2&gt;&lt;h1 id=&quot;行式存储格式&quot;&gt;&lt;a href=&quot;#行式存储格式&quot; class=&quot;headerlink&quot; title=&quot;行式存储格式&quot;&gt;&lt;/a&gt;行式存储格式&lt;/h1&gt;&lt;h2 id=&quot;未压缩的Sequence-File&quot;&gt;&lt;a href=&quot;#未压缩的Sequence-File&quot; class=&quot;headerlink&quot; title=&quot;未压缩的Sequence File&quot;&gt;&lt;/a&gt;未压缩的&lt;code&gt;Sequence File&lt;/code&gt;&lt;/h2&gt;&lt;p&gt;通过设置同步的标记，把&lt;code&gt;key value&lt;/code&gt;划分成块，当后面出错的时候只需要重传一个块。相当于debug时的断点。&lt;br&gt;&lt;code&gt;record length&lt;/code&gt;-&lt;code&gt;key length&lt;/code&gt;-&lt;code&gt;key&lt;/code&gt;-&lt;code&gt;value&lt;/code&gt;&lt;br&gt;block的结构要清楚。  &lt;/p&gt;
     
     </summary>
     
@@ -64,12 +348,12 @@
     <link href="https://www.crocodilezs.top/201909/%E6%B2%99%E6%B2%B3%E5%8D%8A%E6%97%A5/"/>
     <id>https://www.crocodilezs.top/201909/沙河半日/</id>
     <published>2019-09-28T13:39:50.000Z</published>
-    <updated>2019-09-29T05:50:10.553Z</updated>
+    <updated>2019-11-12T14:35:41.349Z</updated>
     
     <summary type="html">
     
       &lt;p&gt;&lt;img src=&quot;https://s2.ax1x.com/2019/09/28/u1scM8.jpg&quot; alt=&quot;我和祖国共成长，青春筑梦新时代&quot;&gt;&lt;/p&gt;
-&lt;center&gt;今天很，，，温馨和感动。&lt;/center&gt;
+&lt;center&gt;温馨和感动的一天。&lt;/center&gt;
 &lt;br&gt;
 &lt;br&gt;
     
@@ -81,67 +365,19 @@
   </entry>
   
   <entry>
-    <title>「学生宿舍管理系统」实验报告</title>
-    <link href="https://www.crocodilezs.top/201909/%E5%91%A8%E5%AE%87%E6%B4%8B_%E3%80%8C%E5%AD%A6%E7%94%9F%E5%AE%BF%E8%88%8D%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F%E3%80%8D%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A/"/>
-    <id>https://www.crocodilezs.top/201909/周宇洋_「学生宿舍管理系统」实验报告/</id>
-    <published>2019-09-22T12:26:50.000Z</published>
-    <updated>2019-09-27T04:43:22.538Z</updated>
+    <title>关于细节</title>
+    <link href="https://www.crocodilezs.top/201909/2019-09-24-%E5%85%B3%E4%BA%8E%E7%BB%86%E8%8A%82/"/>
+    <id>https://www.crocodilezs.top/201909/2019-09-24-关于细节/</id>
+    <published>2019-09-24T15:48:50.000Z</published>
+    <updated>2019-09-23T17:12:01.416Z</updated>
     
     <summary type="html">
     
-      &lt;h1 id=&quot;「学生宿舍管理系统」实验报告（第一次作业）&quot;&gt;&lt;a href=&quot;#「学生宿舍管理系统」实验报告（第一次作业）&quot; class=&quot;headerlink&quot; title=&quot;「学生宿舍管理系统」实验报告（第一次作业）&quot;&gt;&lt;/a&gt;「学生宿舍管理系统」实验报告（第一次作业）&lt;/h1&gt;&lt;hr&gt;
-&lt;div class=&quot;note info&quot;&gt;
-班级： 2017211317&lt;br&gt;
-学号： 2017211133&lt;br&gt;
-班内序： 11&lt;br&gt;
-姓名： 周宇洋&lt;br&gt;
-&lt;/div&gt;
-
-&lt;h2 id=&quot;问题描述&quot;&gt;&lt;a href=&quot;#问题描述&quot; class=&quot;headerlink&quot; title=&quot;问题描述&quot;&gt;&lt;/a&gt;问题描述&lt;/h2&gt;&lt;p&gt;使用&lt;code&gt;Python&lt;/code&gt;语言，设计一个小型的学生宿舍管理系统，系统用户为宿舍管理员。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="数据科学导论" scheme="https://www.crocodilezs.top/categories/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6%E5%AF%BC%E8%AE%BA/"/>
-    
-    
-      <category term="Python" scheme="https://www.crocodilezs.top/tags/Python/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>口译英语学习笔记（2）</title>
-    <link href="https://www.crocodilezs.top/201909/%E5%8F%A3%E8%AF%91%E8%8B%B1%E8%AF%AD%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%882%EF%BC%89/"/>
-    <id>https://www.crocodilezs.top/201909/口译英语学习笔记（2）/</id>
-    <published>2019-09-19T11:48:50.000Z</published>
-    <updated>2019-09-20T04:54:35.387Z</updated>
-    
-    <summary type="html">
-    
-      &lt;blockquote class=&quot;blockquote-center&quot;&gt;&lt;p&gt;李平老师说，这门选修课即使选的人再少她也会坚持讲下去。因为组建口译班是她一直想做的事，现在她一定要实现自己的这个梦想。&lt;br&gt;选这门课的同学里有一个东营的小姐姐，理想是去做同传，并且现在正在着手准备相关的考试。&lt;br&gt;希望她们都可以实现自己的理想。&lt;br&gt;坚持做自己喜欢的事情是一定是有意义的，因为至少以后回想起来不会后悔。&lt;/p&gt;
-&lt;/blockquote&gt;
-    
-    </summary>
-    
-      <category term="口译英语" scheme="https://www.crocodilezs.top/categories/%E5%8F%A3%E8%AF%91%E8%8B%B1%E8%AF%AD/"/>
-    
-    
-      <category term="口译" scheme="https://www.crocodilezs.top/tags/%E5%8F%A3%E8%AF%91/"/>
-    
-      <category term="记忆" scheme="https://www.crocodilezs.top/tags/%E8%AE%B0%E5%BF%86/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>记和李京老师的一次面谈</title>
-    <link href="https://www.crocodilezs.top/201909/%E8%AE%B0%E5%92%8C%E6%9D%8E%E4%BA%AC%E8%80%81%E5%B8%88%E7%9A%84%E4%B8%80%E6%AC%A1%E9%9D%A2%E8%B0%88/"/>
-    <id>https://www.crocodilezs.top/201909/记和李京老师的一次面谈/</id>
-    <published>2019-09-18T07:20:50.000Z</published>
-    <updated>2019-09-18T17:11:57.264Z</updated>
-    
-    <summary type="html">
-    
-      &lt;blockquote class=&quot;blockquote-center&quot;&gt;&lt;p&gt;内省不疚，夫何惧何忧？&lt;/p&gt;
-&lt;div style=&quot;text-align:right&quot;&gt;——《论语·颜渊》&lt;/div&gt;&lt;/blockquote&gt;
+      
+      
+        &lt;p&gt;最近的生活中“细节”这个词出现了很多次。我们从小就被大人们叮嘱要“注意细节”，随着年龄的增长这个词很少再被人提起。这两天发生的一系列事情都让我回过头来重新关注这个词。  &lt;/p&gt;
+&lt;p&gt;近期让我重新注意到这个词的时候是在发给合伙人中秋茶话会的问卷时，标题后面“【复制】”两个
+      
     
     </summary>
     
@@ -151,28 +387,19 @@
   </entry>
   
   <entry>
-    <title>数据库系统原理学习笔记（2）</title>
-    <link href="https://www.crocodilezs.top/201909/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%882%EF%BC%89/"/>
-    <id>https://www.crocodilezs.top/201909/数据库系统原理学习笔记（2）/</id>
-    <published>2019-09-17T09:48:50.000Z</published>
-    <updated>2019-09-18T17:06:23.762Z</updated>
+    <title>数据库系统原理（3）</title>
+    <link href="https://www.crocodilezs.top/201909/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86(3)/"/>
+    <id>https://www.crocodilezs.top/201909/数据库系统原理(3)/</id>
+    <published>2019-09-24T08:01:50.000Z</published>
+    <updated>2019-09-24T11:42:12.112Z</updated>
     
     <summary type="html">
     
-      &lt;h1 id=&quot;Chap2-Introduction-to-the-Relational-Model-关系模型介绍&quot;&gt;&lt;a href=&quot;#Chap2-Introduction-to-the-Relational-Model-关系模型介绍&quot; class=&quot;headerlink&quot; title=&quot;Chap2. Introduction to the Relational Model(关系模型介绍)&quot;&gt;&lt;/a&gt;Chap2. Introduction to the Relational Model(关系模型介绍)&lt;/h1&gt;&lt;div class=&quot;note success&quot;&gt;
-    本章最好通过举例来理解定义。
-&lt;/div&gt;
-
-&lt;h2 id=&quot;Introduction-to-Chapter-2&quot;&gt;&lt;a href=&quot;#Introduction-to-Chapter-2&quot; class=&quot;headerlink&quot; title=&quot;Introduction to Chapter 2&quot;&gt;&lt;/a&gt;Introduction to Chapter 2&lt;/h2&gt;&lt;h3 id=&quot;Relational-data-model&quot;&gt;&lt;a href=&quot;#Relational-data-model&quot; class=&quot;headerlink&quot; title=&quot;Relational data model&quot;&gt;&lt;/a&gt;Relational data model&lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;relational data structure (syntax)语法&lt;/li&gt;
-&lt;li&gt;integrity constraints (semantic) 完整性约束（语义）&lt;ul&gt;
-&lt;li&gt;constraints on &lt;strong&gt;attributes of schemas&lt;/strong&gt;, e.g. value domain, type&lt;/li&gt;
-&lt;li&gt;constraints on &lt;strong&gt;dependencies among attributes of a schema&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;constraints on &lt;strong&gt;dependencies among attributes of different schemas&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;operations on the model&lt;/li&gt;
-&lt;/ul&gt;
+      
+      
+        &lt;p&gt;赋值操作 Assign&lt;br&gt;关系代数表示的除法&lt;br&gt;Outer join&lt;br&gt;aggregation function 聚集函数&lt;/p&gt;
+&lt;p&gt;chap3. introduction to SQL&lt;br&gt;structured query language 结构化的查询
+      
     
     </summary>
     
@@ -182,316 +409,67 @@
   </entry>
   
   <entry>
-    <title>机器学习课堂笔记（2）</title>
-    <link href="https://www.crocodilezs.top/201909/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B0%EF%BC%882%EF%BC%89/"/>
-    <id>https://www.crocodilezs.top/201909/机器学习课堂笔记（2）/</id>
-    <published>2019-09-17T05:03:50.000Z</published>
-    <updated>2019-09-29T05:55:19.312Z</updated>
+    <title>机器学习学习笔记（3）</title>
+    <link href="https://www.crocodilezs.top/201909/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%883%EF%BC%89/"/>
+    <id>https://www.crocodilezs.top/201909/机器学习学习笔记（3）/</id>
+    <published>2019-09-24T05:05:50.000Z</published>
+    <updated>2019-09-24T06:33:35.856Z</updated>
     
     <summary type="html">
     
-      &lt;div class=&quot;note warning&quot;&gt;
-    机器学习的第二次课程。感觉新专业课程安排的不够合理，有很多机器学习的先修课程都在和机器学习同时进行。🤦‍♂️ Anyway,努力学习吧。&lt;br&gt;
-    在本次课程中还没有做到的事：&lt;br&gt;
-    1. 多查看笔记里的概念类内容，作到掌握。&lt;br&gt;
-    2. 近一步理解笔记里出现的公式。&lt;br&gt;
-    3. 对机器学习历史里出现的算法做进一步了解。&lt;br&gt;
-    4. 对笔记里提到的算法进行各种实践！只有理论不可以的。🙌
-&lt;/div&gt;
-
-&lt;h1 id=&quot;第二次上课&quot;&gt;&lt;a href=&quot;#第二次上课&quot; class=&quot;headerlink&quot; title=&quot;第二次上课&quot;&gt;&lt;/a&gt;第二次上课&lt;/h1&gt;&lt;h2 id=&quot;复习&quot;&gt;&lt;a href=&quot;#复习&quot; class=&quot;headerlink&quot; title=&quot;复习&quot;&gt;&lt;/a&gt;复习&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;Def of Machine Learning&lt;blockquote class=&quot;blockquote-center&quot;&gt;&lt;p&gt;A compute program is said to learn from experience E with respect to same task T and some performance measure P, if its performance on T, as measure by P, improves with experience E.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;/li&gt;
-&lt;/ul&gt;
+      
+      
+        &lt;h1 id=&quot;「机器学习」学习笔记（3）&quot;&gt;&lt;a href=&quot;#「机器学习」学习笔记（3）&quot; class=&quot;headerlink&quot; title=&quot;「机器学习」学习笔记（3）&quot;&gt;&lt;/a&gt;「机器学习」学习笔记（3）&lt;/h1&gt;&lt;h2 id=&quot;review&quot;&gt;&lt;a href=&quot;#rev
+      
     
     </summary>
     
       <category term="机器学习" scheme="https://www.crocodilezs.top/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
     
     
-      <category term="机器学习" scheme="https://www.crocodilezs.top/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
-    
       <category term="几何模型" scheme="https://www.crocodilezs.top/tags/%E5%87%A0%E4%BD%95%E6%A8%A1%E5%9E%8B/"/>
     
-      <category term="线性分类" scheme="https://www.crocodilezs.top/tags/%E7%BA%BF%E6%80%A7%E5%88%86%E7%B1%BB/"/>
-    
   </entry>
   
   <entry>
-    <title>口译英语学习笔记（1）</title>
-    <link href="https://www.crocodilezs.top/201909/%E5%8F%A3%E8%AF%91%E8%8B%B1%E8%AF%AD%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%881%EF%BC%89/"/>
-    <id>https://www.crocodilezs.top/201909/口译英语学习笔记（1）/</id>
-    <published>2019-09-12T11:48:50.000Z</published>
-    <updated>2019-09-20T04:57:16.830Z</updated>
+    <title>数据科学导论学习笔记（5）</title>
+    <link href="https://www.crocodilezs.top/201909/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6%E5%AF%BC%E8%AE%BA%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%885%EF%BC%89/"/>
+    <id>https://www.crocodilezs.top/201909/数据科学导论学习笔记（5）/</id>
+    <published>2019-09-23T06:48:50.000Z</published>
+    <updated>2019-10-05T03:32:01.244Z</updated>
     
     <summary type="html">
     
-      &lt;p&gt;&lt;img src=&quot;https://s2.ax1x.com/2019/09/20/nXwlI1.jpg&quot; alt=&quot;Booth&quot;&gt;&lt;/p&gt;
-&lt;div class=&quot;note info&quot;&gt;
-口译英语课程，周四晚，李平老师。周四对我来说是另一种意义上的“辛苦”的一天。上午要上男神的Linux，下午网球、健身房，晚上还有口译训练。口译是非常辛苦的过程，老师说她原先翻译一天整个人神经紧张到无法松弛下来了，听到别人说话就想翻译。&lt;br&gt;
-比较幸运的是，选这门课的人还不到十个人，所以每个人训练的机会都很多，希望能通过这门课程提高自己的口语和听力能力吧。
-&lt;/div&gt;
-    
-    </summary>
-    
-      <category term="口译英语" scheme="https://www.crocodilezs.top/categories/%E5%8F%A3%E8%AF%91%E8%8B%B1%E8%AF%AD/"/>
-    
-    
-      <category term="口译" scheme="https://www.crocodilezs.top/tags/%E5%8F%A3%E8%AF%91/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>数据科学导论学习笔记（1）</title>
-    <link href="https://www.crocodilezs.top/201909/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6%E5%AF%BC%E8%AE%BA%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%881%EF%BC%89/"/>
-    <id>https://www.crocodilezs.top/201909/数据科学导论学习笔记（1）/</id>
-    <published>2019-09-09T02:48:50.000Z</published>
-    <updated>2019-09-16T16:20:40.177Z</updated>
-    
-    <summary type="html">
-    
-      &lt;div class=&quot;note info&quot;&gt;
-    &lt;br&gt;
-    数据科学导论作为数据科学与大数据技术专业的导论课程具有相当重要的意义。每周4课时（提前结课），授课教师石川老师。
-    &lt;br&gt;
-    希望新学期的自己能够积极完成每一门课程的课后复习和拓展，认真写博客整理知识点。
-&lt;/div&gt;
+      
+      
+        &lt;h1 id=&quot;第四章-数据预处理&quot;&gt;&lt;a href=&quot;#第四章-数据预处理&quot; class=&quot;headerlink&quot; title=&quot;第四章 数据预处理&quot;&gt;&lt;/a&gt;第四章 数据预处理&lt;/h1&gt;&lt;h2 id=&quot;数据预处理概述&quot;&gt;&lt;a href=&quot;#数据预处理概述&quot; class=&quot;he
+      
     
     </summary>
     
       <category term="数据科学导论" scheme="https://www.crocodilezs.top/categories/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6%E5%AF%BC%E8%AE%BA/"/>
     
     
-      <category term="大数据" scheme="https://www.crocodilezs.top/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
-    
   </entry>
   
   <entry>
-    <title>实验室苦逼搬砖暑假生活纪实</title>
-    <link href="https://www.crocodilezs.top/201909/%E5%AE%9E%E9%AA%8C%E5%AE%A4%E8%8B%A6%E9%80%BC%E6%90%AC%E7%A0%96%E6%9A%91%E5%81%87%E7%94%9F%E6%B4%BB%E7%BA%AA%E5%AE%9E/"/>
-    <id>https://www.crocodilezs.top/201909/实验室苦逼搬砖暑假生活纪实/</id>
-    <published>2019-08-31T18:48:50.000Z</published>
-    <updated>2019-10-15T14:49:28.107Z</updated>
+    <title>「学生宿舍管理系统」实验报告</title>
+    <link href="https://www.crocodilezs.top/201909/%E5%91%A8%E5%AE%87%E6%B4%8B_%E3%80%8C%E5%AD%A6%E7%94%9F%E5%AE%BF%E8%88%8D%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F%E3%80%8D%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A/"/>
+    <id>https://www.crocodilezs.top/201909/周宇洋_「学生宿舍管理系统」实验报告/</id>
+    <published>2019-09-22T12:26:50.000Z</published>
+    <updated>2019-11-12T14:24:33.730Z</updated>
     
     <summary type="html">
     
-      &lt;div class=&quot;note primary&quot;&gt;
-    记录一下自己暑假在实验室做的一些事情和收获吧。&lt;br&gt;
-    虽然进步很小很缓慢，但总归是有的。
-&lt;/div&gt;
-
-&lt;h1 id=&quot;7月13日&quot;&gt;&lt;a href=&quot;#7月13日&quot; class=&quot;headerlink&quot; title=&quot;7月13日&quot;&gt;&lt;/a&gt;7月13日&lt;/h1&gt;&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;关于论文的主要内容，学长进行了讲解：&lt;br&gt;&lt;br&gt; &lt;strong&gt;任务目标：&lt;/strong&gt;通过迁移学习实现用户对齐问题，并将对齐结果与其他的用户对其方法进行比较：其中的方法包括“监督类型的”和“非监督类型的”，最终论文里要将我们的方法与其他至少三四种方法进行比较。&lt;/p&gt;
+      &lt;h1 id=&quot;「学生宿舍管理系统」实验报告（第一次作业）&quot;&gt;&lt;a href=&quot;#「学生宿舍管理系统」实验报告（第一次作业）&quot; class=&quot;headerlink&quot; title=&quot;「学生宿舍管理系统」实验报告（第一次作业）&quot;&gt;&lt;/a&gt;「学生宿舍管理系统」实验报告（第一次作业）&lt;/h1&gt;&lt;hr&gt;
+&lt;h2 id=&quot;问题描述&quot;&gt;&lt;a href=&quot;#问题描述&quot; class=&quot;headerlink&quot; title=&quot;问题描述&quot;&gt;&lt;/a&gt;问题描述&lt;/h2&gt;&lt;p&gt;使用&lt;code&gt;Python&lt;/code&gt;语言，设计一个小型的学生宿舍管理系统，系统用户为宿舍管理员。&lt;/p&gt;
     
     </summary>
     
-      <category term="机器学习" scheme="https://www.crocodilezs.top/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+      <category term="数据科学导论" scheme="https://www.crocodilezs.top/categories/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6%E5%AF%BC%E8%AE%BA/"/>
     
     
-      <category term="迁移学习" scheme="https://www.crocodilezs.top/tags/%E8%BF%81%E7%A7%BB%E5%AD%A6%E4%B9%A0/"/>
-    
-      <category term="Anaconda" scheme="https://www.crocodilezs.top/tags/Anaconda/"/>
-    
-      <category term="DRNE" scheme="https://www.crocodilezs.top/tags/DRNE/"/>
-    
-      <category term="IONE" scheme="https://www.crocodilezs.top/tags/IONE/"/>
-    
-      <category term="WGAN" scheme="https://www.crocodilezs.top/tags/WGAN/"/>
-    
-      <category term="PALE" scheme="https://www.crocodilezs.top/tags/PALE/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>hexo-next主题写作尝试</title>
-    <link href="https://www.crocodilezs.top/hexo-next%E4%B8%BB%E9%A2%98%E5%86%99%E4%BD%9C%E5%B0%9D%E8%AF%95/"/>
-    <id>https://www.crocodilezs.top/hexo-next主题写作尝试/</id>
-    <published>2019-08-19T02:48:50.000Z</published>
-    <updated>2019-09-29T05:56:52.375Z</updated>
-    
-    <summary type="html">
-    
-      &lt;ul&gt;
-&lt;li&gt;&lt;input checked disabled type=&quot;checkbox&quot;&gt; &lt;a href&gt;links&lt;/a&gt;, &lt;strong&gt;formatting&lt;/strong&gt;, and &lt;del&gt;tags&lt;/del&gt; supported&lt;/li&gt;
-&lt;li&gt;&lt;input checked disabled type=&quot;checkbox&quot;&gt; list syntax required (any unordered or ordered list supported)&lt;/li&gt;
-&lt;li&gt;&lt;input checked disabled type=&quot;checkbox&quot;&gt; this is a complete item&lt;/li&gt;
-&lt;li&gt;&lt;input disabled type=&quot;checkbox&quot;&gt; this is an incomplete item&lt;/li&gt;
-&lt;/ul&gt;
-&lt;blockquote&gt;&lt;p&gt;Do not just seek happiness for yourself. Seek happiness for all. Through kindness. Through mercy.&lt;/p&gt;
-&lt;footer&gt;&lt;strong&gt;David Levithan&lt;/strong&gt;&lt;cite&gt;Wide Awake&lt;/cite&gt;&lt;/footer&gt;&lt;/blockquote&gt;
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>30天自制操作系统（27）</title>
-    <link href="https://www.crocodilezs.top/201905/30%E5%A4%A9%E8%87%AA%E5%88%B6%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%EF%BC%8827%EF%BC%89/"/>
-    <id>https://www.crocodilezs.top/201905/30天自制操作系统（27）/</id>
-    <published>2019-05-12T11:33:50.000Z</published>
-    <updated>2019-09-27T10:17:41.731Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;DAY27-LDT与库&quot;&gt;&lt;a href=&quot;#DAY27-LDT与库&quot; class=&quot;headerlink&quot; title=&quot;DAY27_LDT与库&quot;&gt;&lt;/a&gt;DAY27_LDT与库&lt;/h1&gt;&lt;h2 id=&quot;1-先来修复bug&quot;&gt;&lt;a href=&quot;#1-先来修复bug&quot; class=&quot;headerlink&quot; title=&quot;1. 先来修复bug&quot;&gt;&lt;/a&gt;1. 先来修复bug&lt;/h2&gt;&lt;p&gt;bug：用nsct命令运行的应用程序，无论是按Shift+F1还是点击窗口的”x”按钮狗没有反应。&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;task_run(task, -1, 0);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-    
-    </summary>
-    
-      <category term="操作系统" scheme="https://www.crocodilezs.top/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Git教程——分布式版本控制系统</title>
-    <link href="https://www.crocodilezs.top/201908/Git%E6%95%99%E7%A8%8B/"/>
-    <id>https://www.crocodilezs.top/201908/Git教程/</id>
-    <published>2019-05-11T05:03:50.000Z</published>
-    <updated>2019-09-27T07:54:15.209Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;一、Git简介&quot;&gt;&lt;a href=&quot;#一、Git简介&quot; class=&quot;headerlink&quot; title=&quot;一、Git简介&quot;&gt;&lt;/a&gt;一、Git简介&lt;/h2&gt;&lt;p&gt;功能：备份历史版本，合并多人的修改。结束手动管理多个版本的时代。&lt;/p&gt;
-&lt;h3 id=&quot;1-Git
-      
-    
-    </summary>
-    
-      <category term="机器学习" scheme="https://www.crocodilezs.top/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
-    
-    
-      <category term="Git" scheme="https://www.crocodilezs.top/tags/Git/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>30天自制操作系统（26）</title>
-    <link href="https://www.crocodilezs.top/201904/30%E5%A4%A9%E8%87%AA%E5%88%B6%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%EF%BC%8826%EF%BC%89/"/>
-    <id>https://www.crocodilezs.top/201904/30天自制操作系统（26）/</id>
-    <published>2019-04-28T13:31:50.000Z</published>
-    <updated>2019-09-27T10:16:26.907Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;DAY26-为窗口移动提速&quot;&gt;&lt;a href=&quot;#DAY26-为窗口移动提速&quot; class=&quot;headerlink&quot; title=&quot;DAY26_为窗口移动提速&quot;&gt;&lt;/a&gt;DAY26_为窗口移动提速&lt;/h1&gt;&lt;h2 id=&quot;1-提高窗口的移动速度-1&quot;&gt;&lt;a href=&quot;#1-提高窗口的移动速度-1&quot; class=&quot;headerlink&quot; title=&quot;1. 提高窗口的移动速度(1)&quot;&gt;&lt;/a&gt;1. 提高窗口的移动速度(1)&lt;/h2&gt;&lt;p&gt;导致窗口移动速度慢的原因有很多，其中之一就是sheet_refreshmap的速度太慢。这个函数在&lt;br&gt;sheet_slide中被调用了两次，如果能提高它的速度效果应该会很明显。&lt;/p&gt;
-&lt;h2 id=&quot;2-提高窗口的移动速度-2&quot;&gt;&lt;a href=&quot;#2-提高窗口的移动速度-2&quot; class=&quot;headerlink&quot; title=&quot;2. 提高窗口的移动速度(2)&quot;&gt;&lt;/a&gt;2. 提高窗口的移动速度(2)&lt;/h2&gt;
-    
-    </summary>
-    
-      <category term="操作系统" scheme="https://www.crocodilezs.top/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>30天自制操作系统（25）</title>
-    <link href="https://www.crocodilezs.top/201904/30%E5%A4%A9%E8%87%AA%E5%88%B6%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%EF%BC%8825%EF%BC%89/"/>
-    <id>https://www.crocodilezs.top/201904/30天自制操作系统（25）/</id>
-    <published>2019-04-28T08:33:50.000Z</published>
-    <updated>2019-09-27T10:15:28.099Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;DAY25-增加命令行窗口&quot;&gt;&lt;a href=&quot;#DAY25-增加命令行窗口&quot; class=&quot;headerlink&quot; title=&quot;DAY25_增加命令行窗口&quot;&gt;&lt;/a&gt;DAY25_增加命令行窗口&lt;/h1&gt;&lt;h2 id=&quot;1-蜂鸣器发声&quot;&gt;&lt;a href=&quot;#1-蜂鸣器发声&quot; class=&quot;headerlink&quot; title=&quot;1.蜂鸣器发声&quot;&gt;&lt;/a&gt;1.蜂鸣器发声&lt;/h2&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;蜂鸣器发声&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;EDX=20 &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;EAX=声音频率（单位是mHz，即毫赫兹）&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;例如当EAX=4400000时，则发出440Hz的声音&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;频率设为0则表示停止发声&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-    
-    </summary>
-    
-      <category term="操作系统" scheme="https://www.crocodilezs.top/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>30天自制操作系统（24）</title>
-    <link href="https://www.crocodilezs.top/201904/30%E5%A4%A9%E8%87%AA%E5%88%B6%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%EF%BC%8824%EF%BC%89/"/>
-    <id>https://www.crocodilezs.top/201904/30天自制操作系统（24）/</id>
-    <published>2019-04-28T07:13:50.000Z</published>
-    <updated>2019-09-27T10:14:29.303Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;DAY24-窗口操作&quot;&gt;&lt;a href=&quot;#DAY24-窗口操作&quot; class=&quot;headerlink&quot; title=&quot;DAY24_窗口操作&quot;&gt;&lt;/a&gt;DAY24_窗口操作&lt;/h1&gt;&lt;h2 id=&quot;1-窗口切换-1&quot;&gt;&lt;a href=&quot;#1-窗口切换-1&quot; class=&quot;headerlink&quot; title=&quot;1.窗口切换(1)&quot;&gt;&lt;/a&gt;1.窗口切换(1)&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;目标：实现切换窗口顺序得功能。&lt;/li&gt;
-&lt;li&gt;先实现按下F11时，将最下面得那个窗口放到最上面。&lt;/li&gt;
-&lt;/ul&gt;
-    
-    </summary>
-    
-      <category term="操作系统" scheme="https://www.crocodilezs.top/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>「迁移学习简明手册」学习笔记（1）</title>
-    <link href="https://www.crocodilezs.top/201908/%E3%80%8C%E8%BF%81%E7%A7%BB%E5%AD%A6%E4%B9%A0%E7%AE%80%E6%98%8E%E6%89%8B%E5%86%8C%E3%80%8D%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%881%EF%BC%89/"/>
-    <id>https://www.crocodilezs.top/201908/「迁移学习简明手册」学习笔记（1）/</id>
-    <published>2019-04-25T05:03:50.000Z</published>
-    <updated>2019-10-15T14:49:04.201Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;1-迁移学习的基本概念&quot;&gt;&lt;a href=&quot;#1-迁移学习的基本概念&quot; class=&quot;headerlink&quot; title=&quot;1.迁移学习的基本概念&quot;&gt;&lt;/a&gt;1.迁移学习的基本概念&lt;/h1&gt;&lt;h2 id=&quot;1-2-迁移学习基本概念&quot;&gt;&lt;a href=&quot;#1-2-迁移学习基本概念&quot; class=&quot;headerlink&quot; title=&quot;1.2 迁移学习基本概念&quot;&gt;&lt;/a&gt;1.2 迁移学习基本概念&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;核心问题：找到新问题和原问题之间的相似性，才可以顺利地实现知识的迁移。&lt;/li&gt;
-&lt;li&gt;定义：迁移学习，是指利用数据、任务、或模型之间的相似性，将在旧领域学习过的模型，应用在新领域的一种学习过程。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;1-3-为什么要迁移学习&quot;&gt;&lt;a href=&quot;#1-3-为什么要迁移学习&quot; class=&quot;headerlink&quot; title=&quot;1.3 为什么要迁移学习&quot;&gt;&lt;/a&gt;1.3 为什么要迁移学习&lt;/h2&gt;&lt;p&gt;这个表格包括了1.3的所有内容，可以只看这个表格：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://s2.ax1x.com/2019/04/24/EVv4IS.jpg&quot; alt=&quot;1.3&quot;&gt;&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="机器学习" scheme="https://www.crocodilezs.top/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
-    
-    
-      <category term="迁移学习" scheme="https://www.crocodilezs.top/tags/%E8%BF%81%E7%A7%BB%E5%AD%A6%E4%B9%A0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>「第一行代码」学习笔记（2）</title>
-    <link href="https://www.crocodilezs.top/201904/%E7%AC%AC%E4%B8%80%E8%A1%8C%E4%BB%A3%E7%A0%81%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%882%EF%BC%89/"/>
-    <id>https://www.crocodilezs.top/201904/第一行代码学习笔记（2）/</id>
-    <published>2019-04-24T05:03:50.000Z</published>
-    <updated>2019-09-27T08:10:46.439Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;Chap-2-先从看得到的入手——探究活动&quot;&gt;&lt;a href=&quot;#Chap-2-先从看得到的入手——探究活动&quot; class=&quot;headerlink&quot; title=&quot;Chap.2 先从看得到的入手——探究活动&quot;&gt;&lt;/a&gt;Chap.2 先从看得到的入手——探究活动&lt;/h2&gt;&lt;h3 id=&quot;2-1-活动的定义&quot;&gt;&lt;a href=&quot;#2-1-活动的定义&quot; class=&quot;headerlink&quot; title=&quot;2.1 活动的定义&quot;&gt;&lt;/a&gt;2.1 活动的定义&lt;/h3&gt;&lt;p&gt;&lt;font color=&quot;FF0000&quot;&gt;活动&lt;/font&gt;是一种可以包含用户界面的组件，主要用于和用户交互。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="安卓开发" scheme="https://www.crocodilezs.top/categories/%E5%AE%89%E5%8D%93%E5%BC%80%E5%8F%91/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>「第一行代码」学习笔记（1）</title>
-    <link href="https://www.crocodilezs.top/201904/%E7%AC%AC%E4%B8%80%E8%A1%8C%E4%BB%A3%E7%A0%81%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%881%EF%BC%89/"/>
-    <id>https://www.crocodilezs.top/201904/第一行代码学习笔记（1）/</id>
-    <published>2019-04-23T05:03:50.000Z</published>
-    <updated>2019-09-27T08:10:58.105Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;Chap1-开始启程——你的第一行Android代码&quot;&gt;&lt;a href=&quot;#Chap1-开始启程——你的第一行Android代码&quot; class=&quot;headerlink&quot; title=&quot;Chap1 开始启程——你的第一行Android代码&quot;&gt;&lt;/a&gt;Chap1 开始启程——你的第一行Android代码&lt;/h2&gt;&lt;h3 id=&quot;1-1了解全貌——Android王国简介&quot;&gt;&lt;a href=&quot;#1-1了解全貌——Android王国简介&quot; class=&quot;headerlink&quot; title=&quot;1.1了解全貌——Android王国简介&quot;&gt;&lt;/a&gt;1.1了解全貌——Android王国简介&lt;/h3&gt;&lt;h4 id=&quot;1-1-3-Android开发应用特色&quot;&gt;&lt;a href=&quot;#1-1-3-Android开发应用特色&quot; class=&quot;headerlink&quot; title=&quot;1.1.3 Android开发应用特色&quot;&gt;&lt;/a&gt;1.1.3 Android开发应用特色&lt;/h4&gt;&lt;h5 id=&quot;01-四大组件&quot;&gt;&lt;a href=&quot;#01-四大组件&quot; class=&quot;headerlink&quot; title=&quot;01 四大组件&quot;&gt;&lt;/a&gt;01 四大组件&lt;/h5&gt;&lt;p&gt;Android系统四大组件分别是活动（’Activity’）、服务（’Service’）、广播接收器（’Broadcast Reciever’）和内容提供器（’Content Provider’）。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;活动应用程序的门面，所有能看到的东西都放在活动中。&lt;/li&gt;
-&lt;li&gt;服务一直在后台默默运行。&lt;/li&gt;
-&lt;li&gt;广播接收器允许你的应用接受来自各处的广播消息，比如电话、短信等。&lt;/li&gt;
-&lt;li&gt;内容提供器则为应用程序之间共享数据提供了可能，比如可以通过内容提供器读取系统电话簿中的联系人。  &lt;/li&gt;
-&lt;/ul&gt;
-    
-    </summary>
-    
-      <category term="安卓开发" scheme="https://www.crocodilezs.top/categories/%E5%AE%89%E5%8D%93%E5%BC%80%E5%8F%91/"/>
-    
+      <category term="Python" scheme="https://www.crocodilezs.top/tags/Python/"/>
     
   </entry>
   
