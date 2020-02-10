@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.crocodilezs.top/"/>
-  <updated>2019-11-12T16:01:37.912Z</updated>
+  <updated>2020-02-10T09:08:17.443Z</updated>
   <id>https://www.crocodilezs.top/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>支持向量机算法（Support Vector Machine Alg）的介绍及数学推导</title>
+    <link href="https://www.crocodilezs.top/202002/%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA%E7%AE%97%E6%B3%95%E7%9A%84%E4%BB%8B%E7%BB%8D%E5%8F%8A%E6%95%B0%E5%AD%A6%E6%8E%A8%E5%AF%BC/"/>
+    <id>https://www.crocodilezs.top/202002/支持向量机算法的介绍及数学推导/</id>
+    <published>2020-02-10T08:47:21.000Z</published>
+    <updated>2020-02-10T09:08:17.443Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;div class=&quot;note info&quot;&gt;
+    上个学期周文安老师教我们专业的机器学习课程，在讲每一个算法的时候老师都会强调数学推导的重要性。&lt;br&gt;
+    她希望大家能够不仅仅会调库，还能明白算法最底层的原理，并且能够自己推导。然而在学期中比较划水的我&lt;br&gt;
+&lt;/d
+      
+    
+    </summary>
+    
+      <category term="算法" scheme="https://www.crocodilezs.top/categories/%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="机器学习" scheme="https://www.crocodilezs.top/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+      <category term="SVM" scheme="https://www.crocodilezs.top/tags/SVM/"/>
+    
+      <category term="算法推导" scheme="https://www.crocodilezs.top/tags/%E7%AE%97%E6%B3%95%E6%8E%A8%E5%AF%BC/"/>
+    
+  </entry>
   
   <entry>
     <title>数据预处理</title>
@@ -63,30 +93,6 @@
     
     
       <category term="NLP" scheme="https://www.crocodilezs.top/tags/NLP/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>祝「盛世美颜燃烧了十岁到七十岁女性芳心的芳心纵火犯」鳄鱼先生 🎂生日快乐🎂</title>
-    <link href="https://www.crocodilezs.top/201911/%E7%A5%9D%E5%AE%87%E5%AE%99%E7%AC%AC%E4%B8%80%E5%8F%AF%E7%88%B1%E7%9A%84%E9%B3%84%E9%B1%BC%E5%85%88%E7%94%9F%E7%94%9F%E6%97%A5%E5%BF%AB%E4%B9%90/"/>
-    <id>https://www.crocodilezs.top/201911/祝宇宙第一可爱的鳄鱼先生生日快乐/</id>
-    <published>2019-11-01T14:22:22.000Z</published>
-    <updated>2019-11-18T02:57:29.124Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;&lt;img src=&quot;https://i.loli.net/2019/11/18/sMphd9oRmPZbe24.jpg&quot; alt=&quot;（撒老师对不起，，，&quot;&gt;&lt;/p&gt;
-
-      
-    
-    </summary>
-    
-      <category term="参省乎己" scheme="https://www.crocodilezs.top/categories/%E5%8F%82%E7%9C%81%E4%B9%8E%E5%B7%B1/"/>
-    
-    
-      <category term="生日" scheme="https://www.crocodilezs.top/tags/%E7%94%9F%E6%97%A5/"/>
     
   </entry>
   
@@ -256,9 +262,9 @@
       <category term="机器学习" scheme="https://www.crocodilezs.top/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
     
     
-      <category term="Fisher" scheme="https://www.crocodilezs.top/tags/Fisher/"/>
-    
       <category term="SVM" scheme="https://www.crocodilezs.top/tags/SVM/"/>
+    
+      <category term="Fisher" scheme="https://www.crocodilezs.top/tags/Fisher/"/>
     
       <category term="K-Means" scheme="https://www.crocodilezs.top/tags/K-Means/"/>
     
@@ -314,7 +320,7 @@
     <link href="https://www.crocodilezs.top/201909/%E5%86%99%E4%BA%8E%E5%8D%9A%E5%AE%A2%E6%AD%A3%E5%BC%8F%E5%AF%B9%E5%A4%96%E5%BC%80%E6%94%BE%E4%B9%8B%E9%99%85/"/>
     <id>https://www.crocodilezs.top/201909/写于博客正式对外开放之际/</id>
     <published>2019-10-15T12:51:12.000Z</published>
-    <updated>2019-11-12T14:01:49.814Z</updated>
+    <updated>2020-02-10T08:50:36.673Z</updated>
     
     <summary type="html">
     
