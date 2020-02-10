@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://blog.crocodilezs.top/"/>
-  <updated>2020-02-10T12:51:58.847Z</updated>
+  <updated>2020-02-10T15:23:25.811Z</updated>
   <id>https://blog.crocodilezs.top/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://blog.crocodilezs.top/202002/%E4%B8%80%E5%91%A8%E8%AE%B0%E5%BD%95week1/"/>
     <id>https://blog.crocodilezs.top/202002/一周记录week1/</id>
     <published>2020-02-10T12:07:02.000Z</published>
-    <updated>2020-02-10T12:51:58.847Z</updated>
+    <updated>2020-02-10T15:23:25.811Z</updated>
     
     <summary type="html">
     
@@ -38,21 +38,23 @@
   </entry>
   
   <entry>
-    <title>支持向量机算法（Support Vector Machine Alg）的介绍及数学推导</title>
+    <title>支持向量机算法（Support Vector Machine Alg）的介绍及数学推导（未完待更）</title>
     <link href="https://blog.crocodilezs.top/202002/%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA%E7%AE%97%E6%B3%95%E7%9A%84%E4%BB%8B%E7%BB%8D%E5%8F%8A%E6%95%B0%E5%AD%A6%E6%8E%A8%E5%AF%BC/"/>
     <id>https://blog.crocodilezs.top/202002/支持向量机算法的介绍及数学推导/</id>
     <published>2020-02-10T08:47:21.000Z</published>
-    <updated>2020-02-10T12:14:30.122Z</updated>
+    <updated>2020-02-10T15:26:12.915Z</updated>
     
     <summary type="html">
     
-      
-      
-        &lt;div class=&quot;note info&quot;&gt;
-    上个学期周文安老师教我们专业的机器学习课程，在讲每一个算法的时候老师都会强调数学推导的重要性。&lt;br&gt;
-    她希望大家能够不仅仅会调库，还能明白算法最底层的原理，并且能够自己推导。然而在学期中比较划水的我&lt;br&gt;
-&lt;/d
-      
+      &lt;div class=&quot;note info&quot;&gt;
+    🌟上个学期周文安老师教我们专业的机器学习课程，在讲每一个算法的时候老师都会强调数学推导的重要性。&lt;br&gt;
+    她希望大家能够不仅仅会调库，还能明白算法最底层的原理，并且能够自己推导。然而上学期我在数学推导这里一直在划水😖，没有理解透各种推导过程，所以趁着寒假在家里比较有时间，把机器学习部分算法的数学推导部分补全。&lt;br&gt;
+    &lt;br&gt;
+    🌟SVM算法的证明用到了求解对偶问题的思想，石川老师在课上也说过这个算法的证明过程非常🕺“漂亮”🚶‍♂️。所以数学推导这一系列我决定从SVM开始。&lt;br&gt;
+&lt;/div&gt;
+
+&lt;p&gt;在学期中我也有尝试手推过一次 &lt;code&gt;SVM&lt;/code&gt;，但是并不是很理解，尤其是几何间隔、函数间隔和对偶问题等概念都没有理解，而这些概念对于推导过程都十分重要。现在的这篇文章将会展开得更详细。&lt;br&gt;这是上学期的文章👉&lt;a href=&quot;https://blog.crocodilezs.top/201911/Fisher%E7%AE%97%E6%B3%95&amp;SVM&amp;K-Means%E5%8F%8A%E5%85%B6%E4%BC%98%E5%8C%96/#more&quot;&gt;SVM优化对偶问题的详细推导过程&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;文章的大致思路是 &lt;code&gt;SVM&lt;/code&gt; 的介绍、推导过程中的基本概念介绍、数学推导。我会把问题描述到最容易理解。参考资料主要有李航老师的《统计学习方法》、&lt;a href=&quot;https://www.coursera.org/learn/machine-learning?&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;吴恩达老师的机器学习课程&lt;/a&gt;、&lt;a href=&quot;https://scikit-learn.org/stable/modules/svm.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;python scikit learn的官方文档&lt;/a&gt;和上个学期的课件。&lt;/p&gt;
     
     </summary>
     

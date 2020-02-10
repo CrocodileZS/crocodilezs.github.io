@@ -60,18 +60,22 @@
   };
 </script>
 
-  <meta name="description" content="上个学期周文安老师教我们专业的机器学习课程，在讲每一个算法的时候老师都会强调数学推导的重要性。     她希望大家能够不仅仅会调库，还能明白算法最底层的原理，并且能够自己推导。然而在学期中比较划水的我   SVM优化对偶问题的详细推导过程">
+  <meta name="description" content="🌟上个学期周文安老师教我们专业的机器学习课程，在讲每一个算法的时候老师都会强调数学推导的重要性。     她希望大家能够不仅仅会调库，还能明白算法最底层的原理，并且能够自己推导。然而上学期我在数学推导这里一直在划水😖，没有理解透各种推导过程，所以趁着寒假在家里比较有时间，把机器学习部分算法的数学推导部分补全。          🌟SVM算法的证明用到了求解对偶问题的思想，石川老师在">
 <meta name="keywords" content="机器学习,SVM,算法推导">
 <meta property="og:type" content="article">
-<meta property="og:title" content="支持向量机算法（Support Vector Machine Alg）的介绍及数学推导">
+<meta property="og:title" content="支持向量机算法（Support Vector Machine Alg）的介绍及数学推导（未完待更）">
 <meta property="og:url" content="https://blog.crocodilezs.top/202002/支持向量机算法的介绍及数学推导/index.html">
 <meta property="og:site_name" content="鰐魚先生的水族館">
-<meta property="og:description" content="上个学期周文安老师教我们专业的机器学习课程，在讲每一个算法的时候老师都会强调数学推导的重要性。     她希望大家能够不仅仅会调库，还能明白算法最底层的原理，并且能够自己推导。然而在学期中比较划水的我   SVM优化对偶问题的详细推导过程">
+<meta property="og:description" content="🌟上个学期周文安老师教我们专业的机器学习课程，在讲每一个算法的时候老师都会强调数学推导的重要性。     她希望大家能够不仅仅会调库，还能明白算法最底层的原理，并且能够自己推导。然而上学期我在数学推导这里一直在划水😖，没有理解透各种推导过程，所以趁着寒假在家里比较有时间，把机器学习部分算法的数学推导部分补全。          🌟SVM算法的证明用到了求解对偶问题的思想，石川老师在">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-02-10T12:14:30.122Z">
+<meta property="og:image" content="https://i.loli.net/2020/02/10/AU3tYprag8ckDGl.jpg">
+<meta property="og:image" content="https://i.loli.net/2020/02/10/MHhx6BwTSzrQqZL.jpg">
+<meta property="og:image" content="https://i.loli.net/2020/02/10/KpYh7ZNoMQCXDAH.jpg">
+<meta property="og:updated_time" content="2020-02-10T15:26:12.915Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="支持向量机算法（Support Vector Machine Alg）的介绍及数学推导">
-<meta name="twitter:description" content="上个学期周文安老师教我们专业的机器学习课程，在讲每一个算法的时候老师都会强调数学推导的重要性。     她希望大家能够不仅仅会调库，还能明白算法最底层的原理，并且能够自己推导。然而在学期中比较划水的我   SVM优化对偶问题的详细推导过程">
+<meta name="twitter:title" content="支持向量机算法（Support Vector Machine Alg）的介绍及数学推导（未完待更）">
+<meta name="twitter:description" content="🌟上个学期周文安老师教我们专业的机器学习课程，在讲每一个算法的时候老师都会强调数学推导的重要性。     她希望大家能够不仅仅会调库，还能明白算法最底层的原理，并且能够自己推导。然而上学期我在数学推导这里一直在划水😖，没有理解透各种推导过程，所以趁着寒假在家里比较有时间，把机器学习部分算法的数学推导部分补全。          🌟SVM算法的证明用到了求解对偶问题的思想，石川老师在">
+<meta name="twitter:image" content="https://i.loli.net/2020/02/10/AU3tYprag8ckDGl.jpg">
   <link rel="alternate" href="/atom.xml" title="鰐魚先生的水族館" type="application/atom+xml">
   <link rel="canonical" href="https://blog.crocodilezs.top/202002/支持向量机算法的介绍及数学推导/">
 
@@ -87,7 +91,7 @@
   };
 </script>
 
-  <title>支持向量机算法（Support Vector Machine Alg）的介绍及数学推导 | 鰐魚先生的水族館</title>
+  <title>支持向量机算法（Support Vector Machine Alg）的介绍及数学推导（未完待更） | 鰐魚先生的水族館</title>
   
 
 
@@ -251,7 +255,7 @@
       <header class="post-header">
 
         
-          <h1 class="post-title" itemprop="name headline">支持向量机算法（Support Vector Machine Alg）的介绍及数学推导
+          <h1 class="post-title" itemprop="name headline">支持向量机算法（Support Vector Machine Alg）的介绍及数学推导（未完待更）
 
             
           </h1>
@@ -312,7 +316,7 @@
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span>125</span>
+              <span>2.6k</span>
             </span>
           
             <span class="post-meta-item" title="阅读时长">
@@ -322,7 +326,7 @@
               
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
               
-              <span>1 分钟</span>
+              <span>4 分钟</span>
             </span>
           
 
@@ -336,12 +340,51 @@
 
       
         <div class="note info">
-    上个学期周文安老师教我们专业的机器学习课程，在讲每一个算法的时候老师都会强调数学推导的重要性。<br>
-    她希望大家能够不仅仅会调库，还能明白算法最底层的原理，并且能够自己推导。然而在学期中比较划水的我<br>
+    🌟上个学期周文安老师教我们专业的机器学习课程，在讲每一个算法的时候老师都会强调数学推导的重要性。<br>
+    她希望大家能够不仅仅会调库，还能明白算法最底层的原理，并且能够自己推导。然而上学期我在数学推导这里一直在划水😖，没有理解透各种推导过程，所以趁着寒假在家里比较有时间，把机器学习部分算法的数学推导部分补全。<br>
+    <br>
+    🌟SVM算法的证明用到了求解对偶问题的思想，石川老师在课上也说过这个算法的证明过程非常🕺“漂亮”🚶‍♂️。所以数学推导这一系列我决定从SVM开始。<br>
 </div>
 
-<p><a href="https://blog.crocodilezs.top/201911/Fisher%E7%AE%97%E6%B3%95&SVM&K-Means%E5%8F%8A%E5%85%B6%E4%BC%98%E5%8C%96/#more">SVM优化对偶问题的详细推导过程</a></p>
+<p>在学期中我也有尝试手推过一次 <code>SVM</code>，但是并不是很理解，尤其是几何间隔、函数间隔和对偶问题等概念都没有理解，而这些概念对于推导过程都十分重要。现在的这篇文章将会展开得更详细。<br>这是上学期的文章👉<a href="https://blog.crocodilezs.top/201911/Fisher%E7%AE%97%E6%B3%95&SVM&K-Means%E5%8F%8A%E5%85%B6%E4%BC%98%E5%8C%96/#more">SVM优化对偶问题的详细推导过程</a></p>
+<p>文章的大致思路是 <code>SVM</code> 的介绍、推导过程中的基本概念介绍、数学推导。我会把问题描述到最容易理解。参考资料主要有李航老师的《统计学习方法》、<a href="https://www.coursera.org/learn/machine-learning?" target="_blank" rel="noopener">吴恩达老师的机器学习课程</a>、<a href="https://scikit-learn.org/stable/modules/svm.html" target="_blank" rel="noopener">python scikit learn的官方文档</a>和上个学期的课件。</p>
+<a id="more"></a>
 
+<h1 id="支持向量机介绍"><a href="#支持向量机介绍" class="headerlink" title="支持向量机介绍"></a>支持向量机介绍</h1><blockquote>
+<p>支持向量机（support vector machines, <code>SVM</code>）是一种二分类模型。它的基本模型是定义在特征空间上的间隔最大的线性分类器，间隔最大使它有别于感知机，支持向量机还包括核技巧，这使它成为实质上的非线性分类器。（关于“间隔”、“核技巧”的介绍在下文中会讲）</p>
+</blockquote>
+<h2 id="支持向量机的应用"><a href="#支持向量机的应用" class="headerlink" title="支持向量机的应用"></a>支持向量机的应用</h2><blockquote>
+<p>Support vector machines (SVMs) are a set of supervised learning methods used for classification, regression and outliers detection.</p>
+</blockquote>
+<p>译：支持向量机是一种监督学习算法，可以用于分类问题、回归问题和异常点识别问题。</p>
+<h2 id="直观理解支持向量机"><a href="#直观理解支持向量机" class="headerlink" title="直观理解支持向量机"></a>直观理解支持向量机</h2><p><a href="https://sm.ms/image/AU3tYprag8ckDGl" target="_blank"><img src="https://i.loli.net/2020/02/10/AU3tYprag8ckDGl.jpg" alt="pic0" width="350" height="350"></a></p>
+<p>假设在一个二分类问题中，我们的样例中有四个正例和五个反例（其中正例由圆形表示，反例由叉表示），如 <code>pic0</code> 所示。  </p>
+<p>现在我们想通过一条直线将正例和反例区分开。显而易见，能够实现分类的有无数条直线，图中我们给出了三条分类直线：<code>l1</code>、<code>l2</code>、<code>l3</code>，如 <code>pic1</code> 所示。</p>
+<p><a href="https://sm.ms/image/MHhx6BwTSzrQqZL" target="_blank"><img src="https://i.loli.net/2020/02/10/MHhx6BwTSzrQqZL.jpg" alt="pic1" width="350" height="350"></a></p>
+<p>然而，这三条直线的分类能力并不相同。假设我们再向训练样例中添加两个正样例（在 <code>pic2</code> 中用绿色的圆点表示），此时我们可以发现，直线 <code>l1</code> 和直线 <code>l3</code> 失去了完美的分类能力，因为它们没法将新加入的样例成功分类。</p>
+<p>由此我们可以看出，<code>l2</code> 的分类能力比 <code>l1</code> 和 <code>l3</code> 的分类能力更强。<strong>而支持向量机算法就是去寻找所有直线中分类最强的那一条直线。</strong>在后面的推导过程中，我们也会证明：在这样的线性可分问题中，分类能力最强的直线（也就是“超平面”，后面会介绍）<strong>有且仅有一条</strong>。</p>
+<p><a href="https://sm.ms/image/KpYh7ZNoMQCXDAH" target="_blank"><img src="https://i.loli.net/2020/02/10/KpYh7ZNoMQCXDAH.jpg" alt="pic2" width="350" height="350"></a></p>
+<h2 id="支持向量机的优势和劣势"><a href="#支持向量机的优势和劣势" class="headerlink" title="支持向量机的优势和劣势"></a>支持向量机的优势和劣势</h2><p>了解 <code>SVM</code> 的优势能够帮助我们在合适的问题中选择合适的算法。  </p>
+<p><em>在看过后面算法的推导过程之后，会对支持向量机的优势和劣势有更深刻的了解。</em>  </p>
+<h3 id="支持向量机的优势"><a href="#支持向量机的优势" class="headerlink" title="支持向量机的优势"></a>支持向量机的优势</h3><ol>
+<li>Effective in high dimensional spaces.<em>在高维空间中比较容易使用。</em></li>
+<li>Still effective in cases where number of dimensions is greater than the number of samples. <em>当样本特征数比样本数更多的时候，支持向量机仍然可以用。</em></li>
+<li>Uses a subset of training points in the decision function (called support vectors), so it is also memory efficient.<em>仅仅用到了训练集中的部分样例（即支持向量），所以会节省内存空间。</em></li>
+<li>Versatile: different Kernel functions can be specified for the decision function. Common kernels are provided, but it is also possible to specify custom kernels.<em>不同的核函数决定不同的决策函数。在python的scikit learn库中提供了普遍使用的核函数，当然我们也可以自定义核函数。</em></li>
+</ol>
+<h3 id="支持向量机的劣势"><a href="#支持向量机的劣势" class="headerlink" title="支持向量机的劣势"></a>支持向量机的劣势</h3><ol>
+<li>If the number of features is much greater than the number of samples, avoid over-fitting in choosing Kernel functions and regularization term is crucial.<em>当样本特征数比样本数多的时候要注意防止过拟合，这个时候核函数的选择至关重要。</em></li>
+<li>SVMs do not directly provide probability estimates, these are calculated using an expensive five-fold cross-validation (see Scores and probabilities, below).<em>sklearn包并不直接提供概率评估，是通过代价很大的五折交叉运算来实现的。</em></li>
+</ol>
+<h2 id="支持向量机的分类"><a href="#支持向量机的分类" class="headerlink" title="支持向量机的分类"></a>支持向量机的分类</h2><ol>
+<li><p><strong>线性可分支持向量机（linear support vector machine in linearly separable case）</strong><br>通过硬间隔最大化（hard margin maximization）学习一个线性的分类器，又称为硬间隔支持向量机。</p>
+</li>
+<li><p><strong>线性支持向量机（linear support vector machine）</strong><br>当训练数据近似可分时，通过软间隔最大化（soft margin maximization）形成线性不可分支持向量机，简称为线性支持向量机</p>
+</li>
+<li><p><strong>非线性支持向量机（non-linear support vector machine）</strong><br>当训练数据集线性不可分时，通过使用核技巧以及软间隔最大化来学习非线性支持向量机。</p>
+</li>
+</ol>
+<h1 id="相关定义和方法介绍"><a href="#相关定义和方法介绍" class="headerlink" title="相关定义和方法介绍"></a>相关定义和方法介绍</h1><h2 id="函数间隔和几何间隔"><a href="#函数间隔和几何间隔" class="headerlink" title="函数间隔和几何间隔"></a>函数间隔和几何间隔</h2><h2 id="L0-L1-L2范数"><a href="#L0-L1-L2范数" class="headerlink" title="L0, L1, L2范数"></a><code>L0</code>, <code>L1</code>, <code>L2</code>范数</h2><h2 id="拉格朗日对偶性"><a href="#拉格朗日对偶性" class="headerlink" title="拉格朗日对偶性"></a>拉格朗日对偶性</h2><h2 id="核技巧"><a href="#核技巧" class="headerlink" title="核技巧"></a>核技巧</h2><h1 id="支持向量机数学推导"><a href="#支持向量机数学推导" class="headerlink" title="支持向量机数学推导"></a>支持向量机数学推导</h1><h2 id="线性可分支持向量机"><a href="#线性可分支持向量机" class="headerlink" title="线性可分支持向量机"></a>线性可分支持向量机</h2><h2 id="线性支持向量机"><a href="#线性支持向量机" class="headerlink" title="线性支持向量机"></a>线性支持向量机</h2><h2 id="非线性支持向量机"><a href="#非线性支持向量机" class="headerlink" title="非线性支持向量机"></a>非线性支持向量机</h2><h1 id="归纳和总结"><a href="#归纳和总结" class="headerlink" title="归纳和总结"></a>归纳和总结</h1>
     </div>
 
     
@@ -434,8 +477,17 @@
 
   <aside id="sidebar" class="sidebar">
     <div class="sidebar-inner">
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
 
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -668,6 +720,23 @@
 
         </div>
       </div>
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#支持向量机介绍"><span class="nav-text">支持向量机介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#支持向量机的应用"><span class="nav-text">支持向量机的应用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#直观理解支持向量机"><span class="nav-text">直观理解支持向量机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#支持向量机的优势和劣势"><span class="nav-text">支持向量机的优势和劣势</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#支持向量机的优势"><span class="nav-text">支持向量机的优势</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#支持向量机的劣势"><span class="nav-text">支持向量机的劣势</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#支持向量机的分类"><span class="nav-text">支持向量机的分类</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#相关定义和方法介绍"><span class="nav-text">相关定义和方法介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#函数间隔和几何间隔"><span class="nav-text">函数间隔和几何间隔</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#L0-L1-L2范数"><span class="nav-text">L0, L1, L2范数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#拉格朗日对偶性"><span class="nav-text">拉格朗日对偶性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#核技巧"><span class="nav-text">核技巧</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#支持向量机数学推导"><span class="nav-text">支持向量机数学推导</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#线性可分支持向量机"><span class="nav-text">线性可分支持向量机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#线性支持向量机"><span class="nav-text">线性支持向量机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#非线性支持向量机"><span class="nav-text">非线性支持向量机</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#归纳和总结"><span class="nav-text">归纳和总结</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
 
     </div>
   </aside>
