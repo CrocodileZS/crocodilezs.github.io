@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://blog.crocodilezs.top/"/>
-  <updated>2020-02-10T15:23:25.811Z</updated>
+  <updated>2020-02-11T14:12:37.485Z</updated>
   <id>https://blog.crocodilezs.top/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>《极简欧洲史》读书笔记</title>
+    <link href="https://blog.crocodilezs.top/202002/%E6%9E%81%E7%AE%80%E6%AC%A7%E6%B4%B2%E5%8F%B2%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
+    <id>https://blog.crocodilezs.top/202002/极简欧洲史读书笔记/</id>
+    <published>2020-02-11T12:18:03.000Z</published>
+    <updated>2020-02-11T14:12:37.485Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;img src=&quot;https://i.loli.net/2020/02/11/EG6KiIgvJp5sq4m.png&quot; alt&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="阅读" scheme="https://blog.crocodilezs.top/categories/%E9%98%85%E8%AF%BB/"/>
+    
+    
+      <category term="极简欧洲史" scheme="https://blog.crocodilezs.top/tags/%E6%9E%81%E7%AE%80%E6%AC%A7%E6%B4%B2%E5%8F%B2/"/>
+    
+      <category term="历史" scheme="https://blog.crocodilezs.top/tags/%E5%8E%86%E5%8F%B2/"/>
+    
+  </entry>
   
   <entry>
     <title>【2020.02.03 - 2020.02.09】 一周记录</title>
@@ -463,27 +485,6 @@
     
     
       <category term="几何模型" scheme="https://blog.crocodilezs.top/tags/%E5%87%A0%E4%BD%95%E6%A8%A1%E5%9E%8B/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>数据科学导论学习笔记（5）</title>
-    <link href="https://blog.crocodilezs.top/201909/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6%E5%AF%BC%E8%AE%BA%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%885%EF%BC%89/"/>
-    <id>https://blog.crocodilezs.top/201909/数据科学导论学习笔记（5）/</id>
-    <published>2019-09-23T06:48:50.000Z</published>
-    <updated>2019-10-05T03:32:01.244Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;第四章-数据预处理&quot;&gt;&lt;a href=&quot;#第四章-数据预处理&quot; class=&quot;headerlink&quot; title=&quot;第四章 数据预处理&quot;&gt;&lt;/a&gt;第四章 数据预处理&lt;/h1&gt;&lt;h2 id=&quot;数据预处理概述&quot;&gt;&lt;a href=&quot;#数据预处理概述&quot; class=&quot;he
-      
-    
-    </summary>
-    
-      <category term="数据科学导论" scheme="https://blog.crocodilezs.top/categories/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6%E5%AF%BC%E8%AE%BA/"/>
-    
     
   </entry>
   
