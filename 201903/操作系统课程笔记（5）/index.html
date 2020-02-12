@@ -314,7 +314,7 @@
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span>990</span>
+              <span>993</span>
             </span>
           
             <span class="post-meta-item" title="阅读时长">
@@ -339,9 +339,7 @@
       
         <h1 id="操作系统课程笔记（五）3月12日"><a href="#操作系统课程笔记（五）3月12日" class="headerlink" title="操作系统课程笔记（五）3月12日"></a>操作系统课程笔记（五）3月12日</h1><h2 id="Chap-3-进程管理"><a href="#Chap-3-进程管理" class="headerlink" title="Chap.3 进程管理"></a>Chap.3 进程管理</h2><h3 id="进程的“操作功能”"><a href="#进程的“操作功能”" class="headerlink" title="进程的“操作功能”"></a>进程的“操作功能”</h3><p>==(这一部分都要好好联系PPT仔细看)==</p>
 <h4 id="一、创建"><a href="#一、创建" class="headerlink" title="一、创建"></a>一、创建</h4><a id="more"></a>
-
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">graph LR</span><br><span class="line">A(父进程)--&gt;B(子进程)</span><br><span class="line">B--&gt;C(子子进程)</span><br></pre></td></tr></table></figure>
-
 <p>子进程复制父进程，但fork的返回值不同。父进程返回子进程的id，子进程返回0。<br><img src="https://s2.ax1x.com/2019/03/23/AJVgHK.png" alt="5.1"><br>我们创造操作系统就是为了给用户提供fork，esec这样的函数。</p>
 <ul>
 <li>fork<br>  函数创建新的进程</li>
@@ -394,52 +392,56 @@
 </ul>
 <hr>
 <p>进程间通信，协作的两个进程必须自己做的事（o），需要OS做的事（x）</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
-<th align="center">/</th>
-<th align="center">传数据</th>
-<th align="center">控制</th>
-<th align="center">解释数据</th>
-<th align="center">给出反应</th>
+<th style="text-align:center">/</th>
+<th style="text-align:center">传数据</th>
+<th style="text-align:center">控制</th>
+<th style="text-align:center">解释数据</th>
+<th style="text-align:center">给出反应 </th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="center">共享内存</td>
-<td align="center">o</td>
-<td align="center">o</td>
-<td align="center">o</td>
-<td align="center">o</td>
+<tbody>
+<tr>
+<td style="text-align:center">共享内存</td>
+<td style="text-align:center">o</td>
+<td style="text-align:center">o</td>
+<td style="text-align:center">o</td>
+<td style="text-align:center">o</td>
 </tr>
 <tr>
-<td align="center">消息机制</td>
-<td align="center">x</td>
-<td align="center">o</td>
-<td align="center">o</td>
-<td align="center">o</td>
+<td style="text-align:center">消息机制</td>
+<td style="text-align:center">x</td>
+<td style="text-align:center">o</td>
+<td style="text-align:center">o</td>
+<td style="text-align:center">o</td>
 </tr>
 <tr>
-<td align="center">socket</td>
-<td align="center">x</td>
-<td align="center">o</td>
-<td align="center">o</td>
-<td align="center">o</td>
+<td style="text-align:center">socket</td>
+<td style="text-align:center">x</td>
+<td style="text-align:center">o</td>
+<td style="text-align:center">o</td>
+<td style="text-align:center">o</td>
 </tr>
 <tr>
-<td align="center">RMI</td>
-<td align="center">x</td>
-<td align="center">x</td>
-<td align="center">x</td>
-<td align="center">o</td>
+<td style="text-align:center">RMI</td>
+<td style="text-align:center">x</td>
+<td style="text-align:center">x</td>
+<td style="text-align:center">x</td>
+<td style="text-align:center">o</td>
 </tr>
 <tr>
-<td align="center">RPC</td>
-<td align="center">x</td>
-<td align="center">x</td>
-<td align="center">x</td>
-<td align="center">o</td>
+<td style="text-align:center">RPC</td>
+<td style="text-align:center">x</td>
+<td style="text-align:center">x</td>
+<td style="text-align:center">x</td>
+<td style="text-align:center">o</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 
     </div>
 
@@ -473,8 +475,8 @@
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
               
-                <a href="/201903/操作系统课程笔记（4）/" rel="next" title="操作系统课程笔记（4）">
-                  <i class="fa fa-chevron-left"></i> 操作系统课程笔记（4）
+                <a href="/201903/操作系统课程笔记（3）/" rel="next" title="操作系统课程笔记（3）">
+                  <i class="fa fa-chevron-left"></i> 操作系统课程笔记（3）
                 </a>
               
             </div>
@@ -483,8 +485,8 @@
 
             <div class="post-nav-prev post-nav-item">
               
-                <a href="/201903/操作系统课程笔记（6）/" rel="prev" title="操作系统课程笔记（6）">
-                  操作系统课程笔记（6） <i class="fa fa-chevron-right"></i>
+                <a href="/201903/操作系统课程笔记（4）/" rel="prev" title="操作系统课程笔记（4）">
+                  操作系统课程笔记（4） <i class="fa fa-chevron-right"></i>
                 </a>
               
             </div>

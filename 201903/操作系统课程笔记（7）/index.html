@@ -311,7 +311,7 @@
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span>988</span>
+              <span>987</span>
             </span>
           
             <span class="post-meta-item" title="阅读时长">
@@ -337,7 +337,6 @@
         <h1 id="操作系统课程笔记（七）-3月19日"><a href="#操作系统课程笔记（七）-3月19日" class="headerlink" title="操作系统课程笔记（七） 3月19日"></a>操作系统课程笔记（七） 3月19日</h1><h2 id="Chap-5-CPU调度"><a href="#Chap-5-CPU调度" class="headerlink" title="Chap.5 CPU调度"></a>Chap.5 CPU调度</h2><p><em>（简单的一章）</em></p>
 <h3 id="一、基本概念"><a href="#一、基本概念" class="headerlink" title="一、基本概念"></a>一、基本概念</h3><h4 id="1-概念"><a href="#1-概念" class="headerlink" title="1. 概念"></a>1. 概念</h4><p>调度对象都是由CPU-burst和I/O-burst组成的，CPU-burst占用的时间很短。</p>
 <a id="more"></a>
-
 <h4 id="2-调度程序（短期）"><a href="#2-调度程序（短期）" class="headerlink" title="2.调度程序（短期）"></a>2.调度程序（短期）</h4><ul>
 <li>分为==抢占式==和==非抢占式==，两者的区别是调用调度时，CPU上是否有东西。</li>
 <li>运行-&gt;等待：非抢占</li>
@@ -359,7 +358,7 @@
 <li>抢占preemitive（最短剩余作业优先）从平均时间来讲效果最好。<br>最短剩余作业的意义：相当于“基准”，其他调度算法越接近越好</li>
 </ul>
 </li>
-<li><ol start="3">
+<li><ol>
 <li>优先级（调度时准入时有大概的时间，操作系统给任务赋优先级）<ul>
 <li>抢占</li>
 <li>非抢占<br>缺点：可能会把某些进程饿死（优先级太低了）<br>解决办法：老化（可以通过升降规则解决）</li>

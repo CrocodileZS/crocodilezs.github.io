@@ -68,6 +68,7 @@
 <meta property="og:description" content="Chap2. Introduction to the Relational Model(关系模型介绍)     本章最好通过举例来理解定义。   Introduction to Chapter 2Relational data model relational data structure (syntax)语法 integrity constraints (semantic) 完整性约束（语义）">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://s2.ax1x.com/2019/09/18/nTlHFx.jpg">
+<meta property="og:image" content="https://s2.ax1x.com/2019/09/18/nT1rcD.jpg">
 <meta property="og:image" content="https://s2.ax1x.com/2019/09/18/nbpQ0g.jpg">
 <meta property="og:image" content="https://s2.ax1x.com/2019/09/19/nbiyVO.jpg">
 <meta property="og:image" content="https://s2.ax1x.com/2019/09/19/nbicIe.md.jpg">
@@ -359,18 +360,15 @@
 <li>operations on the model</li>
 </ul>
 <a id="more"></a>
-
 <p><img src="https://s2.ax1x.com/2019/09/18/nTlHFx.jpg" alt="Fig.2.1 The instructor relation"></p>
 <h2 id="2-1-Structure-of-Relational-Databases（关系数据库）"><a href="#2-1-Structure-of-Relational-Databases（关系数据库）" class="headerlink" title="2.1 Structure of Relational Databases（关系数据库）"></a>2.1 Structure of Relational Databases（关系数据库）</h2><p>attributes(or columns)<br>tuples(or rows)</p>
 <h3 id="Basic-structures"><a href="#Basic-structures" class="headerlink" title="Basic structures"></a>Basic structures</h3><p><strong>关系（relation）</strong>定义为：一系列域上的笛卡尔积的子集。<br><strong>Attributes ：</strong>$A_1, A_2, … ,A_n$<br><strong>domain</strong> of relation’s attributes $D_1, D_2,…D_n$</p>
-<div class="note info">
-    1. relation r in DBS is the limited set.<br>
-    2. attributes are  non-ordered.<br>
-    3. tuples' order is irrelevant.<br>
-    4. `null` is a member of every domain.
-</div>
-![](https://s2.ax1x.com/2019/09/18/nT1rcD.jpg)
-
+<p><div class="note info"></div></p>
+<pre><code>1. relation r in DBS is the limited set.&lt;br /&gt;
+2. attributes are  non-ordered.&lt;br /&gt;
+3. tuples&#39; order is irrelevant.&lt;br /&gt;
+4. `null` is a member of every domain.
+</code></pre><p>&lt;/div&gt;<br><img src="https://s2.ax1x.com/2019/09/18/nT1rcD.jpg" alt></p>
 <p>A domain is <strong>atomic</strong> if its elements are considered to be invisible.</p>
 <h2 id="2-2-Database-schema-数据库模式"><a href="#2-2-Database-schema-数据库模式" class="headerlink" title="2.2 Database schema(数据库模式)"></a>2.2 Database schema(数据库模式)</h2><h3 id="Relation-schema-关系模式"><a href="#Relation-schema-关系模式" class="headerlink" title="Relation schema 关系模式"></a>Relation schema 关系模式</h3><ol>
 <li>For attributes $A_1, A_2, … , A_n, R=(A_1, A_2, …, A_n)$ is a <strong>relation schema</strong>.<br>e.g. Instructor-schema = (ID, name, depart_name, salary)</li>
@@ -385,10 +383,7 @@
 <li><strong>candidate key</strong>（候选码）<br> 候选码是最小的超码。</li>
 <li><strong>Primary key:</strong> A relation may have several candidate keys. Primary key is chosen as principal means to identify tuples.</li>
 <li><strong>Primary attributes //non-primary attributes</strong> </li>
-<li><strong>foreign key&amp;referencing relation &amp; referenced relation</strong><br>这里比较容易混，注意看定义。  </li>
-</ol>
-<p><strong>Def.</strong> If X is one or more attributes in relation r1, and X is also the primary-key of another relation schema r2.<br>X is called a foreign key from r1 referencing r2 X是由r1参照/关联r2的外键<br>r1 is called the referencing relation of the foreign key<br>r2 is called the referenced relation of the foreign key<br>e.g. <code>dept_name</code> in <code>instructor-schema</code> and <code>department-schema</code>, <code>dept_name</code> in <code>instructor</code> is a foreign key from <code>instructor</code> referencing <code>department</code>.   </p>
-<ol start="6">
+<li><strong>foreign key&amp;referencing relation &amp; referenced relation</strong><br>这里比较容易混，注意看定义。<br><strong>Def.</strong> If X is one or more attributes in relation r1, and X is also the primary-key of another relation schema r2.<br>X is called a foreign key from r1 referencing r2 X是由r1参照/关联r2的外键<br>r1 is called the referencing relation of the foreign key<br>r2 is called the referenced relation of the foreign key<br>e.g. <code>dept_name</code> in <code>instructor-schema</code> and <code>department-schema</code>, <code>dept_name</code> in <code>instructor</code> is a foreign key from <code>instructor</code> referencing <code>department</code>.   </li>
 <li><strong>schema diagram</strong>(模式图)、<strong>node</strong>、<strong>directed arc</strong></li>
 <li><strong>Referential integrity constraint(参照完整性约束)</strong>：在参照关系中，任意元组在特定关系中的取值必然等于被参照关系中某个元组在特定关系上的取值。</li>
 </ol>
@@ -909,7 +904,6 @@
   
     
       <script type="text/x-mathjax-config">
-    MathJax.Ajax.config.path['mhchem'] = '//cdn.jsdelivr.net/npm/mathjax-mhchem@3';
 
   MathJax.Hub.Config({
     tex2jax: {
@@ -918,7 +912,6 @@
       skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
     },
     TeX: {
-        extensions: ['[mhchem]/mhchem.js'],
       equationNumbers: {
         autoNumber: 'AMS'
       }
@@ -951,7 +944,7 @@
   });
 </script>
 <script>
-  NexT.utils.getScript('', function() {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML', function() {
     MathJax.Hub.Typeset();
   }, window.MathJax);
 </script>

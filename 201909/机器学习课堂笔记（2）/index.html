@@ -357,7 +357,6 @@
 <h1 id="第二次上课"><a href="#第二次上课" class="headerlink" title="第二次上课"></a>第二次上课</h1><h2 id="复习"><a href="#复习" class="headerlink" title="复习"></a>复习</h2><ul>
 <li>Def of Machine Learning<blockquote class="blockquote-center"><p>A compute program is said to learn from experience E with respect to same task T and some performance measure P, if its performance on T, as measure by P, improves with experience E.</p>
 </blockquote>
-
 </li>
 </ul>
 <a id="more"></a>
@@ -368,11 +367,10 @@
 <li><strong>机械学习：</strong>死记硬背式学习。</li>
 <li><strong>进化学习、强化学习：</strong>在问题求解和规划中学习。</li>
 <li><strong>类比学习（如迁移学习）：</strong>通过观察和发现学习。</li>
-<li><strong>示教学习（如机器人模仿人的动作）：</strong>从指令中学习。</li>
+<li><strong>示教学习（如机器人模仿人的动作）：</strong>从指令中学习。<br><em>Tips:进化学习来源于达尔文的进化理论，遗传算法是进化学习的经典方法。</em></li>
 </ul>
 </li>
 </ul>
-<p><em>Tips:进化学习来源于达尔文的进化理论，遗传算法是进化学习的经典方法。</em></p>
 <p><a href="http://people.csail.mit.edu/dsontag/courses/ml16/" target="_blank" rel="noopener">一个非常优秀的机器学习资源网址(还未仔细查看)</a></p>
 <hr>
 <h2 id="本节课的主要内容"><a href="#本节课的主要内容" class="headerlink" title="本节课的主要内容"></a>本节课的主要内容</h2><ul>
@@ -929,7 +927,6 @@
   
     
       <script type="text/x-mathjax-config">
-    MathJax.Ajax.config.path['mhchem'] = '//cdn.jsdelivr.net/npm/mathjax-mhchem@3';
 
   MathJax.Hub.Config({
     tex2jax: {
@@ -938,7 +935,6 @@
       skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
     },
     TeX: {
-        extensions: ['[mhchem]/mhchem.js'],
       equationNumbers: {
         autoNumber: 'AMS'
       }
@@ -971,7 +967,7 @@
   });
 </script>
 <script>
-  NexT.utils.getScript('', function() {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML', function() {
     MathJax.Hub.Typeset();
   }, window.MathJax);
 </script>

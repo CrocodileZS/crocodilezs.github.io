@@ -421,7 +421,7 @@
 <li>对于标称数据，我们使用卡方检测</li>
 <li>对于数值属性，我们使用相关系数（<code>correlation coefficient</code>）和协方差（<code>covariancce</code>），他们都评估一个属性的值如何随另一个变化。</li>
 </ul>
-<ol start="4">
+<ol>
 <li>元组重复</li>
 </ol>
 <ul>
@@ -937,7 +937,6 @@
   
     
       <script type="text/x-mathjax-config">
-    MathJax.Ajax.config.path['mhchem'] = '//cdn.jsdelivr.net/npm/mathjax-mhchem@3';
 
   MathJax.Hub.Config({
     tex2jax: {
@@ -946,7 +945,6 @@
       skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
     },
     TeX: {
-        extensions: ['[mhchem]/mhchem.js'],
       equationNumbers: {
         autoNumber: 'AMS'
       }
@@ -979,7 +977,7 @@
   });
 </script>
 <script>
-  NexT.utils.getScript('', function() {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML', function() {
     MathJax.Hub.Typeset();
   }, window.MathJax);
 </script>

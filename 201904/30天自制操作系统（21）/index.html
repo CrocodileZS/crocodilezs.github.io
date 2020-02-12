@@ -338,10 +338,8 @@
 <li>我们需要在API中做个改动，使其能够将应用程序传递的地址解释为代码段内地址。</li>
 </ul>
 <a id="more"></a>
-
 <h2 id="2-用C语言编写应用程序"><a href="#2-用C语言编写应用程序" class="headerlink" title="2.用C语言编写应用程序"></a>2.用C语言编写应用程序</h2><p>要实现C语言编写应用程序，需要在应用程序方面创建一个api_putchar函数。注意，这个函数不是创建在操作系统中。api_putchar函数需要用C语言来调用，功能是向EDX和AL赋值，并调用INT 0x40。</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[FORMAT &quot;WCOFF&quot;] ; 生成对象文件的模式</span><br><span class="line">[INSTRSET &quot;i486p&quot;] ; 表示使用486兼容指令集</span><br><span class="line">[BITS 32] ; 生成32位模式机器语言</span><br><span class="line">[FILE &quot;a_nask.nas&quot;] ; 源文件名信息</span><br><span class="line"> </span><br><span class="line">    GLOBAL _api_putchar </span><br><span class="line"></span><br><span class="line">[SECTION .text] </span><br><span class="line">_api_putchar: ; void api_putchar(int c); </span><br><span class="line">    MOV EDX,1 </span><br><span class="line">    MOV AL,[ESP+4] ; c </span><br><span class="line">    INT 0x40 </span><br><span class="line">    RET</span><br></pre></td></tr></table></figure>
-
 <p>这里的api_putchar需要与a.c的编译结果进行连接，因此我们使用对象文件模式</p>
 <h2 id="3-保护操作系统（1）"><a href="#3-保护操作系统（1）" class="headerlink" title="3.保护操作系统（1）"></a>3.保护操作系统（1）</h2><p>操作系统需要运行各种应用程序，而这些应用程序有可能是操作系统开发者编写的，也有可能是用户、别的软件开发商或者是某个自由软件作者出于善意编写的。<br>所谓对操作系统的破坏，严重程度也不同，比如擅自删除重要文件、使其他任务的运行产生异常，或者造成操作系统死机而不得不重新启动等等。</p>
 <h2 id="4-保护操作系统（2）"><a href="#4-保护操作系统（2）" class="headerlink" title="4.保护操作系统（2）"></a>4.保护操作系统（2）</h2><p>我们需要为应用程序提供专用的内存空间，并且禁止别的应用程序访问。<br>要做到这一点，我们可以创建应用程序专用的数据段，并在应用程序运行期间，将DS和SS指向该段地址。<br>这次我们还使用了以句点（.）开头的标签名，这是一种被称为本地标签的特殊标签。它基本上和普通的标签功能一样，区别在于即使标签名和其他函数中的标签重复，系统也能将它们区分开来。</p>

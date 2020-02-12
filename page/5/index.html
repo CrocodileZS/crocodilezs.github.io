@@ -316,8 +316,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="DAY22-用C语言编写应用程序"><a href="#DAY22-用C语言编写应用程序" class="headerlink" title="DAY22_用C语言编写应用程序"></a>DAY22_用C语言编写应用程序</h1><h2 id="1-保护操作系统（5）"><a href="#1-保护操作系统（5）" class="headerlink" title="1.保护操作系统（5）"></a>1.保护操作系统（5）</h2><p>问题：在定时器上做手脚，光标闪烁变得异常缓慢，任务切换的速度也会变得缓慢。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[INSTRSET &quot;i486p&quot;] </span><br><span class="line">[BITS 32] </span><br><span class="line">    MOV AL,0x34 </span><br><span class="line">    OUT 0x43,AL </span><br><span class="line">    MOV AL,0xff</span><br><span class="line">    OUT 0x40,AL </span><br><span class="line">    MOV AL,0xff </span><br><span class="line">    OUT 0x40,AL</span><br><span class="line">    </span><br><span class="line">; 上述代码的功能与下面代码相当</span><br><span class="line">; io_out8(PIT_CTRL, 0x34); </span><br><span class="line">; io_out8(PIT_CNT0, 0xff); </span><br><span class="line">; io_out8(PIT_CNT0, 0xff); </span><br><span class="line"> </span><br><span class="line">    MOV EDX,4 </span><br><span class="line">    INT 0x40</span><br></pre></td></tr></table></figure>
+          <h1 id="DAY22-用C语言编写应用程序"><a href="#DAY22-用C语言编写应用程序" class="headerlink" title="DAY22_用C语言编写应用程序"></a>DAY22_用C语言编写应用程序</h1><h2 id="1-保护操作系统（5）"><a href="#1-保护操作系统（5）" class="headerlink" title="1.保护操作系统（5）"></a>1.保护操作系统（5）</h2><p>问题：在定时器上做手脚，光标闪烁变得异常缓慢，任务切换的速度也会变得缓慢。<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[INSTRSET &quot;i486p&quot;] </span><br><span class="line">[BITS 32] </span><br><span class="line">    MOV AL,0x34 </span><br><span class="line">    OUT 0x43,AL </span><br><span class="line">    MOV AL,0xff</span><br><span class="line">    OUT 0x40,AL </span><br><span class="line">    MOV AL,0xff </span><br><span class="line">    OUT 0x40,AL</span><br><span class="line">    </span><br><span class="line">; 上述代码的功能与下面代码相当</span><br><span class="line">; io_out8(PIT_CTRL, 0x34); </span><br><span class="line">; io_out8(PIT_CNT0, 0xff); </span><br><span class="line">; io_out8(PIT_CNT0, 0xff); </span><br><span class="line"> </span><br><span class="line">    MOV EDX,4 </span><br><span class="line">    INT 0x40</span><br></pre></td></tr></table></figure></p>
           <!--noindex-->
           
             <div class="post-button text-center">
@@ -540,7 +539,7 @@
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span>843</span>
+              <span>842</span>
             </span>
           
             <span class="post-meta-item" title="阅读时长">

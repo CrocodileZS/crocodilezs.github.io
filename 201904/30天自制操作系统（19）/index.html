@@ -338,25 +338,21 @@
 <li>在Windows的命令行中，有一个叫做type的命令，输入“type 文件名”就会显示出文件的内容。</li>
 </ul>
 <a id="more"></a>
-
 <hr>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">磁盘映像中的地址 = clustno * 512 + 0x003e00</span><br></pre></td></tr></table></figure>
-
 <hr>
 <ul>
 <li>将s[0～10]这11个字节用空格的字符编码填充，然后读取cmdline[5～]并复制到s[0～]，在复制的同时，将其中的小写字母转换为大写字母。随后，当遇到句点时，则可以断定接下来的部分为扩展名，于是将复制的目标改为s[8～]。经过这样的转换，我们就得到了和磁盘内格式相同的文件名。</li>
 <li>“寻找文件”这一段中，我们在磁盘中寻找与所输入的文件名相符的文件。如果成功找到指<br>定文件，则用break跳出for循环；如果找不到，则会在x到达224或者finfo[x].name[0]为0x00时结束循环。</li>
 </ul>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* type命令*/</span> </span><br><span class="line"> <span class="comment">/*准备文件名*/</span> </span><br><span class="line"> <span class="keyword">for</span> (y = <span class="number">0</span>; y &lt; <span class="number">11</span>; y++) &#123; </span><br><span class="line">    s[y] = <span class="string">' '</span>; </span><br><span class="line"> &#125; </span><br><span class="line"> y = <span class="number">0</span>; </span><br><span class="line"> <span class="keyword">for</span> (x = <span class="number">5</span>; y &lt; <span class="number">11</span> &amp;&amp; cmdline[x] != <span class="number">0</span>; x++) &#123; </span><br><span class="line">    <span class="keyword">if</span> (cmdline[x] == <span class="string">'.'</span> &amp;&amp; y &lt;= <span class="number">8</span>) &#123; </span><br><span class="line">    y = <span class="number">8</span>; </span><br><span class="line"> &#125; <span class="keyword">else</span> &#123; </span><br><span class="line">    s[y] = cmdline[x]; </span><br><span class="line">    <span class="keyword">if</span> (<span class="string">'a'</span> &lt;= s[y] &amp;&amp; s[y] &lt;= <span class="string">'z'</span>) &#123; </span><br><span class="line">        <span class="comment">/*将小写字母转换成大写字母 */</span> </span><br><span class="line">        s[y] -= <span class="number">0x20</span>; </span><br><span class="line">    &#125; </span><br><span class="line">    y++; </span><br><span class="line">    &#125; </span><br><span class="line"> &#125; </span><br><span class="line"> <span class="comment">/*寻找文件*/</span> </span><br><span class="line"> <span class="keyword">for</span> (x = <span class="number">0</span>; x &lt; <span class="number">224</span>; ) &#123; </span><br><span class="line">    <span class="keyword">if</span> (finfo[x].name[<span class="number">0</span>] == <span class="number">0x00</span>) &#123; </span><br><span class="line">    <span class="keyword">break</span>; </span><br><span class="line"> &#125; </span><br><span class="line"> <span class="keyword">if</span> ((finfo[x].type &amp; <span class="number">0x18</span>) == <span class="number">0</span>) &#123; </span><br><span class="line">    <span class="keyword">for</span> (y = <span class="number">0</span>; y &lt; <span class="number">11</span>; y++) &#123; </span><br><span class="line">    <span class="keyword">if</span> (finfo[x].name[y] != s[y]) &#123; </span><br><span class="line">        <span class="keyword">goto</span> type_next_file; </span><br><span class="line">    &#125; </span><br><span class="line"> &#125; </span><br><span class="line"> <span class="keyword">break</span>; <span class="comment">/*找到文件*/</span> </span><br><span class="line"> &#125; </span><br><span class="line"> type_next_file: </span><br><span class="line"> x++; </span><br><span class="line"> &#125; </span><br><span class="line"> <span class="keyword">if</span> (x &lt; <span class="number">224</span> &amp;&amp; finfo[x].name[<span class="number">0</span>] != <span class="number">0x00</span>) &#123; </span><br><span class="line">    <span class="comment">/*找到文件的情况*/</span> </span><br><span class="line">    y = finfo[x].size;</span><br><span class="line">    p = (<span class="keyword">char</span> *) (finfo[x].clustno * <span class="number">512</span> + <span class="number">0x003e00</span> + ADR_DISKIMG); </span><br><span class="line">    cursor_x = <span class="number">8</span>; </span><br><span class="line"> <span class="keyword">for</span> (x = <span class="number">0</span>; x &lt; y; x++) &#123; </span><br><span class="line">    <span class="comment">/*逐字输出*/</span> </span><br><span class="line">    s[<span class="number">0</span>] = p[x]; </span><br><span class="line">    s[<span class="number">1</span>] = <span class="number">0</span>; </span><br><span class="line">    putfonts8_asc_sht(sheet, cursor_x, cursor_y, COL8_FFFFFF, COL8_000000, s, <span class="number">1</span>); </span><br><span class="line">     cursor_x += <span class="number">8</span>; </span><br><span class="line">    <span class="keyword">if</span> (cursor_x == <span class="number">8</span> + <span class="number">240</span>) &#123; <span class="comment">/*到达最右端后换行*/</span> </span><br><span class="line">    cursor_x = <span class="number">8</span>; </span><br><span class="line">    cursor_y = cons_newline(cursor_y, sheet); </span><br><span class="line">    &#125; </span><br><span class="line"> &#125; </span><br><span class="line"> &#125; <span class="keyword">else</span> &#123; </span><br><span class="line"> <span class="comment">/*没有找到文件的情况*/</span> </span><br><span class="line"> putfonts8_asc_sht(sheet, <span class="number">8</span>, cursor_y, COL8_FFFFFF, COL8_000000, <span class="string">"File </span></span><br><span class="line"><span class="string"> not found."</span>, <span class="number">15</span>); </span><br><span class="line"> cursor_y = cons_newline(cursor_y, sheet); </span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
-
 <h3 id="2-type命令改良"><a href="#2-type命令改良" class="headerlink" title="2.type命令改良"></a>2.type命令改良</h3><ul>
 <li><p>目标：实现对换行的支持。</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">0x09……制表符：显示空格直到 x 被 4 整除为止</span><br><span class="line">0x0a……换行符：换行</span><br><span class="line">0x0d……回车符：忽略</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>我们这里所说的制表符也称为水平制表符（horizonal tab），因为对齐字符位置是在水平方向上移动。相对的，还有一种垂直制表符（vertical tab）</p>
 </li>
-<li><p>在Windows中换行的字符编码为“0x0d 0x0a”两个字节，而Linux中只有“0x0a”一个字节。</p>
-<ul>
+<li>在Windows中换行的字符编码为“0x0d 0x0a”两个字节，而Linux中只有“0x0a”一个字节。<ul>
 <li>字符编码0x0a原本代表折行（line feed）的意思，即只是移动到下一行。</li>
 <li>0x0d，也就是回车符的文字编码，代表“让打印头（或者打字机的辊筒）回到行首”的意思，因此才被称为“回车”（carriage return）。</li>
 </ul>
@@ -373,7 +369,6 @@
 <li>文件相关函数 → file.c</li>
 </ul>
 <h3 id="5-第一个应用程序"><a href="#5-第一个应用程序" class="headerlink" title="5.第一个应用程序"></a>5.第一个应用程序</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[BITS 32] </span><br><span class="line">fin: </span><br><span class="line"> HLT </span><br><span class="line"> JMP fin</span><br></pre></td></tr></table></figure>
-
 <hr>
 <ul>
 <li>像type命令一样，我们用file_loadfile将文件的内容读到内存中</li>

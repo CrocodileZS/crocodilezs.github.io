@@ -60,17 +60,17 @@
   };
 </script>
 
-  <meta name="description" content="DAY22_用C语言编写应用程序1.保护操作系统（5）问题：在定时器上做手脚，光标闪烁变得异常缓慢，任务切换的速度也会变得缓慢。 [INSTRSET &amp;quot;i486p&amp;quot;] [BITS 32]     MOV AL,0x34     OUT 0x43,AL     MOV AL,0xff    OUT 0x40,AL     MOV AL,0xff     OUT 0x40,AL">
+  <meta name="description" content="DAY22_用C语言编写应用程序1.保护操作系统（5）问题：在定时器上做手脚，光标闪烁变得异常缓慢，任务切换的速度也会变得缓慢。[INSTRSET &amp;quot;i486p&amp;quot;] [BITS 32]     MOV AL,0x34     OUT 0x43,AL     MOV AL,0xff    OUT 0x40,AL     MOV AL,0xff     OUT 0x40,AL">
 <meta property="og:type" content="article">
 <meta property="og:title" content="30天自制操作系统（22）">
 <meta property="og:url" content="https://blog.crocodilezs.top/201904/30天自制操作系统（22）/index.html">
 <meta property="og:site_name" content="鰐魚先生的水族館">
-<meta property="og:description" content="DAY22_用C语言编写应用程序1.保护操作系统（5）问题：在定时器上做手脚，光标闪烁变得异常缓慢，任务切换的速度也会变得缓慢。 [INSTRSET &amp;quot;i486p&amp;quot;] [BITS 32]     MOV AL,0x34     OUT 0x43,AL     MOV AL,0xff    OUT 0x40,AL     MOV AL,0xff     OUT 0x40,AL">
+<meta property="og:description" content="DAY22_用C语言编写应用程序1.保护操作系统（5）问题：在定时器上做手脚，光标闪烁变得异常缓慢，任务切换的速度也会变得缓慢。[INSTRSET &amp;quot;i486p&amp;quot;] [BITS 32]     MOV AL,0x34     OUT 0x43,AL     MOV AL,0xff    OUT 0x40,AL     MOV AL,0xff     OUT 0x40,AL">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2019-09-27T10:11:44.897Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="30天自制操作系统（22）">
-<meta name="twitter:description" content="DAY22_用C语言编写应用程序1.保护操作系统（5）问题：在定时器上做手脚，光标闪烁变得异常缓慢，任务切换的速度也会变得缓慢。 [INSTRSET &amp;quot;i486p&amp;quot;] [BITS 32]     MOV AL,0x34     OUT 0x43,AL     MOV AL,0xff    OUT 0x40,AL     MOV AL,0xff     OUT 0x40,AL">
+<meta name="twitter:description" content="DAY22_用C语言编写应用程序1.保护操作系统（5）问题：在定时器上做手脚，光标闪烁变得异常缓慢，任务切换的速度也会变得缓慢。[INSTRSET &amp;quot;i486p&amp;quot;] [BITS 32]     MOV AL,0x34     OUT 0x43,AL     MOV AL,0xff    OUT 0x40,AL     MOV AL,0xff     OUT 0x40,AL">
   <link rel="alternate" href="/atom.xml" title="鰐魚先生的水族館" type="application/atom+xml">
   <link rel="canonical" href="https://blog.crocodilezs.top/201904/30天自制操作系统（22）/">
 
@@ -334,11 +334,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="DAY22-用C语言编写应用程序"><a href="#DAY22-用C语言编写应用程序" class="headerlink" title="DAY22_用C语言编写应用程序"></a>DAY22_用C语言编写应用程序</h1><h2 id="1-保护操作系统（5）"><a href="#1-保护操作系统（5）" class="headerlink" title="1.保护操作系统（5）"></a>1.保护操作系统（5）</h2><p>问题：在定时器上做手脚，光标闪烁变得异常缓慢，任务切换的速度也会变得缓慢。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[INSTRSET &quot;i486p&quot;] </span><br><span class="line">[BITS 32] </span><br><span class="line">    MOV AL,0x34 </span><br><span class="line">    OUT 0x43,AL </span><br><span class="line">    MOV AL,0xff</span><br><span class="line">    OUT 0x40,AL </span><br><span class="line">    MOV AL,0xff </span><br><span class="line">    OUT 0x40,AL</span><br><span class="line">    </span><br><span class="line">; 上述代码的功能与下面代码相当</span><br><span class="line">; io_out8(PIT_CTRL, 0x34); </span><br><span class="line">; io_out8(PIT_CNT0, 0xff); </span><br><span class="line">; io_out8(PIT_CNT0, 0xff); </span><br><span class="line"> </span><br><span class="line">    MOV EDX,4 </span><br><span class="line">    INT 0x40</span><br></pre></td></tr></table></figure>
-
+        <h1 id="DAY22-用C语言编写应用程序"><a href="#DAY22-用C语言编写应用程序" class="headerlink" title="DAY22_用C语言编写应用程序"></a>DAY22_用C语言编写应用程序</h1><h2 id="1-保护操作系统（5）"><a href="#1-保护操作系统（5）" class="headerlink" title="1.保护操作系统（5）"></a>1.保护操作系统（5）</h2><p>问题：在定时器上做手脚，光标闪烁变得异常缓慢，任务切换的速度也会变得缓慢。<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[INSTRSET &quot;i486p&quot;] </span><br><span class="line">[BITS 32] </span><br><span class="line">    MOV AL,0x34 </span><br><span class="line">    OUT 0x43,AL </span><br><span class="line">    MOV AL,0xff</span><br><span class="line">    OUT 0x40,AL </span><br><span class="line">    MOV AL,0xff </span><br><span class="line">    OUT 0x40,AL</span><br><span class="line">    </span><br><span class="line">; 上述代码的功能与下面代码相当</span><br><span class="line">; io_out8(PIT_CTRL, 0x34); </span><br><span class="line">; io_out8(PIT_CNT0, 0xff); </span><br><span class="line">; io_out8(PIT_CNT0, 0xff); </span><br><span class="line"> </span><br><span class="line">    MOV EDX,4 </span><br><span class="line">    INT 0x40</span><br></pre></td></tr></table></figure></p>
 <a id="more"></a>
-
 <ul>
 <li>执行CLI然后再HLT。由于不再产生定时器中断，任务切换也会停止，键盘和鼠标中断也停止响应。</li>
 </ul>
@@ -346,7 +343,6 @@
 <hr>
 <p>对栈异常的处理：<br>要想让它发现bug，最好能知道引发异常的指令的地址。</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">int *inthandler0c(int *esp) </span><br><span class="line">&#123; </span><br><span class="line"> struct CONSOLE *cons = (struct CONSOLE *) *((int *) 0x0fec); </span><br><span class="line"> struct TASK *task = task_now(); </span><br><span class="line"> char s[30]; /*这里！*/ </span><br><span class="line"> cons_putstr0(cons, &quot;\nINT 0C :\n Stack Exception.\n&quot;); </span><br><span class="line"> sprintf(s, &quot;EIP = %08X\n&quot;, esp[11]); /*这里！*/ </span><br><span class="line"> cons_putstr0(cons, s); /*这里！*/ </span><br><span class="line"> return &amp;(task-&gt;tss.esp0); /*强制结束程序*/ </span><br><span class="line">&#125; </span><br><span class="line">int *inthandler0d(int *esp) </span><br><span class="line">&#123; </span><br><span class="line"> struct CONSOLE *cons = (struct CONSOLE *) *((int *) 0x0fec); </span><br><span class="line"> struct TASK *task = task_now(); </span><br><span class="line"> char s[30]; /*这里！*/ </span><br><span class="line"> cons_putstr0(cons, &quot;\nINT 0D :\n General Protected Exception.\n&quot;); </span><br><span class="line"> sprintf(s, &quot;EIP = %08X\n&quot;, esp[11]); /*这里！*/ </span><br><span class="line"> cons_putstr0(cons, s); /*这里！*/ </span><br><span class="line"> return &amp;(task-&gt;tss.esp0); /*强制结束程序*/ </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <h2 id="3-强制结束应用程序"><a href="#3-强制结束应用程序" class="headerlink" title="3.强制结束应用程序"></a>3.强制结束应用程序</h2><ul>
 <li>如何实现？<br>将某一个键设定为强制结束键，按一下就可以结束程序。<br>把强制结束处理写在其他的任务中，bootpack.c</li>
 </ul>
@@ -362,15 +358,9 @@
 <li>数据段的大小根据.hrb文件中指定的值进行分配。</li>
 <li>将.hrb文件中的数据部分先复制到数据段后再启动程序。</li>
 </ul>
-<h2 id="6-显示窗口"><a href="#6-显示窗口" class="headerlink" title="6.显示窗口"></a>6.显示窗口</h2><p>编写一个用来显示窗口的API</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">EDX = 5 </span><br><span class="line">EBX = 窗口缓冲区</span><br><span class="line">ESI = 窗口在x轴方向上的大小（即窗口宽度）</span><br><span class="line">EDI = 窗口在y轴方向上的大小（即窗口高度）</span><br><span class="line">EAX = 透明色</span><br><span class="line">ECX = 窗口名称</span><br></pre></td></tr></table></figure>
-
-<h2 id="7-在窗口中描绘字符和方"><a href="#7-在窗口中描绘字符和方" class="headerlink" title="7.在窗口中描绘字符和方"></a>7.在窗口中描绘字符和方</h2><p>显示字符的API：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">EDX = 6 </span><br><span class="line">EBX = 窗口句柄</span><br><span class="line">ESI = 显示位置的x坐标</span><br><span class="line">EDI = 显示位置的y坐标</span><br><span class="line">EAX = 色号</span><br><span class="line">ECX = 字符串长度</span><br><span class="line">EBP = 字符串</span><br></pre></td></tr></table></figure>
-
-<p>描绘方块的API：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">EDX = 7 </span><br><span class="line">EBX = 窗口句柄</span><br><span class="line">EAX = x0 </span><br><span class="line">ECX = y0 </span><br><span class="line">ESI = x1 </span><br><span class="line">EDI = y1 </span><br><span class="line">EBP = 色号</span><br></pre></td></tr></table></figure>
-
+<h2 id="6-显示窗口"><a href="#6-显示窗口" class="headerlink" title="6.显示窗口"></a>6.显示窗口</h2><p>编写一个用来显示窗口的API<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">EDX = 5 </span><br><span class="line">EBX = 窗口缓冲区</span><br><span class="line">ESI = 窗口在x轴方向上的大小（即窗口宽度）</span><br><span class="line">EDI = 窗口在y轴方向上的大小（即窗口高度）</span><br><span class="line">EAX = 透明色</span><br><span class="line">ECX = 窗口名称</span><br></pre></td></tr></table></figure></p>
+<h2 id="7-在窗口中描绘字符和方"><a href="#7-在窗口中描绘字符和方" class="headerlink" title="7.在窗口中描绘字符和方"></a>7.在窗口中描绘字符和方</h2><p>显示字符的API：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">EDX = 6 </span><br><span class="line">EBX = 窗口句柄</span><br><span class="line">ESI = 显示位置的x坐标</span><br><span class="line">EDI = 显示位置的y坐标</span><br><span class="line">EAX = 色号</span><br><span class="line">ECX = 字符串长度</span><br><span class="line">EBP = 字符串</span><br></pre></td></tr></table></figure></p>
+<p>描绘方块的API：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">EDX = 7 </span><br><span class="line">EBX = 窗口句柄</span><br><span class="line">EAX = x0 </span><br><span class="line">ECX = y0 </span><br><span class="line">ESI = x1 </span><br><span class="line">EDI = y1 </span><br><span class="line">EBP = 色号</span><br></pre></td></tr></table></figure></p>
 
     </div>
 

@@ -63,7 +63,7 @@
   <meta name="description" content="🌟上个学期周文安老师教我们专业的机器学习课程，在讲每一个算法的时候老师都会强调数学推导的重要性。     她希望大家能够不仅仅会调库，还能明白算法最底层的原理，并且能够自己推导。然而上学期我在数学推导这里一直在划水😖，没有理解透各种推导过程，所以趁着寒假在家里比较有时间，把机器学习部分算法的数学推导部分补全。          🌟SVM算法的证明用到了求解对偶问题的思想，石川老师在">
 <meta name="keywords" content="机器学习,SVM,算法推导">
 <meta property="og:type" content="article">
-<meta property="og:title" content="支持向量机算法（Support Vector Machine Alg）的介绍及数学推导（未完待更）">
+<meta property="og:title" content="（更新于2月12日）支持向量机算法（Support Vector Machine Alg）的介绍及数学推导">
 <meta property="og:url" content="https://blog.crocodilezs.top/202002/支持向量机算法的介绍及数学推导/index.html">
 <meta property="og:site_name" content="鰐魚先生的水族館">
 <meta property="og:description" content="🌟上个学期周文安老师教我们专业的机器学习课程，在讲每一个算法的时候老师都会强调数学推导的重要性。     她希望大家能够不仅仅会调库，还能明白算法最底层的原理，并且能够自己推导。然而上学期我在数学推导这里一直在划水😖，没有理解透各种推导过程，所以趁着寒假在家里比较有时间，把机器学习部分算法的数学推导部分补全。          🌟SVM算法的证明用到了求解对偶问题的思想，石川老师在">
@@ -71,9 +71,11 @@
 <meta property="og:image" content="https://i.loli.net/2020/02/10/AU3tYprag8ckDGl.jpg">
 <meta property="og:image" content="https://i.loli.net/2020/02/10/MHhx6BwTSzrQqZL.jpg">
 <meta property="og:image" content="https://i.loli.net/2020/02/10/KpYh7ZNoMQCXDAH.jpg">
-<meta property="og:updated_time" content="2020-02-12T05:34:57.440Z">
+<meta property="og:image" content="https://i.loli.net/2020/02/12/PrVZwIlm2voCKHU.png">
+<meta property="og:image" content="https://i.loli.net/2020/02/12/4m8PjYT2iS9rsf3.jpg">
+<meta property="og:updated_time" content="2020-02-12T12:14:56.728Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="支持向量机算法（Support Vector Machine Alg）的介绍及数学推导（未完待更）">
+<meta name="twitter:title" content="（更新于2月12日）支持向量机算法（Support Vector Machine Alg）的介绍及数学推导">
 <meta name="twitter:description" content="🌟上个学期周文安老师教我们专业的机器学习课程，在讲每一个算法的时候老师都会强调数学推导的重要性。     她希望大家能够不仅仅会调库，还能明白算法最底层的原理，并且能够自己推导。然而上学期我在数学推导这里一直在划水😖，没有理解透各种推导过程，所以趁着寒假在家里比较有时间，把机器学习部分算法的数学推导部分补全。          🌟SVM算法的证明用到了求解对偶问题的思想，石川老师在">
 <meta name="twitter:image" content="https://i.loli.net/2020/02/10/AU3tYprag8ckDGl.jpg">
   <link rel="alternate" href="/atom.xml" title="鰐魚先生的水族館" type="application/atom+xml">
@@ -91,7 +93,7 @@
   };
 </script>
 
-  <title>支持向量机算法（Support Vector Machine Alg）的介绍及数学推导（未完待更） | 鰐魚先生的水族館</title>
+  <title>（更新于2月12日）支持向量机算法（Support Vector Machine Alg）的介绍及数学推导 | 鰐魚先生的水族館</title>
   
 
 
@@ -255,7 +257,7 @@
       <header class="post-header">
 
         
-          <h1 class="post-title" itemprop="name headline">支持向量机算法（Support Vector Machine Alg）的介绍及数学推导（未完待更）
+          <h1 class="post-title" itemprop="name headline">（更新于2月12日）支持向量机算法（Support Vector Machine Alg）的介绍及数学推导
 
             
           </h1>
@@ -316,7 +318,7 @@
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span>3.1k</span>
+              <span>5.5k</span>
             </span>
           
             <span class="post-meta-item" title="阅读时长">
@@ -326,7 +328,7 @@
               
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
               
-              <span>5 分钟</span>
+              <span>9 分钟</span>
             </span>
           
 
@@ -346,10 +348,9 @@
     🌟SVM算法的证明用到了求解对偶问题的思想，石川老师在课上也说过这个算法的证明过程非常🕺“漂亮”🚶‍♂️。所以数学推导这一系列我决定从SVM开始。<br>
 </div>
 
-<p>在学期中我也有尝试手推过一次 <code>SVM</code>，但是并不是很理解，尤其是几何间隔、函数间隔和对偶问题等概念都没有理解，而这些概念对于推导过程都十分重要。现在的这篇文章将会展开得更详细。<br>这是上学期的文章👉<a href="https://blog.crocodilezs.top/201911/Fisher%E7%AE%97%E6%B3%95&SVM&K-Means%E5%8F%8A%E5%85%B6%E4%BC%98%E5%8C%96/#more">SVM优化对偶问题的详细推导过程</a></p>
+<p>在学期中我也有尝试手推过一次 <code>SVM</code>，但是并不是很理解，<strong>尤其是几何间隔、函数间隔和对偶问题等概念都没有理解，而这些概念对于推导过程都十分重要。</strong>现在的这篇文章将会展开得更详细。<br>这是上学期的文章👉<a href="https://blog.crocodilezs.top/201911/Fisher%E7%AE%97%E6%B3%95&amp;SVM&amp;K-Means%E5%8F%8A%E5%85%B6%E4%BC%98%E5%8C%96/#more">SVM优化对偶问题的详细推导过程</a></p>
 <p>文章的大致思路是 <code>SVM</code> 的介绍、推导过程中的基本概念介绍、数学推导。我会把问题描述到最容易理解。参考资料主要有李航老师的《统计学习方法》、<a href="https://www.coursera.org/learn/machine-learning?" target="_blank" rel="noopener">吴恩达老师的机器学习课程</a>、<a href="https://scikit-learn.org/stable/modules/svm.html" target="_blank" rel="noopener">python scikit learn的官方文档</a>和上个学期的课件。</p>
 <a id="more"></a>
-
 <h1 id="支持向量机介绍"><a href="#支持向量机介绍" class="headerlink" title="支持向量机介绍"></a>支持向量机介绍</h1><blockquote>
 <p>支持向量机（support vector machines, <code>SVM</code>）是一种二分类模型。它的基本模型是定义在特征空间上的间隔最大的线性分类器，间隔最大使它有别于感知机，支持向量机还包括核技巧，这使它成为实质上的非线性分类器。（关于“间隔”、“核技巧”的介绍在下文中会讲）</p>
 </blockquote>
@@ -386,15 +387,35 @@
 </ol>
 <h1 id="相关定义和方法介绍"><a href="#相关定义和方法介绍" class="headerlink" title="相关定义和方法介绍"></a>相关定义和方法介绍</h1><h2 id="L0-L1-L2范数"><a href="#L0-L1-L2范数" class="headerlink" title="L0, L1, L2范数"></a><code>L0</code>, <code>L1</code>, <code>L2</code>范数</h2><p>直观地说，</p>
 <ol>
-<li><code>L0</code>范数：$||x||_0 := #(i)\ with\ x \not= 0$ 即<strong>向量中所有非零元素的个数</strong>；</li>
-<li><code>L1</code>范数：$||x||<em>1 := \sum</em>{i = 1}^n |x|$  即<strong>向量中所有元素绝对值的和</strong>；</li>
-<li><code>L2</code>范数：$||x||<em>2 := \sqrt{\sum</em>{i = 1}^n x^2}$ 即<strong>欧几里得（Euclidean）范数</strong>；</li>
+<li><code>L0</code>范数：$||x||_0 := \sum_{i = 1}^n x^0$ 即<strong>向量中所有非零元素的个数</strong>；</li>
+<li><code>L1</code>范数：$||x||_1 := \sum_{i = 1}^n |x|$  即<strong>向量中所有元素绝对值的和</strong>；</li>
+<li><code>L2</code>范数：$||x||_2 := \sqrt{\sum_{i = 1}^n x^2}$ 即<strong>欧几里得（Euclidean）范数</strong>；</li>
 </ol>
 <p>范数是一个函数，其赋予某个向量空间（或矩阵）中的每个向量以长度或大小。对于零向量，另其长度为零。<br>直观的说，向量或矩阵的范数越大，则我们可以说这个向量或矩阵也就越大。有时范数有很多更为常见的叫法，如绝对值其实便是一维向量空间中实数或复数的范数，而Euclidean距离也是一种范数。</p>
 <p><strong>p范数（p-norm）的表达公式</strong>：</p>
-<p>$$||x||<em>p := (\sum</em>{i = 1}^n x^p)^{\frac{1}{p}}$$ </p>
-<h2 id="函数间隔和几何间隔"><a href="#函数间隔和几何间隔" class="headerlink" title="函数间隔和几何间隔"></a>函数间隔和几何间隔</h2><p>我们回到最开始的二分类问题，</p>
-<h2 id="拉格朗日对偶性"><a href="#拉格朗日对偶性" class="headerlink" title="拉格朗日对偶性"></a>拉格朗日对偶性</h2><h2 id="核技巧"><a href="#核技巧" class="headerlink" title="核技巧"></a>核技巧</h2><h1 id="支持向量机数学推导"><a href="#支持向量机数学推导" class="headerlink" title="支持向量机数学推导"></a>支持向量机数学推导</h1><h2 id="线性可分支持向量机"><a href="#线性可分支持向量机" class="headerlink" title="线性可分支持向量机"></a>线性可分支持向量机</h2><h2 id="线性支持向量机"><a href="#线性支持向量机" class="headerlink" title="线性支持向量机"></a>线性支持向量机</h2><h2 id="非线性支持向量机"><a href="#非线性支持向量机" class="headerlink" title="非线性支持向量机"></a>非线性支持向量机</h2><h1 id="归纳和总结"><a href="#归纳和总结" class="headerlink" title="归纳和总结"></a>归纳和总结</h1><p>##参考资料<br><a href="https://www.jianshu.com/p/de05e6745fb6" target="_blank" rel="noopener">L0, L1, L2范数及其应用</a></p>
+<script type="math/tex; mode=display">||x||_p := (\sum_{i = 1}^n x^p)^{\frac{1}{p}}</script><h2 id="函数间隔和几何间隔"><a href="#函数间隔和几何间隔" class="headerlink" title="函数间隔和几何间隔"></a>函数间隔和几何间隔</h2><p>首先在这里补充<strong>超平面</strong>的概念，<strong>超平面</strong>即分离不同类样本的分界面，在二维空间中的超平面就是线。</p>
+<p>我们回到最开始的二分类问题，如<code>pic3</code>所示。<br><a href="https://sm.ms/image/PrVZwIlm2voCKHU" target="_blank"><img src="https://i.loli.net/2020/02/12/PrVZwIlm2voCKHU.png" alt="几何间隔示意图" width="350" height="350"></a></p>
+<p>假设我们用直线 $l_2$ 对样例进行划分，图中的横轴表示样例的第一个属性$x^{(1)}$ ，纵轴表示样例的第二个属性 $x^{(2)}$。图中的点 $m_1(x_1^{(1)}, x_1^{(2)})$ 和 $m_2(x_2^{(1)}, x_2^{(2)})$ 都被划分为正类。一般来说，一个点距离超平面的远近可以表示分类预测确信程度，距离超平面越远的点确信程度越高，这个从直观上也比较容易理解。  </p>
+<p>假设图中 $l_2$ 的方程确定为 $w_1x^{(1)} + w_2x^{(2)} + b = 0$ ，通过点到直线的距离公式$d = \frac{|w_1x^{(1)} + w_2x^{(2)} + b|}{\sqrt{w_1^2 + w_2^2}}$ 我们可以求得 $m_1$ 和 $m_2$ 到超平面的距离，以此来评判这些点分类的确信程度。这里的 $d$ 就被我们称为<strong>几何间隔</strong>。  </p>
+<p>但如果我们仅仅想比较点 $m_1$ 和 $m_2$ 确信程度的大小，我们可以仅用距离公式的分子：$d’ = |w_1x^{(1)} + w_2x^{(2)} + b|$ 进行比较，因为同一条直线分类的点的分母都是相同的。这里的 $d’$ 我们称为<strong>函数间隔</strong>。 $d’$ 在图中的几何意义表示如下图所示：</p>
+<p><a href="https://sm.ms/image/4m8PjYT2iS9rsf3" target="_blank"><img src="https://i.loli.net/2020/02/12/4m8PjYT2iS9rsf3.jpg" alt="函数间隔示意图" width="350" height="350"></a></p>
+<p>一般来说，在超平面 $w·x+b=0$ 确定的情况下，$|w·x+b|$ 能够相对地表示点$x$距离超平面的远近，而 $w·x+b$ 的符号与类标记 $y$ 的符号是否一致能够表示分类是否正确。（在这里 $y$ 表示样本的标签）所以可以用$\gamma_i =  y_i(w·x_i+b)$ 来表示点 $m_i$ 分类的正确性及确信度，这就是样本的函数间隔的概念。</p>
+<p>定义超平面 $(w, b)$ 关于训练数据集 $T$ 的函数间隔为超平面$(w, b)$ 关于 $T$ 中所有样本点$(x_i, y_i)$ 的函数间隔的最小值，即：</p>
+<script type="math/tex; mode=display">\gamma = min_{i=1,...,N}\gamma_i</script><h2 id="拉格朗日对偶性"><a href="#拉格朗日对偶性" class="headerlink" title="拉格朗日对偶性"></a>拉格朗日对偶性</h2><p>首先举例直观理解，求解 $min_xmax_{\alpha, \beta} L(x, \alpha, \beta)$ 和求解 $max_{\alpha, \beta}min_x L(x, \alpha, \beta)$ 是对偶问题。前者是极小极大问题，后者是极大极小问题。</p>
+<p>在约束优化问题中，常常利用拉格朗日对偶性（Lagrange duality）将原始问题转换为对偶问题，<strong>通过对偶问题而得到原始问题的解</strong>。该方法应用在许多统计学习方法中，例如，最大熵模型与支持向量机。这里简要叙述拉格朗日对偶性的主要概念和结果。</p>
+<h3 id="原始问题"><a href="#原始问题" class="headerlink" title="原始问题"></a>原始问题</h3><p>假设$f(x)$, $c_i(x)$, $h_j(x)$  是定义在 $R^n$ 的连续可微函数。考虑约束最优化问题：</p>
+<script type="math/tex; mode=display">min_{x \in R^n} f(x) \tag {C.1}</script><script type="math/tex; mode=display">s.t. c_i(x) \leq 0, i = 1, 2, ..., k \tag {C.2}</script><script type="math/tex; mode=display">h_j(x)=0, j=1,2,...,l \tag {C.3}</script><p>称此最优化问题为原始最优化问题或原始问题。</p>
+<p>首先引进广义拉格朗日函数（generalized Lagrange function）</p>
+<script type="math/tex; mode=display">L(x, \alpha, \beta) = f(x)+\sum_{i=0}^k\alpha_ic_i(x)+\sum_{j=1}^l\beta_jh_j(x) \tag {C.4}</script><p>这里，$x=(x^{(1)}, x^{(2)}, …, x^{(3)})^T \in R^n$ ，$\alpha_i, \beta_j$ 是拉格朗日乘子，$\alpha \geq 0$。考虑 $x$ 的函数：</p>
+<script type="math/tex; mode=display">\theta_P(x) = max_{\alpha,\beta:\alpha_i \geq 0} L(x, \alpha, \beta) \tag {C.5}</script><p>这里，下表 $P$ 表示原始问题。</p>
+<p>假设给定某个$x$。如果 $x$ 违反原始问题的约束条件，即存在某个 $i$ 使得 $c_i(x) &gt; 0$ 或者存在某个 $j$ 使得 $h_j(x) \neq 0$，那么就有</p>
+<script type="math/tex; mode=display">\theta_P(x) = max_{\alpha, \beta:\alpha_i \geq 0} [f(x)+\sum_{i=0}^k\alpha_ic_i(x)+\sum_{j=1}^l\beta_jh_j(x)]=+ \infty \tag {C.6}</script><p>因为若某个 $i$ 使约束 $c_i(x) &gt; 0$ ，则可令 $\alpha_i \rightarrow + \infty $ ，若某个 $j$ 使 $h_j(x) \neq 0$，则可令 $\beta_j$ 使 $\beta_jh_j(x) \rightarrow + \infty$  ，而将其余各 $\alpha_i$， $\beta_j$ 均取为0.</p>
+<p>相反地，如果 $x$ 满足约束条件$(C.2)$ 和$(C.3)$ ，此时 $\theta_P(x)=f(x)$.</p>
+<p>所以，如果考虑极小化问题</p>
+<script type="math/tex; mode=display">min_x\theta_P(x) = min_x max_{\alpha, \beta:\alpha_i \geq 0} L(x, \alpha, \beta)</script><p>$min_x max_{\alpha, \beta:\alpha_i \geq 0} L(x, \alpha, \beta)$ 称为广义拉格朗日函数的极小极大问题。</p>
+<p>为了方便，定义原始问题的最优值</p>
+<script type="math/tex; mode=display">p* = min_x\theta_P(x)</script><h3 id="对偶问题"><a href="#对偶问题" class="headerlink" title="对偶问题"></a>对偶问题</h3><script type="math/tex; mode=display">\theta_D(x) = min_{x} L(x, \alpha, \beta) \tag {C.8}</script><p>再考虑</p>
+<h2 id="核技巧"><a href="#核技巧" class="headerlink" title="核技巧"></a>核技巧</h2><h1 id="支持向量机数学推导"><a href="#支持向量机数学推导" class="headerlink" title="支持向量机数学推导"></a>支持向量机数学推导</h1><h2 id="线性可分支持向量机"><a href="#线性可分支持向量机" class="headerlink" title="线性可分支持向量机"></a>线性可分支持向量机</h2><h2 id="线性支持向量机"><a href="#线性支持向量机" class="headerlink" title="线性支持向量机"></a>线性支持向量机</h2><h2 id="非线性支持向量机"><a href="#非线性支持向量机" class="headerlink" title="非线性支持向量机"></a>非线性支持向量机</h2><h1 id="归纳和总结"><a href="#归纳和总结" class="headerlink" title="归纳和总结"></a>归纳和总结</h1><h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="https://www.jianshu.com/p/de05e6745fb6" target="_blank" rel="noopener">L0, L1, L2范数及其应用</a></p>
 
     </div>
 
@@ -747,7 +768,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#支持向量机介绍"><span class="nav-text">支持向量机介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#支持向量机的应用"><span class="nav-text">支持向量机的应用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#直观理解支持向量机"><span class="nav-text">直观理解支持向量机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#支持向量机的优势和劣势"><span class="nav-text">支持向量机的优势和劣势</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#支持向量机的优势"><span class="nav-text">支持向量机的优势</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#支持向量机的劣势"><span class="nav-text">支持向量机的劣势</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#支持向量机的分类"><span class="nav-text">支持向量机的分类</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#相关定义和方法介绍"><span class="nav-text">相关定义和方法介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#L0-L1-L2范数"><span class="nav-text">L0, L1, L2范数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数间隔和几何间隔"><span class="nav-text">函数间隔和几何间隔</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#拉格朗日对偶性"><span class="nav-text">拉格朗日对偶性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#核技巧"><span class="nav-text">核技巧</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#支持向量机数学推导"><span class="nav-text">支持向量机数学推导</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#线性可分支持向量机"><span class="nav-text">线性可分支持向量机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#线性支持向量机"><span class="nav-text">线性支持向量机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#非线性支持向量机"><span class="nav-text">非线性支持向量机</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#归纳和总结"><span class="nav-text">归纳和总结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#支持向量机介绍"><span class="nav-text">支持向量机介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#支持向量机的应用"><span class="nav-text">支持向量机的应用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#直观理解支持向量机"><span class="nav-text">直观理解支持向量机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#支持向量机的优势和劣势"><span class="nav-text">支持向量机的优势和劣势</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#支持向量机的优势"><span class="nav-text">支持向量机的优势</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#支持向量机的劣势"><span class="nav-text">支持向量机的劣势</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#支持向量机的分类"><span class="nav-text">支持向量机的分类</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#相关定义和方法介绍"><span class="nav-text">相关定义和方法介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#L0-L1-L2范数"><span class="nav-text">L0, L1, L2范数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数间隔和几何间隔"><span class="nav-text">函数间隔和几何间隔</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#拉格朗日对偶性"><span class="nav-text">拉格朗日对偶性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#原始问题"><span class="nav-text">原始问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对偶问题"><span class="nav-text">对偶问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#核技巧"><span class="nav-text">核技巧</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#支持向量机数学推导"><span class="nav-text">支持向量机数学推导</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#线性可分支持向量机"><span class="nav-text">线性可分支持向量机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#线性支持向量机"><span class="nav-text">线性支持向量机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#非线性支持向量机"><span class="nav-text">非线性支持向量机</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#归纳和总结"><span class="nav-text">归纳和总结</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-text">参考资料</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -905,7 +926,6 @@
   
     
       <script type="text/x-mathjax-config">
-    MathJax.Ajax.config.path['mhchem'] = '//cdn.jsdelivr.net/npm/mathjax-mhchem@3';
 
   MathJax.Hub.Config({
     tex2jax: {
@@ -914,7 +934,6 @@
       skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
     },
     TeX: {
-        extensions: ['[mhchem]/mhchem.js'],
       equationNumbers: {
         autoNumber: 'AMS'
       }
@@ -947,7 +966,7 @@
   });
 </script>
 <script>
-  NexT.utils.getScript('', function() {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML', function() {
     MathJax.Hub.Typeset();
   }, window.MathJax);
 </script>

@@ -247,7 +247,7 @@
         
           <h1 class="post-title" itemprop="name headline">
               
-              <a href="/202002/支持向量机算法的介绍及数学推导/" class="post-title-link" itemprop="url">支持向量机算法（Support Vector Machine Alg）的介绍及数学推导（未完待更）</a>
+              <a href="/202002/支持向量机算法的介绍及数学推导/" class="post-title-link" itemprop="url">（更新于2月12日）支持向量机算法（Support Vector Machine Alg）的介绍及数学推导</a>
             
           </h1>
         
@@ -293,7 +293,7 @@
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span>3.1k</span>
+              <span>5.5k</span>
             </span>
           
             <span class="post-meta-item" title="阅读时长">
@@ -303,7 +303,7 @@
               
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
               
-              <span>5 分钟</span>
+              <span>9 分钟</span>
             </span>
           
 
@@ -323,7 +323,7 @@
     🌟SVM算法的证明用到了求解对偶问题的思想，石川老师在课上也说过这个算法的证明过程非常🕺“漂亮”🚶‍♂️。所以数学推导这一系列我决定从SVM开始。<br>
 </div>
 
-<p>在学期中我也有尝试手推过一次 <code>SVM</code>，但是并不是很理解，尤其是几何间隔、函数间隔和对偶问题等概念都没有理解，而这些概念对于推导过程都十分重要。现在的这篇文章将会展开得更详细。<br>这是上学期的文章👉<a href="https://blog.crocodilezs.top/201911/Fisher%E7%AE%97%E6%B3%95&SVM&K-Means%E5%8F%8A%E5%85%B6%E4%BC%98%E5%8C%96/#more">SVM优化对偶问题的详细推导过程</a></p>
+<p>在学期中我也有尝试手推过一次 <code>SVM</code>，但是并不是很理解，<strong>尤其是几何间隔、函数间隔和对偶问题等概念都没有理解，而这些概念对于推导过程都十分重要。</strong>现在的这篇文章将会展开得更详细。<br>这是上学期的文章👉<a href="https://blog.crocodilezs.top/201911/Fisher%E7%AE%97%E6%B3%95&amp;SVM&amp;K-Means%E5%8F%8A%E5%85%B6%E4%BC%98%E5%8C%96/#more">SVM优化对偶问题的详细推导过程</a></p>
 <p>文章的大致思路是 <code>SVM</code> 的介绍、推导过程中的基本概念介绍、数学推导。我会把问题描述到最容易理解。参考资料主要有李航老师的《统计学习方法》、<a href="https://www.coursera.org/learn/machine-learning?" target="_blank" rel="noopener">吴恩达老师的机器学习课程</a>、<a href="https://scikit-learn.org/stable/modules/svm.html" target="_blank" rel="noopener">python scikit learn的官方文档</a>和上个学期的课件。</p>
           <!--noindex-->
           
@@ -661,7 +661,7 @@
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span>716</span>
+              <span>715</span>
             </span>
           
             <span class="post-meta-item" title="阅读时长">
@@ -915,7 +915,7 @@
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span>951</span>
+              <span>950</span>
             </span>
           
             <span class="post-meta-item" title="阅读时长">
@@ -1923,7 +1923,6 @@
   
     
       <script type="text/x-mathjax-config">
-    MathJax.Ajax.config.path['mhchem'] = '//cdn.jsdelivr.net/npm/mathjax-mhchem@3';
 
   MathJax.Hub.Config({
     tex2jax: {
@@ -1932,7 +1931,6 @@
       skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
     },
     TeX: {
-        extensions: ['[mhchem]/mhchem.js'],
       equationNumbers: {
         autoNumber: 'AMS'
       }
@@ -1965,7 +1963,7 @@
   });
 </script>
 <script>
-  NexT.utils.getScript('', function() {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML', function() {
     MathJax.Hub.Typeset();
   }, window.MathJax);
 </script>

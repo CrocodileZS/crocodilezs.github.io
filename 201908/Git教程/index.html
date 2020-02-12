@@ -351,14 +351,12 @@
 <ol>
 <li><p>选择一个合适的地方创建一个空目录</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ mkdir /e/learngit</span><br><span class="line">$ cd learngit</span><br><span class="line">$ pwd</span><br><span class="line">/e/learngit</span><br></pre></td></tr></table></figure>
-
 <p>mkdir 在指定目录创建文件  </p>
 <p>cd 定位  </p>
 <p>pwd 显示当前目录</p>
 </li>
 <li><p>通过git init命令把这个目录变成Git可以管理的仓库。</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">$</span> git init</span><br></pre></td></tr></table></figure>
-
 <p>发现当前目录下多了一个.git的目录，这个目录是Git来跟踪管理版本库的，没事不要手动修改这个目录里的文件，不然会把Git仓库破坏了。</p>
 </li>
 </ol>
@@ -373,26 +371,20 @@
 </li>
 <li><p>git add添加文件到仓库</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ git add readme.txt</span><br></pre></td></tr></table></figure>
-
-
-
 </li>
 </ul>
 <ul>
 <li><p>用命令git commit告诉Git，把文件提交到仓库。</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ git commit -m &quot;write a readme file&quot;</span><br></pre></td></tr></table></figure>
-
 <p>为什么需要add,commit两步呢？因为commit可以一次提交很多文件，所以可以多次add不同的文件。</p>
 </li>
 </ul>
 <h2 id="二、-时空穿梭机"><a href="#二、-时空穿梭机" class="headerlink" title="二、 时空穿梭机"></a>二、 时空穿梭机</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git status</span><br></pre></td></tr></table></figure>
-
 <p>掌握工作区的状态。</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git diff</span><br></pre></td></tr></table></figure>
-
 <p>查看修改内容。</p>
 <h3 id="1-版本回退"><a href="#1-版本回退" class="headerlink" title="1. 版本回退"></a>1. 版本回退</h3><ul>
-<li>Head指向的版本就是当前版本，因此，Git允许我们在版本的历史之间穿梭，使用命令git reset –hard commit_id</li>
+<li>Head指向的版本就是当前版本，因此，Git允许我们在版本的历史之间穿梭，使用命令git reset —hard commit_id</li>
 <li>穿梭前，用git log可以查看提交历史，以便确定要回退到哪个版本。</li>
 <li>要重返未来，用git reflog 查看历史命令，以便确定要回到未来的哪个版本。</li>
 </ul>
@@ -409,20 +401,17 @@
 </ul>
 <h3 id="3-管理修改"><a href="#3-管理修改" class="headerlink" title="3. 管理修改"></a>3. 管理修改</h3><p>Git跟踪并管理的是修改，而非文件。</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git diff HEAD -- readme.txt</span><br></pre></td></tr></table></figure>
-
 <p>查看工作区和版本库里面最新版本的区别。</p>
 <p>每次修改，如果不用git add到暂存区，那就不会加入到commit中。</p>
 <h3 id="4-撤销修改"><a href="#4-撤销修改" class="headerlink" title="4. 撤销修改"></a>4. 撤销修改</h3><ul>
 <li><p>撤销工作区</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ git checkout -- readme.txt</span><br></pre></td></tr></table></figure>
-
 </li>
 </ul>
 <p>把readme.txt文件在工作区的修改全部撤销（在没有add之前，在工作区。等效于手动删除。）</p>
 <ul>
 <li><p>撤销暂存区</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ git reset HEAD readme.txt</span><br></pre></td></tr></table></figure>
-
 <p>然后再按情况1撤销工作区。</p>
 </li>
 <li><p>撤销分支</p>
@@ -434,7 +423,6 @@
 <li>删除分支上的文件</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ git rm test.txt</span><br><span class="line">$ git commit</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li><p>误删了，要恢复</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ git checkout -- test.txt</span><br></pre></td></tr></table></figure></li>

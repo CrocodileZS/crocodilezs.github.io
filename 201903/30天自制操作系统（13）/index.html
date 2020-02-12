@@ -339,13 +339,10 @@
       
         <h1 id="DAY13-定时器（2）"><a href="#DAY13-定时器（2）" class="headerlink" title="DAY13_定时器（2）"></a>DAY13_定时器（2）</h1><h2 id="1-简化字符串显示"><a href="#1-简化字符串显示" class="headerlink" title="1. 简化字符串显示"></a>1. 简化字符串显示</h2><ul>
 <li>将“涂背景色、写字符、完成刷新”写进一个函数，更方便使用<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">void putfonts8_asc_sht(struct SHEET *sht, int x, int y, int c, int b, char *s, int l) </span><br><span class="line">&#123; </span><br><span class="line">     boxfill8(sht-&gt;buf, sht-&gt;bxsize, b, x, y, x + l * 8 - 1, y + 15); </span><br><span class="line">     putfonts8_asc(sht-&gt;buf, sht-&gt;bxsize, x, y, c, s); </span><br><span class="line">     sheet_refresh(sht, x, y, x + l * 8, y + 16); </span><br><span class="line">     return; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 </li>
 </ul>
 <a id="more"></a>
-
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">x, y ...... 显示位置的坐标</span><br><span class="line">c ...... 字符颜色（color）</span><br><span class="line">b ...... 背景颜色（back color）</span><br><span class="line">s ...... 字符串（string）</span><br><span class="line">l ...... 字符串长度（length）</span><br></pre></td></tr></table></figure>
-
 <h2 id="2-重新调整FIFO缓冲区（1）"><a href="#2-重新调整FIFO缓冲区（1）" class="headerlink" title="2.重新调整FIFO缓冲区（1）"></a>2.重新调整FIFO缓冲区（1）</h2><ul>
 <li>将定时器用的多个FIFO缓冲区都集中成一个，往FIFO写入不同的数据，就能够正常地分辨出是哪个寄存器超时了。</li>
 </ul>
@@ -357,13 +354,11 @@
 <li>把3个定时器全部归纳到一个FIFO缓冲区中，就可以把键盘和鼠标归纳起来，只用1个FIFO缓冲区。</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">0～ 1…………………光标闪烁用定时器</span><br><span class="line">3…………………3秒定时器</span><br><span class="line">10…………………10秒定时器</span><br><span class="line">256～ 511…………………键盘输入（从键盘控制器读入的值再加上256）</span><br><span class="line">512～ 767……鼠标输入（从键盘控制器读入的值再加上512）</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>此次我们改写最多的是HariMain。在HariMain里，执行“count++;”语句和查询FIFO缓冲区中是否有数据这两个操作，是多次交互进行的。这次修改以后，程序只需要看1个FIFO缓冲区就行了，而以前要看3个。也就是说，FIFO缓冲区的查询能够更快完成，从而使得“count++;”语句执行的次数更多。</li>
 </ul>
 <h2 id="5-加快中断处理（4）"><a href="#5-加快中断处理（4）" class="headerlink" title="5.加快中断处理（4）"></a>5.加快中断处理（4）</h2><ul>
-<li><p>在FIFO里有一个取代移位处理的方法：读取一个数据以后不是让后面的数据向前靠齐，而是<br>改变下一次的数据读取地址。这是一个很巧妙的方法，但不适用于定时器。因为从timers[ ]中去除超时的中断时，这个方法虽然不错，但问题在于，用timer_settime登录中断时，后面的中断必须后移，在这一点上，以上方法不太好。</p>
-</li>
+<li>在FIFO里有一个取代移位处理的方法：读取一个数据以后不是让后面的数据向前靠齐，而是<br>改变下一次的数据读取地址。这是一个很巧妙的方法，但不适用于定时器。因为从timers[ ]中去除超时的中断时，这个方法虽然不错，但问题在于，用timer_settime登录中断时，后面的中断必须后移，在这一点上，以上方法不太好。</li>
 <li><p>更好的方法：我们在结构体struct TIMER中加入next变量。这是个地址变量，用来存放下一个即将超时的定时器的地址。<br><img src="https://s2.ax1x.com/2019/03/31/ArHaKx.jpg" alt="13.1"></p>
 </li>
 <li><p>判断一下顺序，如果我们知道了插入的位置（即知道了在s和t中间插入的话），就可以像下图那样把数据重新连接起来。也就是仅仅改变s-&gt;next和timer-&gt;next的值就可以了。</p>

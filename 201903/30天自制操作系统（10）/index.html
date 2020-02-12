@@ -335,7 +335,6 @@
 
       
         <h1 id="DAY10-叠加处理"><a href="#DAY10-叠加处理" class="headerlink" title="DAY10_叠加处理"></a>DAY10_叠加处理</h1><h2 id="1-内存管理（续）"><a href="#1-内存管理（续）" class="headerlink" title="1.内存管理（续）"></a>1.内存管理（续）</h2><a id="more"></a>
-
 <ul>
 <li>memory.c中增加了“向上舍入”的部分，即我们要编写一些总是以0x1000字节为单位进行内存分配和释放的函数，它们会把指定的内存大小按0x1000字节为单位向上舍入（ roundup）。</li>
 <li>从向下舍入开始<br>要想把十六进制的某一位设置为0，同样只进行“与运算”就可以。</li>
@@ -350,7 +349,6 @@
 <li>sheet_free释放已使用图层的内存的函数。</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">struct SHTCTL *shtctl_init(struct MEMMAN *memman, unsigned char *vram, int xsize, int ysize) </span><br><span class="line">&#123; </span><br><span class="line">     struct SHTCTL *ctl; </span><br><span class="line">     int i; </span><br><span class="line">     ctl = (struct SHTCTL *) memman_alloc_4k(memman, sizeof (struct SHTCTL)); </span><br><span class="line">     if (ctl == 0) &#123; </span><br><span class="line">     goto err; </span><br><span class="line">     &#125; </span><br><span class="line">         ctl-&gt;vram = vram; </span><br><span class="line">         ctl-&gt;xsize = xsize; </span><br><span class="line">         ctl-&gt;ysize = ysize; </span><br><span class="line">         ctl-&gt;top = -1; /*一个SHEET没都有 */ </span><br><span class="line">         for (i = 0; i &lt; MAX_SHEETS; i++) &#123; </span><br><span class="line">         ctl-&gt;sheets0[i].flags = 0; /* 标记为未使用 */ </span><br><span class="line">        &#125; </span><br><span class="line">    err: </span><br><span class="line">     return ctl; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p>首先使用memman_alloc_4k来分配用于记忆图层控制变量的内存空间，这时必须指定该变量所占空间的大小，不过我们可以使用sizeof（struct SHTCTL）这种写法，让C编译器自动计算。只要写sizeof（变量型），C编译器就会计算出该变量型所需的字节数。<br>接着，我们给控制变量赋值，给其下的所有图层变量都加上“未使用”标签。</p>
 <h2 id="3-提高叠加处理速度（1）"><a href="#3-提高叠加处理速度（1）" class="headerlink" title="3.提高叠加处理速度（1）"></a>3.提高叠加处理速度（1）</h2><ul>
 <li>只需要重新描绘鼠标移动相关的部分，也就是移动前后的部分就可以了，即256×2=512个像素。这只是64 000像素的0.8%而已，所以有望提速很多。现在我们根据这个思路写一下程序。</li>

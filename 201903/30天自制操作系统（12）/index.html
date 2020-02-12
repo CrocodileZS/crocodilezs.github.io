@@ -341,7 +341,6 @@
 <li>有了定时器中断，程序只需要以自己的步调处理自己的问题就可以了。至于到底经过了多少时间，只要在中断处理程序中数一数定时器中断发生的次数就可以了。</li>
 </ul>
 <a id="more"></a>
-
 <hr>
 <ul>
 <li>要在电脑中管理定时器，只需要对PIT（Programmable Interval Timer可编程的间隔型定时器）进行设定就可以了。通过设定PIT，让定时器每隔多少秒就产生一次中断。</li>
@@ -354,7 +353,6 @@
 <li>让中断执行下面的程序</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">struct TIMERCTL &#123; </span><br><span class="line">    unsigned int count; </span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>实现方法<ul>
 <li>定义struct TIMERCTL结构体，在结构体内定义一个计数变量。</li>
@@ -369,7 +367,6 @@
 <li>超时（timeout）：过了一段时间，定时器提示操作系统。</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">struct TIMERCTL &#123; </span><br><span class="line">     unsigned int count; </span><br><span class="line">     unsigned int timeout; </span><br><span class="line">     struct FIFO8 *fifo; </span><br><span class="line">     unsigned char data; </span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
 <p>timeout用于记录离超时还有多长时间，当剩余时间到达0时，程序就往IFIFO缓冲区里发送数据。</p>
 <h2 id="4-设定多个定时器"><a href="#4-设定多个定时器" class="headerlink" title="4.设定多个定时器"></a>4.设定多个定时器</h2><ul>
 <li>在上一节做的超时功能，超时结束后如果再设定1000的话，那我们就可以让它每10秒显示一<br>次，或是让它一闪一灭地显示。</li>
@@ -377,7 +374,7 @@
 </ul>
 <h2 id="5-加快中断处理（1）"><a href="#5-加快中断处理（1）" class="headerlink" title="5.加快中断处理（1）"></a>5.加快中断处理（1）</h2><ul>
 <li>问题：inthandler20中断花费了很长的时间</li>
-<li>优化部分：现每次进行定时器中断处理的时候，都会对所有活动中的定时器进行“timerctl.timer[i].timeout–;”处理。也就是说，CPU要完成从内存中读取变量值，减去1，然后又往内存中写入的操作。</li>
+<li>优化部分：现每次进行定时器中断处理的时候，都会对所有活动中的定时器进行“timerctl.timer[i].timeout—;”处理。也就是说，CPU要完成从内存中读取变量值，减去1，然后又往内存中写入的操作。</li>
 <li>time[i].timeout不再是“所剩时间”而是“予定时刻”，将timerctl.count和timer[i].timeout进行比较，不用再经过内存计算。</li>
 <li>问题：count设定成最大值，一段时间后需要重新启动操作系统。</li>
 </ul>

@@ -341,22 +341,18 @@
 <li>如果我们想要运行三个任务的话，就必须改写mt_taskswitch的代码。如果能像当初定时器和窗口背景的做法一样更好。</li>
 </ul>
 <a id="more"></a>
-
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">struct TASKCTL *taskctl; </span><br><span class="line">struct TIMER *task_timer; </span><br><span class="line">struct TASK *task_init(struct MEMMAN *memman) </span><br><span class="line">&#123; </span><br><span class="line">     int i; </span><br><span class="line">     struct TASK *task; </span><br><span class="line">     struct SEGMENT_DESCRIPTOR *gdt = (struct SEGMENT_DESCRIPTOR *) ADR_GDT; </span><br><span class="line">     taskctl = (struct TASKCTL *) memman_alloc_4k(memman, sizeof (struct TASKCTL)); </span><br><span class="line">     for (i = 0; i &lt; MAX_TASKS; i++) &#123; </span><br><span class="line">         taskctl-&gt;tasks0[i].flags = 0; </span><br><span class="line">         taskctl-&gt;tasks0[i].sel = (TASK_GDT0 + i) * 8; </span><br><span class="line">         set_segmdesc(gdt + TASK_GDT0 + i, 103, (int) &amp;taskctl-&gt;tasks0[i].tss, AR_TSS32); </span><br><span class="line">     &#125; </span><br><span class="line">     task = task_alloc();</span><br><span class="line">     task-&gt;flags = 2; /*活动中标志*/ </span><br><span class="line">     taskctl-&gt;running = 1; </span><br><span class="line">     taskctl-&gt;now = 0; </span><br><span class="line">     taskctl-&gt;tasks[0] = task; </span><br><span class="line">     load_tr(task-&gt;sel); </span><br><span class="line">     task_timer = timer_alloc(); </span><br><span class="line">     timer_settime(task_timer, 2); </span><br><span class="line">     return task; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>调用task_init，会返回一个内存地址，意思是==现在正在运行的这个程序，已经变成一个任务了==。可能大家不是很能理解这个说法，在调用init之后，所有程序的运行都会被当成任务来进行管理，而调用init的这个程序，我们也要让它所属于某个任务，这样一来，通过调用任务的设置函数，就可以对任务进行各种控制，比如说修改优先级等。</li>
 </ul>
 <h2 id="2-让任务休眠"><a href="#2-让任务休眠" class="headerlink" title="2.让任务休眠"></a>2.让任务休眠</h2><ul>
-<li><p>给每个任务==分配不同的时间==——休眠+唤醒</p>
-</li>
+<li>给每个任务==分配不同的时间==——休眠+唤醒</li>
 <li><p>休眠：</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">void task_sleep(struct TASK *task) </span><br><span class="line">&#123; </span><br><span class="line">     int i; </span><br><span class="line">     char ts = 0; </span><br><span class="line">     if (task-&gt;flags == 2) &#123; /*如果指定任务处于唤醒状态*/ </span><br><span class="line">         if (task == taskctl-&gt;tasks[taskctl-&gt;now]) &#123; </span><br><span class="line">            ts = 1; /*让自己休眠的话，稍后需要进行任务切换*/ </span><br><span class="line">         &#125; </span><br><span class="line">         /*寻找task所在的位置*/ </span><br><span class="line">         for (i = 0; i &lt; taskctl-&gt;running; i++) &#123; </span><br><span class="line">             if (taskctl-&gt;tasks[i] == task) &#123; </span><br><span class="line">                 /*在这里*/ </span><br><span class="line">                 break; </span><br><span class="line">             &#125; </span><br><span class="line">         &#125; </span><br><span class="line">         taskctl-&gt;running--; </span><br><span class="line">         if (i &lt; taskctl-&gt;now) &#123; </span><br><span class="line">            taskctl-&gt;now--; /*需要移动成员，要相应地处理*/ </span><br><span class="line">         &#125; </span><br><span class="line">         /*移动成员*/ </span><br><span class="line">         for (; i &lt; taskctl-&gt;running; i++) &#123; </span><br><span class="line">            taskctl-&gt;tasks[i] = taskctl-&gt;tasks[i + 1]; </span><br><span class="line">         &#125; </span><br><span class="line">         task-&gt;flags = 1; /*不工作的状态*/ </span><br><span class="line">         if (ts != 0) &#123; </span><br><span class="line">            /*任务切换*/ </span><br><span class="line">            if (taskctl-&gt;now &gt;= taskctl-&gt;running) &#123; </span><br><span class="line">                /*如果now的值出现异常，则进行修正*/ </span><br><span class="line">                taskctl-&gt;now = 0; </span><br><span class="line">            &#125; </span><br><span class="line">            farjmp(0, taskctl-&gt;tasks[taskctl-&gt;now]-&gt;sel); </span><br><span class="line">         &#125; </span><br><span class="line">     &#125; </span><br><span class="line">     return; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>唤醒：</p>
 <ul>
 <li>在FIFO中添加用于记录要唤醒任务的信息的成员。<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">struct FIFO32 &#123; </span><br><span class="line">    int *buf; </span><br><span class="line">    int p, q, size, free, flags; </span><br><span class="line">    struct TASK *task; </span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
 </li>
 </ul>
 </li>
@@ -367,7 +363,6 @@
 </ul>
 <h2 id="4-设定任务优先级（1）"><a href="#4-设定任务优先级（1）" class="headerlink" title="4.设定任务优先级（1）"></a>4.设定任务优先级（1）</h2><ul>
 <li>改写mtask.c、task_switch<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">void task_switch(void) </span><br><span class="line">&#123; </span><br><span class="line">     struct TASK *task; </span><br><span class="line">     taskctl-&gt;now++; </span><br><span class="line">     if (taskctl-&gt;now == taskctl-&gt;running) &#123; </span><br><span class="line">        taskctl-&gt;now = 0; </span><br><span class="line">     &#125; </span><br><span class="line">     task = taskctl-&gt;tasks[taskctl-&gt;now]; </span><br><span class="line">     timer_settime(task_timer, task-&gt;priority); </span><br><span class="line">     if (taskctl-&gt;running &gt;= 2) &#123; </span><br><span class="line">        farjmp(0, task-&gt;sel); </span><br><span class="line">     &#125;</span><br><span class="line">     return; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 </li>
 </ul>
 <h2 id="5-设定任务优先级（2）"><a href="#5-设定任务优先级（2）" class="headerlink" title="5.设定任务优先级（2）"></a>5.设定任务优先级（2）</h2><ul>

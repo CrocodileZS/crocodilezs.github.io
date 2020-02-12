@@ -293,7 +293,7 @@
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span>5.8k</span>
+              <span>5.7k</span>
             </span>
           
             <span class="post-meta-item" title="阅读时长">
@@ -1194,7 +1194,6 @@
       
           <h1 id="DAY13-定时器（2）"><a href="#DAY13-定时器（2）" class="headerlink" title="DAY13_定时器（2）"></a>DAY13_定时器（2）</h1><h2 id="1-简化字符串显示"><a href="#1-简化字符串显示" class="headerlink" title="1. 简化字符串显示"></a>1. 简化字符串显示</h2><ul>
 <li>将“涂背景色、写字符、完成刷新”写进一个函数，更方便使用<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">void putfonts8_asc_sht(struct SHEET *sht, int x, int y, int c, int b, char *s, int l) </span><br><span class="line">&#123; </span><br><span class="line">     boxfill8(sht-&gt;buf, sht-&gt;bxsize, b, x, y, x + l * 8 - 1, y + 15); </span><br><span class="line">     putfonts8_asc(sht-&gt;buf, sht-&gt;bxsize, x, y, c, s); </span><br><span class="line">     sheet_refresh(sht, x, y, x + l * 8, y + 16); </span><br><span class="line">     return; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 </li>
 </ul>
           <!--noindex-->
