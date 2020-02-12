@@ -293,7 +293,7 @@
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span>2.6k</span>
+              <span>3.1k</span>
             </span>
           
             <span class="post-meta-item" title="阅读时长">
@@ -303,7 +303,7 @@
               
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
               
-              <span>4 分钟</span>
+              <span>5 分钟</span>
             </span>
           
 
@@ -1899,7 +1899,7 @@
   
     
       
-    
+        
       
     
       
@@ -1917,6 +1917,59 @@
       
     
       
+    
+      
+    
+  
+    
+      <script type="text/x-mathjax-config">
+    MathJax.Ajax.config.path['mhchem'] = '//cdn.jsdelivr.net/npm/mathjax-mhchem@3';
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        extensions: ['[mhchem]/mhchem.js'],
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') {
+          next = next.nextSibling;
+        }
+        if (next && next.nodeName.toLowerCase() === 'br') {
+          next.parentNode.removeChild(next);
+        }
+      }
+    });
+  });
+
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
+      if (element.nodeName.toLowerCase() == 'li') {
+        element = element.parentNode;
+      }
+      element.classList.add('has-jax');
+    }
+  });
+</script>
+<script>
+  NexT.utils.getScript('', function() {
+    MathJax.Hub.Typeset();
+  }, window.MathJax);
+</script>
+
     
   
 

@@ -71,7 +71,7 @@
 <meta property="og:image" content="https://i.loli.net/2020/02/10/AU3tYprag8ckDGl.jpg">
 <meta property="og:image" content="https://i.loli.net/2020/02/10/MHhx6BwTSzrQqZL.jpg">
 <meta property="og:image" content="https://i.loli.net/2020/02/10/KpYh7ZNoMQCXDAH.jpg">
-<meta property="og:updated_time" content="2020-02-10T15:26:12.915Z">
+<meta property="og:updated_time" content="2020-02-12T05:34:57.440Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="支持向量机算法（Support Vector Machine Alg）的介绍及数学推导（未完待更）">
 <meta name="twitter:description" content="🌟上个学期周文安老师教我们专业的机器学习课程，在讲每一个算法的时候老师都会强调数学推导的重要性。     她希望大家能够不仅仅会调库，还能明白算法最底层的原理，并且能够自己推导。然而上学期我在数学推导这里一直在划水😖，没有理解透各种推导过程，所以趁着寒假在家里比较有时间，把机器学习部分算法的数学推导部分补全。          🌟SVM算法的证明用到了求解对偶问题的思想，石川老师在">
@@ -316,7 +316,7 @@
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span>2.6k</span>
+              <span>3.1k</span>
             </span>
           
             <span class="post-meta-item" title="阅读时长">
@@ -326,7 +326,7 @@
               
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
               
-              <span>4 分钟</span>
+              <span>5 分钟</span>
             </span>
           
 
@@ -384,7 +384,18 @@
 <li><p><strong>非线性支持向量机（non-linear support vector machine）</strong><br>当训练数据集线性不可分时，通过使用核技巧以及软间隔最大化来学习非线性支持向量机。</p>
 </li>
 </ol>
-<h1 id="相关定义和方法介绍"><a href="#相关定义和方法介绍" class="headerlink" title="相关定义和方法介绍"></a>相关定义和方法介绍</h1><h2 id="函数间隔和几何间隔"><a href="#函数间隔和几何间隔" class="headerlink" title="函数间隔和几何间隔"></a>函数间隔和几何间隔</h2><h2 id="L0-L1-L2范数"><a href="#L0-L1-L2范数" class="headerlink" title="L0, L1, L2范数"></a><code>L0</code>, <code>L1</code>, <code>L2</code>范数</h2><h2 id="拉格朗日对偶性"><a href="#拉格朗日对偶性" class="headerlink" title="拉格朗日对偶性"></a>拉格朗日对偶性</h2><h2 id="核技巧"><a href="#核技巧" class="headerlink" title="核技巧"></a>核技巧</h2><h1 id="支持向量机数学推导"><a href="#支持向量机数学推导" class="headerlink" title="支持向量机数学推导"></a>支持向量机数学推导</h1><h2 id="线性可分支持向量机"><a href="#线性可分支持向量机" class="headerlink" title="线性可分支持向量机"></a>线性可分支持向量机</h2><h2 id="线性支持向量机"><a href="#线性支持向量机" class="headerlink" title="线性支持向量机"></a>线性支持向量机</h2><h2 id="非线性支持向量机"><a href="#非线性支持向量机" class="headerlink" title="非线性支持向量机"></a>非线性支持向量机</h2><h1 id="归纳和总结"><a href="#归纳和总结" class="headerlink" title="归纳和总结"></a>归纳和总结</h1>
+<h1 id="相关定义和方法介绍"><a href="#相关定义和方法介绍" class="headerlink" title="相关定义和方法介绍"></a>相关定义和方法介绍</h1><h2 id="L0-L1-L2范数"><a href="#L0-L1-L2范数" class="headerlink" title="L0, L1, L2范数"></a><code>L0</code>, <code>L1</code>, <code>L2</code>范数</h2><p>直观地说，</p>
+<ol>
+<li><code>L0</code>范数：$||x||_0 := #(i)\ with\ x \not= 0$ 即<strong>向量中所有非零元素的个数</strong>；</li>
+<li><code>L1</code>范数：$||x||<em>1 := \sum</em>{i = 1}^n |x|$  即<strong>向量中所有元素绝对值的和</strong>；</li>
+<li><code>L2</code>范数：$||x||<em>2 := \sqrt{\sum</em>{i = 1}^n x^2}$ 即<strong>欧几里得（Euclidean）范数</strong>；</li>
+</ol>
+<p>范数是一个函数，其赋予某个向量空间（或矩阵）中的每个向量以长度或大小。对于零向量，另其长度为零。<br>直观的说，向量或矩阵的范数越大，则我们可以说这个向量或矩阵也就越大。有时范数有很多更为常见的叫法，如绝对值其实便是一维向量空间中实数或复数的范数，而Euclidean距离也是一种范数。</p>
+<p><strong>p范数（p-norm）的表达公式</strong>：</p>
+<p>$$||x||<em>p := (\sum</em>{i = 1}^n x^p)^{\frac{1}{p}}$$ </p>
+<h2 id="函数间隔和几何间隔"><a href="#函数间隔和几何间隔" class="headerlink" title="函数间隔和几何间隔"></a>函数间隔和几何间隔</h2><p>我们回到最开始的二分类问题，</p>
+<h2 id="拉格朗日对偶性"><a href="#拉格朗日对偶性" class="headerlink" title="拉格朗日对偶性"></a>拉格朗日对偶性</h2><h2 id="核技巧"><a href="#核技巧" class="headerlink" title="核技巧"></a>核技巧</h2><h1 id="支持向量机数学推导"><a href="#支持向量机数学推导" class="headerlink" title="支持向量机数学推导"></a>支持向量机数学推导</h1><h2 id="线性可分支持向量机"><a href="#线性可分支持向量机" class="headerlink" title="线性可分支持向量机"></a>线性可分支持向量机</h2><h2 id="线性支持向量机"><a href="#线性支持向量机" class="headerlink" title="线性支持向量机"></a>线性支持向量机</h2><h2 id="非线性支持向量机"><a href="#非线性支持向量机" class="headerlink" title="非线性支持向量机"></a>非线性支持向量机</h2><h1 id="归纳和总结"><a href="#归纳和总结" class="headerlink" title="归纳和总结"></a>归纳和总结</h1><p>##参考资料<br><a href="https://www.jianshu.com/p/de05e6745fb6" target="_blank" rel="noopener">L0, L1, L2范数及其应用</a></p>
+
     </div>
 
     
@@ -736,7 +747,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#支持向量机介绍"><span class="nav-text">支持向量机介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#支持向量机的应用"><span class="nav-text">支持向量机的应用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#直观理解支持向量机"><span class="nav-text">直观理解支持向量机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#支持向量机的优势和劣势"><span class="nav-text">支持向量机的优势和劣势</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#支持向量机的优势"><span class="nav-text">支持向量机的优势</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#支持向量机的劣势"><span class="nav-text">支持向量机的劣势</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#支持向量机的分类"><span class="nav-text">支持向量机的分类</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#相关定义和方法介绍"><span class="nav-text">相关定义和方法介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#函数间隔和几何间隔"><span class="nav-text">函数间隔和几何间隔</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#L0-L1-L2范数"><span class="nav-text">L0, L1, L2范数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#拉格朗日对偶性"><span class="nav-text">拉格朗日对偶性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#核技巧"><span class="nav-text">核技巧</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#支持向量机数学推导"><span class="nav-text">支持向量机数学推导</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#线性可分支持向量机"><span class="nav-text">线性可分支持向量机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#线性支持向量机"><span class="nav-text">线性支持向量机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#非线性支持向量机"><span class="nav-text">非线性支持向量机</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#归纳和总结"><span class="nav-text">归纳和总结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#支持向量机介绍"><span class="nav-text">支持向量机介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#支持向量机的应用"><span class="nav-text">支持向量机的应用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#直观理解支持向量机"><span class="nav-text">直观理解支持向量机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#支持向量机的优势和劣势"><span class="nav-text">支持向量机的优势和劣势</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#支持向量机的优势"><span class="nav-text">支持向量机的优势</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#支持向量机的劣势"><span class="nav-text">支持向量机的劣势</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#支持向量机的分类"><span class="nav-text">支持向量机的分类</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#相关定义和方法介绍"><span class="nav-text">相关定义和方法介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#L0-L1-L2范数"><span class="nav-text">L0, L1, L2范数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数间隔和几何间隔"><span class="nav-text">函数间隔和几何间隔</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#拉格朗日对偶性"><span class="nav-text">拉格朗日对偶性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#核技巧"><span class="nav-text">核技巧</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#支持向量机数学推导"><span class="nav-text">支持向量机数学推导</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#线性可分支持向量机"><span class="nav-text">线性可分支持向量机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#线性支持向量机"><span class="nav-text">线性支持向量机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#非线性支持向量机"><span class="nav-text">非线性支持向量机</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#归纳和总结"><span class="nav-text">归纳和总结</span></a></li></ol></div>
             
 
           </div>
@@ -891,6 +902,57 @@
 
   
 
+  
+    
+      <script type="text/x-mathjax-config">
+    MathJax.Ajax.config.path['mhchem'] = '//cdn.jsdelivr.net/npm/mathjax-mhchem@3';
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        extensions: ['[mhchem]/mhchem.js'],
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') {
+          next = next.nextSibling;
+        }
+        if (next && next.nodeName.toLowerCase() === 'br') {
+          next.parentNode.removeChild(next);
+        }
+      }
+    });
+  });
+
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
+      if (element.nodeName.toLowerCase() == 'li') {
+        element = element.parentNode;
+      }
+      element.classList.add('has-jax');
+    }
+  });
+</script>
+<script>
+  NexT.utils.getScript('', function() {
+    MathJax.Hub.Typeset();
+  }, window.MathJax);
+</script>
+
+    
   
 
   
