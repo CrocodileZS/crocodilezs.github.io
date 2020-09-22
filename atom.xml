@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://blog.crocodilezs.top/"/>
-  <updated>2020-07-06T12:26:28.010Z</updated>
+  <updated>2020-07-05T11:35:41.812Z</updated>
   <id>https://blog.crocodilezs.top/</id>
   
   <author>
@@ -15,32 +15,6 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title>这是我最后一次追选秀</title>
-    <link href="https://blog.crocodilezs.top/202007/%E8%BF%99%E6%98%AF%E6%88%91%E6%9C%80%E5%90%8E%E4%B8%80%E6%AC%A1%E8%BF%BD%E7%B4%A0%E4%BA%BA%E9%80%89%E7%A7%80/"/>
-    <id>https://blog.crocodilezs.top/202007/这是我最后一次追素人选秀/</id>
-    <published>2020-07-05T11:36:21.000Z</published>
-    <updated>2020-07-06T12:26:28.010Z</updated>
-    
-    <summary type="html">
-    
-      &lt;center&gt;世 界 名 画&lt;/center&gt;  
-
-&lt;p&gt;&lt;img src=&quot;/media/202007/0705-1.gif&quot; alt=&quot;汗水和泪水&quot;&gt;&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="参省乎己" scheme="https://blog.crocodilezs.top/categories/%E5%8F%82%E7%9C%81%E4%B9%8E%E5%B7%B1/"/>
-    
-    
-      <category term="娱乐" scheme="https://blog.crocodilezs.top/tags/%E5%A8%B1%E4%B9%90/"/>
-    
-      <category term="选秀" scheme="https://blog.crocodilezs.top/tags/%E9%80%89%E7%A7%80/"/>
-    
-      <category term="粉圈" scheme="https://blog.crocodilezs.top/tags/%E7%B2%89%E5%9C%88/"/>
-    
-  </entry>
   
   <entry>
     <title>《苏东坡传》摘录</title>
@@ -136,7 +110,7 @@
     <link href="https://blog.crocodilezs.top/202002/%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA%E7%AE%97%E6%B3%95%E7%9A%84%E4%BB%8B%E7%BB%8D%E5%8F%8A%E6%95%B0%E5%AD%A6%E6%8E%A8%E5%AF%BC/"/>
     <id>https://blog.crocodilezs.top/202002/支持向量机算法的介绍及数学推导/</id>
     <published>2020-02-10T08:47:21.000Z</published>
-    <updated>2020-07-05T11:39:13.603Z</updated>
+    <updated>2020-09-22T08:46:10.987Z</updated>
     
     <summary type="html">
     
@@ -197,7 +171,7 @@
     <link href="https://blog.crocodilezs.top/201911/Price_Suggestion_Chanllenge/"/>
     <id>https://blog.crocodilezs.top/201911/Price_Suggestion_Chanllenge/</id>
     <published>2019-11-12T08:22:10.000Z</published>
-    <updated>2019-11-12T14:33:43.984Z</updated>
+    <updated>2020-09-22T08:46:21.406Z</updated>
     
     <summary type="html">
     
@@ -320,7 +294,7 @@
     <link href="https://blog.crocodilezs.top/201911/KNN%E4%B8%8ENaive_Bayes%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0/"/>
     <id>https://blog.crocodilezs.top/201911/KNN与Naive_Bayes代码实现/</id>
     <published>2019-10-25T04:32:50.000Z</published>
-    <updated>2019-11-12T14:26:36.231Z</updated>
+    <updated>2020-09-22T08:47:14.033Z</updated>
     
     <summary type="html">
     
@@ -437,7 +411,7 @@
     <link href="https://blog.crocodilezs.top/201909/%E5%86%99%E4%BA%8E%E5%8D%9A%E5%AE%A2%E6%AD%A3%E5%BC%8F%E5%AF%B9%E5%A4%96%E5%BC%80%E6%94%BE%E4%B9%8B%E9%99%85/"/>
     <id>https://blog.crocodilezs.top/201909/写于博客正式对外开放之际/</id>
     <published>2019-10-15T12:51:12.000Z</published>
-    <updated>2020-02-10T08:50:36.673Z</updated>
+    <updated>2020-09-22T08:46:39.168Z</updated>
     
     <summary type="html">
     
@@ -483,6 +457,28 @@
     
       &lt;p&gt;&lt;img src=&quot;https://s2.ax1x.com/2019/09/28/u1scM8.jpg&quot; alt=&quot;我和祖国共成长，青春筑梦新时代&quot;&gt;&lt;/p&gt;
 &lt;p&gt;&lt;center&gt;温馨和感动的一天。&lt;/center&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="参省乎己" scheme="https://blog.crocodilezs.top/categories/%E5%8F%82%E7%9C%81%E4%B9%8E%E5%B7%B1/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>关于细节</title>
+    <link href="https://blog.crocodilezs.top/201909/2019-09-24-%E5%85%B3%E4%BA%8E%E7%BB%86%E8%8A%82/"/>
+    <id>https://blog.crocodilezs.top/201909/2019-09-24-关于细节/</id>
+    <published>2019-09-24T15:48:50.000Z</published>
+    <updated>2019-09-23T17:12:01.416Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;最近的生活中“细节”这个词出现了很多次。我们从小就被大人们叮嘱要“注意细节”，随着年龄的增长这个词很少再被人提起。这两天发生的一系列事情都让我回过头来重新关注这个词。  &lt;/p&gt;
+&lt;p&gt;近期让我重新注意到这个词的时候是在发给合伙人中秋茶话会的问卷时，标题后面“【复制】”两个
+      
     
     </summary>
     
