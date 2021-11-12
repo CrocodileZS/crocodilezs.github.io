@@ -47,8 +47,8 @@
         <category>算法</category>
       </categories>
       <tags>
-        <tag>SVM</tag>
         <tag>机器学习</tag>
+        <tag>SVM</tag>
         <tag>算法推导</tag>
       </tags>
   </entry>
@@ -287,8 +287,8 @@
         <category>机器学习</category>
       </categories>
       <tags>
-        <tag>机器学习</tag>
         <tag>几何模型</tag>
+        <tag>机器学习</tag>
         <tag>线性分类</tag>
       </tags>
   </entry>
