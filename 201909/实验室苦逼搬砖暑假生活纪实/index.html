@@ -1,0 +1,1058 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="generator" content="Hexo 3.9.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/rainbow.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/rainbow.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/rainbow.png?v=7.3.0">
+  <link rel="mask-icon" href="/images/rainbow.svg?v=7.3.0" color="#222">
+  <meta name="baidu-site-verification" content="MBR3SWgP01">
+
+<link rel="stylesheet" href="/css/main.css?v=7.3.0">
+
+<link rel="stylesheet" href="https://fonts.loli.net/css?family=Noto Serif SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+  <link rel="stylesheet" href="/lib/fancybox/source/jquery.fancybox.css">
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.3.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":true},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
+    save_scroll: true,
+    copycode: {"enable":true,"show_result":true,"style":"flat"},
+    fancybox: true,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    }
+  };
+</script>
+
+  <meta name="description" content="记录一下自己暑假在实验室做的一些事情和收获吧。     虽然进步很小很缓慢，但总归是有的。   7月13日 关于论文的主要内容，学长进行了讲解： 任务目标：通过迁移学习实现用户对齐问题，并将对齐结果与其他的用户对其方法进行比较：其中的方法包括“监督类型的”和“非监督类型的”，最终论文里要将我们的方法与其他至少三四种方法进行比较。">
+<meta name="keywords" content="迁移学习,Anaconda,DRNE,IONE,WGAN,PALE">
+<meta property="og:type" content="article">
+<meta property="og:title" content="实验室苦逼搬砖暑假生活纪实">
+<meta property="og:url" content="https://blog.crocodilezs.top/201909/实验室苦逼搬砖暑假生活纪实/index.html">
+<meta property="og:site_name" content="鰐魚先生的水族館">
+<meta property="og:description" content="记录一下自己暑假在实验室做的一些事情和收获吧。     虽然进步很小很缓慢，但总归是有的。   7月13日 关于论文的主要内容，学长进行了讲解： 任务目标：通过迁移学习实现用户对齐问题，并将对齐结果与其他的用户对其方法进行比较：其中的方法包括“监督类型的”和“非监督类型的”，最终论文里要将我们的方法与其他至少三四种方法进行比较。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://s2.ax1x.com/2019/09/28/u1d88U.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/09/28/u1wzTI.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/09/28/u1wx0A.png">
+<meta property="og:updated_time" content="2021-03-24T08:18:29.777Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="实验室苦逼搬砖暑假生活纪实">
+<meta name="twitter:description" content="记录一下自己暑假在实验室做的一些事情和收获吧。     虽然进步很小很缓慢，但总归是有的。   7月13日 关于论文的主要内容，学长进行了讲解： 任务目标：通过迁移学习实现用户对齐问题，并将对齐结果与其他的用户对其方法进行比较：其中的方法包括“监督类型的”和“非监督类型的”，最终论文里要将我们的方法与其他至少三四种方法进行比较。">
+<meta name="twitter:image" content="https://s2.ax1x.com/2019/09/28/u1d88U.png">
+  <link rel="alternate" href="/atom.xml" title="鰐魚先生的水族館" type="application/atom+xml">
+  <link rel="canonical" href="https://blog.crocodilezs.top/201909/实验室苦逼搬砖暑假生活纪实/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>实验室苦逼搬砖暑假生活纪实 | 鰐魚先生的水族館</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  <div class="container sidebar-position-left">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">鰐魚先生的水族館</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">言念君子，溫其如玉。</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-tags">
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-about">
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>关于</a>
+
+  </li>
+  </ul>
+
+    
+
+</nav>
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content page-post-detail">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://blog.crocodilezs.top/201909/实验室苦逼搬砖暑假生活纪实/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CrocodileZS">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/tom.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鰐魚先生的水族館">
+    </span>
+      <header class="post-header">
+
+        
+          <h1 class="post-title" itemprop="name headline">实验室苦逼搬砖暑假生活纪实
+
+            
+          </h1>
+        
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2019-09-01 02:48:50" itemprop="dateCreated datePublished" datetime="2019-09-01T02:48:50+08:00">2019-09-01</time>
+            </span>
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/机器学习/" itemprop="url" rel="index"><span itemprop="name">机器学习</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/201909/实验室苦逼搬砖暑假生活纪实/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/201909/实验室苦逼搬砖暑假生活纪实/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+          
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span>6.8k</span>
+            </span>
+          
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span>11 分钟</span>
+            </span>
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <div class="note primary">
+    记录一下自己暑假在实验室做的一些事情和收获吧。<br>
+    虽然进步很小很缓慢，但总归是有的。
+</div>
+
+<h1 id="7月13日"><a href="#7月13日" class="headerlink" title="7月13日"></a>7月13日</h1><ol>
+<li><p>关于论文的主要内容，学长进行了讲解：<br><br> <strong>任务目标：</strong>通过迁移学习实现用户对齐问题，并将对齐结果与其他的用户对其方法进行比较：其中的方法包括“监督类型的”和“非监督类型的”，最终论文里要将我们的方法与其他至少三四种方法进行比较。</p>
+ <a id="more"></a>
+</li>
+<li><p>下面的时间应该做到：<br> 0）熟悉各数据集，每个数据集经过哪个函数变成什么样子？<br> <code>myspace</code>文件夹中，<code>.node</code>文件前一个数字表示结点标号，后面的表示用户名。<br> <code>.edges</code>文件每一行的两个数字表示边连接的两个节点。<br> <code>aminer.tar.gz</code>,<code>flicker.tar.gz</code>,<code>lastfm.tar.gz</code>,<code>linkedin.tar,gz</code>,<code>livejournal.tar.gz</code>这五个压缩包都是上面形式的点和边<br> <code>aminer-linkedin.map.raw</code>文件，将<code>aminer.tar.gz</code>文件中的结点映射到<code>linkedin</code>上  </p>
+<p> 1）<code>DRNE</code>（将图表示矩阵转化成向量）<br> 转化成的向量是什么格式？它是怎样表示矩阵的？它的输入和输出是怎样的？</p>
+<p> 2）<code>wGAN</code>的一个变种函数（生成相应的对齐结果）<br> 它的输入和输出是怎样的？</p>
+</li>
+</ol>
+<h1 id="7月14日"><a href="#7月14日" class="headerlink" title="7月14日"></a>7月14日</h1><p>非常艰难的一天，<code>DRNE</code>作者的<code>readme</code>文档写错了，指令是错误的，我第一次接触这个看不懂debug信息，学长也没发现。最后发邮件问原作者才知道<code>readme</code>中把<code>\</code>打成了<code>/</code>🤬<br>这一件事情花了我三天的时间，一开始以为自己的环境没搭建好，安装了各种库，利用<code>anaconda</code>创造了许多环境测试，我哭了。</p>
+<ol>
+<li><p>关于安装<code>tensorflow</code>的方法：<br> <a href="https://morvanzhou.github.io/tutorials/machine-learning/tensorflow/1-2-install/" target="_blank" rel="noopener">莫凡Python</a><br> <a href="https://www.cnblogs.com/lvsling/p/8672404.html" target="_blank" rel="noopener">ling’s bolg</a></p>
+<p> <a href="https://www.jianshu.com/p/28e2ae6fbd75" target="_blank" rel="noopener">安装时遇到的问题</a></p>
+</li>
+<li><p>上面这些乱七八糟的都不如直接<code>pip install</code>，觉得慢的话换成清华镜像资源<a href="https://mirrors.tuna.tsinghua.edu.cn/" target="_blank" rel="noopener">清华大学开源软件镜像站</a></p>
+</li>
+</ol>
+<p><a href="https://mirrors.tuna.tsinghua.edu.cn/help/pypi/" target="_blank" rel="noopener">pypi镜像使用帮助</a></p>
+<h1 id="7月15日"><a href="#7月15日" class="headerlink" title="7月15日"></a>7月15日</h1><div class="note primary">
+    学长又分配了两个任务，第一个是判断图是否为连通图。 <br> 
+    其实要是只有几个点倒简单，但是仅仅接触了一点`Python`就要写个几千点判断连通图的程序，我想到的第一点是效率会非常低。。。最后这个代码学长亲自写了。
+</div>
+
+<p>这里顺带复习了一下数据结构的东西</p>
+<ol>
+<li>邻接矩阵与邻接表<br> <a href="https://www.cnblogs.com/icode-girl/p/5273209.html" target="_blank" rel="noopener">邻接矩阵</a></li>
+<li>边表<br> 边集表，图的储存结构之一。边表由表头结点和表结点两部分组成，图中每个顶点均对应一个存储在数组中的表头结点。<br> 边表存储了以点为起点的边的信息，邻接表存储了以点为出发点的点的信息。 </li>
+<li>edgelist边表中每行有两个数，表示这两个结点之间有边</li>
+<li>python nx.has_path(G, source, target)用来判断是否为连通图</li>
+<li>networkx库查阅资料：<br><a href="https://www.cnblogs.com/kaituorensheng/p/5423131.html" target="_blank" rel="noopener">network资料</a><br>NetworkX是一个用Python语言开发的图论与复杂网络建模工具，内置了常用的图与复杂网络分析算法，可以方便的进行复杂网络数据分析、仿真建模等工作。networkx支持创建简单无向图、有向图和多重图（multigraph）；内置许多标准的图论算法，节点可为任意数据；支持任意的边值维度，功能丰富，简单易用。<br><a href="https://networkx.github.io/documentation/stable/tutorial.html" target="_blank" rel="noopener">network官方文档</a>  </li>
+</ol>
+<p>发现文档里举的例子都是自己输入的个别的点，我可以先研究一下DRNE的代码，从里面得到一些有用的内容。</p>
+<p>代码看不懂的地方，首先就是embedding：<br><a href="https://blog.csdn.net/songyunli1111/article/details/85100616" target="_blank" rel="noopener">关于embedding</a></p>
+<h1 id="7月16日"><a href="#7月16日" class="headerlink" title="7月16日"></a>7月16日</h1><ol>
+<li>CONSNET数据集：<br> deepwalk-master先不用，做对比算法的<br> DRNE-master 用来做embedding的<br> GAN用来生成模型  </li>
+<li>关于anaconda的使用：<br> Anaconda是一个方便的python包管理和环境管理软件，一般用来配置不同的项目环境。<br> 我们常常会遇到这样的情况，正在做的项目A和项目B分别基于python2和python3，而第电脑只能安装一个环境，这个时候Anaconda就派上了用场，它可以创建多个互不干扰的环境，分别运行不同版本的软件包，以达到兼容的目的。<br> Anaconda通过管理工具包、开发环境、Python版本，大大简化了你的工作流程。不仅可以方便地安装、更新、卸载工具包，而且安装时能自动安装相应的依赖包，同时还能使用不同的虚拟环境隔离不同要求的项目。<br> <a href="https://www.jianshu.com/p/742dc4d8f4c5" target="_blank" rel="noopener">Anaconda入门</a></li>
+</ol>
+<h1 id="7月17日"><a href="#7月17日" class="headerlink" title="7月17日"></a>7月17日</h1><div class="note success">
+    conda有一点好处是，如果你需要安装一个包，系统将自动检查这个包需要的前置包并且安装，比如你要安装TensorFlow，而TensorFlow会用到很多像前置包像pandas、matiplot等，如果你在单纯的python下没有安装pandas等包就直接安装TensorFlow，那么和有可能无法使用，而使用conda安装TensorFlow将会询问你并自动帮你把缺少的前置包安装好
+</div>
+
+<ol>
+<li><p>使用anaconda先创建一个用于drne的环境<br> <img src="https://s2.ax1x.com/2019/09/28/u1d88U.png" alt><br> 安装以上环境<br> 其中添加的资源库都没有tensorflow == 1.2.0<br> 按照提示 </p>
+ <blockquote><p>To search for alternate channels that may provide the conda package you’re looking for, navigate to <a href="https://anaconda.org" target="_blank" rel="noopener">https://anaconda.org</a> and use the search bar at the top of the page.</p>
+</blockquote>
+<p> 去官网搜索资源即可下载</p>
+<p> 环境安装完成</p>
+</li>
+<li><p>anaconda跑不出来，先学习anaconda的使用方法：<br> <a href="https://www.jianshu.com/p/eaee1fadc1e9" target="_blank" rel="noopener">anaconda1</a></p>
+<p> <a href="https://i.xdc.at/2017/08/13/add-anaconda-prompt-to-context-menu-of-explorer/" target="_blank" rel="noopener">anaconda2</a></p>
+<p> <a href="https://blog.csdn.net/c20081052/article/details/88839479" target="_blank" rel="noopener">anaconda3</a></p>
+</li>
+</ol>
+<h1 id="7月19日"><a href="#7月19日" class="headerlink" title="7月19日"></a>7月19日</h1><p>继续研究network库</p>
+<h1 id="7月21日"><a href="#7月21日" class="headerlink" title="7月21日"></a>7月21日</h1><p>研读networkx的文档，在后面处理相关问题的时候会简单很多。<br>在学习图的过程中，遇到的问题：<br><img src="https://s2.ax1x.com/2019/09/28/u1wzTI.png" alt><br><img src="https://s2.ax1x.com/2019/09/28/u1wx0A.png" alt></p>
+<p>最后一行输出，我记得莫凡python里有讲这个，关于迭代器的东西，然后搜索了一下，继续进行学习：<br><a href="https://blog.csdn.net/u014028063/article/details/80572234" target="_blank" rel="noopener">Python迭代器</a></p>
+<p><strong>任务：</strong><br>写一个可以将ground truth抽样的函数，给定一个列表，例如[0.3， 0.5， 0.7]，<br>0.3表示在groundtruth里面随机抽样30%，并生成名为new-gt-0.3.txt的文件，列表长度为多少，就生成多少个这样的文件。</p>
+<h1 id="7月22日"><a href="#7月22日" class="headerlink" title="7月22日"></a>7月22日</h1><p>readme文档中AcrossNetworkEmbeddingData文件夹里的文件和实际文件夹里的不一样，是否有问题？</p>
+<p>anchor users 定位用户</p>
+<h1 id="7月23日"><a href="#7月23日" class="headerlink" title="7月23日"></a>7月23日</h1><p>读学长写的：</p>
+<ol>
+<li><p>连通图代码<br>numpy.zeros<br><a href="https://blog.csdn.net/qq_28618765/article/details/78085457" target="_blank" rel="noopener">https://blog.csdn.net/qq_28618765/article/details/78085457</a></p>
+</li>
+<li><p>抽样代码<br>自己完成：数据转换代码<br>python open函数的参数<br><a href="https://www.runoob.com/python/python-func-open.html" target="_blank" rel="noopener">https://www.runoob.com/python/python-func-open.html</a></p>
+</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+<p><a href="https://blog.csdn.net/qq_33254870/article/details/81668297" target="_blank" rel="noopener">https://blog.csdn.net/qq_33254870/article/details/81668297</a></p>
+<p><a href="https://cloud.tencent.com/developer/ask/172682" target="_blank" rel="noopener">https://cloud.tencent.com/developer/ask/172682</a></p>
+<font color="FF0000">一定要系统地学一下python！要不然什么都不会，写起来效率太低了！！</font>
+
+<p>怎样用csvreader读入用tab分隔的文件——直接用\t</p>
+<p><a href="https://www.runoob.com/python/att-list-len.html" target="_blank" rel="noopener">https://www.runoob.com/python/att-list-len.html</a></p>
+<p>for while if后面都要有冒号</p>
+<p>python的‘和’符号是 and</p>
+<p>关于newline参数</p>
+<h1 id="7月24日"><a href="#7月24日" class="headerlink" title="7月24日"></a>7月24日</h1><div class="note danger">
+    把trans_result打成了tranns_result，出现问题，，，，，
+    python也没有报错，还好自己发现了
+</div>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">i = <span class="number">0</span></span><br><span class="line">	<span class="keyword">while</span>(i &lt; len(trans_result)):</span><br><span class="line">		<span class="comment"># print("Delete process...")</span></span><br><span class="line">		<span class="keyword">if</span>(trans_result[i][<span class="number">0</span>] == <span class="number">0</span> <span class="keyword">or</span> trans_result[i][<span class="number">1</span>] == <span class="number">0</span>):</span><br><span class="line">			trans_result = np.delete(trans_result, i, axis = <span class="number">0</span>)</span><br><span class="line">		<span class="keyword">else</span>:<span class="comment">#！！！！注意这里的else！！！否则会出错</span></span><br><span class="line">			i = i + <span class="number">1</span></span><br></pre></td></tr></table></figure>
+<p><center>❤️ 🧡 💛 💚 💙 💜 </center></p>
+<p><center>中间几天帮张老师查项目资料来着——关于“认知计算”和“意图推理”</center></p>
+<h1 id="7月31日"><a href="#7月31日" class="headerlink" title="7月31日"></a>7月31日</h1><p>如何调出eclipse左边文件栏<br><a href="https://jingyan.baidu.com/article/a24b33cd3af41119ff002b7a.html" target="_blank" rel="noopener"></a></p>
+<p>anaconda prompt 切换到e盘：<br><a href="https://blog.csdn.net/c20081052/article/details/88839479" target="_blank" rel="noopener"></a></p>
+<p>drne配适自己的代码：<br>activate for_drne<br>e:</p>
+<h1 id="8月4日"><a href="#8月4日" class="headerlink" title="8月4日"></a>8月4日</h1><p>coursera视频无法播放<br><a href="https://blog.csdn.net/qq_39521554/article/details/79039548" target="_blank" rel="noopener">https://blog.csdn.net/qq_39521554/article/details/79039548</a></p>
+<p>欧式距离</p>
+<p><a href="https://www.cnblogs.com/kimkat/p/9938475.html" target="_blank" rel="noopener">https://www.cnblogs.com/kimkat/p/9938475.html</a></p>
+<p>测试程序（把程序拆成几小部分）</p>
+<ol>
+<li>np.linalg.norm(vec1 - vec2)</li>
+<li>读入部分，怎样读出来两个向量</li>
+</ol>
+<p>python cookbook 真的能学到很多东西！！<br>挺有用！</p>
+<p><a href="https://zhidao.baidu.com/question/115008008.html" target="_blank" rel="noopener">https://zhidao.baidu.com/question/115008008.html</a></p>
+<p><a href="https://www.cnblogs.com/bakari/p/4807847.html" target="_blank" rel="noopener">https://www.cnblogs.com/bakari/p/4807847.html</a></p>
+<h1 id="8月5日"><a href="#8月5日" class="headerlink" title="8月5日"></a>8月5日</h1><ol>
+<li><p>查数据类型：<br><a href="https://www.cnblogs.com/carlber/p/9362584.html" target="_blank" rel="noopener">https://www.cnblogs.com/carlber/p/9362584.html</a></p>
+</li>
+<li><p>列表最后有一个逗号，就会多出来一个空元素<br><a href="https://www.cnblogs.com/lostme/articles/8857083.html" target="_blank" rel="noopener">https://www.cnblogs.com/lostme/articles/8857083.html</a></p>
+</li>
+<li><p>operands could not be broadcast together with shapes (2,) (250,)<br><a href="https://blog.csdn.net/Odyssues_lee/article/details/85244735" target="_blank" rel="noopener">https://blog.csdn.net/Odyssues_lee/article/details/85244735</a></p>
+</li>
+<li><p>运行map（）后，报：map object at 0x02629E50解决方法与原因分析​​​​​​​<br><a href="https://blog.csdn.net/weixin_40807247/article/details/82797378" target="_blank" rel="noopener">https://blog.csdn.net/weixin_40807247/article/details/82797378</a></p>
+</li>
+</ol>
+<p><a href="https://www.cnblogs.com/hwd9654/p/5707920.html" target="_blank" rel="noopener">https://www.cnblogs.com/hwd9654/p/5707920.html</a></p>
+<ol>
+<li><p>从字符串中提取数字：<br><a href="https://www.cnblogs.com/dancesir/p/11021829.html" target="_blank" rel="noopener">https://www.cnblogs.com/dancesir/p/11021829.html</a></p>
+</li>
+<li><p>python中，“<filter object at 0x028a2050>”是什么意思？怎么解决？<br><a href="https://zhidao.baidu.com/question/329317296.html" target="_blank" rel="noopener">https://zhidao.baidu.com/question/329317296.html</a></filter></p>
+</li>
+<li><p>数据格式要求很严格：<br>3   2<br>5  4<br>7  6<br>9  7<br>tab和x个空格不一样</p>
+</li>
+<li><p>输出百分比：<br><a href="https://blog.csdn.net/u013553529/article/details/78567696" target="_blank" rel="noopener">https://blog.csdn.net/u013553529/article/details/78567696</a></p>
+</li>
+</ol>
+<h1 id="8月7日"><a href="#8月7日" class="headerlink" title="8月7日"></a>8月7日</h1><p>博客搭建<br><a href="https://blog.csdn.net/fangquan1980/article/details/80648171" target="_blank" rel="noopener">https://blog.csdn.net/fangquan1980/article/details/80648171</a></p>
+<p><a href="https://blog.csdn.net/zyupupup/article/details/85098366" target="_blank" rel="noopener">https://blog.csdn.net/zyupupup/article/details/85098366</a></p>
+<p><a href="https://blog.csdn.net/weixin_42419856/article/details/81141546" target="_blank" rel="noopener">https://blog.csdn.net/weixin_42419856/article/details/81141546</a></p>
+<p><a href="https://blog.csdn.net/lvsehaiyang1993/article/details/80881433" target="_blank" rel="noopener">https://blog.csdn.net/lvsehaiyang1993/article/details/80881433</a></p>
+<p><a href="http://zhangchunlei.com/blog/2014/12/01/modify-a-record-of-my-website-dns/" target="_blank" rel="noopener">http://zhangchunlei.com/blog/2014/12/01/modify-a-record-of-my-website-dns/</a></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">On a Windows machine, you&apos;ll want to run nslookup your-domain.com and ensure that the output does not include any of the deprecated IP addresses (207.97.227.XXX, 204.232.175.XX, or 199.27.73.XXX).</span><br><span class="line">If you&apos;re on a Mac or Linux machine, simply paste this command into a terminal window, replacing your-domain.com with, your site&apos;s domain. dig your-domain.com | grep -E &apos;(207.97.227.245|204.232.175.78|199.27.73.133)&apos; || echo &quot;OK&quot;. If you see the word &quot;OK&quot;, you&apos;re all set.</span><br></pre></td></tr></table></figure>
+<p><a href="https://blog.csdn.net/a1023182899/article/details/77461567" target="_blank" rel="noopener">https://blog.csdn.net/a1023182899/article/details/77461567</a></p>
+<h1 id="8月8日"><a href="#8月8日" class="headerlink" title="8月8日"></a>8月8日</h1><p><a href="https://www.v2ex.com/amp/t/465570" target="_blank" rel="noopener">https://www.v2ex.com/amp/t/465570</a></p>
+<p>LINE（PALE中）<br>GAN<br>画圈</p>
+<h1 id="8月11日"><a href="#8月11日" class="headerlink" title="8月11日"></a>8月11日</h1><p>xlrd模块：<br><a href="https://www.cnblogs.com/insane-Mr-Li/p/9092619.html" target="_blank" rel="noopener">https://www.cnblogs.com/insane-Mr-Li/p/9092619.html</a></p>
+<h1 id="8月13日"><a href="#8月13日" class="headerlink" title="8月13日"></a>8月13日</h1><ol>
+<li><p>random.choices<br><a href="https://blog.csdn.net/lcqin111/article/details/83504029" target="_blank" rel="noopener">https://blog.csdn.net/lcqin111/article/details/83504029</a></p>
+</li>
+<li><p>Cannot feed value of shape (256, 255) for Tensor ‘Placeholder:0’, which has shape ‘(?, 256)’<br><a href="http://www.mamicode.com/info-detail-2346029.html" target="_blank" rel="noopener">http://www.mamicode.com/info-detail-2346029.html</a></p>
+</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">4000</span>):</span><br><span class="line">    print(<span class="string">"--------------training---------DDDDDD----------EPOCH："</span> + str(i) + <span class="string">"-----------------------"</span>)</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">5</span>):</span><br><span class="line">        mm = np.reshape(random.choices(f_d, f_g, k=<span class="number">256</span>))</span><br><span class="line">        nn = np.reshape(random.choices(t_d, t_g, k=<span class="number">256</span>))</span><br><span class="line">        rms_train1, loss1 = sess.run([model.rms_train_op1, model.loss_d], feed_dict=&#123;model.s: np.array(random.choices(f_d, f_g, k=<span class="number">256</span>)), model.t: np.array(random.choices(t_d, t_g, k=<span class="number">256</span>))&#125;)</span><br><span class="line">        <span class="keyword">for</span> every <span class="keyword">in</span> model.clip:</span><br><span class="line">            sess.run(every)</span><br></pre></td></tr></table></figure>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>7.13<br>了解任务详情<br></p>
+<p>7.14<br>装相应的环境，跑DRNE，发现了文档的错误<br>DRNE在命令行窗口运行。<br>输入：edgelist<br>输出：.npy（需要再写程序转换为embedding）<br></p>
+<p>7.15<br>想要完成任务：判断是否为连通图<br>结果就是不行，，<br></p>
+<p>7.16<br>还在为DRNE的无脑错误 debug<br></p>
+<p>7.17<br>学习了anaconda的使用，还在跑DRNE，，<br></p>
+<p>7.18<br>DRNE，，<br></p>
+<p>7.19<br>完成一个可以将ground truth抽样的函数，例如[0.3, 0.5, 0.7]<br></p>
+<p>7.21<br>学习关于图的内容，不敢下手自己写代码<br></p>
+<p>7.22<br>开始跑IONE（java）<br></p>
+<p>7.23<br>数据转换代码，将cosnet数据集中的用户名转换成结点号<br></p>
+<p>7.24<br>删去edges里面没有在groundtruth中出现的记录，以此来缩小数据集<br></p>
+<p>7.25<br>用学长改过的代码跑ione<br></p>
+<p>7.31<br>用anaconda环境跑DRNE<br></p>
+<p>8.4<br>写计算距离，画圈的代码<br></p>
+<p>8.5<br>计算距离的代码，注意数据格式<br></p>
+<p>8.7<br>博客搭建<br></p>
+<p>8.8<br>跑PALE中的LINE，尝试WGAN<br></p>
+<p>8.11<br>跑学长改过的WGAN<br></p>
+<p>8.11<br>跑学长改过的WGAN完成，DRNE结果的npy转成txt<br></p>
+
+    </div>
+
+    
+
+    
+    
+    
+      
+
+        
+      
+
+      <footer class="post-footer">
+          
+            
+          
+          <div class="post-tags">
+            
+              <a href="/tags/迁移学习/" rel="tag"># 迁移学习</a>
+            
+              <a href="/tags/Anaconda/" rel="tag"># Anaconda</a>
+            
+              <a href="/tags/DRNE/" rel="tag"># DRNE</a>
+            
+              <a href="/tags/IONE/" rel="tag"># IONE</a>
+            
+              <a href="/tags/WGAN/" rel="tag"># WGAN</a>
+            
+              <a href="/tags/PALE/" rel="tag"># PALE</a>
+            
+          </div>
+        
+
+        
+  <div class="post-widgets">
+    <div class="social-share">
+      
+      
+        <div id="needsharebutton-postbottom">
+          <span class="btn">
+            <i class="fa fa-share-alt" aria-hidden="true"></i>
+          </span>
+        </div>
+      
+    </div>
+  
+  </div>
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/hexo-next主题写作尝试/" rel="next" title="hexo-next主题写作尝试">
+                  <i class="fa fa-chevron-left"></i> hexo-next主题写作尝试
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+                <a href="/201909/数据科学导论学习笔记（1）/" rel="prev" title="数据科学导论学习笔记（1）">
+                  数据科学导论学习笔记（1） <i class="fa fa-chevron-right"></i>
+                </a>
+              
+            </div>
+          </div>
+        
+      </footer>
+    
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+    
+    <div class="comments" id="comments"></div>
+  
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image"
+      src="/images/tom.jpg"
+      alt="CrocodileZS">
+  <p class="site-author-name" itemprop="name">CrocodileZS</p>
+  <div class="site-description motion-element" itemprop="description"></div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">71</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">40</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+  <div class="feed-link motion-element">
+    <a href="/atom.xml" rel="alternate">
+      <i class="fa fa-rss"></i>RSS
+    </a>
+  </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="mailto:ammo@bupt.edu.cn" title="E-Mail &rarr; mailto:ammo@bupt.edu.cn" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://instagram.com/crocodile_zs" title="Instagram &rarr; https://instagram.com/crocodile_zs" rel="noopener" target="_blank"><i class="fa fa-fw fa-instagram"></i>Instagram</a>
+      </span>
+    
+  </div>
+
+
+  <div class="links-of-blogroll motion-element links-of-blogroll-block">
+    <div class="links-of-blogroll-title">
+      <i class="fa  fa-fw fa-link"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="http://www.wangxiaofeng.me/" title="http://www.wangxiaofeng.me/" rel="noopener" target="_blank">不许联想</a>
+        </li>
+      
+        <li class="links-of-blogroll-item">
+          <a href="https://idx0.dev/" title="https://idx0.dev/" rel="noopener" target="_blank">思维</a>
+        </li>
+      
+        <li class="links-of-blogroll-item">
+          <a href="https://128bit.top" title="https://128bit.top" rel="noopener" target="_blank">Dixeran</a>
+        </li>
+      
+        <li class="links-of-blogroll-item">
+          <a href="http://icontofig.leanote.com/" title="http://icontofig.leanote.com/" rel="noopener" target="_blank">Icontofig</a>
+        </li>
+      
+        <li class="links-of-blogroll-item">
+          <a href="https://www.nekomio.com" title="https://www.nekomio.com" rel="noopener" target="_blank">NekoMio</a>
+        </li>
+      
+        <li class="links-of-blogroll-item">
+          <a href="https://al0ha0e.github.io" title="https://al0ha0e.github.io" rel="noopener" target="_blank">Al0ha0e</a>
+        </li>
+      
+        <li class="links-of-blogroll-item">
+          <a href="http://gaokeyong.coding.me" title="http://gaokeyong.coding.me" rel="noopener" target="_blank">Keyong</a>
+        </li>
+      
+        <li class="links-of-blogroll-item">
+          <a href="http://poeroz.cn/" title="http://poeroz.cn/" rel="noopener" target="_blank">Poeroz</a>
+        </li>
+      
+    </ul>
+  </div>
+
+        </div>
+      </div>
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#7月13日"><span class="nav-text">7月13日</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#7月14日"><span class="nav-text">7月14日</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#7月15日"><span class="nav-text">7月15日</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#7月16日"><span class="nav-text">7月16日</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#7月17日"><span class="nav-text">7月17日</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#7月19日"><span class="nav-text">7月19日</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#7月21日"><span class="nav-text">7月21日</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#7月22日"><span class="nav-text">7月22日</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#7月23日"><span class="nav-text">7月23日</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#7月24日"><span class="nav-text">7月24日</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#7月31日"><span class="nav-text">7月31日</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#8月4日"><span class="nav-text">8月4日</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#8月5日"><span class="nav-text">8月5日</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#8月7日"><span class="nav-text">8月7日</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#8月8日"><span class="nav-text">8月8日</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#8月11日"><span class="nav-text">8月11日</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#8月13日"><span class="nav-text">8月13日</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">鰐魚先生</span>
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+    <span class="post-meta-divider">|</span>
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+
+    
+  
+  <div id="needsharebutton-float">
+    <span class="btn">
+      <i class="fa fa-share-alt" aria-hidden="true"></i>
+    </span>
+  </div>
+<script src="/lib/needsharebutton/needsharebutton.js"></script>
+<script>
+    pbOptions = {};
+      pbOptions.iconStyle = "default";
+    
+      pbOptions.boxForm = "horizontal";
+    
+      pbOptions.position = "bottomCenter";
+    
+      pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+    
+    new needShareButton('#needsharebutton-postbottom', pbOptions);
+    flOptions = {};
+      flOptions.iconStyle = "box";
+    
+      flOptions.boxForm = "horizontal";
+    
+      flOptions.position = "middleRight";
+    
+      flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+    
+    new needShareButton('#needsharebutton-float', flOptions);
+</script>
+
+
+  </div>
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+  <script src="/lib/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+<script src="/js/utils.js?v=7.3.0"></script>
+  <script src="/js/motion.js?v=7.3.0"></script>
+
+
+  <script src="/js/schemes/muse.js?v=7.3.0"></script>
+
+
+<script src="/js/next-boot.js?v=7.3.0"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+  <script src="/js/scrollspy.js?v=7.3.0"></script>
+<script src="/js/post-details.js?v=7.3.0"></script>
+
+
+    
+
+<script>
+NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', function() {
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: '9VEOQepq1oDMG0XHxBOrKuwU-gzGzoHsz',
+    appKey: 'XVzSWQhACVUcrVzQDF0AJlb8',
+    placeholder: 'ヽ(✿ﾟ▽ﾟ)ノ',
+    avatar: 'zhouyuyang17@163.com',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false,
+    lang: 'zh-cn' || 'zh-cn',
+    path: location.pathname
+  });
+}, window.Valine);
+</script>
+
+  <script type="text/javascript" src="/lib/zclip/clipboard.min.js"></script>	
+<script type="text/javascript" src="/js/src/custom.js"></script>
+</body>
+</html>

@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="generator" content="Hexo 3.9.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/rainbow.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/rainbow.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/rainbow.png?v=7.3.0">
+  <link rel="mask-icon" href="/images/rainbow.svg?v=7.3.0" color="#222">
+  <meta name="baidu-site-verification" content="MBR3SWgP01">
+
+<link rel="stylesheet" href="/css/main.css?v=7.3.0">
+
+<link rel="stylesheet" href="https://fonts.loli.net/css?family=Noto Serif SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+  <link rel="stylesheet" href="/lib/fancybox/source/jquery.fancybox.css">
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.3.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":true},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
+    save_scroll: true,
+    copycode: {"enable":true,"show_result":true,"style":"flat"},
+    fancybox: true,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    }
+  };
+</script>
+
+  <meta name="description" content="数据科学导论作为数据科学与大数据技术专业的导论课程具有相当重要的意义。每周4课时（提前结课），授课教师石川老师。          希望新学期的自己能够积极完成每一门课程的课后复习和拓展，认真写博客整理知识点。">
+<meta name="keywords" content="大数据">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据科学导论学习笔记（1）">
+<meta property="og:url" content="https://blog.crocodilezs.top/201909/数据科学导论学习笔记（1）/index.html">
+<meta property="og:site_name" content="鰐魚先生的水族館">
+<meta property="og:description" content="数据科学导论作为数据科学与大数据技术专业的导论课程具有相当重要的意义。每周4课时（提前结课），授课教师石川老师。          希望新学期的自己能够积极完成每一门课程的课后复习和拓展，认真写博客整理知识点。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://s2.ax1x.com/2019/09/12/n0o1Rf.jpg">
+<meta property="og:image" content="https://s2.ax1x.com/2019/09/15/n2dPiT.jpg">
+<meta property="og:image" content="https://s2.ax1x.com/2019/09/16/nfeK9P.jpg">
+<meta property="og:image" content="https://s2.ax1x.com/2019/09/16/nfHx41.jpg">
+<meta property="og:image" content="https://s2.ax1x.com/2019/09/16/nfj9mT.jpg">
+<meta property="og:image" content="https://s2.ax1x.com/2019/09/16/nfx3QI.jpg">
+<meta property="og:updated_time" content="2019-09-16T16:20:40.177Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="数据科学导论学习笔记（1）">
+<meta name="twitter:description" content="数据科学导论作为数据科学与大数据技术专业的导论课程具有相当重要的意义。每周4课时（提前结课），授课教师石川老师。          希望新学期的自己能够积极完成每一门课程的课后复习和拓展，认真写博客整理知识点。">
+<meta name="twitter:image" content="https://s2.ax1x.com/2019/09/12/n0o1Rf.jpg">
+  <link rel="alternate" href="/atom.xml" title="鰐魚先生的水族館" type="application/atom+xml">
+  <link rel="canonical" href="https://blog.crocodilezs.top/201909/数据科学导论学习笔记（1）/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>数据科学导论学习笔记（1） | 鰐魚先生的水族館</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  <div class="container sidebar-position-left">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">鰐魚先生的水族館</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">言念君子，溫其如玉。</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-tags">
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-about">
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>关于</a>
+
+  </li>
+  </ul>
+
+    
+
+</nav>
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content page-post-detail">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://blog.crocodilezs.top/201909/数据科学导论学习笔记（1）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CrocodileZS">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/tom.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鰐魚先生的水族館">
+    </span>
+      <header class="post-header">
+
+        
+          <h1 class="post-title" itemprop="name headline">数据科学导论学习笔记（1）
+
+            
+          </h1>
+        
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2019-09-09 10:48:50" itemprop="dateCreated datePublished" datetime="2019-09-09T10:48:50+08:00">2019-09-09</time>
+            </span>
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/数据科学导论/" itemprop="url" rel="index"><span itemprop="name">数据科学导论</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/201909/数据科学导论学习笔记（1）/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/201909/数据科学导论学习笔记（1）/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+          
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span>2.9k</span>
+            </span>
+          
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span>5 分钟</span>
+            </span>
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <div class="note info">
+    <br>
+    数据科学导论作为数据科学与大数据技术专业的导论课程具有相当重要的意义。每周4课时（提前结课），授课教师石川老师。
+    <br>
+    希望新学期的自己能够积极完成每一门课程的课后复习和拓展，认真写博客整理知识点。
+</div>
+
+<a id="more"></a>
+<p><br></p>
+<h1 id="Chap-1-数据科学概论"><a href="#Chap-1-数据科学概论" class="headerlink" title="Chap.1 数据科学概论"></a>Chap.1 数据科学概论</h1><p><strong>课程性质:</strong><br>一门导论性质的课程；包含理论知识和案例分析<br><br><strong>先修课程:</strong><br>高等数学，线性代数，概率论，数据结构，算法导论，计算机组成原理等<br><br><strong>后继课程:</strong><br>数据挖掘，数据库，机器学习，深度学习，大数据分析等<br></p>
+<hr>
+<h2 id="1-1-数据和大数据"><a href="#1-1-数据和大数据" class="headerlink" title="1.1 数据和大数据"></a>1.1 数据和大数据</h2><h3 id="1-1-1-数据"><a href="#1-1-1-数据" class="headerlink" title="1.1.1 数据"></a>1.1.1 数据</h3><p><strong>数据的定义:</strong><br>从数据科学的角度，将数据定义为，<strong>在一定背景下 有意义的 对于现实世界中的事物定性或定量的记录。</strong><br><br><strong>数据的类型:</strong></p>
+<ul>
+<li>依据结构分类 :<br>结构化数据：如数字、字符、日期等等属于结构化数据类型；<br>非结构化数据：文字、图片、视频、音频等；</li>
+<li>依据形式分类 :<br>文本、数字、声音、图片等</li>
+<li>依据来源分类:<br>观测数据和实验数据<br><br></li>
+</ul>
+<p><strong>数据的DIKW模型:</strong><br>DIKW模型通常也被称为知识金字塔，是一个金字塔状的层状模型。<br><br>Data, Infomation, Knowledge, Wisdom  </p>
+<p><img src="https://s2.ax1x.com/2019/09/12/n0o1Rf.jpg" alt="DIKW模型图"></p>
+<h3 id="1-1-2-大数据"><a href="#1-1-2-大数据" class="headerlink" title="1.1.2 大数据"></a>1.1.2 大数据</h3><p><strong>大数据的定义:</strong><br>1998年的 <code>USENIX</code> 大会上，美国硅图公司的首席科学家 <code>John R.Mashey</code> 首次提出了“大数据”这一概念，发表了名为《大数据与下一次基础设施压力的浪潮》的报告。<br>首先，大数据依旧是数据，或数据相关的过程；其次，大数据的规模并非一定要达到某一确切的数值，关键在于，是否超过了实际情况下的数据存储能力和数据计算能力。</p>
+<p><strong>大数据相关定理与模型:</strong><br><strong>（1）5V模型</strong><br>多样性（ <code>Variety</code> ），大量性（ <code>Volume</code> ），高速性（<code>Velocity</code>），价值性（ <code>Value</code> ），真实性（<code>Veracity</code>）</p>
+<p><strong>（2）5R模型</strong><br>从数据管理的角度认识从大数据中获取有用信息的过程。<br>该模型包括大数据的相关特性（<code>Relevant</code>），实时特性（<code>Realtime</code>），真实特性（<code>Realistic</code>），可靠特性（<code>Reliable</code>），以及投资回报特性（<code>Return on investment</code>, <code>ROI</code>）  </p>
+<font color="FF0000">值得注意的是5R模型中的投资回报（`ROI`）。许多的大数据项目最初关注的重点只是数据本身的利用，而没有认识到对数据的利用怎么与整个商业计划相适应，忽略了数据之下的知识的价值。</font>
+
+<p><strong>（3）4P模型</strong><br>在医疗大数据的环境中产生了医学4P模型，包含预测性（<code>Predictive</code>），预防性（<code>Preventive</code>），个体化（<code>Personalized</code>），参与性（<code>Participatory</code>）。<br>该医疗模型基于大数据，对疾病做出<font color="FF0000">预测</font>，并基于个人数据对病人做出<font color="FF0000">个性化的服务</font>，同时，诊疗过程中的数据将再次被<font color="FF0000">记录到数据库中</font>，从而为病人提供基于大数据的健康建议。</p>
+<p><strong>（4）HACE定理</strong><br><em>用于阐述大数据的定理</em><br>HACE定理将大数据描述为，始于异构（<code>Heterogeneous</code>）,自治（<code>Autonomous</code>）的多源海量数据，旨在寻求探索复杂的（<code>Complex</code>）和演化的（<code>Evolving</code>）数据关联的方法和途径。<br>基于<code>HACE定理</code>，文章还提出了大数据处理的三层框架。</p>
+<ol>
+<li>框架的第一层是大数据的计算平台。</li>
+<li>框架的第二层是大数据的语义和应用知识，包含数据共享与隐私、领域和应用知识的问题。</li>
+<li>框架的第三层是大数据分析算法。  </li>
+</ol>
+<p><img src="https://s2.ax1x.com/2019/09/15/n2dPiT.jpg" alt="基于HACE定理的大数据三层框架"></p>
+<hr>
+<h2 id="1-2-数据科学理论基础"><a href="#1-2-数据科学理论基础" class="headerlink" title="1.2 数据科学理论基础"></a>1.2 数据科学理论基础</h2><h3 id="1-2-1-数据科学发展历程"><a href="#1-2-1-数据科学发展历程" class="headerlink" title="1.2.1 数据科学发展历程"></a>1.2.1 数据科学发展历程</h3><p><em>仅记录几个时间节点</em></p>
+<ul>
+<li>1974年，图灵奖获得者 Peter Naur 首次提到了“数据科学”的概念。</li>
+<li>2002年，<code>CODATA</code>创立了学术期刊<code>&lt; Data Science Journal &gt;</code>，这是首个关于数据科学的学术期刊。</li>
+<li>2009年，谷歌首席经济学家Hal Ronald Varian发表意见称，未来十年最性感的工作是统计学家。</li>
+<li>2010年，作家Kenneth Cukier 在《经济学人》中发表特别报告提出，“数据科学家作为一种新的职业出现，他们具备了<font color="FF0000">软件程序员，统计学家和讲故事者的技能</font>，用来提取大量数据背后隐藏的规律”</li>
+<li>2010年，Drew Conway在文章中指出，“能够胜任工作的数据科学家需要学习很多方面东西”，并将其以韦恩图的形式总结为<font class="FF0000">黑客技能、数学和统计学知识、以及专业领域知识。</font></li>
+</ul>
+<h3 id="1-2-2-数据科学的主要内容"><a href="#1-2-2-数据科学的主要内容" class="headerlink" title="1.2.2 数据科学的主要内容"></a>1.2.2 数据科学的主要内容</h3><p><strong>研究内容和研究对象:</strong><br>现实世界中来源不同类型不同的数据。</p>
+<p><strong>理论体系:</strong><br><img src="https://s2.ax1x.com/2019/09/16/nfeK9P.jpg" alt="Drew Conway提出的数据科学韦恩图"></p>
+<p><code>Hacking skill</code>：计算机科学、人工智能等方面的方法和技术。<br><code>Math&amp;Statistics Knowledge</code>：数学和统计学方法理论。<br><code>Substantive Expertise</code>：实质性领域知识。  </p>
+<p><img src="https://s2.ax1x.com/2019/09/16/nfHx41.jpg" alt="数据科学韦恩图"></p>
+<p><strong>数据科学与第四范式:</strong><br>2007年图灵奖得主 Jim Gray 在演讲中提出了“指数级增长的科学依据”背景下的数据密集型科学研究的第四范式。</p>
+<ul>
+<li>几千年前，科学的星星之火刚刚点燃时的<font color="FF0000">实验科学范式</font>；</li>
+<li>几百年前以牛顿的经典力学，麦克斯韦理论解释的电磁学，所代表的<font color="FF0000">理论科学范式</font></li>
+<li>几十年前的<font color="FF0000">计算机科学范式</font></li>
+<li>到信息爆炸的今天，我们需要<strong>从计算机科学中把数据密集型科学区分出来，作为一个新的、科学探索的第四种范式</strong>，这就是第四范式的由来。<font color="FF0000">数据密集型范式</font><br><br></li>
+</ul>
+<p><em>国际数据委员会（CODATA）原称国际科技数据委员会，是原国际科学联合会下属一级学术机构，其宗旨是推动科技数据应用，发展数据科学，促进科学研究，造福人类社会，成立于1966年，秘书处设在法国巴黎。国际科学联合会和国际社会科学联合会于2018年7月正式合并成为International Science Council (ISC)，国际科技数据委员会也相应更名为国际数据委员会，从ICSU下一个专门关注科学数据的跨学科的国际组织演变成ISC下推动大数据与数据科学发展的主要机构。</em>  </p>
+<p>数据密集型科学由三个基本活动组成：数据采集、数据管理和数据分析。  </p>
+<p>数据科学与第四范式的联系在于，这两者是大数据研究的两大理论基础，前者是更广泛意义上的数据科学，后者是针对科学研究范式而言的。</p>
+<hr>
+<h2 id="1-3-数据科学应用实践"><a href="#1-3-数据科学应用实践" class="headerlink" title="1.3 数据科学应用实践"></a>1.3 数据科学应用实践</h2><h3 id="1-3-1-数据科学家"><a href="#1-3-1-数据科学家" class="headerlink" title="1.3.1 数据科学家"></a>1.3.1 数据科学家</h3><p><strong>数据科学家的定义:</strong></p>
+<ol>
+<li>具有计算机科学技术，数学和统计学知识基础和实质性专业理论知识的人。</li>
+<li><strong>能够发现现实世界的问题，收集问题相关的数据，抽取数据中的信息，并解释数据背后的意义的人。</strong></li>
+</ol>
+<p><strong>数据科学家的技能:</strong><br><img src="https://s2.ax1x.com/2019/09/16/nfj9mT.jpg" alt="数据科学家韦恩图"></p>
+<p>数据科学家的工作需要使用：Python, R, SQL, Hadoop, Spark, Java, SAS, C++, Tensorflow等语言、库或是工具。</p>
+<h3 id="1-3-2-数据科学工作流程"><a href="#1-3-2-数据科学工作流程" class="headerlink" title="1.3.2 数据科学工作流程"></a>1.3.2 数据科学工作流程</h3><p><img src="https://s2.ax1x.com/2019/09/16/nfx3QI.jpg" alt="数据科学工作流程图"></p>
+<p>分析数据包括两步，第一步是探索性分析，第二步是通过机器学习算法和统计学模型对数据进行分析。<br>探索性分析是指对已有的数据在尽量少的先验假定下进行探索，通过制图，制表，方程拟合等手段探索数据结构和规律的一种数据分析方法，适用于面对大量数据不知如何下手从何处分析的情况。</p>
+<h3 id="1-3-3-数据科学实践案例"><a href="#1-3-3-数据科学实践案例" class="headerlink" title="1.3.3 数据科学实践案例"></a>1.3.3 数据科学实践案例</h3><ol>
+<li>医疗健康大数据</li>
+<li>沃尔玛与社交大数据</li>
+<li>大数据与智慧城市</li>
+</ol>
+
+    </div>
+
+    
+
+    
+    
+    
+      
+
+        
+      
+
+      <footer class="post-footer">
+          
+            
+          
+          <div class="post-tags">
+            
+              <a href="/tags/大数据/" rel="tag"># 大数据</a>
+            
+          </div>
+        
+
+        
+  <div class="post-widgets">
+    <div class="social-share">
+      
+      
+        <div id="needsharebutton-postbottom">
+          <span class="btn">
+            <i class="fa fa-share-alt" aria-hidden="true"></i>
+          </span>
+        </div>
+      
+    </div>
+  
+  </div>
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/201909/实验室苦逼搬砖暑假生活纪实/" rel="next" title="实验室苦逼搬砖暑假生活纪实">
+                  <i class="fa fa-chevron-left"></i> 实验室苦逼搬砖暑假生活纪实
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+                <a href="/201909/口译英语学习笔记（1）/" rel="prev" title="口译英语学习笔记（1）">
+                  口译英语学习笔记（1） <i class="fa fa-chevron-right"></i>
+                </a>
+              
+            </div>
+          </div>
+        
+      </footer>
+    
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+    
+    <div class="comments" id="comments"></div>
+  
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image"
+      src="/images/tom.jpg"
+      alt="CrocodileZS">
+  <p class="site-author-name" itemprop="name">CrocodileZS</p>
+  <div class="site-description motion-element" itemprop="description"></div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">71</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">40</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+  <div class="feed-link motion-element">
+    <a href="/atom.xml" rel="alternate">
+      <i class="fa fa-rss"></i>RSS
+    </a>
+  </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="mailto:ammo@bupt.edu.cn" title="E-Mail &rarr; mailto:ammo@bupt.edu.cn" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://instagram.com/crocodile_zs" title="Instagram &rarr; https://instagram.com/crocodile_zs" rel="noopener" target="_blank"><i class="fa fa-fw fa-instagram"></i>Instagram</a>
+      </span>
+    
+  </div>
+
+
+  <div class="links-of-blogroll motion-element links-of-blogroll-block">
+    <div class="links-of-blogroll-title">
+      <i class="fa  fa-fw fa-link"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="http://www.wangxiaofeng.me/" title="http://www.wangxiaofeng.me/" rel="noopener" target="_blank">不许联想</a>
+        </li>
+      
+        <li class="links-of-blogroll-item">
+          <a href="https://idx0.dev/" title="https://idx0.dev/" rel="noopener" target="_blank">思维</a>
+        </li>
+      
+        <li class="links-of-blogroll-item">
+          <a href="https://128bit.top" title="https://128bit.top" rel="noopener" target="_blank">Dixeran</a>
+        </li>
+      
+        <li class="links-of-blogroll-item">
+          <a href="http://icontofig.leanote.com/" title="http://icontofig.leanote.com/" rel="noopener" target="_blank">Icontofig</a>
+        </li>
+      
+        <li class="links-of-blogroll-item">
+          <a href="https://www.nekomio.com" title="https://www.nekomio.com" rel="noopener" target="_blank">NekoMio</a>
+        </li>
+      
+        <li class="links-of-blogroll-item">
+          <a href="https://al0ha0e.github.io" title="https://al0ha0e.github.io" rel="noopener" target="_blank">Al0ha0e</a>
+        </li>
+      
+        <li class="links-of-blogroll-item">
+          <a href="http://gaokeyong.coding.me" title="http://gaokeyong.coding.me" rel="noopener" target="_blank">Keyong</a>
+        </li>
+      
+        <li class="links-of-blogroll-item">
+          <a href="http://poeroz.cn/" title="http://poeroz.cn/" rel="noopener" target="_blank">Poeroz</a>
+        </li>
+      
+    </ul>
+  </div>
+
+        </div>
+      </div>
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Chap-1-数据科学概论"><span class="nav-text">Chap.1 数据科学概论</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-数据和大数据"><span class="nav-text">1.1 数据和大数据</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-1-数据"><span class="nav-text">1.1.1 数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-2-大数据"><span class="nav-text">1.1.2 大数据</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-数据科学理论基础"><span class="nav-text">1.2 数据科学理论基础</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-1-数据科学发展历程"><span class="nav-text">1.2.1 数据科学发展历程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-2-数据科学的主要内容"><span class="nav-text">1.2.2 数据科学的主要内容</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-数据科学应用实践"><span class="nav-text">1.3 数据科学应用实践</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-1-数据科学家"><span class="nav-text">1.3.1 数据科学家</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-2-数据科学工作流程"><span class="nav-text">1.3.2 数据科学工作流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-3-数据科学实践案例"><span class="nav-text">1.3.3 数据科学实践案例</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">鰐魚先生</span>
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+    <span class="post-meta-divider">|</span>
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+
+    
+  
+  <div id="needsharebutton-float">
+    <span class="btn">
+      <i class="fa fa-share-alt" aria-hidden="true"></i>
+    </span>
+  </div>
+<script src="/lib/needsharebutton/needsharebutton.js"></script>
+<script>
+    pbOptions = {};
+      pbOptions.iconStyle = "default";
+    
+      pbOptions.boxForm = "horizontal";
+    
+      pbOptions.position = "bottomCenter";
+    
+      pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+    
+    new needShareButton('#needsharebutton-postbottom', pbOptions);
+    flOptions = {};
+      flOptions.iconStyle = "box";
+    
+      flOptions.boxForm = "horizontal";
+    
+      flOptions.position = "middleRight";
+    
+      flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+    
+    new needShareButton('#needsharebutton-float', flOptions);
+</script>
+
+
+  </div>
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+  <script src="/lib/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+<script src="/js/utils.js?v=7.3.0"></script>
+  <script src="/js/motion.js?v=7.3.0"></script>
+
+
+  <script src="/js/schemes/muse.js?v=7.3.0"></script>
+
+
+<script src="/js/next-boot.js?v=7.3.0"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+  <script src="/js/scrollspy.js?v=7.3.0"></script>
+<script src="/js/post-details.js?v=7.3.0"></script>
+
+
+    
+
+<script>
+NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', function() {
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: '9VEOQepq1oDMG0XHxBOrKuwU-gzGzoHsz',
+    appKey: 'XVzSWQhACVUcrVzQDF0AJlb8',
+    placeholder: 'ヽ(✿ﾟ▽ﾟ)ノ',
+    avatar: 'zhouyuyang17@163.com',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false,
+    lang: 'zh-cn' || 'zh-cn',
+    path: location.pathname
+  });
+}, window.Valine);
+</script>
+
+  <script type="text/javascript" src="/lib/zclip/clipboard.min.js"></script>	
+<script type="text/javascript" src="/js/src/custom.js"></script>
+</body>
+</html>

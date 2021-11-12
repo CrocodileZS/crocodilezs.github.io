@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="generator" content="Hexo 3.9.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/rainbow.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/rainbow.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/rainbow.png?v=7.3.0">
+  <link rel="mask-icon" href="/images/rainbow.svg?v=7.3.0" color="#222">
+  <meta name="baidu-site-verification" content="MBR3SWgP01">
+
+<link rel="stylesheet" href="/css/main.css?v=7.3.0">
+
+<link rel="stylesheet" href="https://fonts.loli.net/css?family=Noto Serif SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+  <link rel="stylesheet" href="/lib/fancybox/source/jquery.fancybox.css">
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.3.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":true},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
+    save_scroll: true,
+    copycode: {"enable":true,"show_result":true,"style":"flat"},
+    fancybox: true,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    }
+  };
+</script>
+
+  <meta name="description" content="机器学习的第二次课程。感觉新专业课程安排的不够合理，有很多机器学习的先修课程都在和机器学习同时进行。🤦‍♂️ Anyway,努力学习吧。     在本次课程中还没有做到的事：     1. 多查看笔记里的概念类内容，作到掌握。     2. 近一步理解笔记里出现的公式。     3. 对机器学习历史里出现的算法做进一步了解。     4. 对笔记里提到的算法进行各种实践！只有理论不可以">
+<meta name="keywords" content="机器学习,几何模型,线性分类">
+<meta property="og:type" content="article">
+<meta property="og:title" content="机器学习课堂笔记（2）">
+<meta property="og:url" content="https://blog.crocodilezs.top/201909/机器学习课堂笔记（2）/index.html">
+<meta property="og:site_name" content="鰐魚先生的水族館">
+<meta property="og:description" content="机器学习的第二次课程。感觉新专业课程安排的不够合理，有很多机器学习的先修课程都在和机器学习同时进行。🤦‍♂️ Anyway,努力学习吧。     在本次课程中还没有做到的事：     1. 多查看笔记里的概念类内容，作到掌握。     2. 近一步理解笔记里出现的公式。     3. 对机器学习历史里出现的算法做进一步了解。     4. 对笔记里提到的算法进行各种实践！只有理论不可以">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://s2.ax1x.com/2019/09/18/noNEk9.jpg">
+<meta property="og:image" content="https://s2.ax1x.com/2019/09/18/noU6Ve.jpg">
+<meta property="og:image" content="https://s2.ax1x.com/2019/09/18/noU7Vg.jpg">
+<meta property="og:image" content="https://s2.ax1x.com/2019/09/18/noaAR1.jpg">
+<meta property="og:image" content="https://s2.ax1x.com/2019/09/18/noa3RI.jpg">
+<meta property="og:image" content="https://s2.ax1x.com/2019/09/18/noa1JA.jpg">
+<meta property="og:image" content="https://s2.ax1x.com/2019/09/18/nodwnK.jpg">
+<meta property="og:image" content="https://s2.ax1x.com/2019/09/18/nowVHO.jpg">
+<meta property="og:image" content="https://s2.ax1x.com/2019/09/18/nowYVS.jpg">
+<meta property="og:updated_time" content="2019-09-29T05:55:19.312Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="机器学习课堂笔记（2）">
+<meta name="twitter:description" content="机器学习的第二次课程。感觉新专业课程安排的不够合理，有很多机器学习的先修课程都在和机器学习同时进行。🤦‍♂️ Anyway,努力学习吧。     在本次课程中还没有做到的事：     1. 多查看笔记里的概念类内容，作到掌握。     2. 近一步理解笔记里出现的公式。     3. 对机器学习历史里出现的算法做进一步了解。     4. 对笔记里提到的算法进行各种实践！只有理论不可以">
+<meta name="twitter:image" content="https://s2.ax1x.com/2019/09/18/noNEk9.jpg">
+  <link rel="alternate" href="/atom.xml" title="鰐魚先生的水族館" type="application/atom+xml">
+  <link rel="canonical" href="https://blog.crocodilezs.top/201909/机器学习课堂笔记（2）/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>机器学习课堂笔记（2） | 鰐魚先生的水族館</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  <div class="container sidebar-position-left">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">鰐魚先生的水族館</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">言念君子，溫其如玉。</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-tags">
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-about">
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>关于</a>
+
+  </li>
+  </ul>
+
+    
+
+</nav>
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content page-post-detail">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://blog.crocodilezs.top/201909/机器学习课堂笔记（2）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CrocodileZS">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/tom.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鰐魚先生的水族館">
+    </span>
+      <header class="post-header">
+
+        
+          <h1 class="post-title" itemprop="name headline">机器学习课堂笔记（2）
+
+            
+          </h1>
+        
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2019-09-17 13:03:50" itemprop="dateCreated datePublished" datetime="2019-09-17T13:03:50+08:00">2019-09-17</time>
+            </span>
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/机器学习/" itemprop="url" rel="index"><span itemprop="name">机器学习</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/201909/机器学习课堂笔记（2）/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/201909/机器学习课堂笔记（2）/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+          
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span>1.8k</span>
+            </span>
+          
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span>3 分钟</span>
+            </span>
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <div class="note warning">
+    机器学习的第二次课程。感觉新专业课程安排的不够合理，有很多机器学习的先修课程都在和机器学习同时进行。🤦‍♂️ Anyway,努力学习吧。<br>
+    在本次课程中还没有做到的事：<br>
+    1. 多查看笔记里的概念类内容，作到掌握。<br>
+    2. 近一步理解笔记里出现的公式。<br>
+    3. 对机器学习历史里出现的算法做进一步了解。<br>
+    4. 对笔记里提到的算法进行各种实践！只有理论不可以的。🙌
+</div>
+
+<h1 id="第二次上课"><a href="#第二次上课" class="headerlink" title="第二次上课"></a>第二次上课</h1><h2 id="复习"><a href="#复习" class="headerlink" title="复习"></a>复习</h2><ul>
+<li>Def of Machine Learning<blockquote class="blockquote-center"><p>A compute program is said to learn from experience E with respect to same task T and some performance measure P, if its performance on T, as measure by P, improves with experience E.</p>
+</blockquote>
+</li>
+</ul>
+<a id="more"></a>
+<p>假设用$P$来评估计算机程序在某任务$T$上的性能，若一个程序通过利用经验$E$在$T$上获得性能改善，则我们就说该程序对$E$进行了学习。</p>
+<ul>
+<li>机器学习的模型分类<ul>
+<li><strong>归纳学习：</strong>从样例中学习。</li>
+<li><strong>机械学习：</strong>死记硬背式学习。</li>
+<li><strong>进化学习、强化学习：</strong>在问题求解和规划中学习。</li>
+<li><strong>类比学习（如迁移学习）：</strong>通过观察和发现学习。</li>
+<li><strong>示教学习（如机器人模仿人的动作）：</strong>从指令中学习。<br><em>Tips:进化学习来源于达尔文的进化理论，遗传算法是进化学习的经典方法。</em></li>
+</ul>
+</li>
+</ul>
+<p><a href="http://people.csail.mit.edu/dsontag/courses/ml16/" target="_blank" rel="noopener">一个非常优秀的机器学习资源网址(还未仔细查看)</a></p>
+<hr>
+<h2 id="本节课的主要内容"><a href="#本节课的主要内容" class="headerlink" title="本节课的主要内容"></a>本节课的主要内容</h2><ul>
+<li>以监督学习为例，谈一下学习的策略和学习的算法。</li>
+<li>机器学习的发展史</li>
+<li>几何模型</li>
+</ul>
+<h3 id="机器学习系统构成的要素"><a href="#机器学习系统构成的要素" class="headerlink" title="机器学习系统构成的要素"></a>机器学习系统构成的要素</h3><p><img src="https://s2.ax1x.com/2019/09/18/noNEk9.jpg" alt="机器学习系统构成要素"></p>
+<ul>
+<li><strong>任务：</strong>可通过机器学习解决的问题。</li>
+<li><strong>特征：</strong>适用于样本集合中任意实例的度量方法。</li>
+<li><strong>模型：</strong>从数据中学习以便解决给定任务的系统方法。</li>
+</ul>
+<h3 id="学习算法的核心"><a href="#学习算法的核心" class="headerlink" title="学习算法的核心"></a>学习算法的核心</h3><p><font color="FF0000">策略 + 求解算法</font><br><strong>一些基本概念：</strong></p>
+<ol>
+<li>损失函数<br><img src="https://s2.ax1x.com/2019/09/18/noU6Ve.jpg" alt="损失函数"></li>
+<li>期望损失：损失函数的期望<br> （理论上存在，但是很难利用它）<br> <img src="https://s2.ax1x.com/2019/09/18/noU7Vg.jpg" alt><br> <em>打公式真的麻烦死了😡，公式都直接用图片好了</em></li>
+<li>经验风险（又称“经验损失”）<br> 模型关于训练样本的平均损失。根据大数定律，当样本的容量趋于无穷大时，经验损失无限趋近于期望损失。<br> <img src="https://s2.ax1x.com/2019/09/18/noaAR1.jpg" alt></li>
+</ol>
+<p><strong>策略1：</strong>经验风险最小化<br><img src="https://s2.ax1x.com/2019/09/18/noa3RI.jpg" alt><br>可以用此公式推导$f(x)$<br>当样本小或者取样有问题的时候容易出现过拟合。</p>
+<p><strong>策略2：</strong>结构风险最小化<br><img src="https://s2.ax1x.com/2019/09/18/noa1JA.jpg" alt><br>加入<font color="FF0000">正则化项</font>，使模型不要太“特例”，避免过拟合。</p>
+<p><strong>求解算法：</strong><br>机器学习的学习算法本质上是一个优化问题求解算法。</p>
+<p>至此，机器学习的概念已经全部结束。<br>机器学习能干什么？列出四五个<br>机器学习的分类，不同的分类下面能列出3.4个<br>机器学习的算法，不同的模型怎样度量自己的风险。</p>
+<h3 id="机器学习的发展"><a href="#机器学习的发展" class="headerlink" title="机器学习的发展"></a>机器学习的发展</h3><p>详见博客地址<br>classic alg 黄色的点是基于神经网络</p>
+<p><strong>机器学习的历史：</strong>（上课随便记了一点，不重要的）<br>详细资料：<br><a href="http://www.erogol.com/brief-history-machine-learning/" target="_blank" rel="noopener">机器学习的历史</a></p>
+<ol>
+<li>1949年，Hebb提出了神经心理学学习范式，这为以后的神经网络奠下基础。</li>
+<li>1957年，Rosenblatt提出了感知器算法，是神经网络的基础。</li>
+<li>1995年，Vapnik和Cortes提出的<font color="FF0000">支持向量机（网络）（SVM）</font><br><img src="https://s2.ax1x.com/2019/09/18/nodwnK.jpg" alt="机器学习重要节点"></li>
+</ol>
+<p>不一定所有模型都套用深度学习，有很多其他解决问题的模型。</p>
+<p><strong>从样例中学习：</strong></p>
+<ol>
+<li>符号主意——“对智能行为的符号化建模”。<br>概念学习的结果可以是显性的。</li>
+<li>连接主意——基于神经网络。<br>效果更好，但是知识是隐性的。</li>
+<li>统计学习——基于数据构建概率统计模型并运用模型对数据进行预测分析。</li>
+<li>深度学习——深度学习缺乏严格的理论基础，但是显著降低了应用者的门槛。<br>学习深度学习的时候关心一下开源的软件。</li>
+</ol>
+<hr>
+<h2 id="第二章、几何模型"><a href="#第二章、几何模型" class="headerlink" title="第二章、几何模型"></a>第二章、几何模型</h2><p><strong>任务、模型、策略、算法</strong><br>有一些数据的<font color="FF0000">几何特征</font>，如直线、曲线、平面、距离等，有助于我们区分样本的分布特征。<font color="FF0000">利用几何特征构建的机器学习模型</font>，我们称之为<font color="FF0000">几何模型</font>。几何模型主要包括<font color="FF0000">线性分类器、支持向量机、最近邻算法以及K均值聚类</font>等。</p>
+<h3 id="线性分类问题"><a href="#线性分类问题" class="headerlink" title="线性分类问题"></a>线性分类问题</h3><p>如果存在某个线性决策面能够将两类样本分离，则称所给数据集是线性可分的。<br><img src="https://s2.ax1x.com/2019/09/18/nowVHO.jpg" alt="线性决策面举例"></p>
+<p><strong>基本线性分类器</strong><br>体现了经验风险最小化。<br><img src="https://s2.ax1x.com/2019/09/18/nowYVS.jpg" alt="基本线性分类器求解"></p>
+<p><strong><code>Fisher</code>线性分类器</strong></p>
+<ul>
+<li>基本原理：找到一个最合适的投影轴，使两类样本在该轴上的投影之间的举例尽可能远，而每一类样本的投影尽可能紧凑，从而使分类效果最佳。</li>
+</ul>
+
+    </div>
+
+    
+
+    
+    
+    
+      
+
+        
+      
+
+      <footer class="post-footer">
+          
+            
+          
+          <div class="post-tags">
+            
+              <a href="/tags/机器学习/" rel="tag"># 机器学习</a>
+            
+              <a href="/tags/几何模型/" rel="tag"># 几何模型</a>
+            
+              <a href="/tags/线性分类/" rel="tag"># 线性分类</a>
+            
+          </div>
+        
+
+        
+  <div class="post-widgets">
+    <div class="social-share">
+      
+      
+        <div id="needsharebutton-postbottom">
+          <span class="btn">
+            <i class="fa fa-share-alt" aria-hidden="true"></i>
+          </span>
+        </div>
+      
+    </div>
+  
+  </div>
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/201909/口译英语学习笔记（1）/" rel="next" title="口译英语学习笔记（1）">
+                  <i class="fa fa-chevron-left"></i> 口译英语学习笔记（1）
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+                <a href="/201909/数据库系统原理学习笔记（2）/" rel="prev" title="数据库系统原理学习笔记（2）">
+                  数据库系统原理学习笔记（2） <i class="fa fa-chevron-right"></i>
+                </a>
+              
+            </div>
+          </div>
+        
+      </footer>
+    
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+    
+    <div class="comments" id="comments"></div>
+  
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image"
+      src="/images/tom.jpg"
+      alt="CrocodileZS">
+  <p class="site-author-name" itemprop="name">CrocodileZS</p>
+  <div class="site-description motion-element" itemprop="description"></div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">71</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">40</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+  <div class="feed-link motion-element">
+    <a href="/atom.xml" rel="alternate">
+      <i class="fa fa-rss"></i>RSS
+    </a>
+  </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="mailto:ammo@bupt.edu.cn" title="E-Mail &rarr; mailto:ammo@bupt.edu.cn" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://instagram.com/crocodile_zs" title="Instagram &rarr; https://instagram.com/crocodile_zs" rel="noopener" target="_blank"><i class="fa fa-fw fa-instagram"></i>Instagram</a>
+      </span>
+    
+  </div>
+
+
+  <div class="links-of-blogroll motion-element links-of-blogroll-block">
+    <div class="links-of-blogroll-title">
+      <i class="fa  fa-fw fa-link"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="http://www.wangxiaofeng.me/" title="http://www.wangxiaofeng.me/" rel="noopener" target="_blank">不许联想</a>
+        </li>
+      
+        <li class="links-of-blogroll-item">
+          <a href="https://idx0.dev/" title="https://idx0.dev/" rel="noopener" target="_blank">思维</a>
+        </li>
+      
+        <li class="links-of-blogroll-item">
+          <a href="https://128bit.top" title="https://128bit.top" rel="noopener" target="_blank">Dixeran</a>
+        </li>
+      
+        <li class="links-of-blogroll-item">
+          <a href="http://icontofig.leanote.com/" title="http://icontofig.leanote.com/" rel="noopener" target="_blank">Icontofig</a>
+        </li>
+      
+        <li class="links-of-blogroll-item">
+          <a href="https://www.nekomio.com" title="https://www.nekomio.com" rel="noopener" target="_blank">NekoMio</a>
+        </li>
+      
+        <li class="links-of-blogroll-item">
+          <a href="https://al0ha0e.github.io" title="https://al0ha0e.github.io" rel="noopener" target="_blank">Al0ha0e</a>
+        </li>
+      
+        <li class="links-of-blogroll-item">
+          <a href="http://gaokeyong.coding.me" title="http://gaokeyong.coding.me" rel="noopener" target="_blank">Keyong</a>
+        </li>
+      
+        <li class="links-of-blogroll-item">
+          <a href="http://poeroz.cn/" title="http://poeroz.cn/" rel="noopener" target="_blank">Poeroz</a>
+        </li>
+      
+    </ul>
+  </div>
+
+        </div>
+      </div>
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#第二次上课"><span class="nav-text">第二次上课</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#复习"><span class="nav-text">复习</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#本节课的主要内容"><span class="nav-text">本节课的主要内容</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#机器学习系统构成的要素"><span class="nav-text">机器学习系统构成的要素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#学习算法的核心"><span class="nav-text">学习算法的核心</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#机器学习的发展"><span class="nav-text">机器学习的发展</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第二章、几何模型"><span class="nav-text">第二章、几何模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#线性分类问题"><span class="nav-text">线性分类问题</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">鰐魚先生</span>
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+    <span class="post-meta-divider">|</span>
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+
+    
+  
+  <div id="needsharebutton-float">
+    <span class="btn">
+      <i class="fa fa-share-alt" aria-hidden="true"></i>
+    </span>
+  </div>
+<script src="/lib/needsharebutton/needsharebutton.js"></script>
+<script>
+    pbOptions = {};
+      pbOptions.iconStyle = "default";
+    
+      pbOptions.boxForm = "horizontal";
+    
+      pbOptions.position = "bottomCenter";
+    
+      pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+    
+    new needShareButton('#needsharebutton-postbottom', pbOptions);
+    flOptions = {};
+      flOptions.iconStyle = "box";
+    
+      flOptions.boxForm = "horizontal";
+    
+      flOptions.position = "middleRight";
+    
+      flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+    
+    new needShareButton('#needsharebutton-float', flOptions);
+</script>
+
+
+  </div>
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+  <script src="/lib/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+<script src="/js/utils.js?v=7.3.0"></script>
+  <script src="/js/motion.js?v=7.3.0"></script>
+
+
+  <script src="/js/schemes/muse.js?v=7.3.0"></script>
+
+
+<script src="/js/next-boot.js?v=7.3.0"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') {
+          next = next.nextSibling;
+        }
+        if (next && next.nodeName.toLowerCase() === 'br') {
+          next.parentNode.removeChild(next);
+        }
+      }
+    });
+  });
+
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
+      if (element.nodeName.toLowerCase() == 'li') {
+        element = element.parentNode;
+      }
+      element.classList.add('has-jax');
+    }
+  });
+</script>
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML', function() {
+    MathJax.Hub.Typeset();
+  }, window.MathJax);
+</script>
+
+    
+  
+
+  
+
+  
+
+
+  
+  <script src="/js/scrollspy.js?v=7.3.0"></script>
+<script src="/js/post-details.js?v=7.3.0"></script>
+
+
+    
+
+<script>
+NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', function() {
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: '9VEOQepq1oDMG0XHxBOrKuwU-gzGzoHsz',
+    appKey: 'XVzSWQhACVUcrVzQDF0AJlb8',
+    placeholder: 'ヽ(✿ﾟ▽ﾟ)ノ',
+    avatar: 'zhouyuyang17@163.com',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false,
+    lang: 'zh-cn' || 'zh-cn',
+    path: location.pathname
+  });
+}, window.Valine);
+</script>
+
+  <script type="text/javascript" src="/lib/zclip/clipboard.min.js"></script>	
+<script type="text/javascript" src="/js/src/custom.js"></script>
+</body>
+</html>

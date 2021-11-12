@@ -1,0 +1,1028 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="generator" content="Hexo 3.9.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/rainbow.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/rainbow.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/rainbow.png?v=7.3.0">
+  <link rel="mask-icon" href="/images/rainbow.svg?v=7.3.0" color="#222">
+  <meta name="baidu-site-verification" content="MBR3SWgP01">
+
+<link rel="stylesheet" href="/css/main.css?v=7.3.0">
+
+<link rel="stylesheet" href="https://fonts.loli.net/css?family=Noto Serif SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+  <link rel="stylesheet" href="/lib/fancybox/source/jquery.fancybox.css">
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.3.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":true},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
+    save_scroll: true,
+    copycode: {"enable":true,"show_result":true,"style":"flat"},
+    fancybox: true,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    }
+  };
+</script>
+
+  <meta name="description" content="Price Suggestion Chanllenge[TOC] 实验题目题目背景考虑到网上销售的产品数量，产品定价在规模上变得更加困难。服装有很强的季节性定价趋势，受品牌影响很大，而电子产品价格根据产品规格波动。如何根据以往信息进行合理定价，有效地帮助商家进行商品的销售是一个有意义的问题。">
+<meta name="keywords" content="NLP">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Price Suggestion Chanllenge">
+<meta property="og:url" content="https://blog.crocodilezs.top/201911/Price_Suggestion_Chanllenge/index.html">
+<meta property="og:site_name" content="鰐魚先生的水族館">
+<meta property="og:description" content="Price Suggestion Chanllenge[TOC] 实验题目题目背景考虑到网上销售的产品数量，产品定价在规模上变得更加困难。服装有很强的季节性定价趋势，受品牌影响很大，而电子产品价格根据产品规格波动。如何根据以往信息进行合理定价，有效地帮助商家进行商品的销售是一个有意义的问题。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://blog.crocodilezs.top/201911/Price_Suggestion_Chanllenge/image/1-1.png">
+<meta property="og:image" content="https://blog.crocodilezs.top/201911/Price_Suggestion_Chanllenge/image/1-2.png">
+<meta property="og:image" content="https://blog.crocodilezs.top/201911/Price_Suggestion_Chanllenge/image/2-2.png">
+<meta property="og:image" content="https://blog.crocodilezs.top/201911/Price_Suggestion_Chanllenge/image/2-1.png">
+<meta property="og:image" content="https://blog.crocodilezs.top/201911/Price_Suggestion_Chanllenge/image/1-3.png">
+<meta property="og:image" content="https://blog.crocodilezs.top/201911/Price_Suggestion_Chanllenge/image/1-4.png">
+<meta property="og:image" content="https://blog.crocodilezs.top/201911/Price_Suggestion_Chanllenge/image/1-5.png">
+<meta property="og:image" content="https://blog.crocodilezs.top/201911/Price_Suggestion_Chanllenge/image/1-6.png">
+<meta property="og:updated_time" content="2020-09-22T08:46:21.406Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Price Suggestion Chanllenge">
+<meta name="twitter:description" content="Price Suggestion Chanllenge[TOC] 实验题目题目背景考虑到网上销售的产品数量，产品定价在规模上变得更加困难。服装有很强的季节性定价趋势，受品牌影响很大，而电子产品价格根据产品规格波动。如何根据以往信息进行合理定价，有效地帮助商家进行商品的销售是一个有意义的问题。">
+<meta name="twitter:image" content="https://blog.crocodilezs.top/201911/Price_Suggestion_Chanllenge/image/1-1.png">
+  <link rel="alternate" href="/atom.xml" title="鰐魚先生的水族館" type="application/atom+xml">
+  <link rel="canonical" href="https://blog.crocodilezs.top/201911/Price_Suggestion_Chanllenge/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>Price Suggestion Chanllenge | 鰐魚先生的水族館</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  <div class="container sidebar-position-left">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">鰐魚先生的水族館</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">言念君子，溫其如玉。</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-tags">
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-about">
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>关于</a>
+
+  </li>
+  </ul>
+
+    
+
+</nav>
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content page-post-detail">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://blog.crocodilezs.top/201911/Price_Suggestion_Chanllenge/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CrocodileZS">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/tom.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鰐魚先生的水族館">
+    </span>
+      <header class="post-header">
+
+        
+          <h1 class="post-title" itemprop="name headline">Price Suggestion Chanllenge
+
+            
+          </h1>
+        
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2019-11-12 16:22:10" itemprop="dateCreated datePublished" datetime="2019-11-12T16:22:10+08:00">2019-11-12</time>
+            </span>
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/数据科学导论/" itemprop="url" rel="index"><span itemprop="name">数据科学导论</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/201911/Price_Suggestion_Chanllenge/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/201911/Price_Suggestion_Chanllenge/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+          
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span>13k</span>
+            </span>
+          
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span>22 分钟</span>
+            </span>
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="Price-Suggestion-Chanllenge"><a href="#Price-Suggestion-Chanllenge" class="headerlink" title="Price Suggestion Chanllenge"></a>Price Suggestion Chanllenge</h1><p>[TOC]</p>
+<h2 id="实验题目"><a href="#实验题目" class="headerlink" title="实验题目"></a>实验题目</h2><h3 id="题目背景"><a href="#题目背景" class="headerlink" title="题目背景"></a>题目背景</h3><p>考虑到网上销售的产品数量，产品定价在规模上变得更加困难。服装有很强的季节性定价趋势，受品牌影响很大，而电子产品价格根据产品规格波动。如何根据以往信息进行合理定价，有效地帮助商家进行商品的销售是一个有意义的问题。</p>
+<a id="more"></a>
+<h3 id="分析目标"><a href="#分析目标" class="headerlink" title="分析目标"></a>分析目标</h3><p>通过给出的商品描述、商品类别和品牌信息，并结合训练数据中的商品价格来给新商品定价格。Eg ：<br><img src="image/1-1.png" alt></p>
+<p>显然 <code>Versace</code> 的衣服价格上应该远高于美特斯邦威的衣服，并且在商品描述中，可以发现两者描述有细微差别。 </p>
+<blockquote>
+<p>本 project 旨在对文本信息进行分析，提取文本信息中重要信息，推导出和价格之间的潜在关系 </p>
+</blockquote>
+<h3 id="数据字段分析"><a href="#数据字段分析" class="headerlink" title="数据字段分析"></a>数据字段分析</h3><p><img src="image/1-2.png" alt></p>
+<h3 id="数据集"><a href="#数据集" class="headerlink" title="数据集"></a>数据集</h3><ul>
+<li><code>train.csv</code> 训练集 （含price）</li>
+<li><code>test.csv</code> 测试集 (不含price) ; <code>label_test.csv</code> 测试集 中对应的 <code>price</code></li>
+<li><code>f_test.csv</code> 最终的评价数据集 （不含 <code>price</code> ）</li>
+</ul>
+<h3 id="评价指标"><a href="#评价指标" class="headerlink" title="评价指标"></a>评价指标</h3><p>评价的使用的是 <code>Mean Squared Logarithmic Error</code>: 计算的方式如下</p>
+<script type="math/tex; mode=display">MSLE = \cfrac{1}{n}\sum_{i=1}^n(log(p_i+1)-log(\alpha_i+1))^2</script><p>其中$n$代表测试集的样本数；$p_i$代表的是预测的商品价格值；$\alpha_i$代表实际的销售价格。</p>
+<h3 id="作业要求"><a href="#作业要求" class="headerlink" title="作业要求"></a>作业要求</h3><p>提交的最后文件内容为：  </p>
+<ul>
+<li>最终代码文件（请写清楚使用了那些库，以及相应库的版本，可使用 <code>pip list</code> 命令查看版本，确保能顺利运行）</li>
+<li>在 <code>f_test.csv</code>数据集上的结果</li>
+<li>分析文档<br>请不要是简单的代码粘贴，加入分析过程<br>将你对于数据的理解记录下来，简单来说，缺失值处理这种基本操作<br>写出你的尝试的各种方法，为了解决rank太低的情况下分数太低<br>写一份同学负责哪一部分代码，每一部分没有区别，主要是为了给代码风格打分。  </li>
+</ul>
+<h3 id="提交结果文件格式"><a href="#提交结果文件格式" class="headerlink" title="提交结果文件格式"></a>提交结果文件格式</h3><ul>
+<li>结果文件名为</li>
+<li>提交格式<ul>
+<li>第一行为 test_id \t price 的表头</li>
+<li>接下来的每行为id \t predict_price</li>
+</ul>
+</li>
+</ul>
+<h2 id="实验过程"><a href="#实验过程" class="headerlink" title="实验过程"></a>实验过程</h2><p><em>这次实验难度很大，我们所有参考资料均在实验报告的末尾注明</em></p>
+<h3 id="一、样例代码的学习"><a href="#一、样例代码的学习" class="headerlink" title="一、样例代码的学习"></a>一、样例代码的学习</h3><p>首先尝试了给出的样例代码，了解了解决这个问题的大致思路。解决这个价格预测问题的主要过程是：导入数据和数据探索、数据预处理、模型构建、价格预测和测评。</p>
+<h4 id="导入数据和数据探索"><a href="#导入数据和数据探索" class="headerlink" title="导入数据和数据探索"></a>导入数据和数据探索</h4><p>导入数据和初步了解数据<br><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">train_data = pd.read_csv(<span class="string">'../data/4/train.csv'</span>, sep=<span class="string">"\t"</span>)</span><br><span class="line">test_data = pd.read_csv(<span class="string">'../data/4/test.csv'</span>,sep=<span class="string">'\t'</span>)</span><br><span class="line">train_data.info()</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;class &apos;pandas.core.frame.DataFrame&apos;&gt;</span><br><span class="line">RangeIndex: 300000 entries, 0 to 299999</span><br><span class="line">Data columns (total 8 columns):</span><br><span class="line">train_id             300000 non-null int64</span><br><span class="line">name                 300000 non-null object</span><br><span class="line">item_condition_id    300000 non-null int64</span><br><span class="line">category_name        298719 non-null object</span><br><span class="line">brand_name           171929 non-null object</span><br><span class="line">price                300000 non-null float64</span><br><span class="line">shipping             300000 non-null int64</span><br><span class="line">item_description     300000 non-null object</span><br><span class="line">dtypes: float64(1), int64(3), object(4)</span><br><span class="line">memory usage: 18.3+ MB</span><br></pre></td></tr></table></figure>
+<h4 id="数据预处理"><a href="#数据预处理" class="headerlink" title="数据预处理"></a>数据预处理</h4><p>首先处理属性，训练数据首先要删去<code>price</code>，再去掉没有用处的 <code>train_id</code> 或者 <code>test_id</code>。通过观察上面的数据属性可知 <code>category_name</code> 和 <code>brand_name</code>有数据缺失，样例代码直接用 <code>missing</code>填充。<br><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">featureProcessing</span><span class="params">(df)</span>:</span></span><br><span class="line">    <span class="comment"># delete the data that will not be used</span></span><br><span class="line">    df = df.drop([<span class="string">'price'</span>, <span class="string">'test_id'</span>, <span class="string">'train_id'</span>], axis=<span class="number">1</span>)</span><br><span class="line">    <span class="comment"># deal with the missing value with a default value</span></span><br><span class="line">    df[<span class="string">'category_name'</span>] = df[<span class="string">'category_name'</span>].fillna(<span class="string">'missing'</span>).astype(str)</span><br><span class="line">    df[<span class="string">'brand_name'</span>] = df[<span class="string">'brand_name'</span>].fillna(<span class="string">'missing'</span>).astype(str)</span><br><span class="line">    df[<span class="string">'item_description'</span>] = df[<span class="string">'item_description'</span>].fillna(<span class="string">'No'</span>)</span><br><span class="line">    <span class="comment"># convert the data : int -&gt; str</span></span><br><span class="line">    df[<span class="string">'shipping'</span>] = df[<span class="string">'shipping'</span>].astype(str)</span><br><span class="line">    df[<span class="string">'item_condition_id'</span>] = df[<span class="string">'item_condition_id'</span>].astype(str)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> df</span><br></pre></td></tr></table></figure></p>
+<h4 id="模型构建"><a href="#模型构建" class="headerlink" title="模型构建"></a>模型构建</h4><p>首先做模型的输入，通过<code>CountVectorizer</code> 和 <code>TfidfVectorizer</code>生成词频的矩阵， <code>Tfidf</code> 的效果更优，因为考虑了各词在所有字段钟出现的次数，生成的词频矩阵是带有权重的。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">vectorizer = FeatureUnion([</span><br><span class="line">    (<span class="string">'name'</span>, CountVectorizer(ngram_range=(<span class="number">1</span>, <span class="number">2</span>), max_features=<span class="number">50000</span>, preprocessor=build_preprocessor_1(<span class="string">'name'</span>))),</span><br><span class="line">    (<span class="string">'category_name'</span>, CountVectorizer(token_pattern=<span class="string">'.+'</span>, preprocessor=build_preprocessor_1(<span class="string">'category_name'</span>))),</span><br><span class="line">    (<span class="string">'brand_name'</span>, CountVectorizer(token_pattern=<span class="string">'.+'</span>, preprocessor=build_preprocessor_1(<span class="string">'brand_name'</span>))),</span><br><span class="line">    (<span class="string">'shipping'</span>, CountVectorizer(token_pattern=<span class="string">'\d+'</span>, preprocessor=build_preprocessor_1(<span class="string">'shipping'</span>))),</span><br><span class="line">    (<span class="string">'item_condition_id'</span>, CountVectorizer(token_pattern=<span class="string">'\d+'</span>, preprocessor=build_preprocessor_1(<span class="string">'item_condition_id'</span>))),</span><br><span class="line">    (<span class="string">'item_description'</span>, TfidfVectorizer(ngram_range=(<span class="number">1</span>, <span class="number">3</span>),max_features=<span class="number">100000</span>, preprocessor=build_preprocessor_1(<span class="string">'item_description'</span>))),</span><br><span class="line">])</span><br></pre></td></tr></table></figure>
+<p>利用岭回归，实现价格预测。<br><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">ridgeClassify</span><span class="params">(train_data, train_label)</span>:</span></span><br><span class="line">    ridgeClf = Ridge(</span><br><span class="line">        solver=<span class="string">'auto'</span>,</span><br><span class="line">        fit_intercept=<span class="literal">True</span>,</span><br><span class="line">        alpha=<span class="number">0.5</span>,</span><br><span class="line">        max_iter=<span class="number">500</span>,</span><br><span class="line">        normalize=<span class="literal">False</span>,</span><br><span class="line">        tol=<span class="number">0.05</span>)</span><br><span class="line">    <span class="comment"># 训练</span></span><br><span class="line">    ridgeClf.fit(train_data, train_label)</span><br><span class="line">    <span class="keyword">return</span> ridgeClf</span><br></pre></td></tr></table></figure></p>
+<p>通过对数据集的了解和对样例代码的学习，我们了解到优化这个问题的答案有三个角度可以入手：</p>
+<ol>
+<li>数据预处理：怎样处理缺失值？数据该怎样结合？</li>
+<li>形成词频矩阵时进行优化：调整 <code>CountVectorizer</code> 和 <code>TfidfVectorizer</code> 的参数</li>
+<li>模型的选择和优化：尝试岭回归之外的模型、调整模型参数。</li>
+</ol>
+<h3 id="二、尝试更多的模型"><a href="#二、尝试更多的模型" class="headerlink" title="二、尝试更多的模型"></a>二、尝试更多的模型</h3><p>在上面的样例代码中，利用岭回归模型得到的结果是3.01左右。经过之前课上的提示和网上的资料查找，我们准备再去尝试一下 <code>MLP</code>模型和 <code>Lgmb</code>模型。在粗略的尝试了两个模型之后我们决定进一步利用 <code>MLP</code> 进行下一步的优化。</p>
+<h4 id="MLP"><a href="#MLP" class="headerlink" title="MLP"></a><code>MLP</code></h4><p><code>MLP</code> 模型的结果如下：<br><img src="image/2-2.png" alt></p>
+<h4 id="LGBM"><a href="#LGBM" class="headerlink" title="LGBM"></a><code>LGBM</code></h4><p><code>Lgbm</code> 模型的结果如下：<br><img src="image/2-1.png" alt></p>
+<h4 id="MLP-和-LGBM-结合"><a href="#MLP-和-LGBM-结合" class="headerlink" title="MLP 和 LGBM 结合"></a><code>MLP</code> 和 <code>LGBM</code> 结合</h4><ol>
+<li>特征处理</li>
+</ol>
+<ul>
+<li>导入数据集</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 读文件</span></span><br><span class="line">   train = pd.read_csv(<span class="string">'data/train.csv'</span>, sep=<span class="string">'\t'</span>)</span><br><span class="line">   test = pd.read_csv(<span class="string">'data/test.csv'</span>, sep=<span class="string">'\t'</span>)</span><br><span class="line">   <span class="comment"># 训练数据和测试数据一起处理</span></span><br><span class="line">   df = pd.concat([train, test], axis=<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>缺失值处理</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#对缺失值进行处理</span></span><br><span class="line">   df[<span class="string">'category_name'</span>] = df[<span class="string">'category_name'</span>].fillna(<span class="string">'MISS'</span>).astype(str)</span><br><span class="line">   df[<span class="string">'brand_name'</span>] = df[<span class="string">'brand_name'</span>].fillna(<span class="string">'missing'</span>).astype(str)</span><br><span class="line">   df[<span class="string">'item_description'</span>] = df[<span class="string">'item_description'</span>].fillna(<span class="string">'No'</span>)</span><br><span class="line">   <span class="comment">#数据类型处理</span></span><br><span class="line">   df[<span class="string">'shipping'</span>] = df[<span class="string">'shipping'</span>].astype(str)</span><br><span class="line">   df[<span class="string">'item_condition_id'</span>] = df[<span class="string">'item_condition_id'</span>].astype(str)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>特征向量化</li>
+</ul>
+<p>使用 <code>sklearn</code> 库中的 <code>CountVectorizer</code> 类将文本特征进行向量化处理，并使用 <code>FeatureUnion</code> 进行特征联合</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">vectorizer = FeatureUnion([</span><br><span class="line">        (<span class="string">'name'</span>, CountVectorizer(</span><br><span class="line">            ngram_range=(<span class="number">1</span>, <span class="number">2</span>),</span><br><span class="line">            max_features=<span class="number">100000</span>,</span><br><span class="line">            preprocessor=build_preprocessor(<span class="string">'name'</span>))),</span><br><span class="line">        (<span class="string">'category_name'</span>, CountVectorizer(</span><br><span class="line">            token_pattern=<span class="string">'.+'</span>,</span><br><span class="line">            preprocessor=build_preprocessor(<span class="string">'category_name'</span>))),</span><br><span class="line">        (<span class="string">'brand_name'</span>, CountVectorizer(</span><br><span class="line">            token_pattern=<span class="string">'.+'</span>,</span><br><span class="line">            preprocessor=build_preprocessor(<span class="string">'brand_name'</span>))),</span><br><span class="line">        (<span class="string">'shipping'</span>, CountVectorizer(</span><br><span class="line">            token_pattern=<span class="string">'\d+'</span>,</span><br><span class="line">            preprocessor=build_preprocessor(<span class="string">'shipping'</span>))),</span><br><span class="line">        (<span class="string">'item_condition_id'</span>, CountVectorizer(</span><br><span class="line">            token_pattern=<span class="string">'\d+'</span>,</span><br><span class="line">            preprocessor=build_preprocessor(<span class="string">'item_condition_id'</span>))),</span><br><span class="line">        (<span class="string">'item_description'</span>, TfidfVectorizer(</span><br><span class="line">            ngram_range=(<span class="number">1</span>, <span class="number">3</span>),</span><br><span class="line">            max_features=<span class="number">200000</span>,</span><br><span class="line">            preprocessor=build_preprocessor(<span class="string">'item_description'</span>),</span><br><span class="line">            stop_words=<span class="string">'english'</span>)),</span><br><span class="line">    ])</span><br></pre></td></tr></table></figure>
+<ol>
+<li>模型构建</li>
+</ol>
+<p>对特征分别使用岭回归模型，<code>Lgbm</code> 模型和 <code>mlp</code> 模型进行训练，在本地测试得到的解分别为3.01，3.00，0.26</p>
+<ul>
+<li>岭回归模型</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">ridge_classify</span><span class="params">(train_data,train_label)</span>:</span></span><br><span class="line">    <span class="comment">#模型</span></span><br><span class="line">    model = Ridge(</span><br><span class="line">            solver=<span class="string">'auto'</span>,</span><br><span class="line">            fit_intercept=<span class="literal">True</span>,</span><br><span class="line">            alpha=<span class="number">0.4</span>,</span><br><span class="line">            max_iter=<span class="number">100</span>,</span><br><span class="line">            normalize=<span class="literal">False</span>,</span><br><span class="line">            tol=<span class="number">0.05</span>)</span><br><span class="line">    <span class="comment">#训练</span></span><br><span class="line">    model.fit(train_data, train_label)</span><br><span class="line">    <span class="keyword">return</span> model</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>lgbm</code>模型 </li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">lgbm_classify</span><span class="params">(train_data,train_label)</span>:</span></span><br><span class="line">    params = &#123;</span><br><span class="line">        <span class="string">'learning_rate'</span>: <span class="number">0.75</span>,</span><br><span class="line">        <span class="string">'application'</span>: <span class="string">'regression'</span>,</span><br><span class="line">        <span class="string">'max_depth'</span>: <span class="number">3</span>,</span><br><span class="line">        <span class="string">'num_leaves'</span>: <span class="number">100</span>,</span><br><span class="line">        <span class="string">'verbosity'</span>: <span class="number">-1</span>,</span><br><span class="line">        <span class="string">'metric'</span>: <span class="string">'RMSE'</span>,</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    train_X, valid_X, train_y, valid_y = train_test_split(train_data, train_label, test_size=<span class="number">0.1</span>, random_state=<span class="number">144</span>)</span><br><span class="line">    d_train = lgb.Dataset(train_X, label=train_y)</span><br><span class="line">    d_valid = lgb.Dataset(valid_X, label=valid_y)</span><br><span class="line">    watchlist = [d_train, d_valid]</span><br><span class="line"></span><br><span class="line">    model = lgb.train(params, train_set=d_train, num_boost_round=<span class="number">2200</span>, valid_sets=watchlist, \</span><br><span class="line">                      early_stopping_rounds=<span class="number">50</span>, verbose_eval=<span class="number">100</span>)</span><br><span class="line">    <span class="keyword">return</span> model</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>mlp</code> 模型</li>
+</ul>
+<p><code>MLP</code> 模型由两个全连接层和一个dropout层组成，本质上就是一个多隐藏层的网络</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">mlp_model</span><span class="params">(train_data,train_label,row_train)</span>:</span></span><br><span class="line">    model = Sequential()</span><br><span class="line">    <span class="comment"># 全连接层</span></span><br><span class="line">    model.add(Dense(<span class="number">64</span>, input_shape=(row_train,), activation=<span class="string">'relu'</span>))</span><br><span class="line">    <span class="comment"># DropOut层</span></span><br><span class="line">    model.add(Dropout(<span class="number">0.4</span>))</span><br><span class="line">    <span class="comment"># 全连接层+分类器</span></span><br><span class="line">    model.add(Dense(<span class="number">1</span>, activation=<span class="string">'relu'</span>))</span><br><span class="line"></span><br><span class="line">    model.compile(loss=<span class="string">'mean_squared_logarithmic_error'</span>,</span><br><span class="line">                  optimizer=<span class="string">'adam'</span>,</span><br><span class="line">                  metrics=[<span class="string">'accuracy'</span>]</span><br><span class="line">                  )</span><br><span class="line"></span><br><span class="line">    model.fit(train_data, train_label,</span><br><span class="line">              batch_size=<span class="number">300</span>,</span><br><span class="line">              epochs=<span class="number">1</span>,</span><br><span class="line">              )</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> model.predict(X_test)</span><br></pre></td></tr></table></figure>
+<h3 id="三、形成词频矩阵时进行优化"><a href="#三、形成词频矩阵时进行优化" class="headerlink" title="三、形成词频矩阵时进行优化"></a>三、形成词频矩阵时进行优化</h3><p>在样例代码中我们尝试了将所有 <code>CountVectorizer</code> 替换为 <code>TdidfVectorizer</code>，然后利用岭模型进行预测，但是结果并没有优化很多，仅仅到2.9而已。<br>在后面利用 <code>MLP</code>时完全舍弃了 <code>CountVectorizer</code> 只利用  <code>TdidfVectorizer</code>。</p>
+<h3 id="四、优化数据预处理过程"><a href="#四、优化数据预处理过程" class="headerlink" title="四、优化数据预处理过程"></a>四、优化数据预处理过程</h3><p>我们对上面基本已经完善的 <code>MLP</code> 进行优化的方式是<strong>尝试不同特征的组合</strong>。</p>
+<h4 id="数据属性分析（详见Price-Suggestion-Challenge1-ipynb）"><a href="#数据属性分析（详见Price-Suggestion-Challenge1-ipynb）" class="headerlink" title="数据属性分析（详见Price Suggestion Challenge1.ipynb）"></a>数据属性分析（详见<code>Price Suggestion Challenge1.ipynb</code>）</h4><p>首先对属性进行分析：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">item_condition_id    300000 non-null int64</span><br><span class="line">shipping             300000 non-null int64</span><br><span class="line"></span><br><span class="line">name                 300000 non-null object</span><br><span class="line">category_name        298719 non-null object</span><br><span class="line">brand_name           171929 non-null object</span><br><span class="line">item_description     300000 non-null object</span><br></pre></td></tr></table></figure></p>
+<p><code>item_condition_id</code> 和 <code>shipping</code> 直接作为输入考虑，而 <code>name</code>, <code>category_name</code>, <code>brand_name</code>, <code>item_description</code> 考虑不同的组合进行尝试。</p>
+<p>在此之前，我们找到了一个数据可视化的实例教程，对数据的属性进行分析。<br>通过详细观察数据得到最优的输入组合：<br><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">train.head()</span><br></pre></td></tr></table></figure></p>
+<p><img src="image/1-3.png" alt></p>
+<ol>
+<li><p><code>price</code><br>通过数据可视化后的观察我们得知为什么要对 <code>price</code> 做 <code>log1p</code> 处理，这样使 <code>price</code> 分布更优。<br><img src="image/1-4.png" alt></p>
+</li>
+<li><p><code>category_name</code><br>尝试对该属性进行拆分，分成各种子类并查看相应数据。<br><img src="image/1-5.png" alt></p>
+</li>
+<li><p><code>item_description</code><br><img src="image/1-6.png" alt></p>
+</li>
+</ol>
+<h4 id="不同的输入组合"><a href="#不同的输入组合" class="headerlink" title="不同的输入组合"></a>不同的输入组合</h4><ol>
+<li>在样例代码中只是简单地将各个属性结合在一起进行文本分析，即<code>name</code> + <code>item_condition_id</code> + <code>category_name</code> + <code>brand_name</code> + <code>shipping</code> + <code>item_description</code>（6个输入）</li>
+<li>尝试<code>name</code>, <code>item_condition_id</code>, <code>shipping</code>,<code>category_name</code> + <code>item_description</code>, <code>brand_name</code>（5个输入）</li>
+<li>尝试<code>name</code>, <code>item_condition_id</code>, <code>shipping</code>, <code>category_name</code> + <code>brand_name</code> + <code>item_description</code>（4个输入）</li>
+<li>尝试<code>name</code>, <code>item_condition_id</code>, <code>shipping</code>, <code>name</code> + <code>category_name</code> + <code>brand_name</code> + <code>item_description</code>  （4个输入）</li>
+</ol>
+<p>四种组合作为输入的结果非常相近，除了组合1<code>MSLE</code>在0.4左右，组合2和3 在0.21 左右，组合4最终能跑到0.17左右。组合4实际上加大了<code>name</code>的权重，让最终结果更好。</p>
+<h2 id="最终源码及实验结果"><a href="#最终源码及实验结果" class="headerlink" title="最终源码及实验结果"></a>最终源码及实验结果</h2><ol>
+<li><p>数据预处理</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 数据处理</span></span><br><span class="line"><span class="comment"># 属性共有8个，删去price，train_id对结果没有影响。</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">data_preprocess</span><span class="params">(df)</span>:</span></span><br><span class="line">    df[<span class="string">'name'</span>] = df[<span class="string">'name'</span>].fillna(<span class="string">''</span>) + <span class="string">' '</span> + df[<span class="string">'brand_name'</span>].fillna(<span class="string">''</span>)</span><br><span class="line">    df[<span class="string">'text'</span>] = (df[<span class="string">'item_description'</span>].fillna(<span class="string">''</span>) + <span class="string">' '</span> + df[<span class="string">'name'</span>] + <span class="string">' '</span> + df[<span class="string">'category_name'</span>].fillna(<span class="string">''</span>))</span><br><span class="line">    <span class="keyword">return</span> df[[<span class="string">'name'</span>, <span class="string">'text'</span>, <span class="string">'shipping'</span>, <span class="string">'item_condition_id'</span>]]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>构建模型</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fit_predict</span><span class="params">(xs, y_train)</span>:</span></span><br><span class="line">    X_train, X_test = xs</span><br><span class="line">    <span class="comment"># 配置tf.Session的运算方式，比如gpu运算或者cpu运算</span></span><br><span class="line">    config = tf.ConfigProto(</span><br><span class="line">        <span class="comment"># 设置多个操作并行运算的线程数</span></span><br><span class="line">        intra_op_parallelism_threads=<span class="number">1</span>, use_per_session_threads=<span class="number">1</span>, inter_op_parallelism_threads=<span class="number">1</span>)</span><br><span class="line">    <span class="comment"># Session提供了Operation执行和Tensor求值的环境。</span></span><br><span class="line">    <span class="keyword">with</span> tf.Session(graph=tf.Graph(), config=config) <span class="keyword">as</span> sess, timer(<span class="string">'fit_predict'</span>):</span><br><span class="line">        ks.backend.set_session(sess)</span><br><span class="line">        model_in = ks.Input(shape=(X_train.shape[<span class="number">1</span>],), dtype=<span class="string">'float32'</span>, sparse=<span class="literal">True</span>)</span><br><span class="line">        <span class="comment"># ks.layers.Dense 表示输出空间的维度</span></span><br><span class="line">        <span class="comment"># Dense全连接层，相当于直接添加一层</span></span><br><span class="line">        <span class="comment"># activation 是按逐个元素计算的激活函数</span></span><br><span class="line">        out = ks.layers.Dense(<span class="number">192</span>, activation=<span class="string">'relu'</span>)(model_in)</span><br><span class="line">        out = ks.layers.Dense(<span class="number">64</span>, activation=<span class="string">'relu'</span>)(out)</span><br><span class="line">        out = ks.layers.Dense(<span class="number">64</span>, activation=<span class="string">'relu'</span>)(out)</span><br><span class="line">        out = ks.layers.Dense(<span class="number">1</span>)(out)</span><br><span class="line">        model = ks.Model(model_in, out)</span><br><span class="line">        model.compile(loss=<span class="string">'mean_squared_error'</span>, optimizer=ks.optimizers.Adam(lr=<span class="number">3e-3</span>))</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">3</span>):</span><br><span class="line">            <span class="keyword">with</span> timer(<span class="string">f'epoch <span class="subst">&#123;i + <span class="number">1</span>&#125;</span>'</span>):</span><br><span class="line">                model.fit(x=X_train, y=y_train, batch_size=<span class="number">2</span> ** (<span class="number">11</span> + i), epochs=<span class="number">1</span>, verbose=<span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> model.predict(X_test)[:, <span class="number">0</span>]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>训练模型并预测结果</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></span><br><span class="line">    vectorizer = make_union(<span class="comment"># 把所有的transformers组装成一个FeatureUnion. n_jobs表示可以同时进行</span></span><br><span class="line">        <span class="comment"># FunctionTransformer 实现自定义转换，validate=False 时没有输入验证</span></span><br><span class="line">        <span class="comment"># TfidfVectorizer函数，仅考虑按照词频排列前max_feature位的词，token_pattern='\w+'至少匹配一位的词</span></span><br><span class="line">        make_pipeline(FunctionTransformer(itemgetter(<span class="string">'name'</span>), validate=<span class="literal">False</span>), TfidfVectorizer(max_features=<span class="number">100000</span>, token_pattern=<span class="string">'\w+'</span>)),</span><br><span class="line">        make_pipeline(FunctionTransformer(itemgetter(<span class="string">'text'</span>), validate=<span class="literal">False</span>), TfidfVectorizer(max_features=<span class="number">100000</span>, token_pattern=<span class="string">'\w+'</span>)),</span><br><span class="line">        make_pipeline(FunctionTransformer(itemgetter([<span class="string">'shipping'</span>, <span class="string">'item_condition_id'</span>]), validate=<span class="literal">False</span>),</span><br><span class="line">                      FunctionTransformer(to_records, validate=<span class="literal">False</span>), DictVectorizer()),</span><br><span class="line">        n_jobs=<span class="number">4</span>)</span><br><span class="line">    <span class="comment"># StandardScaler()进行数据标准化。保存训练集中的参数（均值、方差）直接使用其对象转换测试集数据。</span></span><br><span class="line">    y_scaler = StandardScaler()</span><br><span class="line">    <span class="comment"># with 语句适用于对资源进行访问的场合，确保不管使用过程中是否发生异常都会执行必要的“清理”操作，释放资源，比如文件使用后自动关闭、线程中锁的自动获取和释放等。</span></span><br><span class="line">    <span class="keyword">with</span> timer(<span class="string">'process train'</span>):</span><br><span class="line">        train = pd.read_csv(<span class="string">'train.csv'</span>, sep=<span class="string">'\t'</span>)</span><br><span class="line">        test = pd.read_csv(<span class="string">'test.csv'</span>, sep=<span class="string">'\t'</span>)</span><br><span class="line">        <span class="comment"># 删去'price'属性</span></span><br><span class="line">        train = train[train[<span class="string">'price'</span>] &gt; <span class="number">0</span>].reset_index(drop=<span class="literal">True</span>)</span><br><span class="line">        <span class="comment"># 将price数据进行标准化</span></span><br><span class="line">        y_train = y_scaler.fit_transform(np.log1p(train[<span class="string">'price'</span>].values.reshape(<span class="number">-1</span>, <span class="number">1</span>)))</span><br><span class="line">        X_train = vectorizer.fit_transform(data_preprocess(train)).astype(np.float32)</span><br><span class="line">        print(<span class="string">f'X_train: <span class="subst">&#123;X_train.shape&#125;</span> of <span class="subst">&#123;X_train.dtype&#125;</span>'</span>)</span><br><span class="line">    <span class="keyword">with</span> timer(<span class="string">'process valid'</span>):</span><br><span class="line">        X_test = vectorizer.transform(data_preprocess(test)).astype(np.float32)</span><br><span class="line">    <span class="keyword">with</span> ThreadPool(processes=<span class="number">4</span>) <span class="keyword">as</span> pool:</span><br><span class="line">        Xb_train, Xb_test = [x.astype(np.bool).astype(np.float32) <span class="keyword">for</span> x <span class="keyword">in</span> [X_train, X_test]]</span><br><span class="line">        xs = [[Xb_train, Xb_test], [X_train, X_test]] * <span class="number">2</span></span><br><span class="line">        <span class="comment"># 预测模型</span></span><br><span class="line">        y_pred = np.mean(pool.map(partial(fit_predict, y_train=y_train), xs), axis=<span class="number">0</span>)</span><br><span class="line">    y_pred = np.expm1(y_scaler.inverse_transform(y_pred.reshape(<span class="number">-1</span>, <span class="number">1</span>))[:, <span class="number">0</span>])</span><br><span class="line">    <span class="comment"># print(type(y_pred))</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 输出预测结果到csv</span></span><br><span class="line">    test_id = np.array(range(<span class="number">0</span>, len(y_pred)))</span><br><span class="line">    dataframe = pd.DataFrame(&#123;<span class="string">'test_id'</span>: test_id, <span class="string">'price'</span>: y_pred&#125;)</span><br><span class="line">    dataframe.to_csv(<span class="string">"res.csv"</span>, index=<span class="literal">False</span>, sep=<span class="string">'\t'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># print('Valid MSLE: &#123;:.4f&#125;'.format(mean_squared_log_error(valid['price'], y_pred)))</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>最终实验结果达到了0.179。</p>
+<h2 id="在MLP模型下的其他优化方向"><a href="#在MLP模型下的其他优化方向" class="headerlink" title="在MLP模型下的其他优化方向"></a>在<code>MLP</code>模型下的其他优化方向</h2><ol>
+<li>可以观察到在<code>item_desciption</code> 的词云中，有诸如<code>shipping</code> 和<code>free</code>等词，这些词可能代表着免运费等含义，与<code>shipping</code>属性有一定的重复，将它作为特征词训练模型会造成干扰。</li>
+<li>单个关键词可能包含的信息不全面，关键词之间可能有很大的关联。</li>
+<li>在最终的模型中<code>MLP</code>采用了四层感知机，感知机的层数和每层的输入规模还可以做进一步调参。</li>
+</ol>
+<h2 id="实验心得"><a href="#实验心得" class="headerlink" title="实验心得"></a>实验心得</h2><p>这次实验的难度非常大，不知道从何入手。</p>
+<p>在仔细研究了课程中给的样例代码和数据可视化分析的内容之后，对数据集和预测的方法都有了初步的了解。  </p>
+<p>因为对<code>MLP</code>，<code>Lightgbm</code>等模型非常不熟悉，所以从输入的角度入手，在不同属性的组合之处进行尝试，得到了最终的较为优秀的结果。  </p>
+<p>在之后的学习中应该更加深入地学习和了解模型，尽量能够自己独立完成创建模型，而不是修改其他已经写好的模型。</p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p>[1].<a href="https://ahmedbesbes.com/how-to-mine-newsfeed-data-and-extract-interactive-insights-in-python.html" target="_blank" rel="noopener">https://ahmedbesbes.com/how-to-mine-newsfeed-data-and-extract-interactive-insights-in-python.html</a></p>
+<p>[2].  <a href="https://github.com/pjankiewicz/mercari-solution" target="_blank" rel="noopener">https://github.com/pjankiewicz/mercari-solution</a></p>
+<p>[3].<a href="https://www.kaggle.com/thykhuely/mercari-interactive-eda-topic-modelling" target="_blank" rel="noopener">https://www.kaggle.com/thykhuely/mercari-interactive-eda-topic-modelling</a></p>
+<p>[4].<a href="https://wklchris.github.io/Py3-pandas.html#统计信息dfdescribe-svalue_counts--unique" target="_blank" rel="noopener">https://wklchris.github.io/Py3-pandas.html#%E7%BB%9F%E8%AE%A1%E4%BF%A1%E6%81%AFdfdescribe-svalue_counts—unique</a></p>
+<p>[5].<a href="https://zh.wikipedia.org/wiki/多层感知器" target="_blank" rel="noopener">https://zh.wikipedia.org/wiki/%E5%A4%9A%E5%B1%82%E6%84%9F%E7%9F%A5%E5%99%A8</a></p>
+<p>[6].<a href="https://blog.csdn.net/weixin_39807102/article/details/81912566" target="_blank" rel="noopener">https://blog.csdn.net/weixin_39807102/article/details/81912566</a></p>
+<p>[7].<a href="https://github.com/maiwen/NLP" target="_blank" rel="noopener">https://github.com/maiwen/NLP</a></p>
+<p>[8]. <a href="https://zh.wikipedia.org/wiki/正则表达式" target="_blank" rel="noopener">https://zh.wikipedia.org/wiki/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F</a></p>
+<p>[9].<a href="https://blog.csdn.net/u012609509/article/details/72911564" target="_blank" rel="noopener">https://blog.csdn.net/u012609509/article/details/72911564</a></p>
+<p>[10]. <a href="https://www.kaggle.com/tunguz/more-effective-ridge-lgbm-script-lb-0-44823" target="_blank" rel="noopener">https://www.kaggle.com/tunguz/more-effective-ridge-lgbm-script-lb-0-44823</a></p>
+<p>[11]. <a href="https://qiita.com/kazuhirokomoda/items/1e9b7ebcacf264b2d814" target="_blank" rel="noopener">https://qiita.com/kazuhirokomoda/items/1e9b7ebcacf264b2d814</a></p>
+<p>[12]. <a href="https://www.jianshu.com/p/c532424541ad" target="_blank" rel="noopener">https://www.jianshu.com/p/c532424541ad</a></p>
+<p>[13]. <a href="https://www.jiqizhixin.com/articles/2017-11-13-7" target="_blank" rel="noopener">https://www.jiqizhixin.com/articles/2017-11-13-7</a></p>
+
+    </div>
+
+    
+
+    
+    
+    
+      
+
+        
+      
+
+      <footer class="post-footer">
+          
+            
+          
+          <div class="post-tags">
+            
+              <a href="/tags/NLP/" rel="tag"># NLP</a>
+            
+          </div>
+        
+
+        
+  <div class="post-widgets">
+    <div class="social-share">
+      
+      
+        <div id="needsharebutton-postbottom">
+          <span class="btn">
+            <i class="fa fa-share-alt" aria-hidden="true"></i>
+          </span>
+        </div>
+      
+    </div>
+  
+  </div>
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/201911/Linux开发环境及应用作业 20191031/" rel="next" title="Linux开发环境及应用作业1">
+                  <i class="fa fa-chevron-left"></i> Linux开发环境及应用作业1
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+                <a href="/201911/数据预处理/" rel="prev" title="数据预处理">
+                  数据预处理 <i class="fa fa-chevron-right"></i>
+                </a>
+              
+            </div>
+          </div>
+        
+      </footer>
+    
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+    
+    <div class="comments" id="comments"></div>
+  
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image"
+      src="/images/tom.jpg"
+      alt="CrocodileZS">
+  <p class="site-author-name" itemprop="name">CrocodileZS</p>
+  <div class="site-description motion-element" itemprop="description"></div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">71</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">40</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+  <div class="feed-link motion-element">
+    <a href="/atom.xml" rel="alternate">
+      <i class="fa fa-rss"></i>RSS
+    </a>
+  </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="mailto:ammo@bupt.edu.cn" title="E-Mail &rarr; mailto:ammo@bupt.edu.cn" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://instagram.com/crocodile_zs" title="Instagram &rarr; https://instagram.com/crocodile_zs" rel="noopener" target="_blank"><i class="fa fa-fw fa-instagram"></i>Instagram</a>
+      </span>
+    
+  </div>
+
+
+  <div class="links-of-blogroll motion-element links-of-blogroll-block">
+    <div class="links-of-blogroll-title">
+      <i class="fa  fa-fw fa-link"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="http://www.wangxiaofeng.me/" title="http://www.wangxiaofeng.me/" rel="noopener" target="_blank">不许联想</a>
+        </li>
+      
+        <li class="links-of-blogroll-item">
+          <a href="https://idx0.dev/" title="https://idx0.dev/" rel="noopener" target="_blank">思维</a>
+        </li>
+      
+        <li class="links-of-blogroll-item">
+          <a href="https://128bit.top" title="https://128bit.top" rel="noopener" target="_blank">Dixeran</a>
+        </li>
+      
+        <li class="links-of-blogroll-item">
+          <a href="http://icontofig.leanote.com/" title="http://icontofig.leanote.com/" rel="noopener" target="_blank">Icontofig</a>
+        </li>
+      
+        <li class="links-of-blogroll-item">
+          <a href="https://www.nekomio.com" title="https://www.nekomio.com" rel="noopener" target="_blank">NekoMio</a>
+        </li>
+      
+        <li class="links-of-blogroll-item">
+          <a href="https://al0ha0e.github.io" title="https://al0ha0e.github.io" rel="noopener" target="_blank">Al0ha0e</a>
+        </li>
+      
+        <li class="links-of-blogroll-item">
+          <a href="http://gaokeyong.coding.me" title="http://gaokeyong.coding.me" rel="noopener" target="_blank">Keyong</a>
+        </li>
+      
+        <li class="links-of-blogroll-item">
+          <a href="http://poeroz.cn/" title="http://poeroz.cn/" rel="noopener" target="_blank">Poeroz</a>
+        </li>
+      
+    </ul>
+  </div>
+
+        </div>
+      </div>
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Price-Suggestion-Chanllenge"><span class="nav-text">Price Suggestion Chanllenge</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#实验题目"><span class="nav-text">实验题目</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目背景"><span class="nav-text">题目背景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分析目标"><span class="nav-text">分析目标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据字段分析"><span class="nav-text">数据字段分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据集"><span class="nav-text">数据集</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#评价指标"><span class="nav-text">评价指标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#作业要求"><span class="nav-text">作业要求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#提交结果文件格式"><span class="nav-text">提交结果文件格式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实验过程"><span class="nav-text">实验过程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、样例代码的学习"><span class="nav-text">一、样例代码的学习</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#导入数据和数据探索"><span class="nav-text">导入数据和数据探索</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据预处理"><span class="nav-text">数据预处理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#模型构建"><span class="nav-text">模型构建</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、尝试更多的模型"><span class="nav-text">二、尝试更多的模型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#MLP"><span class="nav-text">MLP</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#LGBM"><span class="nav-text">LGBM</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#MLP-和-LGBM-结合"><span class="nav-text">MLP 和 LGBM 结合</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、形成词频矩阵时进行优化"><span class="nav-text">三、形成词频矩阵时进行优化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、优化数据预处理过程"><span class="nav-text">四、优化数据预处理过程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#数据属性分析（详见Price-Suggestion-Challenge1-ipynb）"><span class="nav-text">数据属性分析（详见Price Suggestion Challenge1.ipynb）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#不同的输入组合"><span class="nav-text">不同的输入组合</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最终源码及实验结果"><span class="nav-text">最终源码及实验结果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在MLP模型下的其他优化方向"><span class="nav-text">在MLP模型下的其他优化方向</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实验心得"><span class="nav-text">实验心得</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-text">参考资料</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">鰐魚先生</span>
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+    <span class="post-meta-divider">|</span>
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+
+    
+  
+  <div id="needsharebutton-float">
+    <span class="btn">
+      <i class="fa fa-share-alt" aria-hidden="true"></i>
+    </span>
+  </div>
+<script src="/lib/needsharebutton/needsharebutton.js"></script>
+<script>
+    pbOptions = {};
+      pbOptions.iconStyle = "default";
+    
+      pbOptions.boxForm = "horizontal";
+    
+      pbOptions.position = "bottomCenter";
+    
+      pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+    
+    new needShareButton('#needsharebutton-postbottom', pbOptions);
+    flOptions = {};
+      flOptions.iconStyle = "box";
+    
+      flOptions.boxForm = "horizontal";
+    
+      flOptions.position = "middleRight";
+    
+      flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+    
+    new needShareButton('#needsharebutton-float', flOptions);
+</script>
+
+
+  </div>
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+  <script src="/lib/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+<script src="/js/utils.js?v=7.3.0"></script>
+  <script src="/js/motion.js?v=7.3.0"></script>
+
+
+  <script src="/js/schemes/muse.js?v=7.3.0"></script>
+
+
+<script src="/js/next-boot.js?v=7.3.0"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+  <script src="/js/scrollspy.js?v=7.3.0"></script>
+<script src="/js/post-details.js?v=7.3.0"></script>
+
+
+    
+
+<script>
+NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', function() {
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: '9VEOQepq1oDMG0XHxBOrKuwU-gzGzoHsz',
+    appKey: 'XVzSWQhACVUcrVzQDF0AJlb8',
+    placeholder: 'ヽ(✿ﾟ▽ﾟ)ノ',
+    avatar: 'zhouyuyang17@163.com',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false,
+    lang: 'zh-cn' || 'zh-cn',
+    path: location.pathname
+  });
+}, window.Valine);
+</script>
+
+  <script type="text/javascript" src="/lib/zclip/clipboard.min.js"></script>	
+<script type="text/javascript" src="/js/src/custom.js"></script>
+</body>
+</html>

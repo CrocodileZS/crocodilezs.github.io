@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="generator" content="Hexo 3.9.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/rainbow.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/rainbow.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/rainbow.png?v=7.3.0">
+  <link rel="mask-icon" href="/images/rainbow.svg?v=7.3.0" color="#222">
+  <meta name="baidu-site-verification" content="MBR3SWgP01">
+
+<link rel="stylesheet" href="/css/main.css?v=7.3.0">
+
+<link rel="stylesheet" href="https://fonts.loli.net/css?family=Noto Serif SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+  <link rel="stylesheet" href="/lib/fancybox/source/jquery.fancybox.css">
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.3.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":true},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
+    save_scroll: true,
+    copycode: {"enable":true,"show_result":true,"style":"flat"},
+    fancybox: true,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    }
+  };
+</script>
+
+  <meta name="description" content="DAY22_用C语言编写应用程序1.保护操作系统（5）问题：在定时器上做手脚，光标闪烁变得异常缓慢，任务切换的速度也会变得缓慢。[INSTRSET &amp;quot;i486p&amp;quot;] [BITS 32]     MOV AL,0x34     OUT 0x43,AL     MOV AL,0xff    OUT 0x40,AL     MOV AL,0xff     OUT 0x40,AL">
+<meta property="og:type" content="article">
+<meta property="og:title" content="30天自制操作系统（22）">
+<meta property="og:url" content="https://blog.crocodilezs.top/201904/30天自制操作系统（22）/index.html">
+<meta property="og:site_name" content="鰐魚先生的水族館">
+<meta property="og:description" content="DAY22_用C语言编写应用程序1.保护操作系统（5）问题：在定时器上做手脚，光标闪烁变得异常缓慢，任务切换的速度也会变得缓慢。[INSTRSET &amp;quot;i486p&amp;quot;] [BITS 32]     MOV AL,0x34     OUT 0x43,AL     MOV AL,0xff    OUT 0x40,AL     MOV AL,0xff     OUT 0x40,AL">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-09-27T10:11:44.897Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="30天自制操作系统（22）">
+<meta name="twitter:description" content="DAY22_用C语言编写应用程序1.保护操作系统（5）问题：在定时器上做手脚，光标闪烁变得异常缓慢，任务切换的速度也会变得缓慢。[INSTRSET &amp;quot;i486p&amp;quot;] [BITS 32]     MOV AL,0x34     OUT 0x43,AL     MOV AL,0xff    OUT 0x40,AL     MOV AL,0xff     OUT 0x40,AL">
+  <link rel="alternate" href="/atom.xml" title="鰐魚先生的水族館" type="application/atom+xml">
+  <link rel="canonical" href="https://blog.crocodilezs.top/201904/30天自制操作系统（22）/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>30天自制操作系统（22） | 鰐魚先生的水族館</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  <div class="container sidebar-position-left">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">鰐魚先生的水族館</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">言念君子，溫其如玉。</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-tags">
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-about">
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>关于</a>
+
+  </li>
+  </ul>
+
+    
+
+</nav>
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content page-post-detail">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://blog.crocodilezs.top/201904/30天自制操作系统（22）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CrocodileZS">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/tom.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鰐魚先生的水族館">
+    </span>
+      <header class="post-header">
+
+        
+          <h1 class="post-title" itemprop="name headline">30天自制操作系统（22）
+
+            
+          </h1>
+        
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2019-04-21 12:50:50" itemprop="dateCreated datePublished" datetime="2019-04-21T12:50:50+08:00">2019-04-21</time>
+            </span>
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/操作系统/" itemprop="url" rel="index"><span itemprop="name">操作系统</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/201904/30天自制操作系统（22）/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/201904/30天自制操作系统（22）/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+          
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span>1.8k</span>
+            </span>
+          
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span>3 分钟</span>
+            </span>
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="DAY22-用C语言编写应用程序"><a href="#DAY22-用C语言编写应用程序" class="headerlink" title="DAY22_用C语言编写应用程序"></a>DAY22_用C语言编写应用程序</h1><h2 id="1-保护操作系统（5）"><a href="#1-保护操作系统（5）" class="headerlink" title="1.保护操作系统（5）"></a>1.保护操作系统（5）</h2><p>问题：在定时器上做手脚，光标闪烁变得异常缓慢，任务切换的速度也会变得缓慢。<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[INSTRSET &quot;i486p&quot;] </span><br><span class="line">[BITS 32] </span><br><span class="line">    MOV AL,0x34 </span><br><span class="line">    OUT 0x43,AL </span><br><span class="line">    MOV AL,0xff</span><br><span class="line">    OUT 0x40,AL </span><br><span class="line">    MOV AL,0xff </span><br><span class="line">    OUT 0x40,AL</span><br><span class="line">    </span><br><span class="line">; 上述代码的功能与下面代码相当</span><br><span class="line">; io_out8(PIT_CTRL, 0x34); </span><br><span class="line">; io_out8(PIT_CNT0, 0xff); </span><br><span class="line">; io_out8(PIT_CNT0, 0xff); </span><br><span class="line"> </span><br><span class="line">    MOV EDX,4 </span><br><span class="line">    INT 0x40</span><br></pre></td></tr></table></figure></p>
+<a id="more"></a>
+<ul>
+<li>执行CLI然后再HLT。由于不再产生定时器中断，任务切换也会停止，键盘和鼠标中断也停止响应。</li>
+</ul>
+<h2 id="2-帮助发现bug"><a href="#2-帮助发现bug" class="headerlink" title="2.帮助发现bug"></a>2.帮助发现bug</h2><p>CPU的异常处理功能，除了可以保护操作系统免遭应用程序的破坏，还可以帮助我们在编写应用程序时及早发现bug。</p>
+<hr>
+<p>对栈异常的处理：<br>要想让它发现bug，最好能知道引发异常的指令的地址。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">int *inthandler0c(int *esp) </span><br><span class="line">&#123; </span><br><span class="line"> struct CONSOLE *cons = (struct CONSOLE *) *((int *) 0x0fec); </span><br><span class="line"> struct TASK *task = task_now(); </span><br><span class="line"> char s[30]; /*这里！*/ </span><br><span class="line"> cons_putstr0(cons, &quot;\nINT 0C :\n Stack Exception.\n&quot;); </span><br><span class="line"> sprintf(s, &quot;EIP = %08X\n&quot;, esp[11]); /*这里！*/ </span><br><span class="line"> cons_putstr0(cons, s); /*这里！*/ </span><br><span class="line"> return &amp;(task-&gt;tss.esp0); /*强制结束程序*/ </span><br><span class="line">&#125; </span><br><span class="line">int *inthandler0d(int *esp) </span><br><span class="line">&#123; </span><br><span class="line"> struct CONSOLE *cons = (struct CONSOLE *) *((int *) 0x0fec); </span><br><span class="line"> struct TASK *task = task_now(); </span><br><span class="line"> char s[30]; /*这里！*/ </span><br><span class="line"> cons_putstr0(cons, &quot;\nINT 0D :\n General Protected Exception.\n&quot;); </span><br><span class="line"> sprintf(s, &quot;EIP = %08X\n&quot;, esp[11]); /*这里！*/ </span><br><span class="line"> cons_putstr0(cons, s); /*这里！*/ </span><br><span class="line"> return &amp;(task-&gt;tss.esp0); /*强制结束程序*/ </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="3-强制结束应用程序"><a href="#3-强制结束应用程序" class="headerlink" title="3.强制结束应用程序"></a>3.强制结束应用程序</h2><ul>
+<li>如何实现？<br>将某一个键设定为强制结束键，按一下就可以结束程序。<br>把强制结束处理写在其他的任务中，bootpack.c</li>
+</ul>
+<h2 id="4-用C语言显示字符串（1）"><a href="#4-用C语言显示字符串（1）" class="headerlink" title="4.用C语言显示字符串（1）"></a>4.用C语言显示字符串（1）</h2><p>已经做好了用来显示字符串的API，却没做可供C语言调用该API的函数。</p>
+<h2 id="5-用C语言显示字符串（2）"><a href="#5-用C语言显示字符串（2）" class="headerlink" title="5.用C语言显示字符串（2）"></a>5.用C语言显示字符串（2）</h2><p>连接了.obj文件的bim2hrb认为“hello, world”这个字符串就应该存放在0x400这个地址中。<br>由bim2hrb生成的.hrb文件其实是由两个部分构成的。</p>
+<ul>
+<li>代码部分</li>
+<li>数据部分</li>
+</ul>
+<p>修改console.c：</p>
+<ul>
+<li>文件中找不到“Hari”标志则报错。</li>
+<li>数据段的大小根据.hrb文件中指定的值进行分配。</li>
+<li>将.hrb文件中的数据部分先复制到数据段后再启动程序。</li>
+</ul>
+<h2 id="6-显示窗口"><a href="#6-显示窗口" class="headerlink" title="6.显示窗口"></a>6.显示窗口</h2><p>编写一个用来显示窗口的API<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">EDX = 5 </span><br><span class="line">EBX = 窗口缓冲区</span><br><span class="line">ESI = 窗口在x轴方向上的大小（即窗口宽度）</span><br><span class="line">EDI = 窗口在y轴方向上的大小（即窗口高度）</span><br><span class="line">EAX = 透明色</span><br><span class="line">ECX = 窗口名称</span><br></pre></td></tr></table></figure></p>
+<h2 id="7-在窗口中描绘字符和方"><a href="#7-在窗口中描绘字符和方" class="headerlink" title="7.在窗口中描绘字符和方"></a>7.在窗口中描绘字符和方</h2><p>显示字符的API：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">EDX = 6 </span><br><span class="line">EBX = 窗口句柄</span><br><span class="line">ESI = 显示位置的x坐标</span><br><span class="line">EDI = 显示位置的y坐标</span><br><span class="line">EAX = 色号</span><br><span class="line">ECX = 字符串长度</span><br><span class="line">EBP = 字符串</span><br></pre></td></tr></table></figure></p>
+<p>描绘方块的API：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">EDX = 7 </span><br><span class="line">EBX = 窗口句柄</span><br><span class="line">EAX = x0 </span><br><span class="line">ECX = y0 </span><br><span class="line">ESI = x1 </span><br><span class="line">EDI = y1 </span><br><span class="line">EBP = 色号</span><br></pre></td></tr></table></figure></p>
+
+    </div>
+
+    
+
+    
+    
+    
+      
+
+        
+      
+
+      <footer class="post-footer">
+
+        
+  <div class="post-widgets">
+    <div class="social-share">
+      
+      
+        <div id="needsharebutton-postbottom">
+          <span class="btn">
+            <i class="fa fa-share-alt" aria-hidden="true"></i>
+          </span>
+        </div>
+      
+    </div>
+  
+  </div>
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/201904/30天自制操作系统（21）/" rel="next" title="30天自制操作系统（21）">
+                  <i class="fa fa-chevron-left"></i> 30天自制操作系统（21）
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+                <a href="/201904/30天自制操作系统（23）/" rel="prev" title="30天自制操作系统（23）">
+                  30天自制操作系统（23） <i class="fa fa-chevron-right"></i>
+                </a>
+              
+            </div>
+          </div>
+        
+      </footer>
+    
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+    
+    <div class="comments" id="comments"></div>
+  
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image"
+      src="/images/tom.jpg"
+      alt="CrocodileZS">
+  <p class="site-author-name" itemprop="name">CrocodileZS</p>
+  <div class="site-description motion-element" itemprop="description"></div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">71</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">40</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+  <div class="feed-link motion-element">
+    <a href="/atom.xml" rel="alternate">
+      <i class="fa fa-rss"></i>RSS
+    </a>
+  </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="mailto:ammo@bupt.edu.cn" title="E-Mail &rarr; mailto:ammo@bupt.edu.cn" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://instagram.com/crocodile_zs" title="Instagram &rarr; https://instagram.com/crocodile_zs" rel="noopener" target="_blank"><i class="fa fa-fw fa-instagram"></i>Instagram</a>
+      </span>
+    
+  </div>
+
+
+  <div class="links-of-blogroll motion-element links-of-blogroll-block">
+    <div class="links-of-blogroll-title">
+      <i class="fa  fa-fw fa-link"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="http://www.wangxiaofeng.me/" title="http://www.wangxiaofeng.me/" rel="noopener" target="_blank">不许联想</a>
+        </li>
+      
+        <li class="links-of-blogroll-item">
+          <a href="https://idx0.dev/" title="https://idx0.dev/" rel="noopener" target="_blank">思维</a>
+        </li>
+      
+        <li class="links-of-blogroll-item">
+          <a href="https://128bit.top" title="https://128bit.top" rel="noopener" target="_blank">Dixeran</a>
+        </li>
+      
+        <li class="links-of-blogroll-item">
+          <a href="http://icontofig.leanote.com/" title="http://icontofig.leanote.com/" rel="noopener" target="_blank">Icontofig</a>
+        </li>
+      
+        <li class="links-of-blogroll-item">
+          <a href="https://www.nekomio.com" title="https://www.nekomio.com" rel="noopener" target="_blank">NekoMio</a>
+        </li>
+      
+        <li class="links-of-blogroll-item">
+          <a href="https://al0ha0e.github.io" title="https://al0ha0e.github.io" rel="noopener" target="_blank">Al0ha0e</a>
+        </li>
+      
+        <li class="links-of-blogroll-item">
+          <a href="http://gaokeyong.coding.me" title="http://gaokeyong.coding.me" rel="noopener" target="_blank">Keyong</a>
+        </li>
+      
+        <li class="links-of-blogroll-item">
+          <a href="http://poeroz.cn/" title="http://poeroz.cn/" rel="noopener" target="_blank">Poeroz</a>
+        </li>
+      
+    </ul>
+  </div>
+
+        </div>
+      </div>
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#DAY22-用C语言编写应用程序"><span class="nav-text">DAY22_用C语言编写应用程序</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-保护操作系统（5）"><span class="nav-text">1.保护操作系统（5）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-帮助发现bug"><span class="nav-text">2.帮助发现bug</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-强制结束应用程序"><span class="nav-text">3.强制结束应用程序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-用C语言显示字符串（1）"><span class="nav-text">4.用C语言显示字符串（1）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-用C语言显示字符串（2）"><span class="nav-text">5.用C语言显示字符串（2）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-显示窗口"><span class="nav-text">6.显示窗口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-在窗口中描绘字符和方"><span class="nav-text">7.在窗口中描绘字符和方</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">鰐魚先生</span>
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+    <span class="post-meta-divider">|</span>
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+
+    
+  
+  <div id="needsharebutton-float">
+    <span class="btn">
+      <i class="fa fa-share-alt" aria-hidden="true"></i>
+    </span>
+  </div>
+<script src="/lib/needsharebutton/needsharebutton.js"></script>
+<script>
+    pbOptions = {};
+      pbOptions.iconStyle = "default";
+    
+      pbOptions.boxForm = "horizontal";
+    
+      pbOptions.position = "bottomCenter";
+    
+      pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+    
+    new needShareButton('#needsharebutton-postbottom', pbOptions);
+    flOptions = {};
+      flOptions.iconStyle = "box";
+    
+      flOptions.boxForm = "horizontal";
+    
+      flOptions.position = "middleRight";
+    
+      flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+    
+    new needShareButton('#needsharebutton-float', flOptions);
+</script>
+
+
+  </div>
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+  <script src="/lib/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+<script src="/js/utils.js?v=7.3.0"></script>
+  <script src="/js/motion.js?v=7.3.0"></script>
+
+
+  <script src="/js/schemes/muse.js?v=7.3.0"></script>
+
+
+<script src="/js/next-boot.js?v=7.3.0"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+  <script src="/js/scrollspy.js?v=7.3.0"></script>
+<script src="/js/post-details.js?v=7.3.0"></script>
+
+
+    
+
+<script>
+NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', function() {
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: '9VEOQepq1oDMG0XHxBOrKuwU-gzGzoHsz',
+    appKey: 'XVzSWQhACVUcrVzQDF0AJlb8',
+    placeholder: 'ヽ(✿ﾟ▽ﾟ)ノ',
+    avatar: 'zhouyuyang17@163.com',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false,
+    lang: 'zh-cn' || 'zh-cn',
+    path: location.pathname
+  });
+}, window.Valine);
+</script>
+
+  <script type="text/javascript" src="/lib/zclip/clipboard.min.js"></script>	
+<script type="text/javascript" src="/js/src/custom.js"></script>
+</body>
+</html>
