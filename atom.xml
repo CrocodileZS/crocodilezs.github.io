@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://blog.crocodilezs.top/"/>
-  <updated>2020-07-05T11:35:41.812Z</updated>
+  <updated>2021-11-21T11:50:19.291Z</updated>
   <id>https://blog.crocodilezs.top/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>博客内容归档和英文博客</title>
+    <link href="https://blog.crocodilezs.top/202111/%E5%8D%9A%E5%AE%A2%E5%86%85%E5%AE%B9%E5%BD%92%E6%A1%A3%E5%92%8C%E8%8B%B1%E6%96%87%E5%8D%9A%E5%AE%A2/"/>
+    <id>https://blog.crocodilezs.top/202111/博客内容归档和英文博客/</id>
+    <published>2021-11-20T10:08:21.000Z</published>
+    <updated>2021-11-21T11:50:19.291Z</updated>
+    
+    <summary type="html">
+    
+      &lt;div class=&quot;note info&quot;&gt;
+    从2019年开始尝试搭建自己的博客，到现在已经本科毕业。这三年的时间虽然没有坚持更新博客，但是一直在坚持记录。无论是理论知识的学习、Debug的记录，还是读书健身笔记和感慨万千时的随笔，他们都散落在各种在线笔记软件和手机的备忘录中。&lt;br&gt;
+    随着时间的推移，我对博客的认识也发生了很多变化。“记录”对我来说仍然具有非常大的意义，但是“博客”最重要的价值不应该是“记录”，而是“分享”——传递有价值的信息。我把平时的日常生活和学习经历记录在各种笔记中，过一段时间再去回顾和整理，选取其中有价值的东西去分享。&lt;br&gt;
+    过去的一年再次参加了美赛，加入了几个和区块链有关的项目，也完成了不少专利和论文。更多的时间忙于运用知识，以需求为导向迫使自己进行广泛而不深刻的学习。对我来说真正有价值的输入变少了，输出和表达的欲望也降低了很多。&lt;br&gt;
+    我在原先的博客域名之下又建立了一个英文博客&lt;a href=&quot;blog.crocodilezs.top/eysblog_en/&quot;&gt;BLOG-EN&lt;/a&gt;，旨在整理自己过去一年经历的各种项目。同时也将原博客中的内容进行整理归档，便于自己和访客的查阅。&lt;br&gt;
+&lt;/div&gt;
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>《苏东坡传》摘录</title>
@@ -106,11 +127,11 @@
   </entry>
   
   <entry>
-    <title>（更新于2月13日）支持向量机算法（Support Vector Machine Alg）的介绍及数学推导</title>
+    <title>支持向量机算法（Support Vector Machine Alg）的介绍及数学推导</title>
     <link href="https://blog.crocodilezs.top/202002/%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA%E7%AE%97%E6%B3%95%E7%9A%84%E4%BB%8B%E7%BB%8D%E5%8F%8A%E6%95%B0%E5%AD%A6%E6%8E%A8%E5%AF%BC/"/>
     <id>https://blog.crocodilezs.top/202002/支持向量机算法的介绍及数学推导/</id>
     <published>2020-02-10T08:47:21.000Z</published>
-    <updated>2020-09-22T08:46:10.987Z</updated>
+    <updated>2021-11-20T09:40:03.602Z</updated>
     
     <summary type="html">
     
@@ -129,9 +150,9 @@
       <category term="算法" scheme="https://blog.crocodilezs.top/categories/%E7%AE%97%E6%B3%95/"/>
     
     
-      <category term="机器学习" scheme="https://blog.crocodilezs.top/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
-    
       <category term="SVM" scheme="https://blog.crocodilezs.top/tags/SVM/"/>
+    
+      <category term="机器学习" scheme="https://blog.crocodilezs.top/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
     
       <category term="算法推导" scheme="https://blog.crocodilezs.top/tags/%E7%AE%97%E6%B3%95%E6%8E%A8%E5%AF%BC/"/>
     
@@ -171,12 +192,11 @@
     <link href="https://blog.crocodilezs.top/201911/Price_Suggestion_Chanllenge/"/>
     <id>https://blog.crocodilezs.top/201911/Price_Suggestion_Chanllenge/</id>
     <published>2019-11-12T08:22:10.000Z</published>
-    <updated>2020-09-22T08:46:21.406Z</updated>
+    <updated>2021-11-20T09:39:28.514Z</updated>
     
     <summary type="html">
     
-      &lt;h1 id=&quot;Price-Suggestion-Chanllenge&quot;&gt;&lt;a href=&quot;#Price-Suggestion-Chanllenge&quot; class=&quot;headerlink&quot; title=&quot;Price Suggestion Chanllenge&quot;&gt;&lt;/a&gt;Price Suggestion Chanllenge&lt;/h1&gt;&lt;p&gt;[TOC]&lt;/p&gt;
-&lt;h2 id=&quot;实验题目&quot;&gt;&lt;a href=&quot;#实验题目&quot; class=&quot;headerlink&quot; title=&quot;实验题目&quot;&gt;&lt;/a&gt;实验题目&lt;/h2&gt;&lt;h3 id=&quot;题目背景&quot;&gt;&lt;a href=&quot;#题目背景&quot; class=&quot;headerlink&quot; title=&quot;题目背景&quot;&gt;&lt;/a&gt;题目背景&lt;/h3&gt;&lt;p&gt;考虑到网上销售的产品数量，产品定价在规模上变得更加困难。服装有很强的季节性定价趋势，受品牌影响很大，而电子产品价格根据产品规格波动。如何根据以往信息进行合理定价，有效地帮助商家进行商品的销售是一个有意义的问题。&lt;/p&gt;
+      &lt;h1 id=&quot;Price-Suggestion-Chanllenge&quot;&gt;&lt;a href=&quot;#Price-Suggestion-Chanllenge&quot; class=&quot;headerlink&quot; title=&quot;Price Suggestion Chanllenge&quot;&gt;&lt;/a&gt;Price Suggestion Chanllenge&lt;/h1&gt;&lt;h2 id=&quot;实验题目&quot;&gt;&lt;a href=&quot;#实验题目&quot; class=&quot;headerlink&quot; title=&quot;实验题目&quot;&gt;&lt;/a&gt;实验题目&lt;/h2&gt;&lt;h3 id=&quot;题目背景&quot;&gt;&lt;a href=&quot;#题目背景&quot; class=&quot;headerlink&quot; title=&quot;题目背景&quot;&gt;&lt;/a&gt;题目背景&lt;/h3&gt;&lt;p&gt;考虑到网上销售的产品数量，产品定价在规模上变得更加困难。服装有很强的季节性定价趋势，受品牌影响很大，而电子产品价格根据产品规格波动。如何根据以往信息进行合理定价，有效地帮助商家进行商品的销售是一个有意义的问题。&lt;/p&gt;
     
     </summary>
     
@@ -366,7 +386,7 @@
     <link href="https://blog.crocodilezs.top/201910/Linux%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%9C%BA%E5%99%A8%E5%BA%94%E7%94%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89/"/>
     <id>https://blog.crocodilezs.top/201910/Linux开发环境机器应用学习笔记（二）/</id>
     <published>2019-10-17T09:10:12.000Z</published>
-    <updated>2019-10-30T04:52:16.798Z</updated>
+    <updated>2021-11-20T09:46:52.733Z</updated>
     
     <summary type="html">
     
@@ -374,7 +394,7 @@
     
     </summary>
     
-      <category term="Linux开发环境及其应用" scheme="https://blog.crocodilezs.top/categories/Linux%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E5%8F%8A%E5%85%B6%E5%BA%94%E7%94%A8/"/>
+      <category term="Linux" scheme="https://blog.crocodilezs.top/categories/Linux/"/>
     
     
       <category term="Linux" scheme="https://blog.crocodilezs.top/tags/Linux/"/>
@@ -386,7 +406,7 @@
     <link href="https://blog.crocodilezs.top/201910/Linux%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%9C%BA%E5%99%A8%E5%BA%94%E7%94%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/"/>
     <id>https://blog.crocodilezs.top/201910/Linux开发环境机器应用学习笔记（一）/</id>
     <published>2019-10-17T02:27:12.000Z</published>
-    <updated>2019-10-18T14:23:00.960Z</updated>
+    <updated>2021-11-20T09:46:58.417Z</updated>
     
     <summary type="html">
     
@@ -399,7 +419,7 @@
     
     </summary>
     
-      <category term="Linux开发环境及其应用" scheme="https://blog.crocodilezs.top/categories/Linux%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E5%8F%8A%E5%85%B6%E5%BA%94%E7%94%A8/"/>
+      <category term="Linux" scheme="https://blog.crocodilezs.top/categories/Linux/"/>
     
     
       <category term="Linux" scheme="https://blog.crocodilezs.top/tags/Linux/"/>
@@ -457,28 +477,6 @@
     
       &lt;p&gt;&lt;img src=&quot;https://s2.ax1x.com/2019/09/28/u1scM8.jpg&quot; alt=&quot;我和祖国共成长，青春筑梦新时代&quot;&gt;&lt;/p&gt;
 &lt;p&gt;&lt;center&gt;温馨和感动的一天。&lt;/center&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="参省乎己" scheme="https://blog.crocodilezs.top/categories/%E5%8F%82%E7%9C%81%E4%B9%8E%E5%B7%B1/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>关于细节</title>
-    <link href="https://blog.crocodilezs.top/201909/2019-09-24-%E5%85%B3%E4%BA%8E%E7%BB%86%E8%8A%82/"/>
-    <id>https://blog.crocodilezs.top/201909/2019-09-24-关于细节/</id>
-    <published>2019-09-24T15:48:50.000Z</published>
-    <updated>2019-09-23T17:12:01.416Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;最近的生活中“细节”这个词出现了很多次。我们从小就被大人们叮嘱要“注意细节”，随着年龄的增长这个词很少再被人提起。这两天发生的一系列事情都让我回过头来重新关注这个词。  &lt;/p&gt;
-&lt;p&gt;近期让我重新注意到这个词的时候是在发给合伙人中秋茶话会的问卷时，标题后面“【复制】”两个
-      
     
     </summary>
     
