@@ -1,357 +1,112 @@
 <!DOCTYPE html>
+<html lang='zh-CN'>
 
-
-
-
-
-<html class="theme-next muse use-motion" lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
-<meta name="generator" content="Hexo 3.9.0">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/rainbow.png?v=7.3.0">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/rainbow.png?v=7.3.0">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/rainbow.png?v=7.3.0">
-  <link rel="mask-icon" href="/images/rainbow.svg?v=7.3.0" color="#222">
-  <meta name="baidu-site-verification" content="MBR3SWgP01">
+  <meta name="generator" content="Hexo 5.4.2">
+  <meta charset="utf-8">
+  
 
-<link rel="stylesheet" href="/css/main.css?v=7.3.0">
+  <meta http-equiv='x-dns-prefetch-control' content='on' />
+  <link rel='dns-prefetch' href='https://cdn.jsdelivr.net'>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel='dns-prefetch' href='//unpkg.com'>
 
-<link rel="stylesheet" href="https://fonts.loli.net/css?family=Noto Serif SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
-<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
-  <link rel="stylesheet" href="/lib/fancybox/source/jquery.fancybox.css">
-  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
-  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
-  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2">
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="theme-color" content="#f8f8f8">
+  <title>支持向量机算法（Support Vector Machine Alg）的介绍及数学推导 - 鳄鱼Crc2H0U</title>
 
+  
 
-<script id="hexo-configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Muse',
-    version: '7.3.0',
-    exturl: false,
-    sidebar: {"position":"left","display":"post","offset":12,"onmobile":true},
-    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
-    save_scroll: true,
-    copycode: {"enable":true,"show_result":true,"style":"flat"},
-    fancybox: true,
-    mediumzoom: false,
-    lazyload: false,
-    pangu: false,
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    },
-    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
-    path: 'search.xml',
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    translation: {
-      copy_button: '复制',
-      copy_success: '复制成功',
-      copy_failure: '复制失败'
-    }
-  };
-</script>
-
-  <meta name="description" content="🌟上个学期周文安老师教我们专业的机器学习课程，在讲每一个算法的时候老师都会强调数学推导的重要性。     她希望大家能够不仅仅会调库，还能明白算法最底层的原理，并且能够自己推导。然而上学期我在数学推导这里一直在划水😖，没有理解透各种推导过程，所以趁着寒假在家里比较有时间，把机器学习部分算法的数学推导部分补全。          🌟SVM算法的证明用到了求解对偶问题的思想，石川老师在">
-<meta name="keywords" content="机器学习,SVM,算法推导">
+  
+    <meta name="description" content="🌟上个学期周文安老师教我们专业的机器学习课程，在讲每一个算法的时候老师都会强调数学推导的重要性。     她希望大家能够不仅仅会调库，还能明白算法最底层的原理，并且能够自己推导。然而上学期我在数学推导这里一直在划水😖，没有理解透各种推导过程，所以趁着寒假在家里比较有时间，把机器学习部分算法的数学推导部分补全。          🌟SVM算法的证明用到了求解对偶问题的思想，石川老师在">
 <meta property="og:type" content="article">
 <meta property="og:title" content="支持向量机算法（Support Vector Machine Alg）的介绍及数学推导">
-<meta property="og:url" content="https://blog.crocodilezs.top/202002/支持向量机算法的介绍及数学推导/index.html">
-<meta property="og:site_name" content="鰐魚先生的水族館">
+<meta property="og:url" content="https://blog.crocodilezs.top/202002/%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA%E7%AE%97%E6%B3%95%E7%9A%84%E4%BB%8B%E7%BB%8D%E5%8F%8A%E6%95%B0%E5%AD%A6%E6%8E%A8%E5%AF%BC/index.html">
+<meta property="og:site_name" content="鳄鱼Crc2H0U">
 <meta property="og:description" content="🌟上个学期周文安老师教我们专业的机器学习课程，在讲每一个算法的时候老师都会强调数学推导的重要性。     她希望大家能够不仅仅会调库，还能明白算法最底层的原理，并且能够自己推导。然而上学期我在数学推导这里一直在划水😖，没有理解透各种推导过程，所以趁着寒假在家里比较有时间，把机器学习部分算法的数学推导部分补全。          🌟SVM算法的证明用到了求解对偶问题的思想，石川老师在">
-<meta property="og:locale" content="zh-CN">
+<meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://i.loli.net/2020/02/10/AU3tYprag8ckDGl.jpg">
 <meta property="og:image" content="https://i.loli.net/2020/02/10/MHhx6BwTSzrQqZL.jpg">
 <meta property="og:image" content="https://i.loli.net/2020/02/10/KpYh7ZNoMQCXDAH.jpg">
 <meta property="og:image" content="https://i.loli.net/2020/02/12/PrVZwIlm2voCKHU.png">
 <meta property="og:image" content="https://i.loli.net/2020/02/12/4m8PjYT2iS9rsf3.jpg">
 <meta property="og:image" content="https://i.loli.net/2020/02/13/4rjnEpbuylieSIs.jpg">
-<meta property="og:updated_time" content="2021-11-20T09:40:03.602Z">
+<meta property="article:published_time" content="2020-02-10T08:47:21.000Z">
+<meta property="article:modified_time" content="2021-11-20T09:40:03.602Z">
+<meta property="article:author" content="CrocodileZS">
+<meta property="article:tag" content="机器学习">
+<meta property="article:tag" content="SVM">
+<meta property="article:tag" content="算法推导">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="支持向量机算法（Support Vector Machine Alg）的介绍及数学推导">
-<meta name="twitter:description" content="🌟上个学期周文安老师教我们专业的机器学习课程，在讲每一个算法的时候老师都会强调数学推导的重要性。     她希望大家能够不仅仅会调库，还能明白算法最底层的原理，并且能够自己推导。然而上学期我在数学推导这里一直在划水😖，没有理解透各种推导过程，所以趁着寒假在家里比较有时间，把机器学习部分算法的数学推导部分补全。          🌟SVM算法的证明用到了求解对偶问题的思想，石川老师在">
 <meta name="twitter:image" content="https://i.loli.net/2020/02/10/AU3tYprag8ckDGl.jpg">
-  <link rel="alternate" href="/atom.xml" title="鰐魚先生的水族館" type="application/atom+xml">
-  <link rel="canonical" href="https://blog.crocodilezs.top/202002/支持向量机算法的介绍及数学推导/">
-
-
-<script id="page-configurations">
-  // https://hexo.io/docs/variables.html
-  CONFIG.page = {
-    sidebar: "",
-    isHome: false,
-    isPost: true,
-    isPage: false,
-    isArchive: false
-  };
-</script>
-
-  <title>支持向量机算法（Support Vector Machine Alg）的介绍及数学推导 | 鰐魚先生的水族館</title>
+  
   
 
+  <!-- feed -->
+  
+    <link rel="alternate" href="/atom.xml" title="鳄鱼Crc2H0U" type="application/atom+xml">
+  
 
+  
+    
+<link rel="stylesheet" href="/css/main.css">
 
+  
 
+  
 
-
-
-
-  <noscript>
-  <style>
-  .use-motion .motion-element,
-  .use-motion .brand,
-  .use-motion .menu-item,
-  .sidebar-inner,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-title { opacity: initial; }
-
-  .use-motion .logo,
-  .use-motion .site-title,
-  .use-motion .site-subtitle {
-    opacity: initial;
-    top: initial;
-  }
-
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
-  </style>
-</noscript>
-
+  
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+<body>
+  
 
-  <div class="container sidebar-position-left">
-    <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta">
 
-    <div class="custom-logo-site-title">
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">鰐魚先生的水族館</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
-    </div>
-        <p class="site-subtitle">言念君子，溫其如玉。</p>
-      
-  </div>
 
-  <div class="site-nav-toggle">
-    <button aria-label="切换导航栏">
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
-  </div>
+  <div class='l_body' id='start'>
+    <aside class='l_left' layout='post'>
+    
+
+
+<header class="header">
+
+<div class="logo-wrap"><a class="avatar" href="/about/"><div class="bg" style="opacity:0;background-image:url(https://cdn.jsdelivr.net/gh/cdn-x/placeholder@1.0.2/avatar/round/rainbow64@3x.webp);"></div><img no-lazy class="avatar" src="/media/avatar.png" onerror="javascript:this.classList.add('error');this.src='https://cdn.jsdelivr.net/gh/cdn-x/placeholder@1.0.1/image/2659360.svg';"></a><a class="title" href="/"><div class="main">鳄鱼Crc2H0U</div><div class="sub cap">野生鳄鱼的自留地</div></a></div>
+<nav class="menu dis-select"><a class="nav-item active" href="/">文章</a><a class="nav-item" href="/about/">关于</a><a class="nav-item" href="/timeline/">时间轴</a></nav></header>
+
+<div class="widgets">
+
+<div class="widget-wrap single" id="toc"><div class="widget-header cap dis-select"><span class="name">本文目录</span></div><div class="widget-body fs14"><div class="doc-tree active"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA%E7%9A%84%E5%BA%94%E7%94%A8"><span class="toc-text">支持向量机的应用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%B4%E8%A7%82%E7%90%86%E8%A7%A3%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA"><span class="toc-text">直观理解支持向量机</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA%E7%9A%84%E4%BC%98%E5%8A%BF%E5%92%8C%E5%8A%A3%E5%8A%BF"><span class="toc-text">支持向量机的优势和劣势</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA%E7%9A%84%E4%BC%98%E5%8A%BF"><span class="toc-text">支持向量机的优势</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA%E7%9A%84%E5%8A%A3%E5%8A%BF"><span class="toc-text">支持向量机的劣势</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA%E7%9A%84%E5%88%86%E7%B1%BB"><span class="toc-text">支持向量机的分类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#L0-L1-L2%E8%8C%83%E6%95%B0"><span class="toc-text">L0, L1, L2范数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E9%97%B4%E9%9A%94%E5%92%8C%E5%87%A0%E4%BD%95%E9%97%B4%E9%9A%94"><span class="toc-text">函数间隔和几何间隔</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8B%89%E6%A0%BC%E6%9C%97%E6%97%A5%E5%AF%B9%E5%81%B6%E6%80%A7"><span class="toc-text">拉格朗日对偶性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8E%9F%E5%A7%8B%E9%97%AE%E9%A2%98"><span class="toc-text">原始问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%B9%E5%81%B6%E9%97%AE%E9%A2%98"><span class="toc-text">对偶问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8E%9F%E5%A7%8B%E9%97%AE%E9%A2%98%E5%92%8C%E5%AF%B9%E5%81%B6%E9%97%AE%E9%A2%98%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="toc-text">原始问题和对偶问题的关系</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%B8%E6%8A%80%E5%B7%A7"><span class="toc-text">核技巧</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%BF%E6%80%A7%E5%8F%AF%E5%88%86%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA"><span class="toc-text">线性可分支持向量机</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%80%E5%A4%A7%E9%97%B4%E9%9A%94%E7%AE%97%E6%B3%95"><span class="toc-text">最大间隔算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%97%E6%B3%95%E6%B1%82%E8%A7%A3"><span class="toc-text">算法求解</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%BF%E6%80%A7%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA"><span class="toc-text">线性支持向量机</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9D%9E%E7%BA%BF%E6%80%A7%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA"><span class="toc-text">非线性支持向量机</span></a></li></ol></div></div></div>
+
+
 </div>
 
 
-<nav class="site-nav">
-  
-  <ul id="menu" class="menu">
+    </aside>
+    <div class='l_main'>
       
-      
-      
-        
-        <li class="menu-item menu-item-home">
-      
-    
-
-    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
-
-  </li>
-      
-      
-      
-        
-        <li class="menu-item menu-item-categories">
-      
-    
-
-    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
-
-  </li>
-      
-      
-      
-        
-        <li class="menu-item menu-item-tags">
-      
-    
-
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
-
-  </li>
-      
-      
-      
-        
-        <li class="menu-item menu-item-about">
-      
-    
-
-    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>关于</a>
-
-  </li>
-      
-      
-      
-        
-        <li class="menu-item menu-item-英文博客">
-      
-    
-
-    <a href="/eysblog_en/" rel="section"><i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>英文博客</a>
-
-  </li>
-  </ul>
-
-    
-
-</nav>
-</div>
-    </header>
-
-    
-
-
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          <div id="content" class="content page-post-detail">
-            
-
-  <div id="posts" class="posts-expand">
-    
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://blog.crocodilezs.top/202002/支持向量机算法的介绍及数学推导/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="CrocodileZS">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/tom.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="鰐魚先生的水族館">
-    </span>
-      <header class="post-header">
-
-        
-          <h1 class="post-title" itemprop="name headline">支持向量机算法（Support Vector Machine Alg）的介绍及数学推导
-
-            
-          </h1>
-        
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              
-                
-              
-
-              <time title="创建时间：2020-02-10 16:47:21" itemprop="dateCreated datePublished" datetime="2020-02-10T16:47:21+08:00">2020-02-10</time>
-            </span>
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/算法/" itemprop="url" rel="index"><span itemprop="name">算法</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-        
-      
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/202002/支持向量机算法的介绍及数学推导/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/202002/支持向量机算法的介绍及数学推导/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-          
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">本文字数：</span>
-              
-              <span>9k</span>
-            </span>
-          
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              
-              <span>15 分钟</span>
-            </span>
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
 
       
-        <div class="note info">
-    🌟上个学期周文安老师教我们专业的机器学习课程，在讲每一个算法的时候老师都会强调数学推导的重要性。<br>
-    她希望大家能够不仅仅会调库，还能明白算法最底层的原理，并且能够自己推导。然而上学期我在数学推导这里一直在划水😖，没有理解透各种推导过程，所以趁着寒假在家里比较有时间，把机器学习部分算法的数学推导部分补全。<br>
-    <br>
-    🌟SVM算法的证明用到了求解对偶问题的思想，石川老师在课上也说过这个算法的证明过程非常🕺“漂亮”🚶‍♂️。所以数学推导这一系列我决定从SVM开始。<br>
+
+<div class="bread-nav fs12"><div id="breadcrumb"><a class="cap breadcrumb" href="/">主页</a><span class="sep"></span><a class="cap breadcrumb" href="/">文章</a><span class="sep"></span><a class="cap breadcrumb-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a></div><div id="post-meta">发布于&nbsp;<time datetime="2020-02-10T08:47:21.000Z">2020-02-10</time></div></div>
+
+<article class='content md post'>
+<h1 class="article-title"><span>支持向量机算法（Support Vector Machine Alg）的介绍及数学推导</span></h1>
+<div class="note info">
+    🌟上个学期周文安老师教我们专业的机器学习课程，在讲每一个算法的时候老师都会强调数学推导的重要性。<br />
+    她希望大家能够不仅仅会调库，还能明白算法最底层的原理，并且能够自己推导。然而上学期我在数学推导这里一直在划水😖，没有理解透各种推导过程，所以趁着寒假在家里比较有时间，把机器学习部分算法的数学推导部分补全。<br />
+    <br />
+    🌟SVM算法的证明用到了求解对偶问题的思想，石川老师在课上也说过这个算法的证明过程非常🕺“漂亮”🚶‍♂️。所以数学推导这一系列我决定从SVM开始。<br />
 </div>
 
 <p>在学期中我也有尝试手推过一次 <code>SVM</code>，但是并不是很理解，<strong>尤其是几何间隔、函数间隔和对偶问题等概念都没有理解，而这些概念对于推导过程都十分重要。</strong>现在的这篇文章将会展开得更详细。<br>这是上学期的文章👉<a href="https://blog.crocodilezs.top/201911/Fisher%E7%AE%97%E6%B3%95&amp;SVM&amp;K-Means%E5%8F%8A%E5%85%B6%E4%BC%98%E5%8C%96/#more">SVM优化对偶问题的详细推导过程</a></p>
-<p>文章的大致思路是 <code>SVM</code> 的介绍、推导过程中的基本概念介绍、数学推导。我会把问题描述到最容易理解。参考资料主要有李航老师的《统计学习方法》、<a href="https://www.coursera.org/learn/machine-learning?" target="_blank" rel="noopener">吴恩达老师的机器学习课程</a>、<a href="https://scikit-learn.org/stable/modules/svm.html" target="_blank" rel="noopener">python scikit learn的官方文档</a>和上个学期的课件。</p>
-<a id="more"></a>
+<p>文章的大致思路是 <code>SVM</code> 的介绍、推导过程中的基本概念介绍、数学推导。我会把问题描述到最容易理解。参考资料主要有李航老师的《统计学习方法》、<a target="_blank" rel="noopener" href="https://www.coursera.org/learn/machine-learning?">吴恩达老师的机器学习课程</a>、<a target="_blank" rel="noopener" href="https://scikit-learn.org/stable/modules/svm.html">python scikit learn的官方文档</a>和上个学期的课件。</p>
+<span id="more"></span>
 <h1 id="支持向量机介绍"><a href="#支持向量机介绍" class="headerlink" title="支持向量机介绍"></a>支持向量机介绍</h1><blockquote>
 <p>支持向量机（support vector machines, <code>SVM</code>）是一种二分类模型。它的基本模型是定义在特征空间上的间隔最大的线性分类器，间隔最大使它有别于感知机，支持向量机还包括核技巧，这使它成为实质上的非线性分类器。（关于“间隔”、“核技巧”的介绍在下文中会讲）</p>
 </blockquote>
@@ -359,13 +114,13 @@
 <p>Support vector machines (SVMs) are a set of supervised learning methods used for classification, regression and outliers detection.</p>
 </blockquote>
 <p>译：支持向量机是一种监督学习算法，可以用于分类问题、回归问题和异常点识别问题。</p>
-<h2 id="直观理解支持向量机"><a href="#直观理解支持向量机" class="headerlink" title="直观理解支持向量机"></a>直观理解支持向量机</h2><p><a href="https://sm.ms/image/AU3tYprag8ckDGl" target="_blank"><img src="https://i.loli.net/2020/02/10/AU3tYprag8ckDGl.jpg" alt="pic0" width="350" height="350"></a></p>
+<h2 id="直观理解支持向量机"><a href="#直观理解支持向量机" class="headerlink" title="直观理解支持向量机"></a>直观理解支持向量机</h2><p><a href="https://sm.ms/image/AU3tYprag8ckDGl" target="_blank"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://i.loli.net/2020/02/10/AU3tYprag8ckDGl.jpg" alt="pic0" width="350" height="350" ></a></p>
 <p>假设在一个二分类问题中，我们的样例中有四个正例和五个反例（其中正例由圆形表示，反例由叉表示），如 <code>pic0</code> 所示。  </p>
 <p>现在我们想通过一条直线将正例和反例区分开。显而易见，能够实现分类的有无数条直线，图中我们给出了三条分类直线：<code>l1</code>、<code>l2</code>、<code>l3</code>，如 <code>pic1</code> 所示。</p>
-<p><a href="https://sm.ms/image/MHhx6BwTSzrQqZL" target="_blank"><img src="https://i.loli.net/2020/02/10/MHhx6BwTSzrQqZL.jpg" alt="pic1" width="350" height="350"></a></p>
+<p><a href="https://sm.ms/image/MHhx6BwTSzrQqZL" target="_blank"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://i.loli.net/2020/02/10/MHhx6BwTSzrQqZL.jpg" alt="pic1" width="350" height="350" ></a></p>
 <p>然而，这三条直线的分类能力并不相同。假设我们再向训练样例中添加两个正样例（在 <code>pic2</code> 中用绿色的圆点表示），此时我们可以发现，直线 <code>l1</code> 和直线 <code>l3</code> 失去了完美的分类能力，因为它们没法将新加入的样例成功分类。</p>
 <p>由此我们可以看出，<code>l2</code> 的分类能力比 <code>l1</code> 和 <code>l3</code> 的分类能力更强。<strong>而支持向量机算法就是去寻找所有直线中分类最强的那一条直线。</strong>在后面的推导过程中，我们也会证明：在这样的线性可分问题中，分类能力最强的直线（也就是“超平面”，后面会介绍）<strong>有且仅有一条</strong>。</p>
-<p><a href="https://sm.ms/image/KpYh7ZNoMQCXDAH" target="_blank"><img src="https://i.loli.net/2020/02/10/KpYh7ZNoMQCXDAH.jpg" alt="pic2" width="350" height="350"></a></p>
+<p><a href="https://sm.ms/image/KpYh7ZNoMQCXDAH" target="_blank"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://i.loli.net/2020/02/10/KpYh7ZNoMQCXDAH.jpg" alt="pic2" width="350" height="350" ></a></p>
 <h2 id="支持向量机的优势和劣势"><a href="#支持向量机的优势和劣势" class="headerlink" title="支持向量机的优势和劣势"></a>支持向量机的优势和劣势</h2><p>了解 <code>SVM</code> 的优势能够帮助我们在合适的问题中选择合适的算法。  </p>
 <p><em>在看过后面算法的推导过程之后，会对支持向量机的优势和劣势有更深刻的了解。</em>  </p>
 <h3 id="支持向量机的优势"><a href="#支持向量机的优势" class="headerlink" title="支持向量机的优势"></a>支持向量机的优势</h3><ol>
@@ -388,25 +143,25 @@
 </ol>
 <h1 id="相关定义和方法介绍"><a href="#相关定义和方法介绍" class="headerlink" title="相关定义和方法介绍"></a>相关定义和方法介绍</h1><h2 id="L0-L1-L2范数"><a href="#L0-L1-L2范数" class="headerlink" title="L0, L1, L2范数"></a><code>L0</code>, <code>L1</code>, <code>L2</code>范数</h2><p>直观地说，</p>
 <ol>
-<li><code>L0</code>范数：$||x||_0 := \sum_{i = 1}^n x^0$ 即<strong>向量中所有非零元素的个数</strong>；</li>
-<li><code>L1</code>范数：$||x||_1 := \sum_{i = 1}^n |x|$  即<strong>向量中所有元素绝对值的和</strong>；</li>
-<li><code>L2</code>范数：$||x||_2 := \sqrt{\sum_{i = 1}^n x^2}$ 即<strong>欧几里得（Euclidean）范数</strong>；</li>
+<li><code>L0</code>范数：$||x||<em>0 := \sum</em>{i = 1}^n x^0$ 即<strong>向量中所有非零元素的个数</strong>；</li>
+<li><code>L1</code>范数：$||x||<em>1 := \sum</em>{i = 1}^n |x|$  即<strong>向量中所有元素绝对值的和</strong>；</li>
+<li><code>L2</code>范数：$||x||<em>2 := \sqrt{\sum</em>{i = 1}^n x^2}$ 即<strong>欧几里得（Euclidean）范数</strong>；</li>
 </ol>
 <p>范数是一个函数，其赋予某个向量空间（或矩阵）中的每个向量以长度或大小。对于零向量，另其长度为零。<br>直观的说，向量或矩阵的范数越大，则我们可以说这个向量或矩阵也就越大。有时范数有很多更为常见的叫法，如绝对值其实便是一维向量空间中实数或复数的范数，而Euclidean距离也是一种范数。</p>
 <p><strong>p范数（p-norm）的表达公式</strong>：</p>
 <script type="math/tex; mode=display">||x||_p := (\sum_{i = 1}^n x^p)^{\frac{1}{p}}</script><h2 id="函数间隔和几何间隔"><a href="#函数间隔和几何间隔" class="headerlink" title="函数间隔和几何间隔"></a>函数间隔和几何间隔</h2><p>首先在这里补充<strong>超平面</strong>的概念，<strong>超平面</strong>即分离不同类样本的分界面，在二维空间中的超平面就是线。</p>
-<p>我们回到最开始的二分类问题，如<code>pic3</code>所示。<br><a href="https://sm.ms/image/PrVZwIlm2voCKHU" target="_blank"><img src="https://i.loli.net/2020/02/12/PrVZwIlm2voCKHU.png" alt="几何间隔示意图" width="350" height="350"></a></p>
+<p>我们回到最开始的二分类问题，如<code>pic3</code>所示。<br><a href="https://sm.ms/image/PrVZwIlm2voCKHU" target="_blank"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://i.loli.net/2020/02/12/PrVZwIlm2voCKHU.png" alt="几何间隔示意图" width="350" height="350"></a></p>
 <p>假设我们用直线 $l_2$ 对样例进行划分，图中的横轴表示样例的第一个属性$x^{(1)}$ ，纵轴表示样例的第二个属性 $x^{(2)}$。图中的点 $m_1(x_1^{(1)}, x_1^{(2)})$ 和 $m_2(x_2^{(1)}, x_2^{(2)})$ 都被划分为正类。一般来说，一个点距离超平面的远近可以表示分类预测确信程度，距离超平面越远的点确信程度越高，这个从直观上也比较容易理解。  </p>
 <p>假设图中 $l_2$ 的方程确定为 $w_1x^{(1)} + w_2x^{(2)} + b = 0$ ，通过点到直线的距离公式$d = \frac{|w_1x^{(1)} + w_2x^{(2)} + b|}{\sqrt{w_1^2 + w_2^2}}$ 我们可以求得 $m_1$ 和 $m_2$ 到超平面的距离，以此来评判这些点分类的确信程度。这里的 $d$ 就被我们称为<strong>几何间隔</strong>。  </p>
 <p>但如果我们仅仅想比较点 $m_1$ 和 $m_2$ 确信程度的大小，我们可以仅用距离公式的分子：$d’ = |w_1x^{(1)} + w_2x^{(2)} + b|$ 进行比较，因为同一条直线分类的点的分母都是相同的。这里的 $d’$ 我们称为<strong>函数间隔</strong>。 $d’$ 在图中的几何意义表示如下图所示：</p>
-<p><a href="https://sm.ms/image/4m8PjYT2iS9rsf3" target="_blank"><img src="https://i.loli.net/2020/02/12/4m8PjYT2iS9rsf3.jpg" alt="函数间隔示意图" width="350" height="350"></a></p>
+<p><a href="https://sm.ms/image/4m8PjYT2iS9rsf3" target="_blank"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://i.loli.net/2020/02/12/4m8PjYT2iS9rsf3.jpg" alt="函数间隔示意图" width="350" height="350"></a></p>
 <p>一般来说，在超平面 $w·x+b=0$ 确定的情况下，$|w·x+b|$ 能够相对地表示点$x$距离超平面的远近，而 $w·x+b$ 的符号与类标记 $y$ 的符号是否一致能够表示分类是否正确。（在这里 $y$ 表示样本的标签）所以可以用$\widehat{\gamma_i} =  y_i(w·x_i+b)$ 来表示点 $m_i$ 分类的正确性及确信度，这就是样本的函数间隔的概念。</p>
 <p>定义超平面 $(w, b)$ 关于训练数据集 $T$ 的函数间隔为超平面$(w, b)$ 关于 $T$ 中所有样本点$(x_i, y_i)$ 的函数间隔的最小值，即：</p>
 <script type="math/tex; mode=display">\widehat\gamma = min_{i=1,...,N}\widehat{\gamma_i}</script><p>函数间隔可以表示分类预测的正确性和及确信度。但是选择分离超平面时，只有函数间隔还不够。因为只要成比例地改变$w$和$b$，例如将它们改为$2w$和$2b$，超平面并没有改变，但函数的间隔却变为原来的两倍。这一事实启示我们，可以对分离超平面的法向量$w$加某些约束，如规范化，$||w||=1$，使得间隔是确定的。这是函数间隔成为几何间隔（geometric margin）。</p>
 <p><strong>定义（几何间隔）</strong></p>
 <p>对于给定的训练数据集$T$和超平面$(w, b)$ ，定义超平面$(w,b)$ 关于样本点$(x_i, y_i)$ 的几何间隔为</p>
 <script type="math/tex; mode=display">\gamma_i = y_i(\frac{w}{||w||}·x_i+\frac{b}{||w||})</script><p>定义超平面$(w,b)$ 关于训练数据集$T$ 的几何间隔为超平面$(w, b)$ 关于 $T$ 中所有样本点$(x_i, y_i)$的几何间隔最小值，即：</p>
-<script type="math/tex; mode=display">\gamma=min_{i=1,...,N}\gamma_i</script><h2 id="拉格朗日对偶性"><a href="#拉格朗日对偶性" class="headerlink" title="拉格朗日对偶性"></a>拉格朗日对偶性</h2><p>首先举例直观理解，求解 $min_xmax_{\alpha, \beta} L(x, \alpha, \beta)$ 和求解 $max_{\alpha, \beta}min_x L(x, \alpha, \beta)$ 是对偶问题。前者是极小极大问题，后者是极大极小问题。</p>
+<script type="math/tex; mode=display">\gamma=min_{i=1,...,N}\gamma_i</script><h2 id="拉格朗日对偶性"><a href="#拉格朗日对偶性" class="headerlink" title="拉格朗日对偶性"></a>拉格朗日对偶性</h2><p>首先举例直观理解，求解 $min<em>xmax</em>{\alpha, \beta} L(x, \alpha, \beta)$ 和求解 $max_{\alpha, \beta}min_x L(x, \alpha, \beta)$ 是对偶问题。前者是极小极大问题，后者是极大极小问题。</p>
 <p>在约束优化问题中，常常利用拉格朗日对偶性（Lagrange duality）将原始问题转换为对偶问题，<strong>通过对偶问题而得到原始问题的解</strong>。该方法应用在许多统计学习方法中，例如，最大熵模型与支持向量机。这里简要叙述拉格朗日对偶性的主要概念和结果。</p>
 <h3 id="原始问题"><a href="#原始问题" class="headerlink" title="原始问题"></a>原始问题</h3><p>假设$f(x)$, $c_i(x)$, $h_j(x)$  是定义在 $R^n$ 的连续可微函数。考虑约束最优化问题：</p>
 <script type="math/tex; mode=display">min_{x \in R^n} f(x) \tag {C.1}</script><script type="math/tex; mode=display">s.t. c_i(x) \leq 0, i = 1, 2, ..., k \tag {C.2}</script><script type="math/tex; mode=display">h_j(x)=0, j=1,2,...,l \tag {C.3}</script><p>称此最优化问题为原始最优化问题或原始问题。</p>
@@ -417,10 +172,10 @@
 <script type="math/tex; mode=display">\theta_P(x) = max_{\alpha, \beta:\alpha_i \geq 0} [f(x)+\sum_{i=0}^k\alpha_ic_i(x)+\sum_{j=1}^l\beta_jh_j(x)]=+ \infty \tag {C.6}</script><p>因为若某个 $i$ 使约束 $c_i(x) &gt; 0$ ，则可令 $\alpha_i \rightarrow + \infty $ ，若某个 $j$ 使 $h_j(x) \neq 0$，则可令 $\beta_j$ 使 $\beta_jh_j(x) \rightarrow + \infty$  ，而将其余各 $\alpha_i$， $\beta_j$ 均取为0.</p>
 <p>相反地，如果 $x$ 满足约束条件$(C.2)$ 和$(C.3)$ ，此时 $\theta_P(x)=f(x)$.</p>
 <p>所以，如果考虑极小化问题</p>
-<script type="math/tex; mode=display">min_x\theta_P(x) = min_x max_{\alpha, \beta:\alpha_i \geq 0} L(x, \alpha, \beta)</script><p>$min_x max_{\alpha, \beta:\alpha_i \geq 0} L(x, \alpha, \beta)$ 称为广义拉格朗日函数的极小极大问题。</p>
+<script type="math/tex; mode=display">min_x\theta_P(x) = min_x max_{\alpha, \beta:\alpha_i \geq 0} L(x, \alpha, \beta)</script><p>$min<em>x max</em>{\alpha, \beta:\alpha_i \geq 0} L(x, \alpha, \beta)$ 称为广义拉格朗日函数的极小极大问题。</p>
 <p>为了方便，定义原始问题的最优值</p>
-<script type="math/tex; mode=display">p* = min_x\theta_P(x)</script><h3 id="对偶问题"><a href="#对偶问题" class="headerlink" title="对偶问题"></a>对偶问题</h3><script type="math/tex; mode=display">\theta_D(x) = min_{x} L(x, \alpha, \beta) \tag {C.8}</script><p>再考虑极大化 $\theta_D(x) = min_{x} L(x, \alpha, \beta)$ ，即</p>
-<script type="math/tex; mode=display">max_{\alpha, \beta:\alpha_i \geq 0}\theta_D(\alpha, \beta) = max_{\alpha, \beta:\alpha_i \geq 0}min_{x} L(x, \alpha, \beta) \tag {C.9}</script><p>问题 $max_{\alpha, \beta:\alpha_i \geq 0}min_{x} L(x, \alpha, \beta)$ 称为广义拉格朗日函数的极大极小问题。</p>
+<script type="math/tex; mode=display">p* = min_x\theta_P(x)</script><h3 id="对偶问题"><a href="#对偶问题" class="headerlink" title="对偶问题"></a>对偶问题</h3><script type="math/tex; mode=display">\theta_D(x) = min_{x} L(x, \alpha, \beta) \tag {C.8}</script><p>再考虑极大化 $\theta<em>D(x) = min</em>{x} L(x, \alpha, \beta)$ ，即</p>
+<script type="math/tex; mode=display">max_{\alpha, \beta:\alpha_i \geq 0}\theta_D(\alpha, \beta) = max_{\alpha, \beta:\alpha_i \geq 0}min_{x} L(x, \alpha, \beta) \tag {C.9}</script><p>问题 $max<em>{\alpha, \beta:\alpha_i \geq 0}min</em>{x} L(x, \alpha, \beta)$ 称为广义拉格朗日函数的极大极小问题。</p>
 <p>可以将广义拉格朗日定理函数的极大极小问题表示为约束最优化问题：</p>
 <script type="math/tex; mode=display">max_{\alpha, \beta}\theta_D(\alpha, \beta) = max_{\alpha, \beta}min_{x} L(x, \alpha, \beta)</script><script type="math/tex; mode=display">s.t. \alpha_i \geq 0, i=1, 2,...,k</script><p>称为原始问题的对偶问题，定义对偶问题的最优值：</p>
 <script type="math/tex; mode=display">d^* = max_{\alpha, \beta:\alpha_i \geq 0} \tag {C.10}</script><h3 id="原始问题和对偶问题的关系"><a href="#原始问题和对偶问题的关系" class="headerlink" title="原始问题和对偶问题的关系"></a>原始问题和对偶问题的关系</h3><p>这里只给出了定理，证明略去。</p>
@@ -434,10 +189,10 @@
 <p>假设函数 $f(x)$ 和 $c_i(x)$ 是凸函数，$h_j(x)$ 是仿射函数；并且假设不等式约束$c_i(x)$ 是严格可行的，则 $ x^\ast $ 和 $\alpha^\ast, \beta^\ast$ 分别是原始问题和对偶问题的解的充分必要条件是 $x^\ast, \alpha^\ast, \beta^\ast$ 满足下面的 <code>Karush-Kuhn-Trucker(KKT)</code> 条件：</p>
 <script type="math/tex; mode=display">\triangledown_xL(x^*, \alpha^*, \beta^*)=0 \tag {C.13}</script><script type="math/tex; mode=display">\alpha_i^*c_i(x^*)=0,i=1,2,...,k \tag {C.14}</script><script type="math/tex; mode=display">c_i(x) \leq 0, i=1,2,...,k \tag {C.15}</script><script type="math/tex; mode=display">\alpha_i^* \geq ,i=1,2,...,k \tag {C.16}</script><script type="math/tex; mode=display">h_j(x^*)=0,j=1,2,...,l \tag {C.17}</script><p>特别指出，式$(C.24)$ 称为 <code>KKT</code> 的对偶互补条件。由此条件可知：若 $\alpha_i^<em> &gt;0$ ， 则 $c_i(x^</em>)=0$。</p>
 <p>简单的总结一下这一小节：<strong>在某些条件下，原始问题和对偶问题的解相同，我们可以通过求解对偶问题的解来解决原问题。</strong></p>
-<h2 id="核技巧"><a href="#核技巧" class="headerlink" title="核技巧"></a>核技巧</h2><p> 核技巧我们可以通过一张图来理解：<br> <img src="https://i.loli.net/2020/02/13/4rjnEpbuylieSIs.jpg" alt="pic5"></p>
+<h2 id="核技巧"><a href="#核技巧" class="headerlink" title="核技巧"></a>核技巧</h2><p> 核技巧我们可以通过一张图来理解：<br> <img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://i.loli.net/2020/02/13/4rjnEpbuylieSIs.jpg" alt="pic5"></p>
 <p> <strong>核函数是二元函数，输入是映射之前的两个向量，其输出等价于两个向量映射之后的内积。</strong></p>
 <p>下面这个链接里有关于核函数更详细的描述：</p>
-<p><a href="https://zhuanlan.zhihu.com/p/47541349?utm_source=qq&amp;utm_medium=social&amp;utm_oi=809760155267903488" target="_blank" rel="noopener">关于核函数</a></p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/47541349?utm_source=qq&amp;utm_medium=social&amp;utm_oi=809760155267903488">关于核函数</a></p>
 <h1 id="支持向量机数学推导"><a href="#支持向量机数学推导" class="headerlink" title="支持向量机数学推导"></a>支持向量机数学推导</h1><p>关于支持向量机的推导，重点还是在<strong>线性可分支持向量机</strong>这里。在明白了线性可分支持向量机的推导之后，线性支持向量机仅仅是在此基础上加了一个软间隔，非线性支持向量机是加上了核技巧。  </p>
 <div class="note warning">
 注意，在看下面的推导过程之前，请务必保证理解了上面的函数间隔和几何间隔、对偶问题等概念。
@@ -445,7 +200,7 @@
 
 <h2 id="线性可分支持向量机"><a href="#线性可分支持向量机" class="headerlink" title="线性可分支持向量机"></a>线性可分支持向量机</h2><p><strong>支持向量机</strong>学习的<strong>基本想法</strong>是求解<strong>能够正确划分数据集</strong>并且<strong>几何间隔最大</strong>的分离超平面。这里的间隔最大化又称<strong>硬间隔最大化</strong>（与后面讨论的软间隔最大化相对应）。</p>
 <div class="info">
-    间隔最大化的直观理解：<br>
+    间隔最大化的直观理解：<br />
     对训练数据集找到几何间隔最大的超平面意味着以充分大的确信度对训练数据进行分类。也就是说，不仅将正负实例点分开，而且对最难分的实例点（离超平面最近的点）也有足够大的确信度将它们分开。这样的超平面应该对未知的新实例有很好的分类预测能力。
 </div>
 
@@ -458,7 +213,7 @@
 <hr>
 <p><strong>算法（线性可分支持向量机学习算法）：</strong></p>
 <ul>
-<li>输入：线性可分训练数据集 $T=\{(x_1,y_1),(x_2,y_2),…,(x_N,y_N)\}$，其中，$x_i \in X =R^n,y_i \in Y ={-1, +1},i=1,2,…,N$;</li>
+<li>输入：线性可分训练数据集 $T={(x_1,y_1),(x_2,y_2),…,(x_N,y_N)}$，其中，$x_i \in X =R^n,y_i \in Y ={-1, +1},i=1,2,…,N$;</li>
 <li>输出：最大间隔分离超平面和分类决策函数</li>
 </ul>
 <p>（1） 构造并求解约束最优化问题：</p>
@@ -466,598 +221,222 @@
 <p>（2） 由此得到分类超平面啊：</p>
 <script type="math/tex; mode=display">w^* · x+b^*=0</script><p>分类决策函数</p>
 <script type="math/tex; mode=display">f(x)=sign(w^*·x+b^*)</script><h3 id="算法求解"><a href="#算法求解" class="headerlink" title="算法求解"></a>算法求解</h3><h2 id="线性支持向量机"><a href="#线性支持向量机" class="headerlink" title="线性支持向量机"></a>线性支持向量机</h2><h2 id="非线性支持向量机"><a href="#非线性支持向量机" class="headerlink" title="非线性支持向量机"></a>非线性支持向量机</h2><h1 id="归纳和总结"><a href="#归纳和总结" class="headerlink" title="归纳和总结"></a>归纳和总结</h1>
+
+<div class="article-footer reveal fs14"><section id="license"><div class="header"><span>许可协议</span></div><div class="body"><p>本文采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">署名-非商业性使用-相同方式共享 4.0 国际</a> 许可协议，转载请注明出处。</p>
+</div></section></div>
+
+</article>
+
+<div class="related-wrap reveal" id="read-next"><section class="header cap theme"><span>接下来阅读</span></section><section class="body fs14"><a id="next" href="/201911/%E6%95%B0%E6%8D%AE%E9%A2%84%E5%A4%84%E7%90%86/">数据预处理<span class="note">较早</span></a><div class="line"></div><a id="prev" href="/202002/%E4%B8%80%E5%91%A8%E8%AE%B0%E5%BD%95week1/">【2020.02.03 - 2020.02.09】 一周记录<span class="note">较新</span></a></section></div>
+
+
+
+
+
+
+  <div class='related-wrap md reveal' id="comments">
+    <div class='cmt-title cap theme'>
+      快来参与讨论吧
     </div>
-
-    
-
-    
-    
-    
+    <div class='cmt-body beaudar'>
       
 
-        
-      
+<svg class="loading" style="vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2709"><path d="M832 512c0-176-144-320-320-320V128c211.2 0 384 172.8 384 384h-64zM192 512c0 176 144 320 320 320v64C300.8 896 128 723.2 128 512h64z" p-id="2710"></path></svg>
 
-      <footer class="post-footer">
-          
-            
-          
-          <div class="post-tags">
-            
-              <a href="/tags/机器学习/" rel="tag"># 机器学习</a>
-            
-              <a href="/tags/SVM/" rel="tag"># SVM</a>
-            
-              <a href="/tags/算法推导/" rel="tag"># 算法推导</a>
-            
-          </div>
-        
+<div id="beaudar" repo="CrocodileZS/blog-comments" issue-term="pathname" theme="preferred-color-scheme" input-position="top" comment-order="desc" loading="false" branch="main"></div>
 
-        
-  <div class="post-widgets">
-    <div class="social-share">
-      
-      
-        <div id="needsharebutton-postbottom">
-          <span class="btn">
-            <i class="fa fa-share-alt" aria-hidden="true"></i>
-          </span>
-        </div>
-      
-    </div>
-  
-  </div>
-
-          <div class="post-nav">
-            <div class="post-nav-next post-nav-item">
-              
-                <a href="/201911/数据预处理/" rel="next" title="数据预处理">
-                  <i class="fa fa-chevron-left"></i> 数据预处理
-                </a>
-              
-            </div>
-
-            <span class="post-nav-divider"></span>
-
-            <div class="post-nav-prev post-nav-item">
-              
-                <a href="/202002/一周记录week1/" rel="prev" title="【2020.02.03 - 2020.02.09】 一周记录">
-                  【2020.02.03 - 2020.02.09】 一周记录 <i class="fa fa-chevron-right"></i>
-                </a>
-              
-            </div>
-          </div>
-        
-      </footer>
-    
-  </div>
-  
-  
-  
-  </article>
-
-  </div>
-
-
-          </div>
-          
-    
-    <div class="comments" id="comments"></div>
-  
-
-        </div>
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
     </div>
   </div>
 
-  <aside id="sidebar" class="sidebar">
-    <div class="sidebar-inner">
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-overview">
-
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image"
-      src="/images/tom.jpg"
-      alt="CrocodileZS">
-  <p class="site-author-name" itemprop="name">CrocodileZS</p>
-  <div class="site-description motion-element" itemprop="description"></div>
-</div>
-  <nav class="site-state motion-element">
-      <div class="site-state-item site-state-posts">
-        
-          <a href="/archives">
-        
-          <span class="site-state-item-count">71</span>
-          <span class="site-state-item-name">日志</span>
-        </a>
-      </div>
-    
-      
-      
-      <div class="site-state-item site-state-categories">
-        
-          
-            <a href="/categories/">
-          
-        
-        
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-        <span class="site-state-item-count">16</span>
-        <span class="site-state-item-name">分类</span>
-        </a>
-      </div>
-    
-      
-      
-      <div class="site-state-item site-state-tags">
-        
-          
-            <a href="/tags/">
-          
-        
-        
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-        <span class="site-state-item-count">40</span>
-        <span class="site-state-item-name">标签</span>
-        </a>
-      </div>
-    
-  </nav>
-  <div class="feed-link motion-element">
-    <a href="/atom.xml" rel="alternate">
-      <i class="fa fa-rss"></i>RSS
-    </a>
-  </div>
-  <div class="links-of-author motion-element">
-      <span class="links-of-author-item">
-      
-      
-        
-      
-      
-        
-      
-        <a href="mailto:ammo@bupt.edu.cn" title="E-Mail &rarr; mailto:ammo@bupt.edu.cn" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
-      </span>
-    
-      <span class="links-of-author-item">
-      
-      
-        
-      
-      
-        
-      
-        <a href="https://instagram.com/crocodile_zs" title="Instagram &rarr; https://instagram.com/crocodile_zs" rel="noopener" target="_blank"><i class="fa fa-fw fa-instagram"></i>Instagram</a>
-      </span>
-    
-  </div>
 
 
-  <div class="links-of-blogroll motion-element links-of-blogroll-block">
-    <div class="links-of-blogroll-title">
-      <i class="fa  fa-fw fa-link"></i>
-      Links
-    </div>
-    <ul class="links-of-blogroll-list">
-        <li class="links-of-blogroll-item">
-          <a href="http://www.wangxiaofeng.me/" title="http://www.wangxiaofeng.me/" rel="noopener" target="_blank">不许联想</a>
-        </li>
       
-        <li class="links-of-blogroll-item">
-          <a href="https://idx0.dev/" title="https://idx0.dev/" rel="noopener" target="_blank">思维</a>
-        </li>
-      
-        <li class="links-of-blogroll-item">
-          <a href="https://128bit.top" title="https://128bit.top" rel="noopener" target="_blank">Dixeran</a>
-        </li>
-      
-        <li class="links-of-blogroll-item">
-          <a href="http://icontofig.leanote.com/" title="http://icontofig.leanote.com/" rel="noopener" target="_blank">Icontofig</a>
-        </li>
-      
-        <li class="links-of-blogroll-item">
-          <a href="https://www.nekomio.com" title="https://www.nekomio.com" rel="noopener" target="_blank">NekoMio</a>
-        </li>
-      
-        <li class="links-of-blogroll-item">
-          <a href="https://al0ha0e.github.io" title="https://al0ha0e.github.io" rel="noopener" target="_blank">Al0ha0e</a>
-        </li>
-      
-        <li class="links-of-blogroll-item">
-          <a href="http://gaokeyong.coding.me" title="http://gaokeyong.coding.me" rel="noopener" target="_blank">Keyong</a>
-        </li>
-      
-        <li class="links-of-blogroll-item">
-          <a href="http://poeroz.cn/" title="http://poeroz.cn/" rel="noopener" target="_blank">Poeroz</a>
-        </li>
-      
-    </ul>
-  </div>
+<footer class="page-footer reveal fs12"><hr><div class="text"><p>本博客所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议，转载请注明出处。</p>
+<p>本站由 <a href="https://blog.crocodilezs.top/">@CrocodileZS</a> 创建，使用 <a target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.7.0" title="v1.7.0">Stellar</a> 作为主题。</p>
+</div></footer>
 
-        </div>
-      </div>
-      <!--noindex-->
-        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-            
-            
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#支持向量机介绍"><span class="nav-text">支持向量机介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#支持向量机的应用"><span class="nav-text">支持向量机的应用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#直观理解支持向量机"><span class="nav-text">直观理解支持向量机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#支持向量机的优势和劣势"><span class="nav-text">支持向量机的优势和劣势</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#支持向量机的优势"><span class="nav-text">支持向量机的优势</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#支持向量机的劣势"><span class="nav-text">支持向量机的劣势</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#支持向量机的分类"><span class="nav-text">支持向量机的分类</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#相关定义和方法介绍"><span class="nav-text">相关定义和方法介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#L0-L1-L2范数"><span class="nav-text">L0, L1, L2范数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数间隔和几何间隔"><span class="nav-text">函数间隔和几何间隔</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#拉格朗日对偶性"><span class="nav-text">拉格朗日对偶性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#原始问题"><span class="nav-text">原始问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对偶问题"><span class="nav-text">对偶问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#原始问题和对偶问题的关系"><span class="nav-text">原始问题和对偶问题的关系</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#核技巧"><span class="nav-text">核技巧</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#支持向量机数学推导"><span class="nav-text">支持向量机数学推导</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#线性可分支持向量机"><span class="nav-text">线性可分支持向量机</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#最大间隔算法"><span class="nav-text">最大间隔算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#算法求解"><span class="nav-text">算法求解</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#线性支持向量机"><span class="nav-text">线性支持向量机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#非线性支持向量机"><span class="nav-text">非线性支持向量机</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#归纳和总结"><span class="nav-text">归纳和总结</span></a></li></ol></div>
-            
-
-          </div>
-        </div>
-      <!--/noindex-->
-      
-
-    </div>
-  </aside>
-  <div id="sidebar-dimmer"></div>
-
-
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
-  <span class="with-love" id="animate">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">鰐魚先生</span>
+      <div class='float-panel mobile-only blur' style='display:none'>
+  <button type='button' class='sidebar-toggle mobile' onclick='sidebar.toggle()'>
+    <svg class="icon" style="width: 1em; height: 1em;vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="15301"><path d="M566.407 808.3c26.9-0.1 49.3-20.8 51.6-47.6-1.9-27.7-23.9-49.7-51.6-51.6h-412.6c-28.2-1.4-52.6 19.5-55.5 47.6 2.3 26.8 24.6 47.5 51.6 47.6h416.5v4z m309.3-249.9c26.9-0.1 49.3-20.8 51.6-47.6-2.2-26.8-24.6-47.5-51.6-47.6h-721.9c-27.7-2.8-52.5 17.4-55.3 45.1-0.1 0.8-0.1 1.7-0.2 2.5 0.9 27.2 23.6 48.5 50.7 47.6H875.707z m-103.1-245.9c26.9-0.1 49.3-20.8 51.6-47.6-0.4-28.3-23.2-51.1-51.5-51.6h-618.9c-29.5-1.1-54.3 21.9-55.5 51.4v0.2c1.4 27.8 25.2 49.2 53 47.8 0.8 0 1.7-0.1 2.5-0.2h618.8z" p-id="15302"></path><path d="M566.407 808.3c26.9-0.1 49.3-20.8 51.6-47.6-1.9-27.7-23.9-49.7-51.6-51.6h-412.6c-28.2-1.4-52.6 19.5-55.5 47.6 1.9 27.7 23.9 49.7 51.6 51.6h416.5z m309.3-249.9c26.9-0.1 49.3-20.8 51.6-47.6-2.2-26.8-24.6-47.5-51.6-47.6h-721.9c-27.7-2.8-52.5 17.4-55.3 45.1-0.1 0.8-0.1 1.7-0.2 2.5 0.9 27.2 23.6 48.5 50.7 47.6H875.707z m-103.1-245.9c26.9-0.1 49.3-20.8 51.6-47.6-0.4-28.3-23.2-51.1-51.5-51.6h-618.9c-29.5-1.1-54.3 21.9-55.5 51.4v0.2c1.4 27.8 25.2 49.2 53 47.8 0.8 0 1.7-0.1 2.5-0.2h618.8z" p-id="15303"></path></svg>
+  </button>
 </div>
 
-
-        
-<div class="busuanzi-count">
-  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-    <span class="post-meta-item-icon">
-      <i class="fa fa-user"></i>
-    </span>
-    <span class="site-uv" title="总访客量">
-      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
-    </span>
-  
-    <span class="post-meta-divider">|</span>
-  
-    <span class="post-meta-item-icon">
-      <i class="fa fa-eye"></i>
-    </span>
-    <span class="site-pv" title="总访问量">
-      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
-    </span>
-  
-</div>
-
-
-
-
-
-
-
-
-        
-      </div>
-    </footer>
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-          <span id="scrollpercent"><span>0</span>%</span>
-        
-      </div>
-
-    
-  
-  <div id="needsharebutton-float">
-    <span class="btn">
-      <i class="fa fa-share-alt" aria-hidden="true"></i>
-    </span>
+    </div>
   </div>
-<script src="/lib/needsharebutton/needsharebutton.js"></script>
-<script>
-    pbOptions = {};
-      pbOptions.iconStyle = "default";
-    
-      pbOptions.boxForm = "horizontal";
-    
-      pbOptions.position = "bottomCenter";
-    
-      pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
-    
-    new needShareButton('#needsharebutton-postbottom', pbOptions);
-    flOptions = {};
-      flOptions.iconStyle = "box";
-    
-      flOptions.boxForm = "horizontal";
-    
-      flOptions.position = "middleRight";
-    
-      flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
-    
-    new needShareButton('#needsharebutton-float', flOptions);
-</script>
-
-
-  </div>
-
-  
-  <script src="/lib/jquery/index.js?v=3.4.1"></script>
-  <script src="/lib/fancybox/source/jquery.fancybox.pack.js"></script>
-  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-<script src="/js/utils.js?v=7.3.0"></script>
-  <script src="/js/motion.js?v=7.3.0"></script>
-
-
-  <script src="/js/schemes/muse.js?v=7.3.0"></script>
-
-
-<script src="/js/next-boot.js?v=7.3.0"></script>
-
-
-
-
-  
-  <script>
-    (function(){
-      var bp = document.createElement('script');
-      var curProtocol = window.location.protocol.split(':')[0];
-      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
-      var s = document.getElementsByTagName("script")[0];
-      s.parentNode.insertBefore(bp, s);
-    })();
-  </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-  
-    
-      <script type="text/x-mathjax-config">
-
-  MathJax.Hub.Config({
-    tex2jax: {
-      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
-      processEscapes: true,
-      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+  <div class='scripts'>
+    <script type="text/javascript">
+  stellar = {
+    // 懒加载 css https://github.com/filamentgroup/loadCSS
+    loadCSS: (href, before, media, attributes) => {
+      var doc = window.document;
+      var ss = doc.createElement("link");
+      var ref;
+      if (before) {
+        ref = before;
+      } else {
+        var refs = (doc.body || doc.getElementsByTagName("head")[0]).childNodes;
+        ref = refs[refs.length - 1];
+      }
+      var sheets = doc.styleSheets;
+      if (attributes) {
+        for (var attributeName in attributes) {
+          if (attributes.hasOwnProperty(attributeName)) {
+            ss.setAttribute(attributeName, attributes[attributeName]);
+          }
+        }
+      }
+      ss.rel = "stylesheet";
+      ss.href = href;
+      ss.media = "only x";
+      function ready(cb) {
+        if (doc.body) {
+          return cb();
+        }
+        setTimeout(function () {
+          ready(cb);
+        });
+      }
+      ready(function () {
+        ref.parentNode.insertBefore(ss, before ? ref : ref.nextSibling);
+      });
+      var onloadcssdefined = function (cb) {
+        var resolvedHref = ss.href;
+        var i = sheets.length;
+        while (i--) {
+          if (sheets[i].href === resolvedHref) {
+            return cb();
+          }
+        }
+        setTimeout(function () {
+          onloadcssdefined(cb);
+        });
+      };
+      function loadCB() {
+        if (ss.addEventListener) {
+          ss.removeEventListener("load", loadCB);
+        }
+        ss.media = media || "all";
+      }
+      if (ss.addEventListener) {
+        ss.addEventListener("load", loadCB);
+      }
+      ss.onloadcssdefined = onloadcssdefined;
+      onloadcssdefined(loadCB);
+      return ss;
     },
-    TeX: {
-      equationNumbers: {
-        autoNumber: 'AMS'
+
+    // 从 butterfly 和 volantis 获得灵感
+    loadScript: (src, opt) => new Promise((resolve, reject) => {
+      var script = document.createElement('script');
+      script.src = src;
+      if (opt) {
+        for (let key of Object.keys(opt)) {
+          script[key] = opt[key]
+        }
+      } else {
+        // 默认异步，如果需要同步，第二个参数传入 {} 即可
+        script.async = true
+      }
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    }),
+
+    // https://github.com/jerryc127/hexo-theme-butterfly
+    jQuery: (fn) => {
+      if (typeof jQuery === 'undefined') {
+        stellar.loadScript(stellar.plugins.jQuery).then(fn)
+      } else {
+        fn()
       }
     }
-  });
+  };
+  stellar.github = 'https://github.com/xaoxuu/hexo-theme-stellar/tree/1.7.0';
+  stellar.config = {
+    date_suffix: {
+      just: '刚刚',
+      min: '分钟前',
+      hour: '小时前',
+      day: '天前',
+      month: '个月前',
+    },
+  };
 
-  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
-    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
-      if (data.display) {
-        var next = data.script.nextSibling;
-        while (next && next.nodeName.toLowerCase() === '#text') {
-          next = next.nextSibling;
-        }
-        if (next && next.nodeName.toLowerCase() === 'br') {
-          next.parentNode.removeChild(next);
+  // required plugins (only load if needs)
+  stellar.plugins = {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js',
+    sitesjs: '/js/plugins/sites.js',
+    friendsjs: '/js/plugins/friends.js',
+  };
+
+  // optional plugins
+  if ('true' == 'true') {
+    stellar.plugins.lazyload = Object.assign({"enable":true,"js":"https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.3.1/dist/lazyload.min.js","transition":"blur"});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.swiper = Object.assign({"enable":true,"css":"https://unpkg.com/swiper@6/swiper-bundle.min.css","js":"https://unpkg.com/swiper@6/swiper-bundle.min.js"});
+  }
+  if ('' == 'true') {
+    stellar.plugins.scrollreveal = Object.assign({"enable":null,"js":"https://cdn.jsdelivr.net/npm/scrollreveal@4.0.9/dist/scrollreveal.min.js","distance":"8px","duration":500,"interval":100,"scale":1});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.preload = Object.assign({"enable":true,"service":"flying_pages","instant_page":"https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@4.1.2/js/instant_page.js","flying_pages":"https://cdn.jsdelivr.net/gh/gijo-varghese/flying-pages@2.1.2/flying-pages.min.js"});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.fancybox = Object.assign({"enable":true,"js":"https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js","css":"https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css","selector":".swiper-slide img"});
+  }
+  if ('false' == 'true') {
+    stellar.plugins.heti = Object.assign({"enable":false,"css":"https://unpkg.com/heti/umd/heti.min.css","js":"https://unpkg.com/heti/umd/heti-addon.min.js"});
+  }
+</script>
+
+<!-- required -->
+
+  
+<script src="/js/main.js" async></script>
+
+
+
+<!-- optional -->
+
+  <script>
+  function loadBeaudar() {
+    const els = document.querySelectorAll("#comments #beaudar");
+    if (els.length === 0) return;
+    els.forEach((el, i) => {
+      try {
+        el.innerHTML = '';
+      } catch (error) {
+        console.log(error);
+      }
+      var script = document.createElement('script');
+      script.src = 'https://beaudar.lipk.org/client.js';
+      script.async = true;
+      for (let key of Object.keys(el.attributes)) {
+        let attr = el.attributes[key];
+        if (['class', 'id'].includes(attr.name) === false) {
+          script.setAttribute(attr.name, attr.value);
         }
       }
+      el.appendChild(script);
     });
-  });
-
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for (i = 0; i < all.length; i += 1) {
-      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
-      if (element.nodeName.toLowerCase() == 'li') {
-        element = element.parentNode;
-      }
-      element.classList.add('has-jax');
-    }
+  }
+  window.addEventListener('DOMContentLoaded', (event) => {
+      loadBeaudar();
   });
 </script>
-<script>
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML', function() {
-    MathJax.Hub.Typeset();
-  }, window.MathJax);
-</script>
-
-    
-  
-
-  
-
-  
 
 
-  
-  <script src="/js/scrollspy.js?v=7.3.0"></script>
-<script src="/js/post-details.js?v=7.3.0"></script>
 
 
-    
+<!-- inject -->
 
-<script>
-NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', function() {
-  var GUEST = ['nick', 'mail', 'link'];
-  var guest = 'nick,mail,link';
-  guest = guest.split(',').filter(function(item) {
-    return GUEST.indexOf(item) > -1;
-  });
-  new Valine({
-    el: '#comments',
-    verify: false,
-    notify: false,
-    appId: '9VEOQepq1oDMG0XHxBOrKuwU-gzGzoHsz',
-    appKey: 'XVzSWQhACVUcrVzQDF0AJlb8',
-    placeholder: 'ヽ(✿ﾟ▽ﾟ)ノ',
-    avatar: 'zhouyuyang17@163.com',
-    meta: guest,
-    pageSize: '10' || 10,
-    visitor: false,
-    lang: 'zh-cn' || 'zh-cn',
-    path: location.pathname
-  });
-}, window.Valine);
-</script>
 
-  <script type="text/javascript" src="/lib/zclip/clipboard.min.js"></script>	
-<script type="text/javascript" src="/js/src/custom.js"></script>
+  </div>
 </body>
 </html>

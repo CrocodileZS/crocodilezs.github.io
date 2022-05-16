@@ -1,371 +1,126 @@
 <!DOCTYPE html>
+<html lang='zh-CN'>
 
-
-
-
-
-<html class="theme-next muse use-motion" lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
-<meta name="generator" content="Hexo 3.9.0">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/rainbow.png?v=7.3.0">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/rainbow.png?v=7.3.0">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/rainbow.png?v=7.3.0">
-  <link rel="mask-icon" href="/images/rainbow.svg?v=7.3.0" color="#222">
-  <meta name="baidu-site-verification" content="MBR3SWgP01">
+  <meta name="generator" content="Hexo 5.4.2">
+  <meta charset="utf-8">
+  
 
-<link rel="stylesheet" href="/css/main.css?v=7.3.0">
+  <meta http-equiv='x-dns-prefetch-control' content='on' />
+  <link rel='dns-prefetch' href='https://cdn.jsdelivr.net'>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel='dns-prefetch' href='//unpkg.com'>
 
-<link rel="stylesheet" href="https://fonts.loli.net/css?family=Noto Serif SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
-<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
-  <link rel="stylesheet" href="/lib/fancybox/source/jquery.fancybox.css">
-  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
-  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
-  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2">
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="theme-color" content="#f8f8f8">
+  <title>Fisher算法&SVM&K-Means及其优化 - 鳄鱼Crc2H0U</title>
 
+  
 
-<script id="hexo-configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Muse',
-    version: '7.3.0',
-    exturl: false,
-    sidebar: {"position":"left","display":"post","offset":12,"onmobile":true},
-    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
-    save_scroll: true,
-    copycode: {"enable":true,"show_result":true,"style":"flat"},
-    fancybox: true,
-    mediumzoom: false,
-    lazyload: false,
-    pangu: false,
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    },
-    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
-    path: 'search.xml',
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    translation: {
-      copy_button: '复制',
-      copy_success: '复制成功',
-      copy_failure: '复制失败'
-    }
-  };
-</script>
-
-  <meta name="description" content="Fisher算法&amp;amp;SVM&amp;amp;K-Means及其优化部分源码的参考资料已注明 fisher算法及其实现 请实现fisher算法，并采用自己随机生成2类数据（每类100个）的方式，验证自己的算法。参考资料:https://blog.csdn.net/pengjian444/article/details/71138003">
-<meta name="keywords" content="Fisher,SVM,K-Means">
+  
+    <meta name="description" content="Fisher算法&amp;SVM&amp;K-Means及其优化部分源码的参考资料已注明 fisher算法及其实现 请实现fisher算法，并采用自己随机生成2类数据（每类100个）的方式，验证自己的算法。参考资料:https:&#x2F;&#x2F;blog.csdn.net&#x2F;pengjian444&#x2F;article&#x2F;details&#x2F;71138003">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Fisher算法&amp;SVM&amp;K-Means及其优化">
-<meta property="og:url" content="https://blog.crocodilezs.top/201911/Fisher算法&SVM&K-Means及其优化/index.html">
-<meta property="og:site_name" content="鰐魚先生的水族館">
-<meta property="og:description" content="Fisher算法&amp;amp;SVM&amp;amp;K-Means及其优化部分源码的参考资料已注明 fisher算法及其实现 请实现fisher算法，并采用自己随机生成2类数据（每类100个）的方式，验证自己的算法。参考资料:https://blog.csdn.net/pengjian444/article/details/71138003">
-<meta property="og:locale" content="zh-CN">
+<meta property="og:url" content="https://blog.crocodilezs.top/201911/Fisher%E7%AE%97%E6%B3%95&SVM&K-Means%E5%8F%8A%E5%85%B6%E4%BC%98%E5%8C%96/index.html">
+<meta property="og:site_name" content="鳄鱼Crc2H0U">
+<meta property="og:description" content="Fisher算法&amp;SVM&amp;K-Means及其优化部分源码的参考资料已注明 fisher算法及其实现 请实现fisher算法，并采用自己随机生成2类数据（每类100个）的方式，验证自己的算法。参考资料:https:&#x2F;&#x2F;blog.csdn.net&#x2F;pengjian444&#x2F;article&#x2F;details&#x2F;71138003">
+<meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://s2.ax1x.com/2019/10/08/uWyoX4.png">
 <meta property="og:image" content="https://s2.ax1x.com/2019/10/08/uWy4pT.png">
 <meta property="og:image" content="https://s2.ax1x.com/2019/10/08/uWyIcF.png">
 <meta property="og:image" content="https://s2.ax1x.com/2019/10/08/uWy51U.png">
 <meta property="og:image" content="https://s2.ax1x.com/2019/10/08/uWyfhV.png">
-<meta property="og:image" content="https://blog.crocodilezs.top/201911/Fisher算法&SVM&K-Means及其优化/output_12_1.png">
-<meta property="og:image" content="https://blog.crocodilezs.top/201911/Fisher算法&SVM&K-Means及其优化/output_14_1.png">
-<meta property="og:image" content="https://blog.crocodilezs.top/201911/Fisher算法&SVM&K-Means及其优化/output_16_0.png">
-<meta property="og:image" content="https://blog.crocodilezs.top/201911/Fisher算法&SVM&K-Means及其优化/output_20_1.png">
-<meta property="og:updated_time" content="2019-11-12T14:33:23.844Z">
+<meta property="og:image" content="https://blog.crocodilezs.top/201911/Fisher%E7%AE%97%E6%B3%95&SVM&K-Means%E5%8F%8A%E5%85%B6%E4%BC%98%E5%8C%96/output_12_1.png">
+<meta property="og:image" content="https://blog.crocodilezs.top/201911/Fisher%E7%AE%97%E6%B3%95&SVM&K-Means%E5%8F%8A%E5%85%B6%E4%BC%98%E5%8C%96/output_14_1.png">
+<meta property="og:image" content="https://blog.crocodilezs.top/201911/Fisher%E7%AE%97%E6%B3%95&SVM&K-Means%E5%8F%8A%E5%85%B6%E4%BC%98%E5%8C%96/output_16_0.png">
+<meta property="og:image" content="https://blog.crocodilezs.top/201911/Fisher%E7%AE%97%E6%B3%95&SVM&K-Means%E5%8F%8A%E5%85%B6%E4%BC%98%E5%8C%96/output_20_1.png">
+<meta property="article:published_time" content="2019-10-22T04:21:10.000Z">
+<meta property="article:modified_time" content="2019-11-12T14:33:23.844Z">
+<meta property="article:author" content="CrocodileZS">
+<meta property="article:tag" content="Fisher">
+<meta property="article:tag" content="SVM">
+<meta property="article:tag" content="K-Means">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Fisher算法&amp;SVM&amp;K-Means及其优化">
-<meta name="twitter:description" content="Fisher算法&amp;amp;SVM&amp;amp;K-Means及其优化部分源码的参考资料已注明 fisher算法及其实现 请实现fisher算法，并采用自己随机生成2类数据（每类100个）的方式，验证自己的算法。参考资料:https://blog.csdn.net/pengjian444/article/details/71138003">
 <meta name="twitter:image" content="https://s2.ax1x.com/2019/10/08/uWyoX4.png">
-  <link rel="alternate" href="/atom.xml" title="鰐魚先生的水族館" type="application/atom+xml">
-  <link rel="canonical" href="https://blog.crocodilezs.top/201911/Fisher算法&SVM&K-Means及其优化/">
-
-
-<script id="page-configurations">
-  // https://hexo.io/docs/variables.html
-  CONFIG.page = {
-    sidebar: "",
-    isHome: false,
-    isPost: true,
-    isPage: false,
-    isArchive: false
-  };
-</script>
-
-  <title>Fisher算法&SVM&K-Means及其优化 | 鰐魚先生的水族館</title>
+  
   
 
+  <!-- feed -->
+  
+    <link rel="alternate" href="/atom.xml" title="鳄鱼Crc2H0U" type="application/atom+xml">
+  
 
+  
+    
+<link rel="stylesheet" href="/css/main.css">
 
+  
 
+  
 
-
-
-
-  <noscript>
-  <style>
-  .use-motion .motion-element,
-  .use-motion .brand,
-  .use-motion .menu-item,
-  .sidebar-inner,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-title { opacity: initial; }
-
-  .use-motion .logo,
-  .use-motion .site-title,
-  .use-motion .site-subtitle {
-    opacity: initial;
-    top: initial;
-  }
-
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
-  </style>
-</noscript>
-
+  
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+<body>
+  
 
-  <div class="container sidebar-position-left">
-    <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta">
 
-    <div class="custom-logo-site-title">
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">鰐魚先生的水族館</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
-    </div>
-        <p class="site-subtitle">言念君子，溫其如玉。</p>
-      
-  </div>
 
-  <div class="site-nav-toggle">
-    <button aria-label="切换导航栏">
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
-  </div>
+  <div class='l_body' id='start'>
+    <aside class='l_left' layout='post'>
+    
+
+
+<header class="header">
+
+<div class="logo-wrap"><a class="avatar" href="/about/"><div class="bg" style="opacity:0;background-image:url(https://cdn.jsdelivr.net/gh/cdn-x/placeholder@1.0.2/avatar/round/rainbow64@3x.webp);"></div><img no-lazy class="avatar" src="/media/avatar.png" onerror="javascript:this.classList.add('error');this.src='https://cdn.jsdelivr.net/gh/cdn-x/placeholder@1.0.1/image/2659360.svg';"></a><a class="title" href="/"><div class="main">鳄鱼Crc2H0U</div><div class="sub cap">野生鳄鱼的自留地</div></a></div>
+<nav class="menu dis-select"><a class="nav-item active" href="/">文章</a><a class="nav-item" href="/about/">关于</a><a class="nav-item" href="/timeline/">时间轴</a></nav></header>
+
+<div class="widgets">
+
+<div class="widget-wrap single" id="toc"><div class="widget-header cap dis-select"><span class="name">本文目录</span></div><div class="widget-body fs14"><div class="doc-tree active"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#fisher%E7%AE%97%E6%B3%95%E5%8F%8A%E5%85%B6%E5%AE%9E%E7%8E%B0"><span class="toc-text">fisher算法及其实现</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%94%9F%E6%88%90"><span class="toc-text">数据生成</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#fisher%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0"><span class="toc-text">fisher算法实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A4%E5%AE%9A%E7%B1%BB%E5%88%AB"><span class="toc-text">判定类别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%98%E5%9B%BE"><span class="toc-text">绘图</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SVM%E4%BC%98%E5%8C%96%E5%AF%B9%E5%81%B6%E9%97%AE%E9%A2%98%E7%9A%84%E8%AF%A6%E7%BB%86%E6%8E%A8%E5%AF%BC%E8%BF%87%E7%A8%8B"><span class="toc-text">SVM优化对偶问题的详细推导过程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SVM%E7%AE%97%E6%B3%95%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="toc-text">SVM算法的实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#k-means%E7%AE%97%E6%B3%95%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="toc-text">k-means算法的实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#k-means%E7%AE%97%E6%B3%95%E7%9A%84%E6%94%B9%E8%BF%9B"><span class="toc-text">k-means算法的改进</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#k-means-%EF%BC%88%E6%94%B9%E5%8F%98%E4%B8%AD%E5%BF%83%E7%82%B9%E7%9A%84%E9%80%89%E6%8B%A9%E6%96%B9%E6%B3%95%EF%BC%89"><span class="toc-text">k-means++（改变中心点的选择方法）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#elkan-k-means%E7%AE%97%E6%B3%95"><span class="toc-text">elkan k-means算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ISODATA%E7%AE%97%E6%B3%95"><span class="toc-text">ISODATA算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Mini-Batch-k-means%EF%BC%88%E7%94%A8%E4%B8%80%E9%83%A8%E5%88%86%E6%A0%B7%E6%9C%AC%E5%81%9A%E4%BC%A0%E7%BB%9F%E7%9A%84k-means%EF%BC%8C%E8%88%8D%E5%BC%83%E4%B8%80%E9%83%A8%E5%88%86%E7%B2%BE%E7%A1%AE%E5%BA%A6%E5%A4%A7%E5%A4%A7%E6%8F%90%E9%AB%98%E6%94%B6%E6%95%9B%E9%80%9F%E5%BA%A6%EF%BC%89"><span class="toc-text">Mini Batch k-means（用一部分样本做传统的k-means，舍弃一部分精确度大大提高收敛速度）</span></a></li></ol></li></ol></div></div></div>
+
+
 </div>
 
 
-<nav class="site-nav">
-  
-  <ul id="menu" class="menu">
+    </aside>
+    <div class='l_main'>
       
-      
-      
-        
-        <li class="menu-item menu-item-home">
-      
-    
-
-    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
-
-  </li>
-      
-      
-      
-        
-        <li class="menu-item menu-item-categories">
-      
-    
-
-    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
-
-  </li>
-      
-      
-      
-        
-        <li class="menu-item menu-item-tags">
-      
-    
-
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
-
-  </li>
-      
-      
-      
-        
-        <li class="menu-item menu-item-about">
-      
-    
-
-    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>关于</a>
-
-  </li>
-      
-      
-      
-        
-        <li class="menu-item menu-item-英文博客">
-      
-    
-
-    <a href="/eysblog_en/" rel="section"><i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>英文博客</a>
-
-  </li>
-  </ul>
-
-    
-
-</nav>
-</div>
-    </header>
-
-    
-
-
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          <div id="content" class="content page-post-detail">
-            
-
-  <div id="posts" class="posts-expand">
-    
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://blog.crocodilezs.top/201911/Fisher算法&SVM&K-Means及其优化/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="CrocodileZS">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/tom.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="鰐魚先生的水族館">
-    </span>
-      <header class="post-header">
-
-        
-          <h1 class="post-title" itemprop="name headline">Fisher算法&SVM&K-Means及其优化
-
-            
-          </h1>
-        
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              
-                
-              
-
-              <time title="创建时间：2019-10-22 12:21:10" itemprop="dateCreated datePublished" datetime="2019-10-22T12:21:10+08:00">2019-10-22</time>
-            </span>
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/机器学习/" itemprop="url" rel="index"><span itemprop="name">机器学习</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-        
-      
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/201911/Fisher算法&SVM&K-Means及其优化/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/201911/Fisher算法&SVM&K-Means及其优化/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-          
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">本文字数：</span>
-              
-              <span>13k</span>
-            </span>
-          
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              
-              <span>21 分钟</span>
-            </span>
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="Fisher算法-amp-SVM-amp-K-Means及其优化"><a href="#Fisher算法-amp-SVM-amp-K-Means及其优化" class="headerlink" title="Fisher算法&amp;SVM&amp;K-Means及其优化"></a>Fisher算法&amp;SVM&amp;K-Means及其优化</h1><p>部分源码的参考资料已注明</p>
+
+<div class="bread-nav fs12"><div id="breadcrumb"><a class="cap breadcrumb" href="/">主页</a><span class="sep"></span><a class="cap breadcrumb" href="/">文章</a><span class="sep"></span><a class="cap breadcrumb-link" href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a></div><div id="post-meta">发布于&nbsp;<time datetime="2019-10-22T04:21:10.000Z">2019-10-22</time></div></div>
+
+<article class='content md post'>
+<h1 class="article-title"><span>Fisher算法&SVM&K-Means及其优化</span></h1>
+<h1 id="Fisher算法-amp-SVM-amp-K-Means及其优化"><a href="#Fisher算法-amp-SVM-amp-K-Means及其优化" class="headerlink" title="Fisher算法&amp;SVM&amp;K-Means及其优化"></a>Fisher算法&amp;SVM&amp;K-Means及其优化</h1><p>部分源码的参考资料已注明</p>
 <h2 id="fisher算法及其实现"><a href="#fisher算法及其实现" class="headerlink" title="fisher算法及其实现"></a><code>fisher</code>算法及其实现</h2><ol>
-<li>请实现<code>fisher</code>算法，并采用自己随机生成2类数据（每类100个）的方式，验证自己的算法。<br><a href="https://blog.csdn.net/pengjian444/article/details/71138003" target="_blank" rel="noopener">参考资料:https://blog.csdn.net/pengjian444/article/details/71138003</a></li>
+<li>请实现<code>fisher</code>算法，并采用自己随机生成2类数据（每类100个）的方式，验证自己的算法。<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/pengjian444/article/details/71138003">参考资料:https://blog.csdn.net/pengjian444/article/details/71138003</a></li>
 </ol>
-<a id="more"></a>
-<h3 id="数据生成"><a href="#数据生成" class="headerlink" title="数据生成"></a>数据生成</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.datasets <span class="keyword">import</span> make_multilabel_classification</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">x, y = make_multilabel_classification(n_samples=<span class="number">200</span>, n_features=<span class="number">2</span>,</span><br><span class="line">                                      n_labels=<span class="number">1</span>, n_classes=<span class="number">1</span>,</span><br><span class="line">                                      random_state=<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 根据类别分类</span></span><br><span class="line">index1 = np.array([index <span class="keyword">for</span> (index, value) <span class="keyword">in</span> enumerate(y) <span class="keyword">if</span> value == <span class="number">0</span>])  <span class="comment"># 获取类别1的indexs</span></span><br><span class="line">index2 = np.array([index <span class="keyword">for</span> (index, value) <span class="keyword">in</span> enumerate(y) <span class="keyword">if</span> value == <span class="number">1</span>])  <span class="comment"># 获取类别2的indexs</span></span><br><span class="line"></span><br><span class="line">c_1 = x[index1]   <span class="comment"># 类别1的所有数据(x1, x2) in X_1</span></span><br><span class="line">c_2 = x[index2]  <span class="comment"># 类别2的所有数据(x1, x2) in X_2</span></span><br></pre></td></tr></table></figure>
-<p><a href="http://lijiancheng0614.github.io/scikit-learn/modules/generated/sklearn.datasets.make_multilabel_classification.html#sklearn.datasets.make_multilabel_classification" target="_blank" rel="noopener">make_multilabel_classification方法参数说明</a><br><code>n_samples</code>:样本的数量。<br><code>n_features</code>：样本的特征，这里是在二维平面中的点，所以为2.<br><code>n_labels</code>：每个实例的平均标签数。<br><code>n_classes</code>：分类问题的分类数。<br><code>random_state</code>：设置随机数种子，保证每次产生相同的数据。</p>
-<p><a href="https://www.runoob.com/python/python-func-enumerate.html" target="_blank" rel="noopener">enumerate()函数说明</a><br><code>enumerate()</code>函数用于将一个可遍历的数据对象(如列表、元组或字符串)组合为一个索引序列，同时列出数据和数据下标，一般用在 for 循环当中。</p>
-<h3 id="fisher算法实现"><a href="#fisher算法实现" class="headerlink" title="fisher算法实现"></a>fisher算法实现</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">cal_cov_and_avg</span><span class="params">(samples)</span>:</span></span><br><span class="line">    u1 = np.mean(samples, axis=<span class="number">0</span>)</span><br><span class="line">    cov_m = np.zeros((samples.shape[<span class="number">1</span>], samples.shape[<span class="number">1</span>]))</span><br><span class="line">    <span class="keyword">for</span> s <span class="keyword">in</span> samples:</span><br><span class="line">        t = s - u1</span><br><span class="line">        cov_m += t * t.reshape(<span class="number">2</span>, <span class="number">1</span>)</span><br><span class="line">    <span class="keyword">return</span> cov_m, u1</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fisher</span><span class="params">(c_1, c_2)</span>:</span></span><br><span class="line">    cov_1, u1 = cal_cov_and_avg(c_1)</span><br><span class="line">    cov_2, u2 = cal_cov_and_avg(c_2)</span><br><span class="line">    s_w = cov_1 + cov_2</span><br><span class="line">    u, s, v = np.linalg.svd(s_w)  <span class="comment"># 奇异值分解</span></span><br><span class="line">    s_w_inv = np.dot(np.dot(v.T, np.linalg.inv(np.diag(s))), u.T)</span><br><span class="line">    <span class="keyword">return</span> np.dot(s_w_inv, u1 - u2)</span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+<h3 id="数据生成"><a href="#数据生成" class="headerlink" title="数据生成"></a>数据生成</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.datasets <span class="keyword">import</span> make_multilabel_classification</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">x, y = make_multilabel_classification(n_samples=<span class="number">200</span>, n_features=<span class="number">2</span>,</span><br><span class="line">                                      n_labels=<span class="number">1</span>, n_classes=<span class="number">1</span>,</span><br><span class="line">                                      random_state=<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 根据类别分类</span></span><br><span class="line">index1 = np.array([index <span class="keyword">for</span> (index, value) <span class="keyword">in</span> <span class="built_in">enumerate</span>(y) <span class="keyword">if</span> value == <span class="number">0</span>])  <span class="comment"># 获取类别1的indexs</span></span><br><span class="line">index2 = np.array([index <span class="keyword">for</span> (index, value) <span class="keyword">in</span> <span class="built_in">enumerate</span>(y) <span class="keyword">if</span> value == <span class="number">1</span>])  <span class="comment"># 获取类别2的indexs</span></span><br><span class="line"></span><br><span class="line">c_1 = x[index1]   <span class="comment"># 类别1的所有数据(x1, x2) in X_1</span></span><br><span class="line">c_2 = x[index2]  <span class="comment"># 类别2的所有数据(x1, x2) in X_2</span></span><br></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="http://lijiancheng0614.github.io/scikit-learn/modules/generated/sklearn.datasets.make_multilabel_classification.html#sklearn.datasets.make_multilabel_classification">make_multilabel_classification方法参数说明</a><br><code>n_samples</code>:样本的数量。<br><code>n_features</code>：样本的特征，这里是在二维平面中的点，所以为2.<br><code>n_labels</code>：每个实例的平均标签数。<br><code>n_classes</code>：分类问题的分类数。<br><code>random_state</code>：设置随机数种子，保证每次产生相同的数据。</p>
+<p><a target="_blank" rel="noopener" href="https://www.runoob.com/python/python-func-enumerate.html">enumerate()函数说明</a><br><code>enumerate()</code>函数用于将一个可遍历的数据对象(如列表、元组或字符串)组合为一个索引序列，同时列出数据和数据下标，一般用在 for 循环当中。</p>
+<h3 id="fisher算法实现"><a href="#fisher算法实现" class="headerlink" title="fisher算法实现"></a>fisher算法实现</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">cal_cov_and_avg</span>(<span class="params">samples</span>):</span><br><span class="line">    u1 = np.mean(samples, axis=<span class="number">0</span>)</span><br><span class="line">    cov_m = np.zeros((samples.shape[<span class="number">1</span>], samples.shape[<span class="number">1</span>]))</span><br><span class="line">    <span class="keyword">for</span> s <span class="keyword">in</span> samples:</span><br><span class="line">        t = s - u1</span><br><span class="line">        cov_m += t * t.reshape(<span class="number">2</span>, <span class="number">1</span>)</span><br><span class="line">    <span class="keyword">return</span> cov_m, u1</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">fisher</span>(<span class="params">c_1, c_2</span>):</span><br><span class="line">    cov_1, u1 = cal_cov_and_avg(c_1)</span><br><span class="line">    cov_2, u2 = cal_cov_and_avg(c_2)</span><br><span class="line">    s_w = cov_1 + cov_2</span><br><span class="line">    u, s, v = np.linalg.svd(s_w)  <span class="comment"># 奇异值分解</span></span><br><span class="line">    s_w_inv = np.dot(np.dot(v.T, np.linalg.inv(np.diag(s))), u.T)</span><br><span class="line">    <span class="keyword">return</span> np.dot(s_w_inv, u1 - u2)</span><br></pre></td></tr></table></figure>
 <p><code>np.mean</code>：计算制定轴上的平均值。<br><code>np.zeros</code>：给定形状和类型确定的数组，并用0填充。</p>
-<h3 id="判定类别"><a href="#判定类别" class="headerlink" title="判定类别"></a>判定类别</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">judge</span><span class="params">(sample, w, c_1, c_2)</span>:</span></span><br><span class="line">    u1 = np.mean(c_1, axis=<span class="number">0</span>)</span><br><span class="line">    u2 = np.mean(c_2, axis=<span class="number">0</span>)</span><br><span class="line">    center_1 = np.dot(w.T, u1)</span><br><span class="line">    center_2 = np.dot(w.T, u2)</span><br><span class="line">    pos = np.dot(w.T, sample)</span><br><span class="line">    <span class="keyword">return</span> abs(pos - center_1) &lt; abs(pos - center_2)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">w = fisher(c_1, c_2)  <span class="comment"># 调用函数，得到参数w</span></span><br><span class="line">out = judge(c_1[<span class="number">1</span>], w, c_1, c_2)   <span class="comment"># 判断所属的类别</span></span><br><span class="line"><span class="comment"># print(out)</span></span><br></pre></td></tr></table></figure>
-<h3 id="绘图"><a href="#绘图" class="headerlink" title="绘图"></a>绘图</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line">plt.scatter(c_1[:, <span class="number">0</span>], c_1[:, <span class="number">1</span>], c=<span class="string">'#99CC99'</span>)</span><br><span class="line">plt.scatter(c_2[:, <span class="number">0</span>], c_2[:, <span class="number">1</span>], c=<span class="string">'#FFCC00'</span>)</span><br><span class="line">line_x = np.arange(min(np.min(c_1[:, <span class="number">0</span>]), np.min(c_2[:, <span class="number">0</span>])),</span><br><span class="line">                   max(np.max(c_1[:, <span class="number">0</span>]), np.max(c_2[:, <span class="number">0</span>])),</span><br><span class="line">                   step=<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">line_y = - (w[<span class="number">0</span>] * line_x) / w[<span class="number">1</span>]</span><br><span class="line">plt.plot(line_x, line_y)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<h3 id="判定类别"><a href="#判定类别" class="headerlink" title="判定类别"></a>判定类别</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">judge</span>(<span class="params">sample, w, c_1, c_2</span>):</span><br><span class="line">    u1 = np.mean(c_1, axis=<span class="number">0</span>)</span><br><span class="line">    u2 = np.mean(c_2, axis=<span class="number">0</span>)</span><br><span class="line">    center_1 = np.dot(w.T, u1)</span><br><span class="line">    center_2 = np.dot(w.T, u2)</span><br><span class="line">    pos = np.dot(w.T, sample)</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">abs</span>(pos - center_1) &lt; <span class="built_in">abs</span>(pos - center_2)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">w = fisher(c_1, c_2)  <span class="comment"># 调用函数，得到参数w</span></span><br><span class="line">out = judge(c_1[<span class="number">1</span>], w, c_1, c_2)   <span class="comment"># 判断所属的类别</span></span><br><span class="line"><span class="comment"># print(out)</span></span><br></pre></td></tr></table></figure>
+<h3 id="绘图"><a href="#绘图" class="headerlink" title="绘图"></a>绘图</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line">plt.scatter(c_1[:, <span class="number">0</span>], c_1[:, <span class="number">1</span>], c=<span class="string">&#x27;#99CC99&#x27;</span>)</span><br><span class="line">plt.scatter(c_2[:, <span class="number">0</span>], c_2[:, <span class="number">1</span>], c=<span class="string">&#x27;#FFCC00&#x27;</span>)</span><br><span class="line">line_x = np.arange(<span class="built_in">min</span>(np.<span class="built_in">min</span>(c_1[:, <span class="number">0</span>]), np.<span class="built_in">min</span>(c_2[:, <span class="number">0</span>])),</span><br><span class="line">                   <span class="built_in">max</span>(np.<span class="built_in">max</span>(c_1[:, <span class="number">0</span>]), np.<span class="built_in">max</span>(c_2[:, <span class="number">0</span>])),</span><br><span class="line">                   step=<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">line_y = - (w[<span class="number">0</span>] * line_x) / w[<span class="number">1</span>]</span><br><span class="line">plt.plot(line_x, line_y)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
 <pre><code>&lt;Figure size 640x480 with 1 Axes&gt;
 </code></pre><h2 id="SVM优化对偶问题的详细推导过程"><a href="#SVM优化对偶问题的详细推导过程" class="headerlink" title="SVM优化对偶问题的详细推导过程"></a><code>SVM</code>优化对偶问题的详细推导过程</h2><ol>
-<li>请给出<code>SVM</code>优化对偶问题的详细推导过程；并给出只有2维特征情况下的，对偶问题的优化求解过程（可以采用<code>lagrange</code>方法，也可以采用其他方法。）<br><a href="https://zhuanlan.zhihu.com/p/49331510" target="_blank" rel="noopener">参考资料：https://zhuanlan.zhihu.com/p/49331510</a>  </li>
+<li>请给出<code>SVM</code>优化对偶问题的详细推导过程；并给出只有2维特征情况下的，对偶问题的优化求解过程（可以采用<code>lagrange</code>方法，也可以采用其他方法。）<br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/49331510">参考资料：https://zhuanlan.zhihu.com/p/49331510</a>  </li>
 </ol>
-<p><img src="https://s2.ax1x.com/2019/10/08/uWyoX4.png" alt><br><img src="https://s2.ax1x.com/2019/10/08/uWy4pT.png" alt><br><img src="https://s2.ax1x.com/2019/10/08/uWyIcF.png" alt><br><img src="https://s2.ax1x.com/2019/10/08/uWy51U.png" alt><br><img src="https://s2.ax1x.com/2019/10/08/uWyfhV.png" alt></p>
+<p><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://s2.ax1x.com/2019/10/08/uWyoX4.png" alt=""><br><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://s2.ax1x.com/2019/10/08/uWy4pT.png" alt=""><br><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://s2.ax1x.com/2019/10/08/uWyIcF.png" alt=""><br><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://s2.ax1x.com/2019/10/08/uWy51U.png" alt=""><br><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://s2.ax1x.com/2019/10/08/uWyfhV.png" alt=""></p>
 <h2 id="SVM算法的实现"><a href="#SVM算法的实现" class="headerlink" title="SVM算法的实现"></a><code>SVM</code>算法的实现</h2><ol>
-<li>请实现<code>SVM</code>算法；并采用自己随机生成2类线性可分数据（每类100个）的方式验证自己的算法。<br><a href="https://www.jb51.net/article/131580.htm" target="_blank" rel="noopener">参考资料：https://www.jb51.net/article/131580.htm</a></li>
+<li>请实现<code>SVM</code>算法；并采用自己随机生成2类线性可分数据（每类100个）的方式验证自己的算法。<br><a target="_blank" rel="noopener" href="https://www.jb51.net/article/131580.htm">参考资料：https://www.jb51.net/article/131580.htm</a></li>
 </ol>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> svm </span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np </span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt </span><br><span class="line">  </span><br><span class="line">np.random.seed(<span class="number">0</span>) </span><br><span class="line">x = np.r_[np.random.randn(<span class="number">100</span>,<span class="number">2</span>)-[<span class="number">2</span>,<span class="number">2</span>],np.random.randn(<span class="number">100</span>,<span class="number">2</span>)+[<span class="number">2</span>,<span class="number">2</span>]] <span class="comment">#正态分布来产生数字,20行2列*2 </span></span><br><span class="line">y = [<span class="number">0</span>]*<span class="number">100</span>+[<span class="number">1</span>]*<span class="number">100</span> <span class="comment">#100个class0，100个class1 </span></span><br><span class="line">  </span><br><span class="line">clf = svm.SVC(kernel=<span class="string">'linear'</span>) </span><br><span class="line">clf.fit(x,y) </span><br><span class="line">  </span><br><span class="line">w = clf.coef_[<span class="number">0</span>] <span class="comment">#获取w </span></span><br><span class="line">a = -w[<span class="number">0</span>]/w[<span class="number">1</span>] <span class="comment">#斜率 </span></span><br><span class="line"><span class="comment">#画图划线 </span></span><br><span class="line">xx = np.linspace(<span class="number">-5</span>,<span class="number">5</span>) <span class="comment">#(-5,5)之间x的值 </span></span><br><span class="line">yy = a*xx-(clf.intercept_[<span class="number">0</span>])/w[<span class="number">1</span>] <span class="comment">#xx带入y，截距 </span></span><br><span class="line">  </span><br><span class="line"><span class="comment">#画出与点相切的线 </span></span><br><span class="line">b = clf.support_vectors_[<span class="number">0</span>] </span><br><span class="line">yy_down = a*xx+(b[<span class="number">1</span>]-a*b[<span class="number">0</span>]) </span><br><span class="line">b = clf.support_vectors_[<span class="number">-1</span>] </span><br><span class="line">yy_up = a*xx+(b[<span class="number">1</span>]-a*b[<span class="number">0</span>]) </span><br><span class="line">  </span><br><span class="line">print(<span class="string">"W:"</span>,w) </span><br><span class="line">print(<span class="string">"a:"</span>,a) </span><br><span class="line">  </span><br><span class="line">print(<span class="string">"support_vectors_:"</span>,clf.support_vectors_) </span><br><span class="line">print(<span class="string">"clf.coef_:"</span>,clf.coef_) </span><br><span class="line">  </span><br><span class="line">plt.figure(figsize=(<span class="number">8</span>,<span class="number">4</span>)) </span><br><span class="line">plt.plot(xx,yy) </span><br><span class="line">plt.plot(xx,yy_down) </span><br><span class="line">plt.plot(xx,yy_up) </span><br><span class="line">plt.scatter(clf.support_vectors_[:,<span class="number">0</span>],clf.support_vectors_[:,<span class="number">1</span>],s=<span class="number">80</span>) </span><br><span class="line">plt.scatter(x[:,<span class="number">0</span>],x[:,<span class="number">1</span>],c=y,cmap=plt.cm.Paired) <span class="comment">#[:，0]列切片，第0列 </span></span><br><span class="line">  </span><br><span class="line">plt.axis(<span class="string">'tight'</span>) </span><br><span class="line">  </span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> svm </span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np </span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt </span><br><span class="line">  </span><br><span class="line">np.random.seed(<span class="number">0</span>) </span><br><span class="line">x = np.r_[np.random.randn(<span class="number">100</span>,<span class="number">2</span>)-[<span class="number">2</span>,<span class="number">2</span>],np.random.randn(<span class="number">100</span>,<span class="number">2</span>)+[<span class="number">2</span>,<span class="number">2</span>]] <span class="comment">#正态分布来产生数字,20行2列*2 </span></span><br><span class="line">y = [<span class="number">0</span>]*<span class="number">100</span>+[<span class="number">1</span>]*<span class="number">100</span> <span class="comment">#100个class0，100个class1 </span></span><br><span class="line">  </span><br><span class="line">clf = svm.SVC(kernel=<span class="string">&#x27;linear&#x27;</span>) </span><br><span class="line">clf.fit(x,y) </span><br><span class="line">  </span><br><span class="line">w = clf.coef_[<span class="number">0</span>] <span class="comment">#获取w </span></span><br><span class="line">a = -w[<span class="number">0</span>]/w[<span class="number">1</span>] <span class="comment">#斜率 </span></span><br><span class="line"><span class="comment">#画图划线 </span></span><br><span class="line">xx = np.linspace(-<span class="number">5</span>,<span class="number">5</span>) <span class="comment">#(-5,5)之间x的值 </span></span><br><span class="line">yy = a*xx-(clf.intercept_[<span class="number">0</span>])/w[<span class="number">1</span>] <span class="comment">#xx带入y，截距 </span></span><br><span class="line">  </span><br><span class="line"><span class="comment">#画出与点相切的线 </span></span><br><span class="line">b = clf.support_vectors_[<span class="number">0</span>] </span><br><span class="line">yy_down = a*xx+(b[<span class="number">1</span>]-a*b[<span class="number">0</span>]) </span><br><span class="line">b = clf.support_vectors_[-<span class="number">1</span>] </span><br><span class="line">yy_up = a*xx+(b[<span class="number">1</span>]-a*b[<span class="number">0</span>]) </span><br><span class="line">  </span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;W:&quot;</span>,w) </span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;a:&quot;</span>,a) </span><br><span class="line">  </span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;support_vectors_:&quot;</span>,clf.support_vectors_) </span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;clf.coef_:&quot;</span>,clf.coef_) </span><br><span class="line">  </span><br><span class="line">plt.figure(figsize=(<span class="number">8</span>,<span class="number">4</span>)) </span><br><span class="line">plt.plot(xx,yy) </span><br><span class="line">plt.plot(xx,yy_down) </span><br><span class="line">plt.plot(xx,yy_up) </span><br><span class="line">plt.scatter(clf.support_vectors_[:,<span class="number">0</span>],clf.support_vectors_[:,<span class="number">1</span>],s=<span class="number">80</span>) </span><br><span class="line">plt.scatter(x[:,<span class="number">0</span>],x[:,<span class="number">1</span>],c=y,cmap=plt.cm.Paired) <span class="comment">#[:，0]列切片，第0列 </span></span><br><span class="line">  </span><br><span class="line">plt.axis(<span class="string">&#x27;tight&#x27;</span>) </span><br><span class="line">  </span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
 <pre><code>W: [0.95070185 1.15607502]
 a: -0.8223530762163854
 support_vectors_: [[-0.51174781 -0.10411082]
@@ -374,13 +129,13 @@ support_vectors_: [[-0.51174781 -0.10411082]
  [ 0.66574153  0.65328249]
  [-0.25556423  0.97749316]]
 clf.coef_: [[0.95070185 1.15607502]]
-</code></pre><p><img src="output_12_1.png" alt="png"></p>
+</code></pre><p><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="output_12_1.png" alt="png"></p>
 <h2 id="k-means算法的实现"><a href="#k-means算法的实现" class="headerlink" title="k-means算法的实现"></a><code>k-means</code>算法的实现</h2><ol>
-<li>请实现<code>k-means</code>的算法；并采用自己随机生成3类数据（每类100个）的方式，验证自己的算法。<br><a href="https://cloud.tencent.com/developer/article/1465020" target="_blank" rel="noopener">参考资料1:https://cloud.tencent.com/developer/article/1465020</a><br><a href="https://blog.csdn.net/weixin_42029738/article/details/81978038" target="_blank" rel="noopener">参考资料2:https://blog.csdn.net/weixin_42029738/article/details/81978038</a>  </li>
+<li>请实现<code>k-means</code>的算法；并采用自己随机生成3类数据（每类100个）的方式，验证自己的算法。<br><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1465020">参考资料1:https://cloud.tencent.com/developer/article/1465020</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_42029738/article/details/81978038">参考资料2:https://blog.csdn.net/weixin_42029738/article/details/81978038</a>  </li>
 </ol>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">    K-Means clustering algorithms</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"></span><br><span class="line">print(__doc__)</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> sklearn.cluster <span class="keyword">import</span> MiniBatchKMeans, KMeans</span><br><span class="line"><span class="keyword">from</span> sklearn.metrics.pairwise <span class="keyword">import</span> pairwise_distances_argmin</span><br><span class="line"><span class="keyword">from</span> sklearn.datasets.samples_generator <span class="keyword">import</span> make_blobs</span><br><span class="line"></span><br><span class="line"><span class="comment"># #############################################################################</span></span><br><span class="line"><span class="comment"># Generate sample data</span></span><br><span class="line">np.random.seed(<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">batch_size = <span class="number">45</span></span><br><span class="line">centers = [[<span class="number">1</span>, <span class="number">1</span>], [<span class="number">-1</span>, <span class="number">-1</span>], [<span class="number">1</span>, <span class="number">-1</span>]] <span class="comment"># 初始化3个中心</span></span><br><span class="line">n_clusters = len(centers) <span class="comment"># 聚类的数目为3</span></span><br><span class="line"><span class="comment"># 产生10000组二维数据，以上面三个点为中心，以(-10,10)为边界，数据集的标准差是0.7</span></span><br><span class="line">X, labels_true = make_blobs(n_samples=<span class="number">10000</span>, centers=centers, cluster_std=<span class="number">0.7</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># #############################################################################</span></span><br><span class="line"><span class="comment"># Compute clustering with Means</span></span><br><span class="line"></span><br><span class="line">k_means = KMeans(init=<span class="string">'k-means++'</span>, n_clusters=<span class="number">3</span>, n_init=<span class="number">10</span>)</span><br><span class="line">t0 = time.time()</span><br><span class="line">k_means.fit(X)</span><br><span class="line"><span class="comment"># 使用k-means对300组数据集训练算法的时间消耗</span></span><br><span class="line">t_batch = time.time() - t0</span><br><span class="line"></span><br><span class="line"><span class="comment"># #############################################################################</span></span><br><span class="line"><span class="comment"># Plot result</span></span><br><span class="line"></span><br><span class="line">fig = plt.figure(figsize=(<span class="number">8</span>, <span class="number">3</span>))</span><br><span class="line">fig.subplots_adjust(left=<span class="number">0.02</span>, right=<span class="number">0.98</span>, bottom=<span class="number">0.05</span>, top=<span class="number">0.9</span>)</span><br><span class="line">colors = [<span class="string">'#4EACC5'</span>, <span class="string">'#FF9C34'</span>, <span class="string">'#4E9A06'</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># We want to have the same colors for the same cluster from the</span></span><br><span class="line"><span class="comment"># MiniBatchKMeans and the KMeans algorithm. Let's pair the cluster centers per</span></span><br><span class="line"><span class="comment"># closest one.</span></span><br><span class="line">k_means_cluster_centers = np.sort(k_means.cluster_centers_, axis=<span class="number">0</span>)</span><br><span class="line">k_means_labels = pairwise_distances_argmin(X, k_means_cluster_centers)</span><br><span class="line"></span><br><span class="line"><span class="comment"># KMeans</span></span><br><span class="line">ax = fig.add_subplot(<span class="number">1</span>, <span class="number">3</span>, <span class="number">1</span>)</span><br><span class="line"><span class="keyword">for</span> k, col <span class="keyword">in</span> zip(range(n_clusters), colors):</span><br><span class="line">    my_members = k_means_labels == k</span><br><span class="line">    cluster_center = k_means_cluster_centers[k]</span><br><span class="line">    ax.plot(X[my_members, <span class="number">0</span>], X[my_members, <span class="number">1</span>], <span class="string">'w'</span>,</span><br><span class="line">            markerfacecolor=col, marker=<span class="string">'.'</span>)</span><br><span class="line">    ax.plot(cluster_center[<span class="number">0</span>], cluster_center[<span class="number">1</span>], <span class="string">'o'</span>, markerfacecolor=col,</span><br><span class="line">            markeredgecolor=<span class="string">'k'</span>, markersize=<span class="number">6</span>)</span><br><span class="line">ax.set_title(<span class="string">'KMeans'</span>)</span><br><span class="line">ax.set_xticks(())</span><br><span class="line">ax.set_yticks(())</span><br><span class="line">plt.text(<span class="number">-3.5</span>, <span class="number">1.8</span>,  <span class="string">'train time: %.2fs\ninertia: %f'</span> % (</span><br><span class="line">    t_batch, k_means.inertia_))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">    K-Means clustering algorithms</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(__doc__)</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> sklearn.cluster <span class="keyword">import</span> MiniBatchKMeans, KMeans</span><br><span class="line"><span class="keyword">from</span> sklearn.metrics.pairwise <span class="keyword">import</span> pairwise_distances_argmin</span><br><span class="line"><span class="keyword">from</span> sklearn.datasets.samples_generator <span class="keyword">import</span> make_blobs</span><br><span class="line"></span><br><span class="line"><span class="comment"># #############################################################################</span></span><br><span class="line"><span class="comment"># Generate sample data</span></span><br><span class="line">np.random.seed(<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">batch_size = <span class="number">45</span></span><br><span class="line">centers = [[<span class="number">1</span>, <span class="number">1</span>], [-<span class="number">1</span>, -<span class="number">1</span>], [<span class="number">1</span>, -<span class="number">1</span>]] <span class="comment"># 初始化3个中心</span></span><br><span class="line">n_clusters = <span class="built_in">len</span>(centers) <span class="comment"># 聚类的数目为3</span></span><br><span class="line"><span class="comment"># 产生10000组二维数据，以上面三个点为中心，以(-10,10)为边界，数据集的标准差是0.7</span></span><br><span class="line">X, labels_true = make_blobs(n_samples=<span class="number">10000</span>, centers=centers, cluster_std=<span class="number">0.7</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># #############################################################################</span></span><br><span class="line"><span class="comment"># Compute clustering with Means</span></span><br><span class="line"></span><br><span class="line">k_means = KMeans(init=<span class="string">&#x27;k-means++&#x27;</span>, n_clusters=<span class="number">3</span>, n_init=<span class="number">10</span>)</span><br><span class="line">t0 = time.time()</span><br><span class="line">k_means.fit(X)</span><br><span class="line"><span class="comment"># 使用k-means对300组数据集训练算法的时间消耗</span></span><br><span class="line">t_batch = time.time() - t0</span><br><span class="line"></span><br><span class="line"><span class="comment"># #############################################################################</span></span><br><span class="line"><span class="comment"># Plot result</span></span><br><span class="line"></span><br><span class="line">fig = plt.figure(figsize=(<span class="number">8</span>, <span class="number">3</span>))</span><br><span class="line">fig.subplots_adjust(left=<span class="number">0.02</span>, right=<span class="number">0.98</span>, bottom=<span class="number">0.05</span>, top=<span class="number">0.9</span>)</span><br><span class="line">colors = [<span class="string">&#x27;#4EACC5&#x27;</span>, <span class="string">&#x27;#FF9C34&#x27;</span>, <span class="string">&#x27;#4E9A06&#x27;</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># We want to have the same colors for the same cluster from the</span></span><br><span class="line"><span class="comment"># MiniBatchKMeans and the KMeans algorithm. Let&#x27;s pair the cluster centers per</span></span><br><span class="line"><span class="comment"># closest one.</span></span><br><span class="line">k_means_cluster_centers = np.sort(k_means.cluster_centers_, axis=<span class="number">0</span>)</span><br><span class="line">k_means_labels = pairwise_distances_argmin(X, k_means_cluster_centers)</span><br><span class="line"></span><br><span class="line"><span class="comment"># KMeans</span></span><br><span class="line">ax = fig.add_subplot(<span class="number">1</span>, <span class="number">3</span>, <span class="number">1</span>)</span><br><span class="line"><span class="keyword">for</span> k, col <span class="keyword">in</span> <span class="built_in">zip</span>(<span class="built_in">range</span>(n_clusters), colors):</span><br><span class="line">    my_members = k_means_labels == k</span><br><span class="line">    cluster_center = k_means_cluster_centers[k]</span><br><span class="line">    ax.plot(X[my_members, <span class="number">0</span>], X[my_members, <span class="number">1</span>], <span class="string">&#x27;w&#x27;</span>,</span><br><span class="line">            markerfacecolor=col, marker=<span class="string">&#x27;.&#x27;</span>)</span><br><span class="line">    ax.plot(cluster_center[<span class="number">0</span>], cluster_center[<span class="number">1</span>], <span class="string">&#x27;o&#x27;</span>, markerfacecolor=col,</span><br><span class="line">            markeredgecolor=<span class="string">&#x27;k&#x27;</span>, markersize=<span class="number">6</span>)</span><br><span class="line">ax.set_title(<span class="string">&#x27;KMeans&#x27;</span>)</span><br><span class="line">ax.set_xticks(())</span><br><span class="line">ax.set_yticks(())</span><br><span class="line">plt.text(-<span class="number">3.5</span>, <span class="number">1.8</span>,  <span class="string">&#x27;train time: %.2fs\ninertia: %f&#x27;</span> % (</span><br><span class="line">    t_batch, k_means.inertia_))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
 <pre><code>    K-Means clustering algorithms
-</code></pre><p><img src="output_14_1.png" alt="png"></p>
+</code></pre><p><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="output_14_1.png" alt="png"></p>
 <h2 id="k-means算法的改进"><a href="#k-means算法的改进" class="headerlink" title="k-means算法的改进"></a><code>k-means</code>算法的改进</h2><ol>
 <li>请给出三种<code>k-means</code>算法在大数据量时的改进方法，并分析改进的结果。<br>改进方法包括：<ol>
 <li><code>k-means++</code>（改变中心点的选取方法）</li>
@@ -391,7 +146,7 @@ clf.coef_: [[0.95070185 1.15607502]]
 </li>
 </ol>
 <p>其中1和4改进方法给出了源码和对比。</p>
-<h3 id="k-means-（改变中心点的选择方法）"><a href="#k-means-（改变中心点的选择方法）" class="headerlink" title="k-means++（改变中心点的选择方法）"></a><code>k-means++</code>（改变中心点的选择方法）</h3><p><a href="https://blog.csdn.net/github_39261590/article/details/76910689" target="_blank" rel="noopener">参考资料1:https://blog.csdn.net/github_39261590/article/details/76910689</a><br><a href="https://www.cnblogs.com/yszd/p/9672885.html" target="_blank" rel="noopener">参考资料2:https://www.cnblogs.com/yszd/p/9672885.html</a><br><code>k-means++</code>算法选择初始seeds的基本思想就是：<strong>初始的聚类中心之间的相互距离要尽可能的远。</strong>  </p>
+<h3 id="k-means-（改变中心点的选择方法）"><a href="#k-means-（改变中心点的选择方法）" class="headerlink" title="k-means++（改变中心点的选择方法）"></a><code>k-means++</code>（改变中心点的选择方法）</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/github_39261590/article/details/76910689">参考资料1:https://blog.csdn.net/github_39261590/article/details/76910689</a><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/yszd/p/9672885.html">参考资料2:https://www.cnblogs.com/yszd/p/9672885.html</a><br><code>k-means++</code>算法选择初始seeds的基本思想就是：<strong>初始的聚类中心之间的相互距离要尽可能的远。</strong>  </p>
 <p>算法步骤：</p>
 <ol>
 <li>从输入的数据点集合中随机选择一个点作为第一个聚类中心</li>
@@ -400,558 +155,231 @@ clf.coef_: [[0.95070185 1.15607502]]
 <li>重复2和3直到k个聚类中心被选出来</li>
 <li>利用这k个初始的聚类中心来运行标准的k-means算法</li>
 </ol>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> sklearn.datasets <span class="keyword">as</span> ds</span><br><span class="line"><span class="keyword">import</span> matplotlib.colors</span><br><span class="line"><span class="keyword">from</span> sklearn.cluster <span class="keyword">import</span> KMeans</span><br><span class="line"><span class="keyword">from</span> sklearn.cluster <span class="keyword">import</span> MiniBatchKMeans</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">expand</span><span class="params">(a, b)</span>:</span></span><br><span class="line">    d = (b - a) * <span class="number">0.1</span></span><br><span class="line">    <span class="keyword">return</span> a-b, b+d</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">    N = <span class="number">400</span></span><br><span class="line">    centers = <span class="number">4</span></span><br><span class="line">    data, y = ds.make_blobs(N, n_features=<span class="number">2</span>, centers=centers, random_state=<span class="number">2</span>)</span><br><span class="line">    data2, y2 = ds.make_blobs(N, n_features=<span class="number">2</span>, centers=centers, cluster_std=(<span class="number">1</span>, <span class="number">2.5</span>, <span class="number">0.5</span>, <span class="number">2</span>), random_state=<span class="number">2</span>)</span><br><span class="line">    <span class="comment"># 按行拼接numpy数组</span></span><br><span class="line">    data3 = np.vstack((data[y == <span class="number">0</span>][:], data[y == <span class="number">1</span>][:<span class="number">50</span>], data[y == <span class="number">2</span>][:<span class="number">20</span>], data[y == <span class="number">3</span>][:<span class="number">5</span>]))</span><br><span class="line">    y3 = np.array([<span class="number">0</span>] * <span class="number">100</span> + [<span class="number">1</span>] * <span class="number">50</span> + [<span class="number">2</span>] * <span class="number">20</span> + [<span class="number">3</span>] * <span class="number">5</span>)</span><br><span class="line">    cls = KMeans(n_clusters=<span class="number">4</span>, init=<span class="string">'k-means++'</span>)</span><br><span class="line">    y_hat = cls.fit_predict(data)</span><br><span class="line">    y2_hat = cls.fit_predict(data2)</span><br><span class="line">    y3_hat = cls.fit_predict(data3)</span><br><span class="line">    </span><br><span class="line">    m = np.array(((<span class="number">1</span>, <span class="number">1</span>),(<span class="number">1</span>, <span class="number">3</span>)))</span><br><span class="line">    data_r = data.dot(m)</span><br><span class="line">    y_r_hat = cls.fit_predict(data_r)</span><br><span class="line">    </span><br><span class="line">    matplotlib.rcParams[<span class="string">'font.sans-serif'</span>] = [<span class="string">u'SimHei'</span>]</span><br><span class="line">    matplotlib.rcParams[<span class="string">'axes.unicode_minus'</span>] = <span class="literal">False</span></span><br><span class="line">    cm = matplotlib.colors.ListedColormap(list(<span class="string">'rgbm'</span>))</span><br><span class="line">    plt.figure(figsize=(<span class="number">9</span>, <span class="number">10</span>), facecolor=<span class="string">'w'</span>)</span><br><span class="line">    plt.subplot(<span class="number">421</span>)</span><br><span class="line">    plt.title(<span class="string">u'原始数据'</span>)</span><br><span class="line">    plt.scatter(data[:, <span class="number">0</span>], data[:, <span class="number">1</span>], c=y, s=<span class="number">30</span>, cmap=cm, edgecolors=<span class="string">'none'</span>)</span><br><span class="line">    x1_min, x2_min = np.min(data, axis=<span class="number">0</span>)</span><br><span class="line">    x1_max, x2_max = np.max(data, axis=<span class="number">0</span>)</span><br><span class="line">    x1_min, x1_max = expand(x1_min, x1_max)</span><br><span class="line">    x2_min, x2_max = expand(x2_min, x2_max)</span><br><span class="line">    plt.xlim((x1_min, x1_max))</span><br><span class="line">    plt.ylim((x2_min, x2_max))</span><br><span class="line">    plt.grid(<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">    plt.subplot(<span class="number">422</span>)</span><br><span class="line">    plt.title(<span class="string">u'KMeans++聚类'</span>)</span><br><span class="line">    plt.scatter(data[:, <span class="number">0</span>], data[:, <span class="number">1</span>], c=y_hat, s=<span class="number">30</span>, cmap=cm, edgecolors=<span class="string">'none'</span>)    </span><br><span class="line">    plt.xlim((x1_min, x1_max))</span><br><span class="line">    plt.ylim((x2_min, x2_max))</span><br><span class="line">    plt.grid(<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
-<p><img src="output_16_0.png" alt="png"></p>
-<h3 id="elkan-k-means算法"><a href="#elkan-k-means算法" class="headerlink" title="elkan k-means算法"></a><code>elkan k-means</code>算法</h3><p><a href="https://blog.csdn.net/u014465639/article/details/71342072" target="_blank" rel="noopener">参考资料:https://blog.csdn.net/u014465639/article/details/71342072</a><br><code>elkan K-Means</code>利用了两边之和大于等于第三边,以及两边之差小于第三边的三角形性质，来减少距离的计算。<br>第一种规律是对于一个样本点和两个质心。如果我们预先计算出了这两个质心之间的距离，则如果计算发现,我们立即就可以知道。此时我们不需要再计算,也就是说省了一步距离计算。<br>第二种规律是对于一个样本点和两个质心。我们可以得到。这个从三角形的性质也很容易得到。<br>利用上边的两个规律，elkan K-Means比起传统的K-Means迭代速度有很大的提高。但是如果我们的样本的特征是稀疏的，有缺失值的话，这个方法就不使用了，此时某些距离无法计算，则不能使用该算法。  </p>
-<h3 id="ISODATA算法"><a href="#ISODATA算法" class="headerlink" title="ISODATA算法"></a><code>ISODATA</code>算法</h3><p><a href="https://blog.csdn.net/houston11235/article/details/8511379" target="_blank" rel="noopener">参考资料1:https://blog.csdn.net/houston11235/article/details/8511379</a><br><a href="https://www.cnblogs.com/huadongw/p/4101422.html" target="_blank" rel="noopener">参考资料2:https://www.cnblogs.com/huadongw/p/4101422.html</a><br>k-means 的一个缺点就是必须指定聚类的个数，这个有些时候并不太行得通。于是就要求最好这个类别的个数也可以改变，这就形成了 isodata 方法，通过设定一些类别分裂和合并的条件，在聚类的过程中自动增减类别的数目。当然这也带来了一个问题，就是这个条件有时候并不那么好给出。当然 isodata 在很多情况下还是可以得到比较靠谱的结果。  </p>
-<h3 id="Mini-Batch-k-means（用一部分样本做传统的k-means，舍弃一部分精确度大大提高收敛速度）"><a href="#Mini-Batch-k-means（用一部分样本做传统的k-means，舍弃一部分精确度大大提高收敛速度）" class="headerlink" title="Mini Batch k-means（用一部分样本做传统的k-means，舍弃一部分精确度大大提高收敛速度）"></a><code>Mini Batch k-means</code>（用一部分样本做传统的k-means，舍弃一部分精确度大大提高收敛速度）</h3><p><a href="https://cloud.tencent.com/developer/article/1465020" target="_blank" rel="noopener">参考资料1:https://cloud.tencent.com/developer/article/1465020</a><br>Mini Batch KMeans算法是一种能<strong>尽量保持聚类准确性下但能大幅度降低计算时间的聚类模型</strong>，采用小批量的数据子集减少计算时间，同时仍试图优化目标函数，这里所谓的Mini Batch是指每次训练算法时随机抽取的数据子集，采用这些随机选取的数据进行训练，大大的减少了计算的时间，减少的KMeans算法的收敛时间，但要比标准算法略差一点，建议当样本量大于一万做聚类时，就需要考虑选用Mini Batch KMeans算法。  </p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">    Comparison of the K-Means and MiniBatchKMeans clustering algorithms</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"></span><br><span class="line">print(__doc__)</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> sklearn.cluster <span class="keyword">import</span> MiniBatchKMeans, KMeans</span><br><span class="line"><span class="keyword">from</span> sklearn.metrics.pairwise <span class="keyword">import</span> pairwise_distances_argmin</span><br><span class="line"><span class="keyword">from</span> sklearn.datasets.samples_generator <span class="keyword">import</span> make_blobs</span><br><span class="line"></span><br><span class="line"><span class="comment"># #############################################################################</span></span><br><span class="line"><span class="comment"># Generate sample data</span></span><br><span class="line">np.random.seed(<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">batch_size = <span class="number">45</span></span><br><span class="line">centers = [[<span class="number">1</span>, <span class="number">1</span>], [<span class="number">-1</span>, <span class="number">-1</span>], [<span class="number">1</span>, <span class="number">-1</span>]] <span class="comment"># 初始化3个中心</span></span><br><span class="line">n_clusters = len(centers) <span class="comment"># 聚类的数目为3</span></span><br><span class="line"><span class="comment"># 产生10000组二维数据，以上面三个点为中心，以(-10,10)为边界，数据集的标准差是0.7</span></span><br><span class="line">X, labels_true = make_blobs(n_samples=<span class="number">10000</span>, centers=centers, cluster_std=<span class="number">0.7</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># #############################################################################</span></span><br><span class="line"><span class="comment"># Compute clustering with Means</span></span><br><span class="line"></span><br><span class="line">k_means = KMeans(init=<span class="string">'k-means++'</span>, n_clusters=<span class="number">3</span>, n_init=<span class="number">10</span>)</span><br><span class="line">t0 = time.time()</span><br><span class="line">k_means.fit(X)</span><br><span class="line"><span class="comment"># 使用k-means对300组数据集训练算法的时间消耗</span></span><br><span class="line">t_batch = time.time() - t0</span><br><span class="line"></span><br><span class="line"><span class="comment"># #############################################################################</span></span><br><span class="line"><span class="comment"># Compute clustering with MiniBatchKMeans</span></span><br><span class="line"></span><br><span class="line">mbk = MiniBatchKMeans(init=<span class="string">'k-means++'</span>, n_clusters=<span class="number">3</span>, batch_size=batch_size,</span><br><span class="line">                      n_init=<span class="number">10</span>, max_no_improvement=<span class="number">10</span>, verbose=<span class="number">0</span>)</span><br><span class="line">t0 = time.time()</span><br><span class="line">mbk.fit(X)</span><br><span class="line"><span class="comment"># 使用MiniBatchKMeans对300组数据集训练算法的时间消耗</span></span><br><span class="line">t_mini_batch = time.time() - t0</span><br><span class="line"></span><br><span class="line"><span class="comment"># #############################################################################</span></span><br><span class="line"><span class="comment"># Plot result</span></span><br><span class="line"></span><br><span class="line">fig = plt.figure(figsize=(<span class="number">8</span>, <span class="number">3</span>))</span><br><span class="line">fig.subplots_adjust(left=<span class="number">0.02</span>, right=<span class="number">0.98</span>, bottom=<span class="number">0.05</span>, top=<span class="number">0.9</span>)</span><br><span class="line">colors = [<span class="string">'#4EACC5'</span>, <span class="string">'#FF9C34'</span>, <span class="string">'#4E9A06'</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># We want to have the same colors for the same cluster from the</span></span><br><span class="line"><span class="comment"># MiniBatchKMeans and the KMeans algorithm. Let's pair the cluster centers per</span></span><br><span class="line"><span class="comment"># closest one.</span></span><br><span class="line">k_means_cluster_centers = np.sort(k_means.cluster_centers_, axis=<span class="number">0</span>)</span><br><span class="line">mbk_means_cluster_centers = np.sort(mbk.cluster_centers_, axis=<span class="number">0</span>)</span><br><span class="line">k_means_labels = pairwise_distances_argmin(X, k_means_cluster_centers)</span><br><span class="line">mbk_means_labels = pairwise_distances_argmin(X, mbk_means_cluster_centers)</span><br><span class="line">order = pairwise_distances_argmin(k_means_cluster_centers,</span><br><span class="line">                                  mbk_means_cluster_centers)</span><br><span class="line"></span><br><span class="line"><span class="comment"># KMeans</span></span><br><span class="line">ax = fig.add_subplot(<span class="number">1</span>, <span class="number">3</span>, <span class="number">1</span>)</span><br><span class="line"><span class="keyword">for</span> k, col <span class="keyword">in</span> zip(range(n_clusters), colors):</span><br><span class="line">    my_members = k_means_labels == k</span><br><span class="line">    cluster_center = k_means_cluster_centers[k]</span><br><span class="line">    ax.plot(X[my_members, <span class="number">0</span>], X[my_members, <span class="number">1</span>], <span class="string">'w'</span>,</span><br><span class="line">            markerfacecolor=col, marker=<span class="string">'.'</span>)</span><br><span class="line">    ax.plot(cluster_center[<span class="number">0</span>], cluster_center[<span class="number">1</span>], <span class="string">'o'</span>, markerfacecolor=col,</span><br><span class="line">            markeredgecolor=<span class="string">'k'</span>, markersize=<span class="number">6</span>)</span><br><span class="line">ax.set_title(<span class="string">'KMeans'</span>)</span><br><span class="line">ax.set_xticks(())</span><br><span class="line">ax.set_yticks(())</span><br><span class="line">plt.text(<span class="number">-3.5</span>, <span class="number">1.8</span>,  <span class="string">'train time: %.2fs\ninertia: %f'</span> % (</span><br><span class="line">    t_batch, k_means.inertia_))</span><br><span class="line"></span><br><span class="line"><span class="comment"># MiniBatchKMeans</span></span><br><span class="line">ax = fig.add_subplot(<span class="number">1</span>, <span class="number">3</span>, <span class="number">2</span>)</span><br><span class="line"><span class="keyword">for</span> k, col <span class="keyword">in</span> zip(range(n_clusters), colors):</span><br><span class="line">    my_members = mbk_means_labels == order[k]</span><br><span class="line">    cluster_center = mbk_means_cluster_centers[order[k]]</span><br><span class="line">    ax.plot(X[my_members, <span class="number">0</span>], X[my_members, <span class="number">1</span>], <span class="string">'w'</span>,</span><br><span class="line">            markerfacecolor=col, marker=<span class="string">'.'</span>)</span><br><span class="line">    ax.plot(cluster_center[<span class="number">0</span>], cluster_center[<span class="number">1</span>], <span class="string">'o'</span>, markerfacecolor=col,</span><br><span class="line">            markeredgecolor=<span class="string">'k'</span>, markersize=<span class="number">6</span>)</span><br><span class="line">ax.set_title(<span class="string">'MiniBatchKMeans'</span>)</span><br><span class="line">ax.set_xticks(())</span><br><span class="line">ax.set_yticks(())</span><br><span class="line">plt.text(<span class="number">-3.5</span>, <span class="number">1.8</span>, <span class="string">'train time: %.2fs\ninertia: %f'</span> %</span><br><span class="line">         (t_mini_batch, mbk.inertia_))</span><br><span class="line"></span><br><span class="line"><span class="comment"># Initialise the different array to all False</span></span><br><span class="line">different = (mbk_means_labels == <span class="number">4</span>)</span><br><span class="line">ax = fig.add_subplot(<span class="number">1</span>, <span class="number">3</span>, <span class="number">3</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> k <span class="keyword">in</span> range(n_clusters):</span><br><span class="line">    different += ((k_means_labels == k) != (mbk_means_labels == order[k]))</span><br><span class="line"></span><br><span class="line">identic = np.logical_not(different)</span><br><span class="line">ax.plot(X[identic, <span class="number">0</span>], X[identic, <span class="number">1</span>], <span class="string">'w'</span>,</span><br><span class="line">        markerfacecolor=<span class="string">'#bbbbbb'</span>, marker=<span class="string">'.'</span>)</span><br><span class="line">ax.plot(X[different, <span class="number">0</span>], X[different, <span class="number">1</span>], <span class="string">'w'</span>,</span><br><span class="line">        markerfacecolor=<span class="string">'m'</span>, marker=<span class="string">'.'</span>)</span><br><span class="line">ax.set_title(<span class="string">'Difference'</span>)</span><br><span class="line">ax.set_xticks(())</span><br><span class="line">ax.set_yticks(())</span><br><span class="line"></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> sklearn.datasets <span class="keyword">as</span> ds</span><br><span class="line"><span class="keyword">import</span> matplotlib.colors</span><br><span class="line"><span class="keyword">from</span> sklearn.cluster <span class="keyword">import</span> KMeans</span><br><span class="line"><span class="keyword">from</span> sklearn.cluster <span class="keyword">import</span> MiniBatchKMeans</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">expand</span>(<span class="params">a, b</span>):</span><br><span class="line">    d = (b - a) * <span class="number">0.1</span></span><br><span class="line">    <span class="keyword">return</span> a-b, b+d</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    N = <span class="number">400</span></span><br><span class="line">    centers = <span class="number">4</span></span><br><span class="line">    data, y = ds.make_blobs(N, n_features=<span class="number">2</span>, centers=centers, random_state=<span class="number">2</span>)</span><br><span class="line">    data2, y2 = ds.make_blobs(N, n_features=<span class="number">2</span>, centers=centers, cluster_std=(<span class="number">1</span>, <span class="number">2.5</span>, <span class="number">0.5</span>, <span class="number">2</span>), random_state=<span class="number">2</span>)</span><br><span class="line">    <span class="comment"># 按行拼接numpy数组</span></span><br><span class="line">    data3 = np.vstack((data[y == <span class="number">0</span>][:], data[y == <span class="number">1</span>][:<span class="number">50</span>], data[y == <span class="number">2</span>][:<span class="number">20</span>], data[y == <span class="number">3</span>][:<span class="number">5</span>]))</span><br><span class="line">    y3 = np.array([<span class="number">0</span>] * <span class="number">100</span> + [<span class="number">1</span>] * <span class="number">50</span> + [<span class="number">2</span>] * <span class="number">20</span> + [<span class="number">3</span>] * <span class="number">5</span>)</span><br><span class="line">    cls = KMeans(n_clusters=<span class="number">4</span>, init=<span class="string">&#x27;k-means++&#x27;</span>)</span><br><span class="line">    y_hat = cls.fit_predict(data)</span><br><span class="line">    y2_hat = cls.fit_predict(data2)</span><br><span class="line">    y3_hat = cls.fit_predict(data3)</span><br><span class="line">    </span><br><span class="line">    m = np.array(((<span class="number">1</span>, <span class="number">1</span>),(<span class="number">1</span>, <span class="number">3</span>)))</span><br><span class="line">    data_r = data.dot(m)</span><br><span class="line">    y_r_hat = cls.fit_predict(data_r)</span><br><span class="line">    </span><br><span class="line">    matplotlib.rcParams[<span class="string">&#x27;font.sans-serif&#x27;</span>] = [<span class="string">u&#x27;SimHei&#x27;</span>]</span><br><span class="line">    matplotlib.rcParams[<span class="string">&#x27;axes.unicode_minus&#x27;</span>] = <span class="literal">False</span></span><br><span class="line">    cm = matplotlib.colors.ListedColormap(<span class="built_in">list</span>(<span class="string">&#x27;rgbm&#x27;</span>))</span><br><span class="line">    plt.figure(figsize=(<span class="number">9</span>, <span class="number">10</span>), facecolor=<span class="string">&#x27;w&#x27;</span>)</span><br><span class="line">    plt.subplot(<span class="number">421</span>)</span><br><span class="line">    plt.title(<span class="string">u&#x27;原始数据&#x27;</span>)</span><br><span class="line">    plt.scatter(data[:, <span class="number">0</span>], data[:, <span class="number">1</span>], c=y, s=<span class="number">30</span>, cmap=cm, edgecolors=<span class="string">&#x27;none&#x27;</span>)</span><br><span class="line">    x1_min, x2_min = np.<span class="built_in">min</span>(data, axis=<span class="number">0</span>)</span><br><span class="line">    x1_max, x2_max = np.<span class="built_in">max</span>(data, axis=<span class="number">0</span>)</span><br><span class="line">    x1_min, x1_max = expand(x1_min, x1_max)</span><br><span class="line">    x2_min, x2_max = expand(x2_min, x2_max)</span><br><span class="line">    plt.xlim((x1_min, x1_max))</span><br><span class="line">    plt.ylim((x2_min, x2_max))</span><br><span class="line">    plt.grid(<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">    plt.subplot(<span class="number">422</span>)</span><br><span class="line">    plt.title(<span class="string">u&#x27;KMeans++聚类&#x27;</span>)</span><br><span class="line">    plt.scatter(data[:, <span class="number">0</span>], data[:, <span class="number">1</span>], c=y_hat, s=<span class="number">30</span>, cmap=cm, edgecolors=<span class="string">&#x27;none&#x27;</span>)    </span><br><span class="line">    plt.xlim((x1_min, x1_max))</span><br><span class="line">    plt.ylim((x2_min, x2_max))</span><br><span class="line">    plt.grid(<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+<p><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="output_16_0.png" alt="png"></p>
+<h3 id="elkan-k-means算法"><a href="#elkan-k-means算法" class="headerlink" title="elkan k-means算法"></a><code>elkan k-means</code>算法</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/u014465639/article/details/71342072">参考资料:https://blog.csdn.net/u014465639/article/details/71342072</a><br><code>elkan K-Means</code>利用了两边之和大于等于第三边,以及两边之差小于第三边的三角形性质，来减少距离的计算。<br>第一种规律是对于一个样本点和两个质心。如果我们预先计算出了这两个质心之间的距离，则如果计算发现,我们立即就可以知道。此时我们不需要再计算,也就是说省了一步距离计算。<br>第二种规律是对于一个样本点和两个质心。我们可以得到。这个从三角形的性质也很容易得到。<br>利用上边的两个规律，elkan K-Means比起传统的K-Means迭代速度有很大的提高。但是如果我们的样本的特征是稀疏的，有缺失值的话，这个方法就不使用了，此时某些距离无法计算，则不能使用该算法。  </p>
+<h3 id="ISODATA算法"><a href="#ISODATA算法" class="headerlink" title="ISODATA算法"></a><code>ISODATA</code>算法</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/houston11235/article/details/8511379">参考资料1:https://blog.csdn.net/houston11235/article/details/8511379</a><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/huadongw/p/4101422.html">参考资料2:https://www.cnblogs.com/huadongw/p/4101422.html</a><br>k-means 的一个缺点就是必须指定聚类的个数，这个有些时候并不太行得通。于是就要求最好这个类别的个数也可以改变，这就形成了 isodata 方法，通过设定一些类别分裂和合并的条件，在聚类的过程中自动增减类别的数目。当然这也带来了一个问题，就是这个条件有时候并不那么好给出。当然 isodata 在很多情况下还是可以得到比较靠谱的结果。  </p>
+<h3 id="Mini-Batch-k-means（用一部分样本做传统的k-means，舍弃一部分精确度大大提高收敛速度）"><a href="#Mini-Batch-k-means（用一部分样本做传统的k-means，舍弃一部分精确度大大提高收敛速度）" class="headerlink" title="Mini Batch k-means（用一部分样本做传统的k-means，舍弃一部分精确度大大提高收敛速度）"></a><code>Mini Batch k-means</code>（用一部分样本做传统的k-means，舍弃一部分精确度大大提高收敛速度）</h3><p><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1465020">参考资料1:https://cloud.tencent.com/developer/article/1465020</a><br>Mini Batch KMeans算法是一种能<strong>尽量保持聚类准确性下但能大幅度降低计算时间的聚类模型</strong>，采用小批量的数据子集减少计算时间，同时仍试图优化目标函数，这里所谓的Mini Batch是指每次训练算法时随机抽取的数据子集，采用这些随机选取的数据进行训练，大大的减少了计算的时间，减少的KMeans算法的收敛时间，但要比标准算法略差一点，建议当样本量大于一万做聚类时，就需要考虑选用Mini Batch KMeans算法。  </p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">    Comparison of the K-Means and MiniBatchKMeans clustering algorithms</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(__doc__)</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> sklearn.cluster <span class="keyword">import</span> MiniBatchKMeans, KMeans</span><br><span class="line"><span class="keyword">from</span> sklearn.metrics.pairwise <span class="keyword">import</span> pairwise_distances_argmin</span><br><span class="line"><span class="keyword">from</span> sklearn.datasets.samples_generator <span class="keyword">import</span> make_blobs</span><br><span class="line"></span><br><span class="line"><span class="comment"># #############################################################################</span></span><br><span class="line"><span class="comment"># Generate sample data</span></span><br><span class="line">np.random.seed(<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">batch_size = <span class="number">45</span></span><br><span class="line">centers = [[<span class="number">1</span>, <span class="number">1</span>], [-<span class="number">1</span>, -<span class="number">1</span>], [<span class="number">1</span>, -<span class="number">1</span>]] <span class="comment"># 初始化3个中心</span></span><br><span class="line">n_clusters = <span class="built_in">len</span>(centers) <span class="comment"># 聚类的数目为3</span></span><br><span class="line"><span class="comment"># 产生10000组二维数据，以上面三个点为中心，以(-10,10)为边界，数据集的标准差是0.7</span></span><br><span class="line">X, labels_true = make_blobs(n_samples=<span class="number">10000</span>, centers=centers, cluster_std=<span class="number">0.7</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># #############################################################################</span></span><br><span class="line"><span class="comment"># Compute clustering with Means</span></span><br><span class="line"></span><br><span class="line">k_means = KMeans(init=<span class="string">&#x27;k-means++&#x27;</span>, n_clusters=<span class="number">3</span>, n_init=<span class="number">10</span>)</span><br><span class="line">t0 = time.time()</span><br><span class="line">k_means.fit(X)</span><br><span class="line"><span class="comment"># 使用k-means对300组数据集训练算法的时间消耗</span></span><br><span class="line">t_batch = time.time() - t0</span><br><span class="line"></span><br><span class="line"><span class="comment"># #############################################################################</span></span><br><span class="line"><span class="comment"># Compute clustering with MiniBatchKMeans</span></span><br><span class="line"></span><br><span class="line">mbk = MiniBatchKMeans(init=<span class="string">&#x27;k-means++&#x27;</span>, n_clusters=<span class="number">3</span>, batch_size=batch_size,</span><br><span class="line">                      n_init=<span class="number">10</span>, max_no_improvement=<span class="number">10</span>, verbose=<span class="number">0</span>)</span><br><span class="line">t0 = time.time()</span><br><span class="line">mbk.fit(X)</span><br><span class="line"><span class="comment"># 使用MiniBatchKMeans对300组数据集训练算法的时间消耗</span></span><br><span class="line">t_mini_batch = time.time() - t0</span><br><span class="line"></span><br><span class="line"><span class="comment"># #############################################################################</span></span><br><span class="line"><span class="comment"># Plot result</span></span><br><span class="line"></span><br><span class="line">fig = plt.figure(figsize=(<span class="number">8</span>, <span class="number">3</span>))</span><br><span class="line">fig.subplots_adjust(left=<span class="number">0.02</span>, right=<span class="number">0.98</span>, bottom=<span class="number">0.05</span>, top=<span class="number">0.9</span>)</span><br><span class="line">colors = [<span class="string">&#x27;#4EACC5&#x27;</span>, <span class="string">&#x27;#FF9C34&#x27;</span>, <span class="string">&#x27;#4E9A06&#x27;</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># We want to have the same colors for the same cluster from the</span></span><br><span class="line"><span class="comment"># MiniBatchKMeans and the KMeans algorithm. Let&#x27;s pair the cluster centers per</span></span><br><span class="line"><span class="comment"># closest one.</span></span><br><span class="line">k_means_cluster_centers = np.sort(k_means.cluster_centers_, axis=<span class="number">0</span>)</span><br><span class="line">mbk_means_cluster_centers = np.sort(mbk.cluster_centers_, axis=<span class="number">0</span>)</span><br><span class="line">k_means_labels = pairwise_distances_argmin(X, k_means_cluster_centers)</span><br><span class="line">mbk_means_labels = pairwise_distances_argmin(X, mbk_means_cluster_centers)</span><br><span class="line">order = pairwise_distances_argmin(k_means_cluster_centers,</span><br><span class="line">                                  mbk_means_cluster_centers)</span><br><span class="line"></span><br><span class="line"><span class="comment"># KMeans</span></span><br><span class="line">ax = fig.add_subplot(<span class="number">1</span>, <span class="number">3</span>, <span class="number">1</span>)</span><br><span class="line"><span class="keyword">for</span> k, col <span class="keyword">in</span> <span class="built_in">zip</span>(<span class="built_in">range</span>(n_clusters), colors):</span><br><span class="line">    my_members = k_means_labels == k</span><br><span class="line">    cluster_center = k_means_cluster_centers[k]</span><br><span class="line">    ax.plot(X[my_members, <span class="number">0</span>], X[my_members, <span class="number">1</span>], <span class="string">&#x27;w&#x27;</span>,</span><br><span class="line">            markerfacecolor=col, marker=<span class="string">&#x27;.&#x27;</span>)</span><br><span class="line">    ax.plot(cluster_center[<span class="number">0</span>], cluster_center[<span class="number">1</span>], <span class="string">&#x27;o&#x27;</span>, markerfacecolor=col,</span><br><span class="line">            markeredgecolor=<span class="string">&#x27;k&#x27;</span>, markersize=<span class="number">6</span>)</span><br><span class="line">ax.set_title(<span class="string">&#x27;KMeans&#x27;</span>)</span><br><span class="line">ax.set_xticks(())</span><br><span class="line">ax.set_yticks(())</span><br><span class="line">plt.text(-<span class="number">3.5</span>, <span class="number">1.8</span>,  <span class="string">&#x27;train time: %.2fs\ninertia: %f&#x27;</span> % (</span><br><span class="line">    t_batch, k_means.inertia_))</span><br><span class="line"></span><br><span class="line"><span class="comment"># MiniBatchKMeans</span></span><br><span class="line">ax = fig.add_subplot(<span class="number">1</span>, <span class="number">3</span>, <span class="number">2</span>)</span><br><span class="line"><span class="keyword">for</span> k, col <span class="keyword">in</span> <span class="built_in">zip</span>(<span class="built_in">range</span>(n_clusters), colors):</span><br><span class="line">    my_members = mbk_means_labels == order[k]</span><br><span class="line">    cluster_center = mbk_means_cluster_centers[order[k]]</span><br><span class="line">    ax.plot(X[my_members, <span class="number">0</span>], X[my_members, <span class="number">1</span>], <span class="string">&#x27;w&#x27;</span>,</span><br><span class="line">            markerfacecolor=col, marker=<span class="string">&#x27;.&#x27;</span>)</span><br><span class="line">    ax.plot(cluster_center[<span class="number">0</span>], cluster_center[<span class="number">1</span>], <span class="string">&#x27;o&#x27;</span>, markerfacecolor=col,</span><br><span class="line">            markeredgecolor=<span class="string">&#x27;k&#x27;</span>, markersize=<span class="number">6</span>)</span><br><span class="line">ax.set_title(<span class="string">&#x27;MiniBatchKMeans&#x27;</span>)</span><br><span class="line">ax.set_xticks(())</span><br><span class="line">ax.set_yticks(())</span><br><span class="line">plt.text(-<span class="number">3.5</span>, <span class="number">1.8</span>, <span class="string">&#x27;train time: %.2fs\ninertia: %f&#x27;</span> %</span><br><span class="line">         (t_mini_batch, mbk.inertia_))</span><br><span class="line"></span><br><span class="line"><span class="comment"># Initialise the different array to all False</span></span><br><span class="line">different = (mbk_means_labels == <span class="number">4</span>)</span><br><span class="line">ax = fig.add_subplot(<span class="number">1</span>, <span class="number">3</span>, <span class="number">3</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> k <span class="keyword">in</span> <span class="built_in">range</span>(n_clusters):</span><br><span class="line">    different += ((k_means_labels == k) != (mbk_means_labels == order[k]))</span><br><span class="line"></span><br><span class="line">identic = np.logical_not(different)</span><br><span class="line">ax.plot(X[identic, <span class="number">0</span>], X[identic, <span class="number">1</span>], <span class="string">&#x27;w&#x27;</span>,</span><br><span class="line">        markerfacecolor=<span class="string">&#x27;#bbbbbb&#x27;</span>, marker=<span class="string">&#x27;.&#x27;</span>)</span><br><span class="line">ax.plot(X[different, <span class="number">0</span>], X[different, <span class="number">1</span>], <span class="string">&#x27;w&#x27;</span>,</span><br><span class="line">        markerfacecolor=<span class="string">&#x27;m&#x27;</span>, marker=<span class="string">&#x27;.&#x27;</span>)</span><br><span class="line">ax.set_title(<span class="string">&#x27;Difference&#x27;</span>)</span><br><span class="line">ax.set_xticks(())</span><br><span class="line">ax.set_yticks(())</span><br><span class="line"></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
 <pre><code>    Comparison of the K-Means and MiniBatchKMeans clustering algorithms
-</code></pre><p><img src="output_20_1.png" alt="png"></p>
+</code></pre><p><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="output_20_1.png" alt="png"></p>
 
+
+<div class="article-footer reveal fs14"><section id="license"><div class="header"><span>许可协议</span></div><div class="body"><p>本文采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">署名-非商业性使用-相同方式共享 4.0 国际</a> 许可协议，转载请注明出处。</p>
+</div></section></div>
+
+</article>
+
+<div class="related-wrap reveal" id="read-next"><section class="header cap theme"><span>接下来阅读</span></section><section class="body fs14"><a id="next" href="/201910/Linux%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%9C%BA%E5%99%A8%E5%BA%94%E7%94%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89/">Linux开发环境及其应用学习笔记（二）<span class="note">较早</span></a><div class="line"></div><a id="prev" href="/201910/CS229-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%90%B4%E6%81%A9%E8%BE%BE%EF%BC%88%E4%B8%80%EF%BC%89/">CS229-机器学习-吴恩达（一）<span class="note">较新</span></a></section></div>
+
+
+
+
+
+
+  <div class='related-wrap md reveal' id="comments">
+    <div class='cmt-title cap theme'>
+      快来参与讨论吧
     </div>
-
-    
-
-    
-    
-    
+    <div class='cmt-body beaudar'>
       
 
-        
-      
+<svg class="loading" style="vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2709"><path d="M832 512c0-176-144-320-320-320V128c211.2 0 384 172.8 384 384h-64zM192 512c0 176 144 320 320 320v64C300.8 896 128 723.2 128 512h64z" p-id="2710"></path></svg>
 
-      <footer class="post-footer">
-          
-            
-          
-          <div class="post-tags">
-            
-              <a href="/tags/Fisher/" rel="tag"># Fisher</a>
-            
-              <a href="/tags/SVM/" rel="tag"># SVM</a>
-            
-              <a href="/tags/K-Means/" rel="tag"># K-Means</a>
-            
-          </div>
-        
+<div id="beaudar" repo="CrocodileZS/blog-comments" issue-term="pathname" theme="preferred-color-scheme" input-position="top" comment-order="desc" loading="false" branch="main"></div>
 
-        
-  <div class="post-widgets">
-    <div class="social-share">
-      
-      
-        <div id="needsharebutton-postbottom">
-          <span class="btn">
-            <i class="fa fa-share-alt" aria-hidden="true"></i>
-          </span>
-        </div>
-      
-    </div>
-  
-  </div>
-
-          <div class="post-nav">
-            <div class="post-nav-next post-nav-item">
-              
-                <a href="/201910/Linux开发环境机器应用学习笔记（二）/" rel="next" title="Linux开发环境及其应用学习笔记（二）">
-                  <i class="fa fa-chevron-left"></i> Linux开发环境及其应用学习笔记（二）
-                </a>
-              
-            </div>
-
-            <span class="post-nav-divider"></span>
-
-            <div class="post-nav-prev post-nav-item">
-              
-                <a href="/201910/CS229-机器学习-吴恩达（一）/" rel="prev" title="CS229-机器学习-吴恩达（一）">
-                  CS229-机器学习-吴恩达（一） <i class="fa fa-chevron-right"></i>
-                </a>
-              
-            </div>
-          </div>
-        
-      </footer>
-    
-  </div>
-  
-  
-  
-  </article>
-
-  </div>
-
-
-          </div>
-          
-    
-    <div class="comments" id="comments"></div>
-  
-
-        </div>
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
     </div>
   </div>
 
-  <aside id="sidebar" class="sidebar">
-    <div class="sidebar-inner">
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-overview">
-
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image"
-      src="/images/tom.jpg"
-      alt="CrocodileZS">
-  <p class="site-author-name" itemprop="name">CrocodileZS</p>
-  <div class="site-description motion-element" itemprop="description"></div>
-</div>
-  <nav class="site-state motion-element">
-      <div class="site-state-item site-state-posts">
-        
-          <a href="/archives">
-        
-          <span class="site-state-item-count">71</span>
-          <span class="site-state-item-name">日志</span>
-        </a>
-      </div>
-    
-      
-      
-      <div class="site-state-item site-state-categories">
-        
-          
-            <a href="/categories/">
-          
-        
-        
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-        <span class="site-state-item-count">16</span>
-        <span class="site-state-item-name">分类</span>
-        </a>
-      </div>
-    
-      
-      
-      <div class="site-state-item site-state-tags">
-        
-          
-            <a href="/tags/">
-          
-        
-        
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-        <span class="site-state-item-count">40</span>
-        <span class="site-state-item-name">标签</span>
-        </a>
-      </div>
-    
-  </nav>
-  <div class="feed-link motion-element">
-    <a href="/atom.xml" rel="alternate">
-      <i class="fa fa-rss"></i>RSS
-    </a>
-  </div>
-  <div class="links-of-author motion-element">
-      <span class="links-of-author-item">
-      
-      
-        
-      
-      
-        
-      
-        <a href="mailto:ammo@bupt.edu.cn" title="E-Mail &rarr; mailto:ammo@bupt.edu.cn" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
-      </span>
-    
-      <span class="links-of-author-item">
-      
-      
-        
-      
-      
-        
-      
-        <a href="https://instagram.com/crocodile_zs" title="Instagram &rarr; https://instagram.com/crocodile_zs" rel="noopener" target="_blank"><i class="fa fa-fw fa-instagram"></i>Instagram</a>
-      </span>
-    
-  </div>
 
 
-  <div class="links-of-blogroll motion-element links-of-blogroll-block">
-    <div class="links-of-blogroll-title">
-      <i class="fa  fa-fw fa-link"></i>
-      Links
-    </div>
-    <ul class="links-of-blogroll-list">
-        <li class="links-of-blogroll-item">
-          <a href="http://www.wangxiaofeng.me/" title="http://www.wangxiaofeng.me/" rel="noopener" target="_blank">不许联想</a>
-        </li>
       
-        <li class="links-of-blogroll-item">
-          <a href="https://idx0.dev/" title="https://idx0.dev/" rel="noopener" target="_blank">思维</a>
-        </li>
-      
-        <li class="links-of-blogroll-item">
-          <a href="https://128bit.top" title="https://128bit.top" rel="noopener" target="_blank">Dixeran</a>
-        </li>
-      
-        <li class="links-of-blogroll-item">
-          <a href="http://icontofig.leanote.com/" title="http://icontofig.leanote.com/" rel="noopener" target="_blank">Icontofig</a>
-        </li>
-      
-        <li class="links-of-blogroll-item">
-          <a href="https://www.nekomio.com" title="https://www.nekomio.com" rel="noopener" target="_blank">NekoMio</a>
-        </li>
-      
-        <li class="links-of-blogroll-item">
-          <a href="https://al0ha0e.github.io" title="https://al0ha0e.github.io" rel="noopener" target="_blank">Al0ha0e</a>
-        </li>
-      
-        <li class="links-of-blogroll-item">
-          <a href="http://gaokeyong.coding.me" title="http://gaokeyong.coding.me" rel="noopener" target="_blank">Keyong</a>
-        </li>
-      
-        <li class="links-of-blogroll-item">
-          <a href="http://poeroz.cn/" title="http://poeroz.cn/" rel="noopener" target="_blank">Poeroz</a>
-        </li>
-      
-    </ul>
-  </div>
+<footer class="page-footer reveal fs12"><hr><div class="text"><p>本博客所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议，转载请注明出处。</p>
+<p>本站由 <a href="https://blog.crocodilezs.top/">@CrocodileZS</a> 创建，使用 <a target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.7.0" title="v1.7.0">Stellar</a> 作为主题。</p>
+</div></footer>
 
-        </div>
-      </div>
-      <!--noindex-->
-        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-            
-            
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Fisher算法-amp-SVM-amp-K-Means及其优化"><span class="nav-text">Fisher算法&amp;SVM&amp;K-Means及其优化</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#fisher算法及其实现"><span class="nav-text">fisher算法及其实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数据生成"><span class="nav-text">数据生成</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#fisher算法实现"><span class="nav-text">fisher算法实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#判定类别"><span class="nav-text">判定类别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#绘图"><span class="nav-text">绘图</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SVM优化对偶问题的详细推导过程"><span class="nav-text">SVM优化对偶问题的详细推导过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SVM算法的实现"><span class="nav-text">SVM算法的实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#k-means算法的实现"><span class="nav-text">k-means算法的实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#k-means算法的改进"><span class="nav-text">k-means算法的改进</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#k-means-（改变中心点的选择方法）"><span class="nav-text">k-means++（改变中心点的选择方法）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#elkan-k-means算法"><span class="nav-text">elkan k-means算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ISODATA算法"><span class="nav-text">ISODATA算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Mini-Batch-k-means（用一部分样本做传统的k-means，舍弃一部分精确度大大提高收敛速度）"><span class="nav-text">Mini Batch k-means（用一部分样本做传统的k-means，舍弃一部分精确度大大提高收敛速度）</span></a></li></ol></li></ol></li></ol></div>
-            
-
-          </div>
-        </div>
-      <!--/noindex-->
-      
-
-    </div>
-  </aside>
-  <div id="sidebar-dimmer"></div>
-
-
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
-  <span class="with-love" id="animate">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">鰐魚先生</span>
+      <div class='float-panel mobile-only blur' style='display:none'>
+  <button type='button' class='sidebar-toggle mobile' onclick='sidebar.toggle()'>
+    <svg class="icon" style="width: 1em; height: 1em;vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="15301"><path d="M566.407 808.3c26.9-0.1 49.3-20.8 51.6-47.6-1.9-27.7-23.9-49.7-51.6-51.6h-412.6c-28.2-1.4-52.6 19.5-55.5 47.6 2.3 26.8 24.6 47.5 51.6 47.6h416.5v4z m309.3-249.9c26.9-0.1 49.3-20.8 51.6-47.6-2.2-26.8-24.6-47.5-51.6-47.6h-721.9c-27.7-2.8-52.5 17.4-55.3 45.1-0.1 0.8-0.1 1.7-0.2 2.5 0.9 27.2 23.6 48.5 50.7 47.6H875.707z m-103.1-245.9c26.9-0.1 49.3-20.8 51.6-47.6-0.4-28.3-23.2-51.1-51.5-51.6h-618.9c-29.5-1.1-54.3 21.9-55.5 51.4v0.2c1.4 27.8 25.2 49.2 53 47.8 0.8 0 1.7-0.1 2.5-0.2h618.8z" p-id="15302"></path><path d="M566.407 808.3c26.9-0.1 49.3-20.8 51.6-47.6-1.9-27.7-23.9-49.7-51.6-51.6h-412.6c-28.2-1.4-52.6 19.5-55.5 47.6 1.9 27.7 23.9 49.7 51.6 51.6h416.5z m309.3-249.9c26.9-0.1 49.3-20.8 51.6-47.6-2.2-26.8-24.6-47.5-51.6-47.6h-721.9c-27.7-2.8-52.5 17.4-55.3 45.1-0.1 0.8-0.1 1.7-0.2 2.5 0.9 27.2 23.6 48.5 50.7 47.6H875.707z m-103.1-245.9c26.9-0.1 49.3-20.8 51.6-47.6-0.4-28.3-23.2-51.1-51.5-51.6h-618.9c-29.5-1.1-54.3 21.9-55.5 51.4v0.2c1.4 27.8 25.2 49.2 53 47.8 0.8 0 1.7-0.1 2.5-0.2h618.8z" p-id="15303"></path></svg>
+  </button>
 </div>
 
-
-        
-<div class="busuanzi-count">
-  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-    <span class="post-meta-item-icon">
-      <i class="fa fa-user"></i>
-    </span>
-    <span class="site-uv" title="总访客量">
-      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
-    </span>
-  
-    <span class="post-meta-divider">|</span>
-  
-    <span class="post-meta-item-icon">
-      <i class="fa fa-eye"></i>
-    </span>
-    <span class="site-pv" title="总访问量">
-      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
-    </span>
-  
-</div>
-
-
-
-
-
-
-
-
-        
-      </div>
-    </footer>
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-          <span id="scrollpercent"><span>0</span>%</span>
-        
-      </div>
-
-    
-  
-  <div id="needsharebutton-float">
-    <span class="btn">
-      <i class="fa fa-share-alt" aria-hidden="true"></i>
-    </span>
+    </div>
   </div>
-<script src="/lib/needsharebutton/needsharebutton.js"></script>
-<script>
-    pbOptions = {};
-      pbOptions.iconStyle = "default";
-    
-      pbOptions.boxForm = "horizontal";
-    
-      pbOptions.position = "bottomCenter";
-    
-      pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
-    
-    new needShareButton('#needsharebutton-postbottom', pbOptions);
-    flOptions = {};
-      flOptions.iconStyle = "box";
-    
-      flOptions.boxForm = "horizontal";
-    
-      flOptions.position = "middleRight";
-    
-      flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
-    
-    new needShareButton('#needsharebutton-float', flOptions);
+  <div class='scripts'>
+    <script type="text/javascript">
+  stellar = {
+    // 懒加载 css https://github.com/filamentgroup/loadCSS
+    loadCSS: (href, before, media, attributes) => {
+      var doc = window.document;
+      var ss = doc.createElement("link");
+      var ref;
+      if (before) {
+        ref = before;
+      } else {
+        var refs = (doc.body || doc.getElementsByTagName("head")[0]).childNodes;
+        ref = refs[refs.length - 1];
+      }
+      var sheets = doc.styleSheets;
+      if (attributes) {
+        for (var attributeName in attributes) {
+          if (attributes.hasOwnProperty(attributeName)) {
+            ss.setAttribute(attributeName, attributes[attributeName]);
+          }
+        }
+      }
+      ss.rel = "stylesheet";
+      ss.href = href;
+      ss.media = "only x";
+      function ready(cb) {
+        if (doc.body) {
+          return cb();
+        }
+        setTimeout(function () {
+          ready(cb);
+        });
+      }
+      ready(function () {
+        ref.parentNode.insertBefore(ss, before ? ref : ref.nextSibling);
+      });
+      var onloadcssdefined = function (cb) {
+        var resolvedHref = ss.href;
+        var i = sheets.length;
+        while (i--) {
+          if (sheets[i].href === resolvedHref) {
+            return cb();
+          }
+        }
+        setTimeout(function () {
+          onloadcssdefined(cb);
+        });
+      };
+      function loadCB() {
+        if (ss.addEventListener) {
+          ss.removeEventListener("load", loadCB);
+        }
+        ss.media = media || "all";
+      }
+      if (ss.addEventListener) {
+        ss.addEventListener("load", loadCB);
+      }
+      ss.onloadcssdefined = onloadcssdefined;
+      onloadcssdefined(loadCB);
+      return ss;
+    },
+
+    // 从 butterfly 和 volantis 获得灵感
+    loadScript: (src, opt) => new Promise((resolve, reject) => {
+      var script = document.createElement('script');
+      script.src = src;
+      if (opt) {
+        for (let key of Object.keys(opt)) {
+          script[key] = opt[key]
+        }
+      } else {
+        // 默认异步，如果需要同步，第二个参数传入 {} 即可
+        script.async = true
+      }
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    }),
+
+    // https://github.com/jerryc127/hexo-theme-butterfly
+    jQuery: (fn) => {
+      if (typeof jQuery === 'undefined') {
+        stellar.loadScript(stellar.plugins.jQuery).then(fn)
+      } else {
+        fn()
+      }
+    }
+  };
+  stellar.github = 'https://github.com/xaoxuu/hexo-theme-stellar/tree/1.7.0';
+  stellar.config = {
+    date_suffix: {
+      just: '刚刚',
+      min: '分钟前',
+      hour: '小时前',
+      day: '天前',
+      month: '个月前',
+    },
+  };
+
+  // required plugins (only load if needs)
+  stellar.plugins = {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js',
+    sitesjs: '/js/plugins/sites.js',
+    friendsjs: '/js/plugins/friends.js',
+  };
+
+  // optional plugins
+  if ('true' == 'true') {
+    stellar.plugins.lazyload = Object.assign({"enable":true,"js":"https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.3.1/dist/lazyload.min.js","transition":"blur"});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.swiper = Object.assign({"enable":true,"css":"https://unpkg.com/swiper@6/swiper-bundle.min.css","js":"https://unpkg.com/swiper@6/swiper-bundle.min.js"});
+  }
+  if ('' == 'true') {
+    stellar.plugins.scrollreveal = Object.assign({"enable":null,"js":"https://cdn.jsdelivr.net/npm/scrollreveal@4.0.9/dist/scrollreveal.min.js","distance":"8px","duration":500,"interval":100,"scale":1});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.preload = Object.assign({"enable":true,"service":"flying_pages","instant_page":"https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@4.1.2/js/instant_page.js","flying_pages":"https://cdn.jsdelivr.net/gh/gijo-varghese/flying-pages@2.1.2/flying-pages.min.js"});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.fancybox = Object.assign({"enable":true,"js":"https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js","css":"https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css","selector":".swiper-slide img"});
+  }
+  if ('false' == 'true') {
+    stellar.plugins.heti = Object.assign({"enable":false,"css":"https://unpkg.com/heti/umd/heti.min.css","js":"https://unpkg.com/heti/umd/heti-addon.min.js"});
+  }
 </script>
 
-
-  </div>
-
-  
-  <script src="/lib/jquery/index.js?v=3.4.1"></script>
-  <script src="/lib/fancybox/source/jquery.fancybox.pack.js"></script>
-  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-<script src="/js/utils.js?v=7.3.0"></script>
-  <script src="/js/motion.js?v=7.3.0"></script>
-
-
-  <script src="/js/schemes/muse.js?v=7.3.0"></script>
-
-
-<script src="/js/next-boot.js?v=7.3.0"></script>
-
-
-
+<!-- required -->
 
   
+<script src="/js/main.js" async></script>
+
+
+
+<!-- optional -->
+
   <script>
-    (function(){
-      var bp = document.createElement('script');
-      var curProtocol = window.location.protocol.split(':')[0];
-      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
-      var s = document.getElementsByTagName("script")[0];
-      s.parentNode.insertBefore(bp, s);
-    })();
-  </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-  
-
-  
-
-  
-
-
-  
-  <script src="/js/scrollspy.js?v=7.3.0"></script>
-<script src="/js/post-details.js?v=7.3.0"></script>
-
-
-    
-
-<script>
-NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', function() {
-  var GUEST = ['nick', 'mail', 'link'];
-  var guest = 'nick,mail,link';
-  guest = guest.split(',').filter(function(item) {
-    return GUEST.indexOf(item) > -1;
+  function loadBeaudar() {
+    const els = document.querySelectorAll("#comments #beaudar");
+    if (els.length === 0) return;
+    els.forEach((el, i) => {
+      try {
+        el.innerHTML = '';
+      } catch (error) {
+        console.log(error);
+      }
+      var script = document.createElement('script');
+      script.src = 'https://beaudar.lipk.org/client.js';
+      script.async = true;
+      for (let key of Object.keys(el.attributes)) {
+        let attr = el.attributes[key];
+        if (['class', 'id'].includes(attr.name) === false) {
+          script.setAttribute(attr.name, attr.value);
+        }
+      }
+      el.appendChild(script);
+    });
+  }
+  window.addEventListener('DOMContentLoaded', (event) => {
+      loadBeaudar();
   });
-  new Valine({
-    el: '#comments',
-    verify: false,
-    notify: false,
-    appId: '9VEOQepq1oDMG0XHxBOrKuwU-gzGzoHsz',
-    appKey: 'XVzSWQhACVUcrVzQDF0AJlb8',
-    placeholder: 'ヽ(✿ﾟ▽ﾟ)ノ',
-    avatar: 'zhouyuyang17@163.com',
-    meta: guest,
-    pageSize: '10' || 10,
-    visitor: false,
-    lang: 'zh-cn' || 'zh-cn',
-    path: location.pathname
-  });
-}, window.Valine);
 </script>
 
-  <script type="text/javascript" src="/lib/zclip/clipboard.min.js"></script>	
-<script type="text/javascript" src="/js/src/custom.js"></script>
+
+
+
+<!-- inject -->
+
+
+  </div>
 </body>
 </html>

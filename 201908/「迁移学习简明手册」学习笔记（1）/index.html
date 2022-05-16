@@ -1,73 +1,35 @@
 <!DOCTYPE html>
+<html lang='zh-CN'>
 
-
-
-
-
-<html class="theme-next muse use-motion" lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
-<meta name="generator" content="Hexo 3.9.0">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/rainbow.png?v=7.3.0">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/rainbow.png?v=7.3.0">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/rainbow.png?v=7.3.0">
-  <link rel="mask-icon" href="/images/rainbow.svg?v=7.3.0" color="#222">
-  <meta name="baidu-site-verification" content="MBR3SWgP01">
+  <meta name="generator" content="Hexo 5.4.2">
+  <meta charset="utf-8">
+  
 
-<link rel="stylesheet" href="/css/main.css?v=7.3.0">
+  <meta http-equiv='x-dns-prefetch-control' content='on' />
+  <link rel='dns-prefetch' href='https://cdn.jsdelivr.net'>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel='dns-prefetch' href='//unpkg.com'>
 
-<link rel="stylesheet" href="https://fonts.loli.net/css?family=Noto Serif SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
-<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
-  <link rel="stylesheet" href="/lib/fancybox/source/jquery.fancybox.css">
-  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
-  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
-  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2">
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="theme-color" content="#f8f8f8">
+  <title>「迁移学习简明手册」学习笔记（1） - 鳄鱼Crc2H0U</title>
 
+  
 
-<script id="hexo-configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Muse',
-    version: '7.3.0',
-    exturl: false,
-    sidebar: {"position":"left","display":"post","offset":12,"onmobile":true},
-    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
-    save_scroll: true,
-    copycode: {"enable":true,"show_result":true,"style":"flat"},
-    fancybox: true,
-    mediumzoom: false,
-    lazyload: false,
-    pangu: false,
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    },
-    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
-    path: 'search.xml',
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    translation: {
-      copy_button: '复制',
-      copy_success: '复制成功',
-      copy_failure: '复制失败'
-    }
-  };
-</script>
-
-  <meta name="description" content="1.迁移学习的基本概念1.2 迁移学习基本概念 核心问题：找到新问题和原问题之间的相似性，才可以顺利地实现知识的迁移。 定义：迁移学习，是指利用数据、任务、或模型之间的相似性，将在旧领域学习过的模型，应用在新领域的一种学习过程。  1.3 为什么要迁移学习这个表格包括了1.3的所有内容，可以只看这个表格：">
-<meta name="keywords" content="迁移学习">
+  
+    <meta name="description" content="1.迁移学习的基本概念1.2 迁移学习基本概念 核心问题：找到新问题和原问题之间的相似性，才可以顺利地实现知识的迁移。 定义：迁移学习，是指利用数据、任务、或模型之间的相似性，将在旧领域学习过的模型，应用在新领域的一种学习过程。  1.3 为什么要迁移学习这个表格包括了1.3的所有内容，可以只看这个表格：">
 <meta property="og:type" content="article">
 <meta property="og:title" content="「迁移学习简明手册」学习笔记（1）">
-<meta property="og:url" content="https://blog.crocodilezs.top/201908/「迁移学习简明手册」学习笔记（1）/index.html">
-<meta property="og:site_name" content="鰐魚先生的水族館">
+<meta property="og:url" content="https://blog.crocodilezs.top/201908/%E3%80%8C%E8%BF%81%E7%A7%BB%E5%AD%A6%E4%B9%A0%E7%AE%80%E6%98%8E%E6%89%8B%E5%86%8C%E3%80%8D%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%881%EF%BC%89/index.html">
+<meta property="og:site_name" content="鳄鱼Crc2H0U">
 <meta property="og:description" content="1.迁移学习的基本概念1.2 迁移学习基本概念 核心问题：找到新问题和原问题之间的相似性，才可以顺利地实现知识的迁移。 定义：迁移学习，是指利用数据、任务、或模型之间的相似性，将在旧领域学习过的模型，应用在新领域的一种学习过程。  1.3 为什么要迁移学习这个表格包括了1.3的所有内容，可以只看这个表格：">
-<meta property="og:locale" content="zh-CN">
+<meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://s2.ax1x.com/2019/04/24/EVv4IS.jpg">
 <meta property="og:image" content="https://s2.ax1x.com/2019/04/24/EVxMQA.jpg">
 <meta property="og:image" content="https://s2.ax1x.com/2019/04/24/EZVW1P.jpg">
@@ -75,281 +37,72 @@
 <meta property="og:image" content="https://s2.ax1x.com/2019/04/25/EePN8K.jpg">
 <meta property="og:image" content="https://s2.ax1x.com/2019/04/25/EeFT3V.jpg">
 <meta property="og:image" content="https://s2.ax1x.com/2019/04/25/EekS9x.jpg">
-<meta property="og:updated_time" content="2019-11-12T14:14:09.325Z">
+<meta property="article:published_time" content="2019-04-25T05:03:50.000Z">
+<meta property="article:modified_time" content="2019-11-12T14:14:09.325Z">
+<meta property="article:author" content="CrocodileZS">
+<meta property="article:tag" content="迁移学习">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="「迁移学习简明手册」学习笔记（1）">
-<meta name="twitter:description" content="1.迁移学习的基本概念1.2 迁移学习基本概念 核心问题：找到新问题和原问题之间的相似性，才可以顺利地实现知识的迁移。 定义：迁移学习，是指利用数据、任务、或模型之间的相似性，将在旧领域学习过的模型，应用在新领域的一种学习过程。  1.3 为什么要迁移学习这个表格包括了1.3的所有内容，可以只看这个表格：">
 <meta name="twitter:image" content="https://s2.ax1x.com/2019/04/24/EVv4IS.jpg">
-  <link rel="alternate" href="/atom.xml" title="鰐魚先生的水族館" type="application/atom+xml">
-  <link rel="canonical" href="https://blog.crocodilezs.top/201908/「迁移学习简明手册」学习笔记（1）/">
-
-
-<script id="page-configurations">
-  // https://hexo.io/docs/variables.html
-  CONFIG.page = {
-    sidebar: "",
-    isHome: false,
-    isPost: true,
-    isPage: false,
-    isArchive: false
-  };
-</script>
-
-  <title>「迁移学习简明手册」学习笔记（1） | 鰐魚先生的水族館</title>
+  
   
 
+  <!-- feed -->
+  
+    <link rel="alternate" href="/atom.xml" title="鳄鱼Crc2H0U" type="application/atom+xml">
+  
 
+  
+    
+<link rel="stylesheet" href="/css/main.css">
 
+  
 
+  
 
-
-
-
-  <noscript>
-  <style>
-  .use-motion .motion-element,
-  .use-motion .brand,
-  .use-motion .menu-item,
-  .sidebar-inner,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-title { opacity: initial; }
-
-  .use-motion .logo,
-  .use-motion .site-title,
-  .use-motion .site-subtitle {
-    opacity: initial;
-    top: initial;
-  }
-
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
-  </style>
-</noscript>
-
+  
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+<body>
+  
 
-  <div class="container sidebar-position-left">
-    <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta">
 
-    <div class="custom-logo-site-title">
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">鰐魚先生的水族館</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
-    </div>
-        <p class="site-subtitle">言念君子，溫其如玉。</p>
-      
-  </div>
 
-  <div class="site-nav-toggle">
-    <button aria-label="切换导航栏">
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
-  </div>
+  <div class='l_body' id='start'>
+    <aside class='l_left' layout='post'>
+    
+
+
+<header class="header">
+
+<div class="logo-wrap"><a class="avatar" href="/about/"><div class="bg" style="opacity:0;background-image:url(https://cdn.jsdelivr.net/gh/cdn-x/placeholder@1.0.2/avatar/round/rainbow64@3x.webp);"></div><img no-lazy class="avatar" src="/media/avatar.png" onerror="javascript:this.classList.add('error');this.src='https://cdn.jsdelivr.net/gh/cdn-x/placeholder@1.0.1/image/2659360.svg';"></a><a class="title" href="/"><div class="main">鳄鱼Crc2H0U</div><div class="sub cap">野生鳄鱼的自留地</div></a></div>
+<nav class="menu dis-select"><a class="nav-item active" href="/">文章</a><a class="nav-item" href="/about/">关于</a><a class="nav-item" href="/timeline/">时间轴</a></nav></header>
+
+<div class="widgets">
+
+<div class="widget-wrap single" id="toc"><div class="widget-header cap dis-select"><span class="name">本文目录</span></div><div class="widget-body fs14"><div class="doc-tree active"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-%E8%BF%81%E7%A7%BB%E5%AD%A6%E4%B9%A0%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="toc-text">1.2 迁移学习基本概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3-%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E8%BF%81%E7%A7%BB%E5%AD%A6%E4%B9%A0"><span class="toc-text">1.3 为什么要迁移学习</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-4-%E4%B8%8E%E5%B7%B2%E6%9C%89%E6%A6%82%E5%BF%B5%E7%9A%84%E5%8C%BA%E5%88%AB%E5%92%8C%E8%81%94%E7%B3%BB"><span class="toc-text">1.4 与已有概念的区别和联系</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E8%BF%81%E7%A7%BB%E5%AD%A6%E4%B9%A0%E5%92%8C%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0"><span class="toc-text">1.迁移学习和机器学习</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E8%BF%81%E7%A7%BB%E5%AD%A6%E4%B9%A0%E5%92%8C%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%AD%A6%E4%B9%A0"><span class="toc-text">2.迁移学习和多任务学习</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E8%BF%81%E7%A7%BB%E5%AD%A6%E4%B9%A0%E5%92%8C%E7%BB%88%E8%BA%AB%E5%AD%A6%E4%B9%A0"><span class="toc-text">3.迁移学习和终身学习</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E8%BF%81%E7%A7%BB%E5%AD%A6%E4%B9%A0%E5%92%8C%E9%A2%86%E5%9F%9F%E8%87%AA%E9%80%82%E5%BA%94"><span class="toc-text">4.迁移学习和领域自适应</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E8%BF%81%E7%A7%BB%E5%AD%A6%E4%B9%A0%E5%92%8C%E5%A2%9E%E9%87%8F%E5%AD%A6%E4%B9%A0"><span class="toc-text">5.迁移学习和增量学习</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-%E8%BF%81%E7%A7%BB%E5%AD%A6%E4%B9%A0%E5%92%8C%E8%87%AA%E6%88%91%E5%AD%A6%E4%B9%A0"><span class="toc-text">6.迁移学习和自我学习</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-%E8%BF%81%E7%A7%BB%E5%AD%A6%E4%B9%A0%E5%92%8C%E5%8D%8F%E6%96%B9%E5%B7%AE%E6%BC%82%E7%A7%BB"><span class="toc-text">7.迁移学习和协方差漂移</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-5-%E8%B4%9F%E8%BF%81%E7%A7%BB%EF%BC%88%E2%80%9C%E4%B8%9C%E6%96%BD%E6%95%88%E9%A2%A6%E2%80%9D%EF%BC%89"><span class="toc-text">1.5 负迁移（“东施效颦”）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-%E6%8C%89%E7%9B%AE%E6%A0%87%E5%9F%9F%E6%A0%87%E7%AD%BE%E5%88%86"><span class="toc-text">2.1 按目标域标签分</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-%E6%8C%89%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E5%88%86%E7%B1%BB"><span class="toc-text">2.2 按学习方法分类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3-%E6%8C%89%E7%89%B9%E5%BE%81%E5%88%86%E7%B1%BB"><span class="toc-text">2.3 按特征分类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-4-%E6%8C%89%E7%A6%BB%E7%BA%BF%E4%B8%8E%E5%9C%A8%E7%BA%BF%E5%BD%A2%E5%BC%8F%E5%88%86"><span class="toc-text">2.4 按离线与在线形式分</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89"><span class="toc-text">3.1 计算机视觉</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2-%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB"><span class="toc-text">3.2 文本分类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-3-%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97"><span class="toc-text">3.3 时间序列</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-4-%E5%8C%BB%E7%96%97%E5%81%A5%E5%BA%B7"><span class="toc-text">3.4 医疗健康</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1%E8%BF%81%E7%A7%BB%E5%AD%A6%E4%B9%A0%E7%9A%84%E9%97%AE%E9%A2%98%E5%BD%A2%E5%BC%8F%E5%8C%96"><span class="toc-text">4.1迁移学习的问题形式化</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-1-%E9%A2%86%E5%9F%9F"><span class="toc-text">4.1.1 领域</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-2-%E4%BB%BB%E5%8A%A1"><span class="toc-text">4.1.2 任务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-3-%E8%BF%81%E7%A7%BB%E5%AD%A6%E4%B9%A0"><span class="toc-text">4.1.3 迁移学习</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-2-%E6%80%BB%E4%BD%93%E6%80%9D%E8%B7%AF"><span class="toc-text">4.2 总体思路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-3-%E5%BA%A6%E9%87%8F%E5%87%86%E5%88%99"><span class="toc-text">4.3 度量准则</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-1-%E5%B8%B8%E8%A7%81%E7%9A%84%E5%87%A0%E7%A7%8D%E8%B7%9D%E7%A6%BB"><span class="toc-text">4.3.1 常见的几种距离</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-2-%E7%9B%B8%E4%BC%BC%E5%BA%A6"><span class="toc-text">4.3.2 相似度</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-3-KL%E6%95%A3%E5%BA%A6%E4%B8%8EJS%E8%B7%9D%E7%A6%BB"><span class="toc-text">4.3.3 KL散度与JS距离</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-4-%E6%9C%80%E5%A4%A7%E5%9D%87%E5%80%BC%E5%B7%AE%E5%BC%82MMD-Maximun-mean-discrepancy"><span class="toc-text">4.3.4 最大均值差异MMD(Maximun mean discrepancy)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-5-Principle-Angle"><span class="toc-text">4.3.5 Principle Angle</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-6-A-distance"><span class="toc-text">4.3.6 A-distance</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-7-Hilbert-Schmidt-Independence-Criterion"><span class="toc-text">4.3.7 Hilbert-Schmidt Independence Criterion</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-8-Wasserstein-Distance"><span class="toc-text">4.3.8 Wasserstein Distance</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-4-%E8%BF%81%E7%A7%BB%E5%AD%A6%E4%B9%A0%E7%9A%84%E7%90%86%E8%AE%BA%E4%BF%9D%E8%AF%81"><span class="toc-text">4.4 迁移学习的理论保证</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-1-%E5%9F%BA%E4%BA%8E%E6%A0%B7%E6%9C%AC%E7%9A%84%E8%BF%81%E7%A7%BB%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95-Instance-based-Transfer-Learning"><span class="toc-text">5.1 基于样本的迁移学习方法(Instance based Transfer Learning)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-2-%E5%9F%BA%E4%BA%8E%E7%89%B9%E5%BE%81%E8%BF%81%E7%A7%BB"><span class="toc-text">5.2 基于特征迁移</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-3-%E5%9F%BA%E4%BA%8E%E6%A8%A1%E5%9E%8B%E5%AD%A6%E4%B9%A0"><span class="toc-text">5.3 基于模型学习</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-4-%E5%9F%BA%E4%BA%8E%E5%85%B3%E7%B3%BB%E8%BF%81%E7%A7%BB"><span class="toc-text">5.4 基于关系迁移</span></a></li></ol></div></div></div>
+
+
 </div>
 
 
-<nav class="site-nav">
-  
-  <ul id="menu" class="menu">
+    </aside>
+    <div class='l_main'>
       
-      
-      
-        
-        <li class="menu-item menu-item-home">
-      
-    
-
-    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
-
-  </li>
-      
-      
-      
-        
-        <li class="menu-item menu-item-categories">
-      
-    
-
-    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
-
-  </li>
-      
-      
-      
-        
-        <li class="menu-item menu-item-tags">
-      
-    
-
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
-
-  </li>
-      
-      
-      
-        
-        <li class="menu-item menu-item-about">
-      
-    
-
-    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>关于</a>
-
-  </li>
-      
-      
-      
-        
-        <li class="menu-item menu-item-英文博客">
-      
-    
-
-    <a href="/eysblog_en/" rel="section"><i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>英文博客</a>
-
-  </li>
-  </ul>
-
-    
-
-</nav>
-</div>
-    </header>
-
-    
-
-
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          <div id="content" class="content page-post-detail">
-            
-
-  <div id="posts" class="posts-expand">
-    
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://blog.crocodilezs.top/201908/「迁移学习简明手册」学习笔记（1）/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="CrocodileZS">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/tom.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="鰐魚先生的水族館">
-    </span>
-      <header class="post-header">
-
-        
-          <h1 class="post-title" itemprop="name headline">「迁移学习简明手册」学习笔记（1）
-
-            
-          </h1>
-        
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              
-                
-              
-
-              <time title="创建时间：2019-04-25 13:03:50" itemprop="dateCreated datePublished" datetime="2019-04-25T13:03:50+08:00">2019-04-25</time>
-            </span>
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/机器学习/" itemprop="url" rel="index"><span itemprop="name">机器学习</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-        
-      
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/201908/「迁移学习简明手册」学习笔记（1）/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/201908/「迁移学习简明手册」学习笔记（1）/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-          
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">本文字数：</span>
-              
-              <span>3.7k</span>
-            </span>
-          
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              
-              <span>6 分钟</span>
-            </span>
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="1-迁移学习的基本概念"><a href="#1-迁移学习的基本概念" class="headerlink" title="1.迁移学习的基本概念"></a>1.迁移学习的基本概念</h1><h2 id="1-2-迁移学习基本概念"><a href="#1-2-迁移学习基本概念" class="headerlink" title="1.2 迁移学习基本概念"></a>1.2 迁移学习基本概念</h2><ul>
+
+<div class="bread-nav fs12"><div id="breadcrumb"><a class="cap breadcrumb" href="/">主页</a><span class="sep"></span><a class="cap breadcrumb" href="/">文章</a><span class="sep"></span><a class="cap breadcrumb-link" href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a></div><div id="post-meta">发布于&nbsp;<time datetime="2019-04-25T05:03:50.000Z">2019-04-25</time></div></div>
+
+<article class='content md post'>
+<h1 class="article-title"><span>「迁移学习简明手册」学习笔记（1）</span></h1>
+<h1 id="1-迁移学习的基本概念"><a href="#1-迁移学习的基本概念" class="headerlink" title="1.迁移学习的基本概念"></a>1.迁移学习的基本概念</h1><h2 id="1-2-迁移学习基本概念"><a href="#1-2-迁移学习基本概念" class="headerlink" title="1.2 迁移学习基本概念"></a>1.2 迁移学习基本概念</h2><ul>
 <li>核心问题：找到新问题和原问题之间的相似性，才可以顺利地实现知识的迁移。</li>
 <li>定义：迁移学习，是指利用数据、任务、或模型之间的相似性，将在旧领域学习过的模型，应用在新领域的一种学习过程。</li>
 </ul>
 <h2 id="1-3-为什么要迁移学习"><a href="#1-3-为什么要迁移学习" class="headerlink" title="1.3 为什么要迁移学习"></a>1.3 为什么要迁移学习</h2><p>这个表格包括了1.3的所有内容，可以只看这个表格：</p>
-<p><img src="https://s2.ax1x.com/2019/04/24/EVv4IS.jpg" alt="1.3"></p>
-<a id="more"></a>
+<p><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://s2.ax1x.com/2019/04/24/EVv4IS.jpg" alt="1.3"></p>
+<span id="more"></span>
 <ul>
 <li>1.大数据与少标注之间的矛盾</li>
 <li>2.大数据与弱计算之间的矛盾</li>
@@ -363,7 +116,7 @@
 <li>3.自适应学习（对普适化模型进行灵活的调整，以便完成我们的任务）</li>
 <li>4.相似领域知识迁移</li>
 </ul>
-<h2 id="1-4-与已有概念的区别和联系"><a href="#1-4-与已有概念的区别和联系" class="headerlink" title="1.4 与已有概念的区别和联系"></a>1.4 与已有概念的区别和联系</h2><h3 id="1-迁移学习和机器学习"><a href="#1-迁移学习和机器学习" class="headerlink" title="1.迁移学习和机器学习"></a>1.迁移学习和机器学习</h3><p>迁移学习属于机器学习的一类<br><img src="https://s2.ax1x.com/2019/04/24/EVxMQA.jpg" alt="2"></p>
+<h2 id="1-4-与已有概念的区别和联系"><a href="#1-4-与已有概念的区别和联系" class="headerlink" title="1.4 与已有概念的区别和联系"></a>1.4 与已有概念的区别和联系</h2><h3 id="1-迁移学习和机器学习"><a href="#1-迁移学习和机器学习" class="headerlink" title="1.迁移学习和机器学习"></a>1.迁移学习和机器学习</h3><p>迁移学习属于机器学习的一类<br><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://s2.ax1x.com/2019/04/24/EVxMQA.jpg" alt="2"></p>
 <h3 id="2-迁移学习和多任务学习"><a href="#2-迁移学习和多任务学习" class="headerlink" title="2.迁移学习和多任务学习"></a>2.迁移学习和多任务学习</h3><p>多任务学习指多个相关的任务一起协同学习。</p>
 <h3 id="3-迁移学习和终身学习"><a href="#3-迁移学习和终身学习" class="headerlink" title="3.迁移学习和终身学习"></a>3.迁移学习和终身学习</h3><p>终身学习是在已经学习好若干个任务之后，面对新的任务可以继续学习而不遗忘之前学习的任务。</p>
 <h3 id="4-迁移学习和领域自适应"><a href="#4-迁移学习和领域自适应" class="headerlink" title="4.迁移学习和领域自适应"></a>4.迁移学习和领域自适应</h3><h3 id="5-迁移学习和增量学习"><a href="#5-迁移学习和增量学习" class="headerlink" title="5.迁移学习和增量学习"></a>5.迁移学习和增量学习</h3><p>增量学习侧重解决数据不断到来，模型不断更新的问题。</p>
@@ -379,7 +132,7 @@
 </li>
 <li>传递迁移学习：传统迁移学习好比是踩着一块石头过河，传递迁移学习就是踩着连续的两块石头。当两个领域不相似时，传递迁移学习却可以利用处于这两个领域之间的若干领域，将知识传递式的完成迁移。</li>
 </ul>
-<h1 id="2-迁移学习的研究领域"><a href="#2-迁移学习的研究领域" class="headerlink" title="2.迁移学习的研究领域"></a>2.迁移学习的研究领域</h1><p>机器学习可分为有监督、半监督和无监督的机器学习三大类。迁移学习也可以进行这样的分类。<br><img src="https://s2.ax1x.com/2019/04/24/EZVW1P.jpg" alt="t8"></p>
+<h1 id="2-迁移学习的研究领域"><a href="#2-迁移学习的研究领域" class="headerlink" title="2.迁移学习的研究领域"></a>2.迁移学习的研究领域</h1><p>机器学习可分为有监督、半监督和无监督的机器学习三大类。迁移学习也可以进行这样的分类。<br><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://s2.ax1x.com/2019/04/24/EZVW1P.jpg" alt="t8"></p>
 <p>分类的四个准则：按目标域有无标签分、按学习方法分、按特征分、按在线形式分</p>
 <h2 id="2-1-按目标域标签分"><a href="#2-1-按目标域标签分" class="headerlink" title="2.1 按目标域标签分"></a>2.1 按目标域标签分</h2><ul>
 <li>1.监督迁移学习 Supervised Transfer Learning</li>
@@ -430,599 +183,227 @@
 </ul>
 <h3 id="4-3-3-KL散度与JS距离"><a href="#4-3-3-KL散度与JS距离" class="headerlink" title="4.3.3 KL散度与JS距离"></a>4.3.3 KL散度与JS距离</h3><h3 id="4-3-4-最大均值差异MMD-Maximun-mean-discrepancy"><a href="#4-3-4-最大均值差异MMD-Maximun-mean-discrepancy" class="headerlink" title="4.3.4 最大均值差异MMD(Maximun mean discrepancy)"></a>4.3.4 最大均值差异MMD(Maximun mean discrepancy)</h3><h3 id="4-3-5-Principle-Angle"><a href="#4-3-5-Principle-Angle" class="headerlink" title="4.3.5 Principle Angle"></a>4.3.5 Principle Angle</h3><h3 id="4-3-6-A-distance"><a href="#4-3-6-A-distance" class="headerlink" title="4.3.6 A-distance"></a>4.3.6 A-distance</h3><h3 id="4-3-7-Hilbert-Schmidt-Independence-Criterion"><a href="#4-3-7-Hilbert-Schmidt-Independence-Criterion" class="headerlink" title="4.3.7 Hilbert-Schmidt Independence Criterion"></a>4.3.7 Hilbert-Schmidt Independence Criterion</h3><h3 id="4-3-8-Wasserstein-Distance"><a href="#4-3-8-Wasserstein-Distance" class="headerlink" title="4.3.8 Wasserstein Distance"></a>4.3.8 Wasserstein Distance</h3><h2 id="4-4-迁移学习的理论保证"><a href="#4-4-迁移学习的理论保证" class="headerlink" title="4.4 迁移学习的理论保证"></a>4.4 迁移学习的理论保证</h2><p>这一部分有些难度。当自己提出的算法需要理论证明时，可以借鉴这一部分。</p>
 <h1 id="5-迁移学习的基本方法"><a href="#5-迁移学习的基本方法" class="headerlink" title="5.迁移学习的基本方法"></a>5.迁移学习的基本方法</h1><p>四种基本方法：基于样本的迁移，基于模型的迁移，基于特征的迁移，以及基于关系的迁移。</p>
-<h2 id="5-1-基于样本的迁移学习方法-Instance-based-Transfer-Learning"><a href="#5-1-基于样本的迁移学习方法-Instance-based-Transfer-Learning" class="headerlink" title="5.1 基于样本的迁移学习方法(Instance based Transfer Learning)"></a>5.1 基于样本的迁移学习方法(Instance based Transfer Learning)</h2><p><img src="https://s2.ax1x.com/2019/04/25/Ee9XWT.jpg" alt="t8"><br>如图，在迁移时，为了最大限度地和目标域相似，我们可以人为地提高源域中属于狗这个类别地样本权重。<br>优缺点：虽然实例权重法具有较好的理论支撑、容易推导泛化误差上界，但这类方法通常只在领域间分布差异较小时有效，因此对自然语言处理、计算机视觉等任务效果并不理想。</p>
-<h2 id="5-2-基于特征迁移"><a href="#5-2-基于特征迁移" class="headerlink" title="5.2 基于特征迁移"></a>5.2 基于特征迁移</h2><p>通过特征变换的方式互相迁移，来减少源域和目标域之间地差距；或者将源域和目标域的数据特征变换到统一特征空间中，然后利用传统的机器学习方法进行分类识别。根据特征的同构和异构性，又可以分为同构和异构迁移学习。<br><img src="https://s2.ax1x.com/2019/04/25/EePN8K.jpg" alt="t15"><br>这类方法通常假设源域和目标域间有一些交叉的特征。</p>
-<h2 id="5-3-基于模型学习"><a href="#5-3-基于模型学习" class="headerlink" title="5.3 基于模型学习"></a>5.3 基于模型学习</h2><p>基于模型的迁移方法 (Parameter/Model based Transfer Learning) 是指从源域和目标域中找到他们之间共享的参数信息，以实现迁移的方法。这种迁移方式要求的假设条件是：源域中的数据与目标域中的数据可以共享一些模型的参数。<br><img src="https://s2.ax1x.com/2019/04/25/EeFT3V.jpg" alt="t16"></p>
-<h2 id="5-4-基于关系迁移"><a href="#5-4-基于关系迁移" class="headerlink" title="5.4 基于关系迁移"></a>5.4 基于关系迁移</h2><p>这种方法比较关注源域和目标域的样本之间的关系。<br>这些文章都借助于马尔科夫逻辑网络 (Markov Logic Net)来挖掘不同领域之间的关系相似性。<br>我们将重点讨论基于特征和基于模型的迁移学习方法，这也是目前绝大多数研究工作的热点。<br><img src="https://s2.ax1x.com/2019/04/25/EekS9x.jpg" alt="t17"></p>
+<h2 id="5-1-基于样本的迁移学习方法-Instance-based-Transfer-Learning"><a href="#5-1-基于样本的迁移学习方法-Instance-based-Transfer-Learning" class="headerlink" title="5.1 基于样本的迁移学习方法(Instance based Transfer Learning)"></a>5.1 基于样本的迁移学习方法(Instance based Transfer Learning)</h2><p><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://s2.ax1x.com/2019/04/25/Ee9XWT.jpg" alt="t8"><br>如图，在迁移时，为了最大限度地和目标域相似，我们可以人为地提高源域中属于狗这个类别地样本权重。<br>优缺点：虽然实例权重法具有较好的理论支撑、容易推导泛化误差上界，但这类方法通常只在领域间分布差异较小时有效，因此对自然语言处理、计算机视觉等任务效果并不理想。</p>
+<h2 id="5-2-基于特征迁移"><a href="#5-2-基于特征迁移" class="headerlink" title="5.2 基于特征迁移"></a>5.2 基于特征迁移</h2><p>通过特征变换的方式互相迁移，来减少源域和目标域之间地差距；或者将源域和目标域的数据特征变换到统一特征空间中，然后利用传统的机器学习方法进行分类识别。根据特征的同构和异构性，又可以分为同构和异构迁移学习。<br><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://s2.ax1x.com/2019/04/25/EePN8K.jpg" alt="t15"><br>这类方法通常假设源域和目标域间有一些交叉的特征。</p>
+<h2 id="5-3-基于模型学习"><a href="#5-3-基于模型学习" class="headerlink" title="5.3 基于模型学习"></a>5.3 基于模型学习</h2><p>基于模型的迁移方法 (Parameter/Model based Transfer Learning) 是指从源域和目标域中找到他们之间共享的参数信息，以实现迁移的方法。这种迁移方式要求的假设条件是：源域中的数据与目标域中的数据可以共享一些模型的参数。<br><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://s2.ax1x.com/2019/04/25/EeFT3V.jpg" alt="t16"></p>
+<h2 id="5-4-基于关系迁移"><a href="#5-4-基于关系迁移" class="headerlink" title="5.4 基于关系迁移"></a>5.4 基于关系迁移</h2><p>这种方法比较关注源域和目标域的样本之间的关系。<br>这些文章都借助于马尔科夫逻辑网络 (Markov Logic Net)来挖掘不同领域之间的关系相似性。<br>我们将重点讨论基于特征和基于模型的迁移学习方法，这也是目前绝大多数研究工作的热点。<br><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://s2.ax1x.com/2019/04/25/EekS9x.jpg" alt="t17"></p>
 
+
+<div class="article-footer reveal fs14"><section id="license"><div class="header"><span>许可协议</span></div><div class="body"><p>本文采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">署名-非商业性使用-相同方式共享 4.0 国际</a> 许可协议，转载请注明出处。</p>
+</div></section></div>
+
+</article>
+
+<div class="related-wrap reveal" id="read-next"><section class="header cap theme"><span>接下来阅读</span></section><section class="body fs14"><a id="next" href="/201904/%E7%AC%AC%E4%B8%80%E8%A1%8C%E4%BB%A3%E7%A0%81%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%882%EF%BC%89/">「第一行代码」学习笔记（2）<span class="note">较早</span></a><div class="line"></div><a id="prev" href="/201904/30%E5%A4%A9%E8%87%AA%E5%88%B6%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%EF%BC%8824%EF%BC%89/">30天自制操作系统（24）<span class="note">较新</span></a></section></div>
+
+
+
+
+
+
+  <div class='related-wrap md reveal' id="comments">
+    <div class='cmt-title cap theme'>
+      快来参与讨论吧
     </div>
-
-    
-
-    
-    
-    
+    <div class='cmt-body beaudar'>
       
 
-        
-      
+<svg class="loading" style="vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2709"><path d="M832 512c0-176-144-320-320-320V128c211.2 0 384 172.8 384 384h-64zM192 512c0 176 144 320 320 320v64C300.8 896 128 723.2 128 512h64z" p-id="2710"></path></svg>
 
-      <footer class="post-footer">
-          
-            
-          
-          <div class="post-tags">
-            
-              <a href="/tags/迁移学习/" rel="tag"># 迁移学习</a>
-            
-          </div>
-        
+<div id="beaudar" repo="CrocodileZS/blog-comments" issue-term="pathname" theme="preferred-color-scheme" input-position="top" comment-order="desc" loading="false" branch="main"></div>
 
-        
-  <div class="post-widgets">
-    <div class="social-share">
-      
-      
-        <div id="needsharebutton-postbottom">
-          <span class="btn">
-            <i class="fa fa-share-alt" aria-hidden="true"></i>
-          </span>
-        </div>
-      
-    </div>
-  
-  </div>
-
-          <div class="post-nav">
-            <div class="post-nav-next post-nav-item">
-              
-                <a href="/201904/第一行代码学习笔记（2）/" rel="next" title="「第一行代码」学习笔记（2）">
-                  <i class="fa fa-chevron-left"></i> 「第一行代码」学习笔记（2）
-                </a>
-              
-            </div>
-
-            <span class="post-nav-divider"></span>
-
-            <div class="post-nav-prev post-nav-item">
-              
-                <a href="/201904/30天自制操作系统（24）/" rel="prev" title="30天自制操作系统（24）">
-                  30天自制操作系统（24） <i class="fa fa-chevron-right"></i>
-                </a>
-              
-            </div>
-          </div>
-        
-      </footer>
-    
-  </div>
-  
-  
-  
-  </article>
-
-  </div>
-
-
-          </div>
-          
-    
-    <div class="comments" id="comments"></div>
-  
-
-        </div>
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
     </div>
   </div>
 
-  <aside id="sidebar" class="sidebar">
-    <div class="sidebar-inner">
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-overview">
-
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image"
-      src="/images/tom.jpg"
-      alt="CrocodileZS">
-  <p class="site-author-name" itemprop="name">CrocodileZS</p>
-  <div class="site-description motion-element" itemprop="description"></div>
-</div>
-  <nav class="site-state motion-element">
-      <div class="site-state-item site-state-posts">
-        
-          <a href="/archives">
-        
-          <span class="site-state-item-count">71</span>
-          <span class="site-state-item-name">日志</span>
-        </a>
-      </div>
-    
-      
-      
-      <div class="site-state-item site-state-categories">
-        
-          
-            <a href="/categories/">
-          
-        
-        
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-        <span class="site-state-item-count">16</span>
-        <span class="site-state-item-name">分类</span>
-        </a>
-      </div>
-    
-      
-      
-      <div class="site-state-item site-state-tags">
-        
-          
-            <a href="/tags/">
-          
-        
-        
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-        <span class="site-state-item-count">40</span>
-        <span class="site-state-item-name">标签</span>
-        </a>
-      </div>
-    
-  </nav>
-  <div class="feed-link motion-element">
-    <a href="/atom.xml" rel="alternate">
-      <i class="fa fa-rss"></i>RSS
-    </a>
-  </div>
-  <div class="links-of-author motion-element">
-      <span class="links-of-author-item">
-      
-      
-        
-      
-      
-        
-      
-        <a href="mailto:ammo@bupt.edu.cn" title="E-Mail &rarr; mailto:ammo@bupt.edu.cn" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
-      </span>
-    
-      <span class="links-of-author-item">
-      
-      
-        
-      
-      
-        
-      
-        <a href="https://instagram.com/crocodile_zs" title="Instagram &rarr; https://instagram.com/crocodile_zs" rel="noopener" target="_blank"><i class="fa fa-fw fa-instagram"></i>Instagram</a>
-      </span>
-    
-  </div>
 
 
-  <div class="links-of-blogroll motion-element links-of-blogroll-block">
-    <div class="links-of-blogroll-title">
-      <i class="fa  fa-fw fa-link"></i>
-      Links
-    </div>
-    <ul class="links-of-blogroll-list">
-        <li class="links-of-blogroll-item">
-          <a href="http://www.wangxiaofeng.me/" title="http://www.wangxiaofeng.me/" rel="noopener" target="_blank">不许联想</a>
-        </li>
       
-        <li class="links-of-blogroll-item">
-          <a href="https://idx0.dev/" title="https://idx0.dev/" rel="noopener" target="_blank">思维</a>
-        </li>
-      
-        <li class="links-of-blogroll-item">
-          <a href="https://128bit.top" title="https://128bit.top" rel="noopener" target="_blank">Dixeran</a>
-        </li>
-      
-        <li class="links-of-blogroll-item">
-          <a href="http://icontofig.leanote.com/" title="http://icontofig.leanote.com/" rel="noopener" target="_blank">Icontofig</a>
-        </li>
-      
-        <li class="links-of-blogroll-item">
-          <a href="https://www.nekomio.com" title="https://www.nekomio.com" rel="noopener" target="_blank">NekoMio</a>
-        </li>
-      
-        <li class="links-of-blogroll-item">
-          <a href="https://al0ha0e.github.io" title="https://al0ha0e.github.io" rel="noopener" target="_blank">Al0ha0e</a>
-        </li>
-      
-        <li class="links-of-blogroll-item">
-          <a href="http://gaokeyong.coding.me" title="http://gaokeyong.coding.me" rel="noopener" target="_blank">Keyong</a>
-        </li>
-      
-        <li class="links-of-blogroll-item">
-          <a href="http://poeroz.cn/" title="http://poeroz.cn/" rel="noopener" target="_blank">Poeroz</a>
-        </li>
-      
-    </ul>
-  </div>
+<footer class="page-footer reveal fs12"><hr><div class="text"><p>本博客所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议，转载请注明出处。</p>
+<p>本站由 <a href="https://blog.crocodilezs.top/">@CrocodileZS</a> 创建，使用 <a target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.7.0" title="v1.7.0">Stellar</a> 作为主题。</p>
+</div></footer>
 
-        </div>
-      </div>
-      <!--noindex-->
-        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-            
-            
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-迁移学习的基本概念"><span class="nav-text">1.迁移学习的基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-迁移学习基本概念"><span class="nav-text">1.2 迁移学习基本概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-为什么要迁移学习"><span class="nav-text">1.3 为什么要迁移学习</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-4-与已有概念的区别和联系"><span class="nav-text">1.4 与已有概念的区别和联系</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-迁移学习和机器学习"><span class="nav-text">1.迁移学习和机器学习</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-迁移学习和多任务学习"><span class="nav-text">2.迁移学习和多任务学习</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-迁移学习和终身学习"><span class="nav-text">3.迁移学习和终身学习</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-迁移学习和领域自适应"><span class="nav-text">4.迁移学习和领域自适应</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-迁移学习和增量学习"><span class="nav-text">5.迁移学习和增量学习</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-迁移学习和自我学习"><span class="nav-text">6.迁移学习和自我学习</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-迁移学习和协方差漂移"><span class="nav-text">7.迁移学习和协方差漂移</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-5-负迁移（“东施效颦”）"><span class="nav-text">1.5 负迁移（“东施效颦”）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-迁移学习的研究领域"><span class="nav-text">2.迁移学习的研究领域</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-按目标域标签分"><span class="nav-text">2.1 按目标域标签分</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-按学习方法分类"><span class="nav-text">2.2 按学习方法分类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-按特征分类"><span class="nav-text">2.3 按特征分类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-4-按离线与在线形式分"><span class="nav-text">2.4 按离线与在线形式分</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-迁移学习的应用"><span class="nav-text">3.迁移学习的应用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-计算机视觉"><span class="nav-text">3.1 计算机视觉</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-文本分类"><span class="nav-text">3.2 文本分类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-时间序列"><span class="nav-text">3.3 时间序列</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-4-医疗健康"><span class="nav-text">3.4 医疗健康</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-基础知识"><span class="nav-text">4.基础知识</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1迁移学习的问题形式化"><span class="nav-text">4.1迁移学习的问题形式化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-1-领域"><span class="nav-text">4.1.1 领域</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-2-任务"><span class="nav-text">4.1.2 任务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-3-迁移学习"><span class="nav-text">4.1.3 迁移学习</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-总体思路"><span class="nav-text">4.2 总体思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-3-度量准则"><span class="nav-text">4.3 度量准则</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-1-常见的几种距离"><span class="nav-text">4.3.1 常见的几种距离</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-2-相似度"><span class="nav-text">4.3.2 相似度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-3-KL散度与JS距离"><span class="nav-text">4.3.3 KL散度与JS距离</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-4-最大均值差异MMD-Maximun-mean-discrepancy"><span class="nav-text">4.3.4 最大均值差异MMD(Maximun mean discrepancy)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-5-Principle-Angle"><span class="nav-text">4.3.5 Principle Angle</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-6-A-distance"><span class="nav-text">4.3.6 A-distance</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-7-Hilbert-Schmidt-Independence-Criterion"><span class="nav-text">4.3.7 Hilbert-Schmidt Independence Criterion</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-8-Wasserstein-Distance"><span class="nav-text">4.3.8 Wasserstein Distance</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-4-迁移学习的理论保证"><span class="nav-text">4.4 迁移学习的理论保证</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-迁移学习的基本方法"><span class="nav-text">5.迁移学习的基本方法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#5-1-基于样本的迁移学习方法-Instance-based-Transfer-Learning"><span class="nav-text">5.1 基于样本的迁移学习方法(Instance based Transfer Learning)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-2-基于特征迁移"><span class="nav-text">5.2 基于特征迁移</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-3-基于模型学习"><span class="nav-text">5.3 基于模型学习</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-4-基于关系迁移"><span class="nav-text">5.4 基于关系迁移</span></a></li></ol></li></ol></div>
-            
-
-          </div>
-        </div>
-      <!--/noindex-->
-      
-
-    </div>
-  </aside>
-  <div id="sidebar-dimmer"></div>
-
-
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
-  <span class="with-love" id="animate">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">鰐魚先生</span>
+      <div class='float-panel mobile-only blur' style='display:none'>
+  <button type='button' class='sidebar-toggle mobile' onclick='sidebar.toggle()'>
+    <svg class="icon" style="width: 1em; height: 1em;vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="15301"><path d="M566.407 808.3c26.9-0.1 49.3-20.8 51.6-47.6-1.9-27.7-23.9-49.7-51.6-51.6h-412.6c-28.2-1.4-52.6 19.5-55.5 47.6 2.3 26.8 24.6 47.5 51.6 47.6h416.5v4z m309.3-249.9c26.9-0.1 49.3-20.8 51.6-47.6-2.2-26.8-24.6-47.5-51.6-47.6h-721.9c-27.7-2.8-52.5 17.4-55.3 45.1-0.1 0.8-0.1 1.7-0.2 2.5 0.9 27.2 23.6 48.5 50.7 47.6H875.707z m-103.1-245.9c26.9-0.1 49.3-20.8 51.6-47.6-0.4-28.3-23.2-51.1-51.5-51.6h-618.9c-29.5-1.1-54.3 21.9-55.5 51.4v0.2c1.4 27.8 25.2 49.2 53 47.8 0.8 0 1.7-0.1 2.5-0.2h618.8z" p-id="15302"></path><path d="M566.407 808.3c26.9-0.1 49.3-20.8 51.6-47.6-1.9-27.7-23.9-49.7-51.6-51.6h-412.6c-28.2-1.4-52.6 19.5-55.5 47.6 1.9 27.7 23.9 49.7 51.6 51.6h416.5z m309.3-249.9c26.9-0.1 49.3-20.8 51.6-47.6-2.2-26.8-24.6-47.5-51.6-47.6h-721.9c-27.7-2.8-52.5 17.4-55.3 45.1-0.1 0.8-0.1 1.7-0.2 2.5 0.9 27.2 23.6 48.5 50.7 47.6H875.707z m-103.1-245.9c26.9-0.1 49.3-20.8 51.6-47.6-0.4-28.3-23.2-51.1-51.5-51.6h-618.9c-29.5-1.1-54.3 21.9-55.5 51.4v0.2c1.4 27.8 25.2 49.2 53 47.8 0.8 0 1.7-0.1 2.5-0.2h618.8z" p-id="15303"></path></svg>
+  </button>
 </div>
 
-
-        
-<div class="busuanzi-count">
-  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-    <span class="post-meta-item-icon">
-      <i class="fa fa-user"></i>
-    </span>
-    <span class="site-uv" title="总访客量">
-      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
-    </span>
-  
-    <span class="post-meta-divider">|</span>
-  
-    <span class="post-meta-item-icon">
-      <i class="fa fa-eye"></i>
-    </span>
-    <span class="site-pv" title="总访问量">
-      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
-    </span>
-  
-</div>
-
-
-
-
-
-
-
-
-        
-      </div>
-    </footer>
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-          <span id="scrollpercent"><span>0</span>%</span>
-        
-      </div>
-
-    
-  
-  <div id="needsharebutton-float">
-    <span class="btn">
-      <i class="fa fa-share-alt" aria-hidden="true"></i>
-    </span>
+    </div>
   </div>
-<script src="/lib/needsharebutton/needsharebutton.js"></script>
-<script>
-    pbOptions = {};
-      pbOptions.iconStyle = "default";
-    
-      pbOptions.boxForm = "horizontal";
-    
-      pbOptions.position = "bottomCenter";
-    
-      pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
-    
-    new needShareButton('#needsharebutton-postbottom', pbOptions);
-    flOptions = {};
-      flOptions.iconStyle = "box";
-    
-      flOptions.boxForm = "horizontal";
-    
-      flOptions.position = "middleRight";
-    
-      flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
-    
-    new needShareButton('#needsharebutton-float', flOptions);
-</script>
-
-
-  </div>
-
-  
-  <script src="/lib/jquery/index.js?v=3.4.1"></script>
-  <script src="/lib/fancybox/source/jquery.fancybox.pack.js"></script>
-  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-<script src="/js/utils.js?v=7.3.0"></script>
-  <script src="/js/motion.js?v=7.3.0"></script>
-
-
-  <script src="/js/schemes/muse.js?v=7.3.0"></script>
-
-
-<script src="/js/next-boot.js?v=7.3.0"></script>
-
-
-
-
-  
-  <script>
-    (function(){
-      var bp = document.createElement('script');
-      var curProtocol = window.location.protocol.split(':')[0];
-      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
-      var s = document.getElementsByTagName("script")[0];
-      s.parentNode.insertBefore(bp, s);
-    })();
-  </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-  
-    
-      <script type="text/x-mathjax-config">
-
-  MathJax.Hub.Config({
-    tex2jax: {
-      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
-      processEscapes: true,
-      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+  <div class='scripts'>
+    <script type="text/javascript">
+  stellar = {
+    // 懒加载 css https://github.com/filamentgroup/loadCSS
+    loadCSS: (href, before, media, attributes) => {
+      var doc = window.document;
+      var ss = doc.createElement("link");
+      var ref;
+      if (before) {
+        ref = before;
+      } else {
+        var refs = (doc.body || doc.getElementsByTagName("head")[0]).childNodes;
+        ref = refs[refs.length - 1];
+      }
+      var sheets = doc.styleSheets;
+      if (attributes) {
+        for (var attributeName in attributes) {
+          if (attributes.hasOwnProperty(attributeName)) {
+            ss.setAttribute(attributeName, attributes[attributeName]);
+          }
+        }
+      }
+      ss.rel = "stylesheet";
+      ss.href = href;
+      ss.media = "only x";
+      function ready(cb) {
+        if (doc.body) {
+          return cb();
+        }
+        setTimeout(function () {
+          ready(cb);
+        });
+      }
+      ready(function () {
+        ref.parentNode.insertBefore(ss, before ? ref : ref.nextSibling);
+      });
+      var onloadcssdefined = function (cb) {
+        var resolvedHref = ss.href;
+        var i = sheets.length;
+        while (i--) {
+          if (sheets[i].href === resolvedHref) {
+            return cb();
+          }
+        }
+        setTimeout(function () {
+          onloadcssdefined(cb);
+        });
+      };
+      function loadCB() {
+        if (ss.addEventListener) {
+          ss.removeEventListener("load", loadCB);
+        }
+        ss.media = media || "all";
+      }
+      if (ss.addEventListener) {
+        ss.addEventListener("load", loadCB);
+      }
+      ss.onloadcssdefined = onloadcssdefined;
+      onloadcssdefined(loadCB);
+      return ss;
     },
-    TeX: {
-      equationNumbers: {
-        autoNumber: 'AMS'
+
+    // 从 butterfly 和 volantis 获得灵感
+    loadScript: (src, opt) => new Promise((resolve, reject) => {
+      var script = document.createElement('script');
+      script.src = src;
+      if (opt) {
+        for (let key of Object.keys(opt)) {
+          script[key] = opt[key]
+        }
+      } else {
+        // 默认异步，如果需要同步，第二个参数传入 {} 即可
+        script.async = true
+      }
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    }),
+
+    // https://github.com/jerryc127/hexo-theme-butterfly
+    jQuery: (fn) => {
+      if (typeof jQuery === 'undefined') {
+        stellar.loadScript(stellar.plugins.jQuery).then(fn)
+      } else {
+        fn()
       }
     }
-  });
+  };
+  stellar.github = 'https://github.com/xaoxuu/hexo-theme-stellar/tree/1.7.0';
+  stellar.config = {
+    date_suffix: {
+      just: '刚刚',
+      min: '分钟前',
+      hour: '小时前',
+      day: '天前',
+      month: '个月前',
+    },
+  };
 
-  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
-    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
-      if (data.display) {
-        var next = data.script.nextSibling;
-        while (next && next.nodeName.toLowerCase() === '#text') {
-          next = next.nextSibling;
-        }
-        if (next && next.nodeName.toLowerCase() === 'br') {
-          next.parentNode.removeChild(next);
+  // required plugins (only load if needs)
+  stellar.plugins = {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js',
+    sitesjs: '/js/plugins/sites.js',
+    friendsjs: '/js/plugins/friends.js',
+  };
+
+  // optional plugins
+  if ('true' == 'true') {
+    stellar.plugins.lazyload = Object.assign({"enable":true,"js":"https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.3.1/dist/lazyload.min.js","transition":"blur"});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.swiper = Object.assign({"enable":true,"css":"https://unpkg.com/swiper@6/swiper-bundle.min.css","js":"https://unpkg.com/swiper@6/swiper-bundle.min.js"});
+  }
+  if ('' == 'true') {
+    stellar.plugins.scrollreveal = Object.assign({"enable":null,"js":"https://cdn.jsdelivr.net/npm/scrollreveal@4.0.9/dist/scrollreveal.min.js","distance":"8px","duration":500,"interval":100,"scale":1});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.preload = Object.assign({"enable":true,"service":"flying_pages","instant_page":"https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@4.1.2/js/instant_page.js","flying_pages":"https://cdn.jsdelivr.net/gh/gijo-varghese/flying-pages@2.1.2/flying-pages.min.js"});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.fancybox = Object.assign({"enable":true,"js":"https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js","css":"https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css","selector":".swiper-slide img"});
+  }
+  if ('false' == 'true') {
+    stellar.plugins.heti = Object.assign({"enable":false,"css":"https://unpkg.com/heti/umd/heti.min.css","js":"https://unpkg.com/heti/umd/heti-addon.min.js"});
+  }
+</script>
+
+<!-- required -->
+
+  
+<script src="/js/main.js" async></script>
+
+
+
+<!-- optional -->
+
+  <script>
+  function loadBeaudar() {
+    const els = document.querySelectorAll("#comments #beaudar");
+    if (els.length === 0) return;
+    els.forEach((el, i) => {
+      try {
+        el.innerHTML = '';
+      } catch (error) {
+        console.log(error);
+      }
+      var script = document.createElement('script');
+      script.src = 'https://beaudar.lipk.org/client.js';
+      script.async = true;
+      for (let key of Object.keys(el.attributes)) {
+        let attr = el.attributes[key];
+        if (['class', 'id'].includes(attr.name) === false) {
+          script.setAttribute(attr.name, attr.value);
         }
       }
+      el.appendChild(script);
     });
-  });
-
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for (i = 0; i < all.length; i += 1) {
-      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
-      if (element.nodeName.toLowerCase() == 'li') {
-        element = element.parentNode;
-      }
-      element.classList.add('has-jax');
-    }
+  }
+  window.addEventListener('DOMContentLoaded', (event) => {
+      loadBeaudar();
   });
 </script>
-<script>
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML', function() {
-    MathJax.Hub.Typeset();
-  }, window.MathJax);
-</script>
-
-    
-  
-
-  
-
-  
 
 
-  
-  <script src="/js/scrollspy.js?v=7.3.0"></script>
-<script src="/js/post-details.js?v=7.3.0"></script>
 
 
-    
+<!-- inject -->
 
-<script>
-NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', function() {
-  var GUEST = ['nick', 'mail', 'link'];
-  var guest = 'nick,mail,link';
-  guest = guest.split(',').filter(function(item) {
-    return GUEST.indexOf(item) > -1;
-  });
-  new Valine({
-    el: '#comments',
-    verify: false,
-    notify: false,
-    appId: '9VEOQepq1oDMG0XHxBOrKuwU-gzGzoHsz',
-    appKey: 'XVzSWQhACVUcrVzQDF0AJlb8',
-    placeholder: 'ヽ(✿ﾟ▽ﾟ)ノ',
-    avatar: 'zhouyuyang17@163.com',
-    meta: guest,
-    pageSize: '10' || 10,
-    visitor: false,
-    lang: 'zh-cn' || 'zh-cn',
-    path: location.pathname
-  });
-}, window.Valine);
-</script>
 
-  <script type="text/javascript" src="/lib/zclip/clipboard.min.js"></script>	
-<script type="text/javascript" src="/js/src/custom.js"></script>
+  </div>
 </body>
 </html>

@@ -1,342 +1,95 @@
 <!DOCTYPE html>
+<html lang='zh-CN'>
 
-
-
-
-
-<html class="theme-next muse use-motion" lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
-<meta name="generator" content="Hexo 3.9.0">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/rainbow.png?v=7.3.0">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/rainbow.png?v=7.3.0">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/rainbow.png?v=7.3.0">
-  <link rel="mask-icon" href="/images/rainbow.svg?v=7.3.0" color="#222">
-  <meta name="baidu-site-verification" content="MBR3SWgP01">
+  <meta name="generator" content="Hexo 5.4.2">
+  <meta charset="utf-8">
+  
 
-<link rel="stylesheet" href="/css/main.css?v=7.3.0">
+  <meta http-equiv='x-dns-prefetch-control' content='on' />
+  <link rel='dns-prefetch' href='https://cdn.jsdelivr.net'>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel='dns-prefetch' href='//unpkg.com'>
 
-<link rel="stylesheet" href="https://fonts.loli.net/css?family=Noto Serif SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
-<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
-  <link rel="stylesheet" href="/lib/fancybox/source/jquery.fancybox.css">
-  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
-  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
-  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2">
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="theme-color" content="#f8f8f8">
+  <title>30天自制操作系统（26） - 鳄鱼Crc2H0U</title>
 
+  
 
-<script id="hexo-configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Muse',
-    version: '7.3.0',
-    exturl: false,
-    sidebar: {"position":"left","display":"post","offset":12,"onmobile":true},
-    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
-    save_scroll: true,
-    copycode: {"enable":true,"show_result":true,"style":"flat"},
-    fancybox: true,
-    mediumzoom: false,
-    lazyload: false,
-    pangu: false,
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    },
-    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
-    path: 'search.xml',
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    translation: {
-      copy_button: '复制',
-      copy_success: '复制成功',
-      copy_failure: '复制失败'
-    }
-  };
-</script>
-
-  <meta name="description" content="DAY26_为窗口移动提速1. 提高窗口的移动速度(1)导致窗口移动速度慢的原因有很多，其中之一就是sheet_refreshmap的速度太慢。这个函数在sheet_slide中被调用了两次，如果能提高它的速度效果应该会很明显。 2. 提高窗口的移动速度(2)">
+  
+    <meta name="description" content="DAY26_为窗口移动提速1. 提高窗口的移动速度(1)导致窗口移动速度慢的原因有很多，其中之一就是sheet_refreshmap的速度太慢。这个函数在sheet_slide中被调用了两次，如果能提高它的速度效果应该会很明显。 2. 提高窗口的移动速度(2)">
 <meta property="og:type" content="article">
 <meta property="og:title" content="30天自制操作系统（26）">
-<meta property="og:url" content="https://blog.crocodilezs.top/201904/30天自制操作系统（26）/index.html">
-<meta property="og:site_name" content="鰐魚先生的水族館">
+<meta property="og:url" content="https://blog.crocodilezs.top/201904/30%E5%A4%A9%E8%87%AA%E5%88%B6%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%EF%BC%8826%EF%BC%89/index.html">
+<meta property="og:site_name" content="鳄鱼Crc2H0U">
 <meta property="og:description" content="DAY26_为窗口移动提速1. 提高窗口的移动速度(1)导致窗口移动速度慢的原因有很多，其中之一就是sheet_refreshmap的速度太慢。这个函数在sheet_slide中被调用了两次，如果能提高它的速度效果应该会很明显。 2. 提高窗口的移动速度(2)">
-<meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-09-27T10:16:26.907Z">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-04-28T13:31:50.000Z">
+<meta property="article:modified_time" content="2019-09-27T10:16:26.907Z">
+<meta property="article:author" content="CrocodileZS">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="30天自制操作系统（26）">
-<meta name="twitter:description" content="DAY26_为窗口移动提速1. 提高窗口的移动速度(1)导致窗口移动速度慢的原因有很多，其中之一就是sheet_refreshmap的速度太慢。这个函数在sheet_slide中被调用了两次，如果能提高它的速度效果应该会很明显。 2. 提高窗口的移动速度(2)">
-  <link rel="alternate" href="/atom.xml" title="鰐魚先生的水族館" type="application/atom+xml">
-  <link rel="canonical" href="https://blog.crocodilezs.top/201904/30天自制操作系统（26）/">
-
-
-<script id="page-configurations">
-  // https://hexo.io/docs/variables.html
-  CONFIG.page = {
-    sidebar: "",
-    isHome: false,
-    isPost: true,
-    isPage: false,
-    isArchive: false
-  };
-</script>
-
-  <title>30天自制操作系统（26） | 鰐魚先生的水族館</title>
+  
   
 
+  <!-- feed -->
+  
+    <link rel="alternate" href="/atom.xml" title="鳄鱼Crc2H0U" type="application/atom+xml">
+  
 
+  
+    
+<link rel="stylesheet" href="/css/main.css">
 
+  
 
+  
 
-
-
-
-  <noscript>
-  <style>
-  .use-motion .motion-element,
-  .use-motion .brand,
-  .use-motion .menu-item,
-  .sidebar-inner,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-title { opacity: initial; }
-
-  .use-motion .logo,
-  .use-motion .site-title,
-  .use-motion .site-subtitle {
-    opacity: initial;
-    top: initial;
-  }
-
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
-  </style>
-</noscript>
-
+  
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+<body>
+  
 
-  <div class="container sidebar-position-left">
-    <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta">
 
-    <div class="custom-logo-site-title">
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">鰐魚先生的水族館</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
-    </div>
-        <p class="site-subtitle">言念君子，溫其如玉。</p>
-      
-  </div>
 
-  <div class="site-nav-toggle">
-    <button aria-label="切换导航栏">
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
-  </div>
+  <div class='l_body' id='start'>
+    <aside class='l_left' layout='post'>
+    
+
+
+<header class="header">
+
+<div class="logo-wrap"><a class="avatar" href="/about/"><div class="bg" style="opacity:0;background-image:url(https://cdn.jsdelivr.net/gh/cdn-x/placeholder@1.0.2/avatar/round/rainbow64@3x.webp);"></div><img no-lazy class="avatar" src="/media/avatar.png" onerror="javascript:this.classList.add('error');this.src='https://cdn.jsdelivr.net/gh/cdn-x/placeholder@1.0.1/image/2659360.svg';"></a><a class="title" href="/"><div class="main">鳄鱼Crc2H0U</div><div class="sub cap">野生鳄鱼的自留地</div></a></div>
+<nav class="menu dis-select"><a class="nav-item active" href="/">文章</a><a class="nav-item" href="/about/">关于</a><a class="nav-item" href="/timeline/">时间轴</a></nav></header>
+
+<div class="widgets">
+
+<div class="widget-wrap single" id="toc"><div class="widget-header cap dis-select"><span class="name">本文目录</span></div><div class="widget-body fs14"><div class="doc-tree active"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E6%8F%90%E9%AB%98%E7%AA%97%E5%8F%A3%E7%9A%84%E7%A7%BB%E5%8A%A8%E9%80%9F%E5%BA%A6-1"><span class="toc-text">1. 提高窗口的移动速度(1)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E6%8F%90%E9%AB%98%E7%AA%97%E5%8F%A3%E7%9A%84%E7%A7%BB%E5%8A%A8%E9%80%9F%E5%BA%A6-2"><span class="toc-text">2. 提高窗口的移动速度(2)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E6%8F%90%E9%AB%98%E7%AA%97%E5%8F%A3%E7%A7%BB%E5%8A%A8%E9%80%9F%E5%BA%A6-3"><span class="toc-text">3.提高窗口移动速度(3)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E6%8F%90%E9%AB%98%E7%AA%97%E5%8F%A3%E7%A7%BB%E5%8A%A8%E9%80%9F%E5%BA%A6-4"><span class="toc-text">4.提高窗口移动速度(4)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E5%90%AF%E5%8A%A8%E6%97%B6%E5%8F%AA%E6%89%93%E5%BC%80%E4%B8%80%E4%B8%AA%E5%91%BD%E4%BB%A4%E8%A1%8C%E7%AA%97%E5%8F%A3"><span class="toc-text">5.启动时只打开一个命令行窗口</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-%E5%A2%9E%E5%8A%A0%E6%9B%B4%E5%A4%9A%E7%9A%84%E5%91%BD%E4%BB%A4%E8%A1%8C%E7%AA%97%E5%8F%A3"><span class="toc-text">6.增加更多的命令行窗口</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-%E5%85%B3%E9%97%AD%E5%91%BD%E4%BB%A4%E8%A1%8C%E7%AA%97%E5%8F%A3-1"><span class="toc-text">7. 关闭命令行窗口(1)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-%E5%85%B3%E9%97%AD%E5%91%BD%E4%BB%A4%E8%A1%8C%E7%AA%97%E5%8F%A3-2"><span class="toc-text">8. 关闭命令行窗口(2)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-start%E5%91%BD%E4%BB%A4"><span class="toc-text">9.start命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-ncst%E5%91%BD%E4%BB%A4"><span class="toc-text">10. ncst命令</span></a></li></ol></div></div></div>
+
+
 </div>
 
 
-<nav class="site-nav">
-  
-  <ul id="menu" class="menu">
+    </aside>
+    <div class='l_main'>
       
-      
-      
-        
-        <li class="menu-item menu-item-home">
-      
-    
-
-    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
-
-  </li>
-      
-      
-      
-        
-        <li class="menu-item menu-item-categories">
-      
-    
-
-    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
-
-  </li>
-      
-      
-      
-        
-        <li class="menu-item menu-item-tags">
-      
-    
-
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
-
-  </li>
-      
-      
-      
-        
-        <li class="menu-item menu-item-about">
-      
-    
-
-    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>关于</a>
-
-  </li>
-      
-      
-      
-        
-        <li class="menu-item menu-item-英文博客">
-      
-    
-
-    <a href="/eysblog_en/" rel="section"><i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>英文博客</a>
-
-  </li>
-  </ul>
-
-    
-
-</nav>
-</div>
-    </header>
-
-    
-
-
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          <div id="content" class="content page-post-detail">
-            
-
-  <div id="posts" class="posts-expand">
-    
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://blog.crocodilezs.top/201904/30天自制操作系统（26）/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="CrocodileZS">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/tom.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="鰐魚先生的水族館">
-    </span>
-      <header class="post-header">
-
-        
-          <h1 class="post-title" itemprop="name headline">30天自制操作系统（26）
-
-            
-          </h1>
-        
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              
-                
-              
-
-              <time title="创建时间：2019-04-28 21:31:50" itemprop="dateCreated datePublished" datetime="2019-04-28T21:31:50+08:00">2019-04-28</time>
-            </span>
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/操作系统/" itemprop="url" rel="index"><span itemprop="name">操作系统</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-        
-      
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/201904/30天自制操作系统（26）/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/201904/30天自制操作系统（26）/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-          
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">本文字数：</span>
-              
-              <span>1.8k</span>
-            </span>
-          
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              
-              <span>3 分钟</span>
-            </span>
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="DAY26-为窗口移动提速"><a href="#DAY26-为窗口移动提速" class="headerlink" title="DAY26_为窗口移动提速"></a>DAY26_为窗口移动提速</h1><h2 id="1-提高窗口的移动速度-1"><a href="#1-提高窗口的移动速度-1" class="headerlink" title="1. 提高窗口的移动速度(1)"></a>1. 提高窗口的移动速度(1)</h2><p>导致窗口移动速度慢的原因有很多，其中之一就是sheet_refreshmap的速度太慢。这个函数在<br>sheet_slide中被调用了两次，如果能提高它的速度效果应该会很明显。</p>
-<h2 id="2-提高窗口的移动速度-2"><a href="#2-提高窗口的移动速度-2" class="headerlink" title="2. 提高窗口的移动速度(2)"></a>2. 提高窗口的移动速度(2)</h2><a id="more"></a>
-<p>sheet_refreshmap中有这样一句<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">map[vy * ctl-&gt;xsize + vx] = sid;</span><br></pre></td></tr></table></figure></p>
+
+<div class="bread-nav fs12"><div id="breadcrumb"><a class="cap breadcrumb" href="/">主页</a><span class="sep"></span><a class="cap breadcrumb" href="/">文章</a><span class="sep"></span><a class="cap breadcrumb-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a></div><div id="post-meta">发布于&nbsp;<time datetime="2019-04-28T13:31:50.000Z">2019-04-28</time></div></div>
+
+<article class='content md post'>
+<h1 class="article-title"><span>30天自制操作系统（26）</span></h1>
+<h1 id="DAY26-为窗口移动提速"><a href="#DAY26-为窗口移动提速" class="headerlink" title="DAY26_为窗口移动提速"></a>DAY26_为窗口移动提速</h1><h2 id="1-提高窗口的移动速度-1"><a href="#1-提高窗口的移动速度-1" class="headerlink" title="1. 提高窗口的移动速度(1)"></a>1. 提高窗口的移动速度(1)</h2><p>导致窗口移动速度慢的原因有很多，其中之一就是sheet_refreshmap的速度太慢。这个函数在<br>sheet_slide中被调用了两次，如果能提高它的速度效果应该会很明显。</p>
+<h2 id="2-提高窗口的移动速度-2"><a href="#2-提高窗口的移动速度-2" class="headerlink" title="2. 提高窗口的移动速度(2)"></a>2. 提高窗口的移动速度(2)</h2><span id="more"></span>
+<p>sheet_refreshmap中有这样一句<br><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">map[vy * ctl-&gt;xsize + vx] = sid;</span><br></pre></td></tr></table></figure></p>
 <p>在汇编语言中，如果我们用16位寄存器代替8位寄存器来执行MOV指令的话，相邻的地址中也会同时写入数据，而如果用32位寄存器，仅1条指令就可以同时向相邻的4个地址写入值了。<br>更重要的是，即便是同时写入4个字节的值，只要指定地址是4的整数倍，指令的执行速度就<br>和1个字节的MOV是相同的。也就是说，速度说不定能提高到原来的4倍！</p>
 <h2 id="3-提高窗口移动速度-3"><a href="#3-提高窗口移动速度-3" class="headerlink" title="3.提高窗口移动速度(3)"></a>3.提高窗口移动速度(3)</h2><p>于是我们首先想到了sheet_refreshsub，窗口移动的时候也调用了这个函数，因此通过修改它可以提高窗口移动的速度，此外其他一些地方也会调用这个函数。</p>
 <h2 id="4-提高窗口移动速度-4"><a href="#4-提高窗口移动速度-4" class="headerlink" title="4.提高窗口移动速度(4)"></a>4.提高窗口移动速度(4)</h2><p>为什么明明已经放开了鼠标键，窗口却还在挪动呢？这是因为伴随图层移动所进行的绘图操<br>作非常消耗时间，导致系统来不及处理FIFO中的鼠标移动数据。那么我们可以在接收到鼠标移动数据后不立即进行绘图操作，但如果一直不绘图的话鼠标和窗口就静止不动了，那不就没意义了吗？我们可以等FIFO为空时再进行绘图操作嘛。</p>
@@ -345,539 +98,225 @@
 <p>在Windows中，即便不在命令行中输入命令，只通过鼠标的操作也可以打开新的命令行窗口。不过鼠标点击开始菜单这种方式实现起来太难，我们还是做快捷键吧。</p>
 <h2 id="6-增加更多的命令行窗口"><a href="#6-增加更多的命令行窗口" class="headerlink" title="6.增加更多的命令行窗口"></a>6.增加更多的命令行窗口</h2><h2 id="7-关闭命令行窗口-1"><a href="#7-关闭命令行窗口-1" class="headerlink" title="7. 关闭命令行窗口(1)"></a>7. 关闭命令行窗口(1)</h2><p>在Windows的命令行窗口中，输入“exit”命令就可以关闭当前窗口.<br>在关闭一个命令行窗口时系统需要做些什么事呢？首先需要将创建该窗口时所占用的内存<br>空间全部释放出来，然后还需要释放窗口的图层和任务结构。咦，问题来了，在创建任务时我们为命令行窗口准备了专用的栈，却没有将这个栈的地址保存起来，这样的话就无法执行释放操作了。怎么办呢？我们可以在TASK结构中添加一个cons_stack成员，用来保存栈的地址。</p>
 <h2 id="8-关闭命令行窗口-2"><a href="#8-关闭命令行窗口-2" class="headerlink" title="8. 关闭命令行窗口(2)"></a>8. 关闭命令行窗口(2)</h2><p>实现用鼠标关闭命令行窗口的功能。当鼠标点击窗口上的“×”按钮时，向命令行窗口任务发送4这个数据，命令行窗口接收到这个数据后则开始执行exit命令的程序。</p>
-<h2 id="9-start命令"><a href="#9-start命令" class="headerlink" title="9.start命令"></a>9.start命令</h2><p>Windows的命令行窗口里有一个start命令，它的功能是可以打开一个新的命令行窗口并运行指定的应用程序。<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">void cmd_start(struct CONSOLE *cons, char *cmdline, int memtotal) </span><br><span class="line">&#123; </span><br><span class="line"> struct SHTCTL *shtctl = (struct SHTCTL *) *((int *) 0x0fe4); </span><br><span class="line"> struct SHEET *sht = open_console(shtctl, memtotal); </span><br><span class="line"> struct FIFO32 *fifo = &amp;sht-&gt;task-&gt;fifo; </span><br><span class="line"> int i; </span><br><span class="line"> sheet_slide(sht, 32, 4); </span><br><span class="line"> sheet_updown(sht, shtctl-&gt;top); </span><br><span class="line"> /*将命令行输入的字符串逐字复制到新的命令行窗口中*/ </span><br><span class="line"> for (i = 6; cmdline[i] != 0; i++) &#123; </span><br><span class="line"> fifo32_put(fifo, cmdline[i] + 256); </span><br><span class="line"> &#125; </span><br><span class="line"> fifo32_put(fifo, 10 + 256); /*回车键*/ </span><br><span class="line"> cons_newline(cons); </span><br><span class="line"> return; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="9-start命令"><a href="#9-start命令" class="headerlink" title="9.start命令"></a>9.start命令</h2><p>Windows的命令行窗口里有一个start命令，它的功能是可以打开一个新的命令行窗口并运行指定的应用程序。<br><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">void cmd_start(struct CONSOLE *cons, char *cmdline, int memtotal) </span><br><span class="line">&#123; </span><br><span class="line"> struct SHTCTL *shtctl = (struct SHTCTL *) *((int *) 0x0fe4); </span><br><span class="line"> struct SHEET *sht = open_console(shtctl, memtotal); </span><br><span class="line"> struct FIFO32 *fifo = &amp;sht-&gt;task-&gt;fifo; </span><br><span class="line"> int i; </span><br><span class="line"> sheet_slide(sht, 32, 4); </span><br><span class="line"> sheet_updown(sht, shtctl-&gt;top); </span><br><span class="line"> /*将命令行输入的字符串逐字复制到新的命令行窗口中*/ </span><br><span class="line"> for (i = 6; cmdline[i] != 0; i++) &#123; </span><br><span class="line"> fifo32_put(fifo, cmdline[i] + 256); </span><br><span class="line"> &#125; </span><br><span class="line"> fifo32_put(fifo, 10 + 256); /*回车键*/ </span><br><span class="line"> cons_newline(cons); </span><br><span class="line"> return; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h2 id="10-ncst命令"><a href="#10-ncst命令" class="headerlink" title="10. ncst命令"></a>10. ncst命令</h2><p>用start命令启动应用程序看起来很不错，但如果运行color这样的程序的话，我们并不希望真的新开一个命令行窗口出来，反倒是没有这个多余的窗口比较好。那么下面我们就来做一个不打开新命令行窗口的start命令吧，给它起个名字，叫做“no console start”，简称ncst命令。</p>
 
+
+<div class="article-footer reveal fs14"><section id="license"><div class="header"><span>许可协议</span></div><div class="body"><p>本文采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">署名-非商业性使用-相同方式共享 4.0 国际</a> 许可协议，转载请注明出处。</p>
+</div></section></div>
+
+</article>
+
+<div class="related-wrap reveal" id="read-next"><section class="header cap theme"><span>接下来阅读</span></section><section class="body fs14"><a id="next" href="/201904/30%E5%A4%A9%E8%87%AA%E5%88%B6%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%EF%BC%8825%EF%BC%89/">30天自制操作系统（25）<span class="note">较早</span></a><div class="line"></div><a id="prev" href="/201908/Git%E6%95%99%E7%A8%8B/">Git教程——分布式版本控制系统<span class="note">较新</span></a></section></div>
+
+
+
+
+
+
+  <div class='related-wrap md reveal' id="comments">
+    <div class='cmt-title cap theme'>
+      快来参与讨论吧
     </div>
-
-    
-
-    
-    
-    
+    <div class='cmt-body beaudar'>
       
 
-        
-      
+<svg class="loading" style="vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2709"><path d="M832 512c0-176-144-320-320-320V128c211.2 0 384 172.8 384 384h-64zM192 512c0 176 144 320 320 320v64C300.8 896 128 723.2 128 512h64z" p-id="2710"></path></svg>
 
-      <footer class="post-footer">
+<div id="beaudar" repo="CrocodileZS/blog-comments" issue-term="pathname" theme="preferred-color-scheme" input-position="top" comment-order="desc" loading="false" branch="main"></div>
 
-        
-  <div class="post-widgets">
-    <div class="social-share">
-      
-      
-        <div id="needsharebutton-postbottom">
-          <span class="btn">
-            <i class="fa fa-share-alt" aria-hidden="true"></i>
-          </span>
-        </div>
-      
-    </div>
-  
-  </div>
-
-          <div class="post-nav">
-            <div class="post-nav-next post-nav-item">
-              
-                <a href="/201904/30天自制操作系统（25）/" rel="next" title="30天自制操作系统（25）">
-                  <i class="fa fa-chevron-left"></i> 30天自制操作系统（25）
-                </a>
-              
-            </div>
-
-            <span class="post-nav-divider"></span>
-
-            <div class="post-nav-prev post-nav-item">
-              
-                <a href="/201908/Git教程/" rel="prev" title="Git教程——分布式版本控制系统">
-                  Git教程——分布式版本控制系统 <i class="fa fa-chevron-right"></i>
-                </a>
-              
-            </div>
-          </div>
-        
-      </footer>
-    
-  </div>
-  
-  
-  
-  </article>
-
-  </div>
-
-
-          </div>
-          
-    
-    <div class="comments" id="comments"></div>
-  
-
-        </div>
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
     </div>
   </div>
 
-  <aside id="sidebar" class="sidebar">
-    <div class="sidebar-inner">
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-overview">
-
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image"
-      src="/images/tom.jpg"
-      alt="CrocodileZS">
-  <p class="site-author-name" itemprop="name">CrocodileZS</p>
-  <div class="site-description motion-element" itemprop="description"></div>
-</div>
-  <nav class="site-state motion-element">
-      <div class="site-state-item site-state-posts">
-        
-          <a href="/archives">
-        
-          <span class="site-state-item-count">71</span>
-          <span class="site-state-item-name">日志</span>
-        </a>
-      </div>
-    
-      
-      
-      <div class="site-state-item site-state-categories">
-        
-          
-            <a href="/categories/">
-          
-        
-        
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-        <span class="site-state-item-count">16</span>
-        <span class="site-state-item-name">分类</span>
-        </a>
-      </div>
-    
-      
-      
-      <div class="site-state-item site-state-tags">
-        
-          
-            <a href="/tags/">
-          
-        
-        
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-        <span class="site-state-item-count">40</span>
-        <span class="site-state-item-name">标签</span>
-        </a>
-      </div>
-    
-  </nav>
-  <div class="feed-link motion-element">
-    <a href="/atom.xml" rel="alternate">
-      <i class="fa fa-rss"></i>RSS
-    </a>
-  </div>
-  <div class="links-of-author motion-element">
-      <span class="links-of-author-item">
-      
-      
-        
-      
-      
-        
-      
-        <a href="mailto:ammo@bupt.edu.cn" title="E-Mail &rarr; mailto:ammo@bupt.edu.cn" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
-      </span>
-    
-      <span class="links-of-author-item">
-      
-      
-        
-      
-      
-        
-      
-        <a href="https://instagram.com/crocodile_zs" title="Instagram &rarr; https://instagram.com/crocodile_zs" rel="noopener" target="_blank"><i class="fa fa-fw fa-instagram"></i>Instagram</a>
-      </span>
-    
-  </div>
 
 
-  <div class="links-of-blogroll motion-element links-of-blogroll-block">
-    <div class="links-of-blogroll-title">
-      <i class="fa  fa-fw fa-link"></i>
-      Links
-    </div>
-    <ul class="links-of-blogroll-list">
-        <li class="links-of-blogroll-item">
-          <a href="http://www.wangxiaofeng.me/" title="http://www.wangxiaofeng.me/" rel="noopener" target="_blank">不许联想</a>
-        </li>
       
-        <li class="links-of-blogroll-item">
-          <a href="https://idx0.dev/" title="https://idx0.dev/" rel="noopener" target="_blank">思维</a>
-        </li>
-      
-        <li class="links-of-blogroll-item">
-          <a href="https://128bit.top" title="https://128bit.top" rel="noopener" target="_blank">Dixeran</a>
-        </li>
-      
-        <li class="links-of-blogroll-item">
-          <a href="http://icontofig.leanote.com/" title="http://icontofig.leanote.com/" rel="noopener" target="_blank">Icontofig</a>
-        </li>
-      
-        <li class="links-of-blogroll-item">
-          <a href="https://www.nekomio.com" title="https://www.nekomio.com" rel="noopener" target="_blank">NekoMio</a>
-        </li>
-      
-        <li class="links-of-blogroll-item">
-          <a href="https://al0ha0e.github.io" title="https://al0ha0e.github.io" rel="noopener" target="_blank">Al0ha0e</a>
-        </li>
-      
-        <li class="links-of-blogroll-item">
-          <a href="http://gaokeyong.coding.me" title="http://gaokeyong.coding.me" rel="noopener" target="_blank">Keyong</a>
-        </li>
-      
-        <li class="links-of-blogroll-item">
-          <a href="http://poeroz.cn/" title="http://poeroz.cn/" rel="noopener" target="_blank">Poeroz</a>
-        </li>
-      
-    </ul>
-  </div>
+<footer class="page-footer reveal fs12"><hr><div class="text"><p>本博客所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议，转载请注明出处。</p>
+<p>本站由 <a href="https://blog.crocodilezs.top/">@CrocodileZS</a> 创建，使用 <a target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.7.0" title="v1.7.0">Stellar</a> 作为主题。</p>
+</div></footer>
 
-        </div>
-      </div>
-      <!--noindex-->
-        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-            
-            
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#DAY26-为窗口移动提速"><span class="nav-text">DAY26_为窗口移动提速</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-提高窗口的移动速度-1"><span class="nav-text">1. 提高窗口的移动速度(1)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-提高窗口的移动速度-2"><span class="nav-text">2. 提高窗口的移动速度(2)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-提高窗口移动速度-3"><span class="nav-text">3.提高窗口移动速度(3)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-提高窗口移动速度-4"><span class="nav-text">4.提高窗口移动速度(4)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-启动时只打开一个命令行窗口"><span class="nav-text">5.启动时只打开一个命令行窗口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-增加更多的命令行窗口"><span class="nav-text">6.增加更多的命令行窗口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-关闭命令行窗口-1"><span class="nav-text">7. 关闭命令行窗口(1)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-关闭命令行窗口-2"><span class="nav-text">8. 关闭命令行窗口(2)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-start命令"><span class="nav-text">9.start命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-ncst命令"><span class="nav-text">10. ncst命令</span></a></li></ol></li></ol></div>
-            
-
-          </div>
-        </div>
-      <!--/noindex-->
-      
-
-    </div>
-  </aside>
-  <div id="sidebar-dimmer"></div>
-
-
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
-  <span class="with-love" id="animate">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">鰐魚先生</span>
+      <div class='float-panel mobile-only blur' style='display:none'>
+  <button type='button' class='sidebar-toggle mobile' onclick='sidebar.toggle()'>
+    <svg class="icon" style="width: 1em; height: 1em;vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="15301"><path d="M566.407 808.3c26.9-0.1 49.3-20.8 51.6-47.6-1.9-27.7-23.9-49.7-51.6-51.6h-412.6c-28.2-1.4-52.6 19.5-55.5 47.6 2.3 26.8 24.6 47.5 51.6 47.6h416.5v4z m309.3-249.9c26.9-0.1 49.3-20.8 51.6-47.6-2.2-26.8-24.6-47.5-51.6-47.6h-721.9c-27.7-2.8-52.5 17.4-55.3 45.1-0.1 0.8-0.1 1.7-0.2 2.5 0.9 27.2 23.6 48.5 50.7 47.6H875.707z m-103.1-245.9c26.9-0.1 49.3-20.8 51.6-47.6-0.4-28.3-23.2-51.1-51.5-51.6h-618.9c-29.5-1.1-54.3 21.9-55.5 51.4v0.2c1.4 27.8 25.2 49.2 53 47.8 0.8 0 1.7-0.1 2.5-0.2h618.8z" p-id="15302"></path><path d="M566.407 808.3c26.9-0.1 49.3-20.8 51.6-47.6-1.9-27.7-23.9-49.7-51.6-51.6h-412.6c-28.2-1.4-52.6 19.5-55.5 47.6 1.9 27.7 23.9 49.7 51.6 51.6h416.5z m309.3-249.9c26.9-0.1 49.3-20.8 51.6-47.6-2.2-26.8-24.6-47.5-51.6-47.6h-721.9c-27.7-2.8-52.5 17.4-55.3 45.1-0.1 0.8-0.1 1.7-0.2 2.5 0.9 27.2 23.6 48.5 50.7 47.6H875.707z m-103.1-245.9c26.9-0.1 49.3-20.8 51.6-47.6-0.4-28.3-23.2-51.1-51.5-51.6h-618.9c-29.5-1.1-54.3 21.9-55.5 51.4v0.2c1.4 27.8 25.2 49.2 53 47.8 0.8 0 1.7-0.1 2.5-0.2h618.8z" p-id="15303"></path></svg>
+  </button>
 </div>
 
-
-        
-<div class="busuanzi-count">
-  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-    <span class="post-meta-item-icon">
-      <i class="fa fa-user"></i>
-    </span>
-    <span class="site-uv" title="总访客量">
-      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
-    </span>
-  
-    <span class="post-meta-divider">|</span>
-  
-    <span class="post-meta-item-icon">
-      <i class="fa fa-eye"></i>
-    </span>
-    <span class="site-pv" title="总访问量">
-      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
-    </span>
-  
-</div>
-
-
-
-
-
-
-
-
-        
-      </div>
-    </footer>
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-          <span id="scrollpercent"><span>0</span>%</span>
-        
-      </div>
-
-    
-  
-  <div id="needsharebutton-float">
-    <span class="btn">
-      <i class="fa fa-share-alt" aria-hidden="true"></i>
-    </span>
+    </div>
   </div>
-<script src="/lib/needsharebutton/needsharebutton.js"></script>
-<script>
-    pbOptions = {};
-      pbOptions.iconStyle = "default";
-    
-      pbOptions.boxForm = "horizontal";
-    
-      pbOptions.position = "bottomCenter";
-    
-      pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
-    
-    new needShareButton('#needsharebutton-postbottom', pbOptions);
-    flOptions = {};
-      flOptions.iconStyle = "box";
-    
-      flOptions.boxForm = "horizontal";
-    
-      flOptions.position = "middleRight";
-    
-      flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
-    
-    new needShareButton('#needsharebutton-float', flOptions);
+  <div class='scripts'>
+    <script type="text/javascript">
+  stellar = {
+    // 懒加载 css https://github.com/filamentgroup/loadCSS
+    loadCSS: (href, before, media, attributes) => {
+      var doc = window.document;
+      var ss = doc.createElement("link");
+      var ref;
+      if (before) {
+        ref = before;
+      } else {
+        var refs = (doc.body || doc.getElementsByTagName("head")[0]).childNodes;
+        ref = refs[refs.length - 1];
+      }
+      var sheets = doc.styleSheets;
+      if (attributes) {
+        for (var attributeName in attributes) {
+          if (attributes.hasOwnProperty(attributeName)) {
+            ss.setAttribute(attributeName, attributes[attributeName]);
+          }
+        }
+      }
+      ss.rel = "stylesheet";
+      ss.href = href;
+      ss.media = "only x";
+      function ready(cb) {
+        if (doc.body) {
+          return cb();
+        }
+        setTimeout(function () {
+          ready(cb);
+        });
+      }
+      ready(function () {
+        ref.parentNode.insertBefore(ss, before ? ref : ref.nextSibling);
+      });
+      var onloadcssdefined = function (cb) {
+        var resolvedHref = ss.href;
+        var i = sheets.length;
+        while (i--) {
+          if (sheets[i].href === resolvedHref) {
+            return cb();
+          }
+        }
+        setTimeout(function () {
+          onloadcssdefined(cb);
+        });
+      };
+      function loadCB() {
+        if (ss.addEventListener) {
+          ss.removeEventListener("load", loadCB);
+        }
+        ss.media = media || "all";
+      }
+      if (ss.addEventListener) {
+        ss.addEventListener("load", loadCB);
+      }
+      ss.onloadcssdefined = onloadcssdefined;
+      onloadcssdefined(loadCB);
+      return ss;
+    },
+
+    // 从 butterfly 和 volantis 获得灵感
+    loadScript: (src, opt) => new Promise((resolve, reject) => {
+      var script = document.createElement('script');
+      script.src = src;
+      if (opt) {
+        for (let key of Object.keys(opt)) {
+          script[key] = opt[key]
+        }
+      } else {
+        // 默认异步，如果需要同步，第二个参数传入 {} 即可
+        script.async = true
+      }
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    }),
+
+    // https://github.com/jerryc127/hexo-theme-butterfly
+    jQuery: (fn) => {
+      if (typeof jQuery === 'undefined') {
+        stellar.loadScript(stellar.plugins.jQuery).then(fn)
+      } else {
+        fn()
+      }
+    }
+  };
+  stellar.github = 'https://github.com/xaoxuu/hexo-theme-stellar/tree/1.7.0';
+  stellar.config = {
+    date_suffix: {
+      just: '刚刚',
+      min: '分钟前',
+      hour: '小时前',
+      day: '天前',
+      month: '个月前',
+    },
+  };
+
+  // required plugins (only load if needs)
+  stellar.plugins = {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js',
+    sitesjs: '/js/plugins/sites.js',
+    friendsjs: '/js/plugins/friends.js',
+  };
+
+  // optional plugins
+  if ('true' == 'true') {
+    stellar.plugins.lazyload = Object.assign({"enable":true,"js":"https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.3.1/dist/lazyload.min.js","transition":"blur"});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.swiper = Object.assign({"enable":true,"css":"https://unpkg.com/swiper@6/swiper-bundle.min.css","js":"https://unpkg.com/swiper@6/swiper-bundle.min.js"});
+  }
+  if ('' == 'true') {
+    stellar.plugins.scrollreveal = Object.assign({"enable":null,"js":"https://cdn.jsdelivr.net/npm/scrollreveal@4.0.9/dist/scrollreveal.min.js","distance":"8px","duration":500,"interval":100,"scale":1});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.preload = Object.assign({"enable":true,"service":"flying_pages","instant_page":"https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@4.1.2/js/instant_page.js","flying_pages":"https://cdn.jsdelivr.net/gh/gijo-varghese/flying-pages@2.1.2/flying-pages.min.js"});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.fancybox = Object.assign({"enable":true,"js":"https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js","css":"https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css","selector":".swiper-slide img"});
+  }
+  if ('false' == 'true') {
+    stellar.plugins.heti = Object.assign({"enable":false,"css":"https://unpkg.com/heti/umd/heti.min.css","js":"https://unpkg.com/heti/umd/heti-addon.min.js"});
+  }
 </script>
 
-
-  </div>
-
-  
-  <script src="/lib/jquery/index.js?v=3.4.1"></script>
-  <script src="/lib/fancybox/source/jquery.fancybox.pack.js"></script>
-  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-<script src="/js/utils.js?v=7.3.0"></script>
-  <script src="/js/motion.js?v=7.3.0"></script>
-
-
-  <script src="/js/schemes/muse.js?v=7.3.0"></script>
-
-
-<script src="/js/next-boot.js?v=7.3.0"></script>
-
-
-
+<!-- required -->
 
   
+<script src="/js/main.js" async></script>
+
+
+
+<!-- optional -->
+
   <script>
-    (function(){
-      var bp = document.createElement('script');
-      var curProtocol = window.location.protocol.split(':')[0];
-      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
-      var s = document.getElementsByTagName("script")[0];
-      s.parentNode.insertBefore(bp, s);
-    })();
-  </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-  
-
-  
-
-  
-
-
-  
-  <script src="/js/scrollspy.js?v=7.3.0"></script>
-<script src="/js/post-details.js?v=7.3.0"></script>
-
-
-    
-
-<script>
-NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', function() {
-  var GUEST = ['nick', 'mail', 'link'];
-  var guest = 'nick,mail,link';
-  guest = guest.split(',').filter(function(item) {
-    return GUEST.indexOf(item) > -1;
+  function loadBeaudar() {
+    const els = document.querySelectorAll("#comments #beaudar");
+    if (els.length === 0) return;
+    els.forEach((el, i) => {
+      try {
+        el.innerHTML = '';
+      } catch (error) {
+        console.log(error);
+      }
+      var script = document.createElement('script');
+      script.src = 'https://beaudar.lipk.org/client.js';
+      script.async = true;
+      for (let key of Object.keys(el.attributes)) {
+        let attr = el.attributes[key];
+        if (['class', 'id'].includes(attr.name) === false) {
+          script.setAttribute(attr.name, attr.value);
+        }
+      }
+      el.appendChild(script);
+    });
+  }
+  window.addEventListener('DOMContentLoaded', (event) => {
+      loadBeaudar();
   });
-  new Valine({
-    el: '#comments',
-    verify: false,
-    notify: false,
-    appId: '9VEOQepq1oDMG0XHxBOrKuwU-gzGzoHsz',
-    appKey: 'XVzSWQhACVUcrVzQDF0AJlb8',
-    placeholder: 'ヽ(✿ﾟ▽ﾟ)ノ',
-    avatar: 'zhouyuyang17@163.com',
-    meta: guest,
-    pageSize: '10' || 10,
-    visitor: false,
-    lang: 'zh-cn' || 'zh-cn',
-    path: location.pathname
-  });
-}, window.Valine);
 </script>
 
-  <script type="text/javascript" src="/lib/zclip/clipboard.min.js"></script>	
-<script type="text/javascript" src="/js/src/custom.js"></script>
+
+
+
+<!-- inject -->
+
+
+  </div>
 </body>
 </html>

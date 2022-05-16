@@ -1,349 +1,102 @@
 <!DOCTYPE html>
+<html lang='zh-CN'>
 
-
-
-
-
-<html class="theme-next muse use-motion" lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
-<meta name="generator" content="Hexo 3.9.0">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/rainbow.png?v=7.3.0">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/rainbow.png?v=7.3.0">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/rainbow.png?v=7.3.0">
-  <link rel="mask-icon" href="/images/rainbow.svg?v=7.3.0" color="#222">
-  <meta name="baidu-site-verification" content="MBR3SWgP01">
+  <meta name="generator" content="Hexo 5.4.2">
+  <meta charset="utf-8">
+  
 
-<link rel="stylesheet" href="/css/main.css?v=7.3.0">
+  <meta http-equiv='x-dns-prefetch-control' content='on' />
+  <link rel='dns-prefetch' href='https://cdn.jsdelivr.net'>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel='dns-prefetch' href='//unpkg.com'>
 
-<link rel="stylesheet" href="https://fonts.loli.net/css?family=Noto Serif SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
-<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
-  <link rel="stylesheet" href="/lib/fancybox/source/jquery.fancybox.css">
-  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
-  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
-  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2">
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="theme-color" content="#f8f8f8">
+  <title>KNN与Naive_Bayes代码实现 - 鳄鱼Crc2H0U</title>
 
+  
 
-<script id="hexo-configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Muse',
-    version: '7.3.0',
-    exturl: false,
-    sidebar: {"position":"left","display":"post","offset":12,"onmobile":true},
-    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
-    save_scroll: true,
-    copycode: {"enable":true,"show_result":true,"style":"flat"},
-    fancybox: true,
-    mediumzoom: false,
-    lazyload: false,
-    pangu: false,
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    },
-    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
-    path: 'search.xml',
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    translation: {
-      copy_button: '复制',
-      copy_success: '复制成功',
-      copy_failure: '复制失败'
-    }
-  };
-</script>
-
-  <meta name="description" content="KNN与Naive_Bayes代码实现任务要求采用Python实现分类算法：  不得借助现成的工具包调库，例如SKlearn 至少实现k-近邻，朴素贝叶斯，逻辑回归，决策树与支持向量机中的其中一个算法。k-临近，朴素贝叶斯相对较简单，逻辑回归，决策树与支持向量机相对较难。 对breast cancer数据集调用编写的函数进行分类演示。 能力强的可以多实现几种算法">
+  
+    <meta name="description" content="KNN与Naive_Bayes代码实现任务要求采用Python实现分类算法：  不得借助现成的工具包调库，例如SKlearn 至少实现k-近邻，朴素贝叶斯，逻辑回归，决策树与支持向量机中的其中一个算法。k-临近，朴素贝叶斯相对较简单，逻辑回归，决策树与支持向量机相对较难。 对breast cancer数据集调用编写的函数进行分类演示。 能力强的可以多实现几种算法">
 <meta property="og:type" content="article">
 <meta property="og:title" content="KNN与Naive_Bayes代码实现">
-<meta property="og:url" content="https://blog.crocodilezs.top/201911/KNN与Naive_Bayes代码实现/index.html">
-<meta property="og:site_name" content="鰐魚先生的水族館">
+<meta property="og:url" content="https://blog.crocodilezs.top/201911/KNN%E4%B8%8ENaive_Bayes%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0/index.html">
+<meta property="og:site_name" content="鳄鱼Crc2H0U">
 <meta property="og:description" content="KNN与Naive_Bayes代码实现任务要求采用Python实现分类算法：  不得借助现成的工具包调库，例如SKlearn 至少实现k-近邻，朴素贝叶斯，逻辑回归，决策树与支持向量机中的其中一个算法。k-临近，朴素贝叶斯相对较简单，逻辑回归，决策树与支持向量机相对较难。 对breast cancer数据集调用编写的函数进行分类演示。 能力强的可以多实现几种算法">
-<meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://blog.crocodilezs.top/201911/KNN与Naive_Bayes代码实现/2-1.jpg">
-<meta property="og:updated_time" content="2020-09-22T08:47:14.033Z">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://blog.crocodilezs.top/201911/KNN%E4%B8%8ENaive_Bayes%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0/2-1.jpg">
+<meta property="article:published_time" content="2019-10-25T04:32:50.000Z">
+<meta property="article:modified_time" content="2020-09-22T08:47:14.033Z">
+<meta property="article:author" content="CrocodileZS">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="KNN与Naive_Bayes代码实现">
-<meta name="twitter:description" content="KNN与Naive_Bayes代码实现任务要求采用Python实现分类算法：  不得借助现成的工具包调库，例如SKlearn 至少实现k-近邻，朴素贝叶斯，逻辑回归，决策树与支持向量机中的其中一个算法。k-临近，朴素贝叶斯相对较简单，逻辑回归，决策树与支持向量机相对较难。 对breast cancer数据集调用编写的函数进行分类演示。 能力强的可以多实现几种算法">
-<meta name="twitter:image" content="https://blog.crocodilezs.top/201911/KNN与Naive_Bayes代码实现/2-1.jpg">
-  <link rel="alternate" href="/atom.xml" title="鰐魚先生的水族館" type="application/atom+xml">
-  <link rel="canonical" href="https://blog.crocodilezs.top/201911/KNN与Naive_Bayes代码实现/">
-
-
-<script id="page-configurations">
-  // https://hexo.io/docs/variables.html
-  CONFIG.page = {
-    sidebar: "",
-    isHome: false,
-    isPost: true,
-    isPage: false,
-    isArchive: false
-  };
-</script>
-
-  <title>KNN与Naive_Bayes代码实现 | 鰐魚先生的水族館</title>
+<meta name="twitter:image" content="https://blog.crocodilezs.top/201911/KNN%E4%B8%8ENaive_Bayes%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0/2-1.jpg">
+  
   
 
+  <!-- feed -->
+  
+    <link rel="alternate" href="/atom.xml" title="鳄鱼Crc2H0U" type="application/atom+xml">
+  
 
+  
+    
+<link rel="stylesheet" href="/css/main.css">
 
+  
 
+  
 
-
-
-
-  <noscript>
-  <style>
-  .use-motion .motion-element,
-  .use-motion .brand,
-  .use-motion .menu-item,
-  .sidebar-inner,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-title { opacity: initial; }
-
-  .use-motion .logo,
-  .use-motion .site-title,
-  .use-motion .site-subtitle {
-    opacity: initial;
-    top: initial;
-  }
-
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
-  </style>
-</noscript>
-
+  
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+<body>
+  
 
-  <div class="container sidebar-position-left">
-    <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta">
 
-    <div class="custom-logo-site-title">
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">鰐魚先生的水族館</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
-    </div>
-        <p class="site-subtitle">言念君子，溫其如玉。</p>
-      
-  </div>
 
-  <div class="site-nav-toggle">
-    <button aria-label="切换导航栏">
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
-  </div>
+  <div class='l_body' id='start'>
+    <aside class='l_left' layout='post'>
+    
+
+
+<header class="header">
+
+<div class="logo-wrap"><a class="avatar" href="/about/"><div class="bg" style="opacity:0;background-image:url(https://cdn.jsdelivr.net/gh/cdn-x/placeholder@1.0.2/avatar/round/rainbow64@3x.webp);"></div><img no-lazy class="avatar" src="/media/avatar.png" onerror="javascript:this.classList.add('error');this.src='https://cdn.jsdelivr.net/gh/cdn-x/placeholder@1.0.1/image/2659360.svg';"></a><a class="title" href="/"><div class="main">鳄鱼Crc2H0U</div><div class="sub cap">野生鳄鱼的自留地</div></a></div>
+<nav class="menu dis-select"><a class="nav-item active" href="/">文章</a><a class="nav-item" href="/about/">关于</a><a class="nav-item" href="/timeline/">时间轴</a></nav></header>
+
+<div class="widgets">
+
+<div class="widget-wrap single" id="toc"><div class="widget-header cap dis-select"><span class="name">本文目录</span></div><div class="widget-body fs14"><div class="doc-tree active"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%BB%E5%8A%A1%E8%A6%81%E6%B1%82"><span class="toc-text">任务要求</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0%E2%80%94%E2%80%94kNN"><span class="toc-text">算法实现——kNN</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%BA%90%E7%A0%81"><span class="toc-text">源码</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%BC%E5%85%A5%E6%95%B0%E6%8D%AE"><span class="toc-text">导入数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#kNN%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0"><span class="toc-text">kNN算法实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B2%BE%E7%A1%AE%E5%BA%A6%E8%AE%A1%E7%AE%97%E5%87%BD%E6%95%B0"><span class="toc-text">精确度计算函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BB%E5%87%BD%E6%95%B0"><span class="toc-text">主函数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0%E2%80%94%E2%80%94Naive-Bayes"><span class="toc-text">算法实现——Naive_Bayes</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%BA%90%E7%A0%81-1"><span class="toc-text">源码</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%BC%E5%85%A5%E6%95%B0%E6%8D%AE-1"><span class="toc-text">导入数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%B9%E6%AF%8F%E4%B8%AA%E8%BF%9E%E7%BB%AD%E7%9A%84%E5%B1%9E%E6%80%A7%E5%88%92%E5%88%86%E5%8C%BA%E9%97%B4%E5%B9%B6%E7%BB%9F%E8%AE%A1%E4%B8%AA%E6%95%B0"><span class="toc-text">对每个连续的属性划分区间并统计个数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E6%9C%B4%E7%B4%A0%E8%B4%9D%E5%8F%B6%E6%96%AF"><span class="toc-text">实现朴素贝叶斯</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E7%B2%BE%E7%A1%AE%E5%BA%A6"><span class="toc-text">计算精确度</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BB%E5%87%BD%E6%95%B0-1"><span class="toc-text">主函数</span></a></li></ol></li></ol></div></div></div>
+
+
 </div>
 
 
-<nav class="site-nav">
-  
-  <ul id="menu" class="menu">
+    </aside>
+    <div class='l_main'>
       
-      
-      
-        
-        <li class="menu-item menu-item-home">
-      
-    
-
-    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
-
-  </li>
-      
-      
-      
-        
-        <li class="menu-item menu-item-categories">
-      
-    
-
-    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
-
-  </li>
-      
-      
-      
-        
-        <li class="menu-item menu-item-tags">
-      
-    
-
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
-
-  </li>
-      
-      
-      
-        
-        <li class="menu-item menu-item-about">
-      
-    
-
-    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>关于</a>
-
-  </li>
-      
-      
-      
-        
-        <li class="menu-item menu-item-英文博客">
-      
-    
-
-    <a href="/eysblog_en/" rel="section"><i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>英文博客</a>
-
-  </li>
-  </ul>
-
-    
-
-</nav>
-</div>
-    </header>
-
-    
-
-
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          <div id="content" class="content page-post-detail">
-            
-
-  <div id="posts" class="posts-expand">
-    
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://blog.crocodilezs.top/201911/KNN与Naive_Bayes代码实现/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="CrocodileZS">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/tom.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="鰐魚先生的水族館">
-    </span>
-      <header class="post-header">
-
-        
-          <h1 class="post-title" itemprop="name headline">KNN与Naive_Bayes代码实现
-
-            
-          </h1>
-        
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              
-                
-              
-
-              <time title="创建时间：2019-10-25 12:32:50" itemprop="dateCreated datePublished" datetime="2019-10-25T12:32:50+08:00">2019-10-25</time>
-            </span>
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/数据科学导论/" itemprop="url" rel="index"><span itemprop="name">数据科学导论</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-        
-      
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/201911/KNN与Naive_Bayes代码实现/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/201911/KNN与Naive_Bayes代码实现/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-          
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">本文字数：</span>
-              
-              <span>7.6k</span>
-            </span>
-          
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              
-              <span>13 分钟</span>
-            </span>
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="KNN与Naive-Bayes代码实现"><a href="#KNN与Naive-Bayes代码实现" class="headerlink" title="KNN与Naive_Bayes代码实现"></a>KNN与Naive_Bayes代码实现</h1><h2 id="任务要求"><a href="#任务要求" class="headerlink" title="任务要求"></a>任务要求</h2><p>采用Python实现分类算法：</p>
+
+<div class="bread-nav fs12"><div id="breadcrumb"><a class="cap breadcrumb" href="/">主页</a><span class="sep"></span><a class="cap breadcrumb" href="/">文章</a><span class="sep"></span><a class="cap breadcrumb-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6%E5%AF%BC%E8%AE%BA/">数据科学导论</a></div><div id="post-meta">发布于&nbsp;<time datetime="2019-10-25T04:32:50.000Z">2019-10-25</time></div></div>
+
+<article class='content md post'>
+<h1 class="article-title"><span>KNN与Naive_Bayes代码实现</span></h1>
+<h1 id="KNN与Naive-Bayes代码实现"><a href="#KNN与Naive-Bayes代码实现" class="headerlink" title="KNN与Naive_Bayes代码实现"></a>KNN与Naive_Bayes代码实现</h1><h2 id="任务要求"><a href="#任务要求" class="headerlink" title="任务要求"></a>任务要求</h2><p>采用Python实现分类算法：</p>
 <ul>
 <li>不得借助现成的工具包调库，例如SKlearn</li>
 <li>至少实现k-近邻，朴素贝叶斯，逻辑回归，决策树与支持向量机中的其中一个算法。k-临近，朴素贝叶斯相对较简单，逻辑回归，决策树与支持向量机相对较难。</li>
 <li>对breast cancer数据集调用编写的函数进行分类演示。</li>
 <li>能力强的可以多实现几种算法</li>
 </ul>
-<a id="more"></a>
+<span id="more"></span>
 <h2 id="算法实现——kNN"><a href="#算法实现——kNN" class="headerlink" title="算法实现——kNN"></a>算法实现——kNN</h2><p>利用breast_cancer中的数据，实现kNN算法。  </p>
 <ol>
 <li>导入数据集，并分为训练集和测试集</li>
@@ -355,9 +108,9 @@
 <li>算法效果测试，测试算法的精确度，和SKlearn提供的kNN算法进行比较。</li>
 </ol>
 <h2 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h2><h3 id="导入数据"><a href="#导入数据" class="headerlink" title="导入数据"></a>导入数据</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 导入数据集</span></span><br><span class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> datasets</span><br><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> train_test_split</span><br><span class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> neighbors</span><br><span class="line"></span><br><span class="line">datasets = datasets.load_breast_cancer()</span><br><span class="line">X = datasets.data;</span><br><span class="line">y = datasets.target;</span><br><span class="line">X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = <span class="number">0.3</span>, random_state = <span class="number">0</span>)</span><br><span class="line">k = <span class="number">5</span></span><br><span class="line"><span class="comment"># print(datasets.DESCR)</span></span><br><span class="line"><span class="comment"># malignant - 0, benign - 1</span></span><br><span class="line">y_predict = []</span><br></pre></td></tr></table></figure>
-<h3 id="kNN算法实现"><a href="#kNN算法实现" class="headerlink" title="kNN算法实现"></a>kNN算法实现</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">knn</span><span class="params">(X_train, y_train, X_test, y_predict)</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    对测试集的数据进行预测，得到的结果与y_test比较。用欧式距离进行计算。</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    <span class="keyword">for</span> test_data <span class="keyword">in</span> X_test:</span><br><span class="line">        first_k_instance = []</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(X_train)):</span><br><span class="line">            distance = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span> attributes_no <span class="keyword">in</span> range(len(X_train[<span class="number">0</span>])):</span><br><span class="line">                distance += (test_data[attributes_no] - X_train[i][attributes_no]) ** <span class="number">2</span></span><br><span class="line">            Euclid_distance = distance ** <span class="number">0.5</span></span><br><span class="line">            <span class="comment">#print(Euclid_distance)</span></span><br><span class="line">            <span class="keyword">if</span> i &lt; k:</span><br><span class="line">                first_k_instance.append((i, Euclid_distance))</span><br><span class="line">            <span class="keyword">elif</span> Euclid_distance &lt; first_k_instance[k<span class="number">-1</span>][<span class="number">1</span>]:</span><br><span class="line">                first_k_instance[k<span class="number">-1</span>] = (i, Euclid_distance)</span><br><span class="line">            first_k_instance = sorted(first_k_instance, key = <span class="keyword">lambda</span> x:x[<span class="number">1</span>]) </span><br><span class="line">            <span class="comment">#print(first_k_instance)</span></span><br><span class="line">        <span class="comment"># 现在得到了距离测试点最近的k个点，用多数表决器来判断测试点是良性还是恶性</span></span><br><span class="line">        benign = <span class="number">0</span></span><br><span class="line">        malignant = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> instance <span class="keyword">in</span> first_k_instance:</span><br><span class="line">            <span class="keyword">if</span> y_train[instance[<span class="number">0</span>]] == <span class="number">0</span>:</span><br><span class="line">                malignant += <span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                benign += <span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> malignant &gt;= benign:</span><br><span class="line">            y_predict.append(<span class="number">0</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            y_predict.append(<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
-<h3 id="精确度计算函数"><a href="#精确度计算函数" class="headerlink" title="精确度计算函数"></a>精确度计算函数</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">accuracy</span><span class="params">(y_predict, y_test)</span>:</span></span><br><span class="line">    correct = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(y_predict)):</span><br><span class="line">        <span class="keyword">if</span> y_predict[i] == y_test[i]:</span><br><span class="line">            correct += <span class="number">1</span></span><br><span class="line">    accuracy_rate = correct / len(y_predict)</span><br><span class="line">    <span class="keyword">return</span> correct, accuracy_rate</span><br></pre></td></tr></table></figure>
-<h3 id="主函数"><a href="#主函数" class="headerlink" title="主函数"></a>主函数</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></span><br><span class="line">    knn(X_train, y_train, X_test, y_predict)</span><br><span class="line">    correct, accuracy_rate = accuracy(y_predict, y_test)</span><br><span class="line">    print(y_predict)</span><br><span class="line">    print(<span class="string">"kNN模型测试集预测的准确率为：%.3f"</span> % accuracy_rate);</span><br><span class="line">    KNN = neighbors.KNeighborsClassifier(n_neighbors = <span class="number">5</span>)</span><br><span class="line">    KNN.fit(X_train, y_train)</span><br><span class="line">    print(<span class="string">"sklearn库中kNN模型预测的准确率为：%.3f"</span> % KNN.score(X_test, y_test));</span><br><span class="line">    </span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+<h3 id="kNN算法实现"><a href="#kNN算法实现" class="headerlink" title="kNN算法实现"></a>kNN算法实现</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">knn</span>(<span class="params">X_train, y_train, X_test, y_predict</span>):</span><br><span class="line">    <span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">    对测试集的数据进行预测，得到的结果与y_test比较。用欧式距离进行计算。</span></span><br><span class="line"><span class="string">    &#x27;&#x27;&#x27;</span></span><br><span class="line">    <span class="keyword">for</span> test_data <span class="keyword">in</span> X_test:</span><br><span class="line">        first_k_instance = []</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(X_train)):</span><br><span class="line">            distance = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span> attributes_no <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(X_train[<span class="number">0</span>])):</span><br><span class="line">                distance += (test_data[attributes_no] - X_train[i][attributes_no]) ** <span class="number">2</span></span><br><span class="line">            Euclid_distance = distance ** <span class="number">0.5</span></span><br><span class="line">            <span class="comment">#print(Euclid_distance)</span></span><br><span class="line">            <span class="keyword">if</span> i &lt; k:</span><br><span class="line">                first_k_instance.append((i, Euclid_distance))</span><br><span class="line">            <span class="keyword">elif</span> Euclid_distance &lt; first_k_instance[k-<span class="number">1</span>][<span class="number">1</span>]:</span><br><span class="line">                first_k_instance[k-<span class="number">1</span>] = (i, Euclid_distance)</span><br><span class="line">            first_k_instance = <span class="built_in">sorted</span>(first_k_instance, key = <span class="keyword">lambda</span> x:x[<span class="number">1</span>]) </span><br><span class="line">            <span class="comment">#print(first_k_instance)</span></span><br><span class="line">        <span class="comment"># 现在得到了距离测试点最近的k个点，用多数表决器来判断测试点是良性还是恶性</span></span><br><span class="line">        benign = <span class="number">0</span></span><br><span class="line">        malignant = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> instance <span class="keyword">in</span> first_k_instance:</span><br><span class="line">            <span class="keyword">if</span> y_train[instance[<span class="number">0</span>]] == <span class="number">0</span>:</span><br><span class="line">                malignant += <span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                benign += <span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> malignant &gt;= benign:</span><br><span class="line">            y_predict.append(<span class="number">0</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            y_predict.append(<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="精确度计算函数"><a href="#精确度计算函数" class="headerlink" title="精确度计算函数"></a>精确度计算函数</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">accuracy</span>(<span class="params">y_predict, y_test</span>):</span><br><span class="line">    correct = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(y_predict)):</span><br><span class="line">        <span class="keyword">if</span> y_predict[i] == y_test[i]:</span><br><span class="line">            correct += <span class="number">1</span></span><br><span class="line">    accuracy_rate = correct / <span class="built_in">len</span>(y_predict)</span><br><span class="line">    <span class="keyword">return</span> correct, accuracy_rate</span><br></pre></td></tr></table></figure>
+<h3 id="主函数"><a href="#主函数" class="headerlink" title="主函数"></a>主函数</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    knn(X_train, y_train, X_test, y_predict)</span><br><span class="line">    correct, accuracy_rate = accuracy(y_predict, y_test)</span><br><span class="line">    <span class="built_in">print</span>(y_predict)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;kNN模型测试集预测的准确率为：%.3f&quot;</span> % accuracy_rate);</span><br><span class="line">    KNN = neighbors.KNeighborsClassifier(n_neighbors = <span class="number">5</span>)</span><br><span class="line">    KNN.fit(X_train, y_train)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;sklearn库中kNN模型预测的准确率为：%.3f&quot;</span> % KNN.score(X_test, y_test));</span><br><span class="line">    </span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
 <pre><code>[0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 1, 0, 1, 1, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 1, 1, 0, 0, 1, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 0, 1, 0, 0, 0, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1, 0, 1, 1, 1, 0, 0, 1, 0, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 0, 0, 1, 0, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 0, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 0, 0, 1, 1, 0, 1, 0, 0, 0, 1, 1, 1]
 kNN模型测试集预测的准确率为：0.947
 sklearn库中kNN模型预测的准确率为：0.947
@@ -373,546 +126,232 @@ sklearn库中kNN模型预测的准确率为：0.947
 <li>算法效果测试，测试算法的精确度，和SKlearn提供的Naive Bayes算法进行比较。</li>
 </ol>
 <h2 id="源码-1"><a href="#源码-1" class="headerlink" title="源码"></a>源码</h2><h3 id="导入数据-1"><a href="#导入数据-1" class="headerlink" title="导入数据"></a>导入数据</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># load datasets</span></span><br><span class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> datasets</span><br><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> train_test_split</span><br><span class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> naive_bayes</span><br><span class="line"></span><br><span class="line">datasets = datasets.load_breast_cancer()</span><br><span class="line">X = datasets.data;</span><br><span class="line">y = datasets.target;</span><br><span class="line">X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = <span class="number">0.3</span>, random_state = <span class="number">0</span>)</span><br><span class="line"><span class="comment">#print(datasets.DESCR)</span></span><br><span class="line"><span class="comment">#malignant - 0, benign - 1</span></span><br><span class="line">y_predict = []</span><br></pre></td></tr></table></figure>
-<p>由于30个属性全部都是连续值，我们使用朴素贝叶斯的时候需要将属性的值的范围分为几个区间，计算实例落在该区间的概率。这里每个属性我都以平均值作为间隔来划分区间。<br><img src="2-1.jpg" alt></p>
-<h3 id="对每个连续的属性划分区间并统计个数"><a href="#对每个连续的属性划分区间并统计个数" class="headerlink" title="对每个连续的属性划分区间并统计个数"></a>对每个连续的属性划分区间并统计个数</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">distribution</span><span class="params">(X_train, y_train)</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    先把区间分好，然后再计算概率。</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    <span class="comment">#===============区间划分====================#</span></span><br><span class="line">    attributes_max_min_mean = []</span><br><span class="line">    <span class="comment"># 记录所有属性的最大值、最小值和平均值</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(X_train[<span class="number">0</span>])):</span><br><span class="line">        <span class="comment">#属性循环</span></span><br><span class="line">        <span class="comment">#section = [max, min, mean]</span></span><br><span class="line">        section = [X_train[<span class="number">0</span>][i], X_train[<span class="number">0</span>][i], <span class="number">0</span>]</span><br><span class="line">        <span class="keyword">for</span> instance <span class="keyword">in</span> X_train:</span><br><span class="line">            <span class="comment">#训练样例循环</span></span><br><span class="line">            <span class="keyword">if</span> instance[i] &gt; section[<span class="number">0</span>]:</span><br><span class="line">                section[<span class="number">0</span>] = instance[i]</span><br><span class="line">            <span class="keyword">if</span> instance[i] &lt; section[<span class="number">1</span>]:</span><br><span class="line">                section[<span class="number">1</span>] = instance[i]</span><br><span class="line">            section[<span class="number">2</span>] += instance[i]</span><br><span class="line">        section[<span class="number">2</span>] /= len(X_train)</span><br><span class="line">        attributes_max_min_mean.append(section)</span><br><span class="line">        </span><br><span class="line">    <span class="comment">#=========计算每个属性落在每个区间的样例个数=========#</span></span><br><span class="line">    instance_distribution = []</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(X_train[<span class="number">0</span>])):</span><br><span class="line">        <span class="comment">#属性循环</span></span><br><span class="line">        smaller_benign = <span class="number">0</span></span><br><span class="line">        larger_benign = <span class="number">0</span></span><br><span class="line">        smaller_malignant = <span class="number">0</span></span><br><span class="line">        larger_malignant = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(len(X_train)):</span><br><span class="line">            <span class="comment">#训练样例循环</span></span><br><span class="line">            <span class="keyword">if</span> X_train[j][i] &gt; attributes_max_min_mean[i][<span class="number">2</span>]:</span><br><span class="line">                <span class="keyword">if</span> y_train[j] == <span class="number">1</span>:</span><br><span class="line">                    larger_benign += <span class="number">1</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    larger_malignant +=<span class="number">1</span></span><br><span class="line">            <span class="keyword">elif</span> y_train[j] == <span class="number">1</span>:</span><br><span class="line">                smaller_benign += <span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                smaller_malignant += <span class="number">1</span>   </span><br><span class="line">        instance_distribution.append([smaller_benign, larger_benign, smaller_malignant, larger_malignant])</span><br><span class="line">        </span><br><span class="line">    <span class="keyword">return</span> instance_distribution, attributes_max_min_mean</span><br></pre></td></tr></table></figure>
-<h3 id="实现朴素贝叶斯"><a href="#实现朴素贝叶斯" class="headerlink" title="实现朴素贝叶斯"></a>实现朴素贝叶斯</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Naive_Bayes</span><span class="params">(X_test, y_predict, instance_distribution,attributes_max_min_mean)</span>:</span></span><br><span class="line">    <span class="keyword">for</span> test_data <span class="keyword">in</span> X_test:</span><br><span class="line">        <span class="comment">#测试样例循环</span></span><br><span class="line">        <span class="comment">#训练集中良性和恶性肿瘤的数量</span></span><br><span class="line">        malignant = instance_distribution[<span class="number">0</span>][<span class="number">2</span>] + instance_distribution[<span class="number">0</span>][<span class="number">3</span>]</span><br><span class="line">        benign = instance_distribution[<span class="number">0</span>][<span class="number">0</span>] + instance_distribution[<span class="number">0</span>][<span class="number">1</span>]</span><br><span class="line">        <span class="comment">#概率初始化，下面计算每个属性的概率</span></span><br><span class="line">        p_xc0 = <span class="number">1</span></span><br><span class="line">        p_xc1 = <span class="number">1</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(X_train[<span class="number">0</span>])):</span><br><span class="line">            <span class="comment"># 属性循环</span></span><br><span class="line">            <span class="keyword">if</span> test_data[i] &gt; attributes_max_min_mean[i][<span class="number">2</span>]:</span><br><span class="line">                p_xc0 *= instance_distribution[i][<span class="number">3</span>] / malignant</span><br><span class="line">                p_xc1 *= instance_distribution[i][<span class="number">1</span>] / benign</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                p_xc0 *= instance_distribution[i][<span class="number">2</span>] / malignant</span><br><span class="line">                p_xc1 *= instance_distribution[i][<span class="number">0</span>] / benign</span><br><span class="line">        p0 = p_xc0 * malignant / (malignant + benign)</span><br><span class="line">        p1 = p_xc1 * benign / (malignant + benign)</span><br><span class="line">        <span class="keyword">if</span> p0 &gt; p1:</span><br><span class="line">            y_predict.append(<span class="number">0</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            y_predict.append(<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
-<h3 id="计算精确度"><a href="#计算精确度" class="headerlink" title="计算精确度"></a>计算精确度</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">accuracy</span><span class="params">(y_predict, y_test)</span>:</span></span><br><span class="line">    correct = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(y_predict)):</span><br><span class="line">        <span class="keyword">if</span> y_predict[i] == y_test[i]:</span><br><span class="line">            correct += <span class="number">1</span></span><br><span class="line">    accuracy_rate = correct / len(y_predict)</span><br><span class="line">    <span class="keyword">return</span> correct, accuracy_rate</span><br></pre></td></tr></table></figure>
-<h3 id="主函数-1"><a href="#主函数-1" class="headerlink" title="主函数"></a>主函数</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></span><br><span class="line">    instance_distribution, attributes_max_min_mean = distribution(X_train, y_train)</span><br><span class="line">    Naive_Bayes(X_test, y_predict, instance_distribution, attributes_max_min_mean)</span><br><span class="line">    correct, accuracy_rate = accuracy(y_predict, y_test)</span><br><span class="line">    print(y_predict)</span><br><span class="line">    print(<span class="string">"Naive Bayes模型测试集预测的准确率为：%.3f"</span> % accuracy_rate);</span><br><span class="line">    bayes = naive_bayes.GaussianNB()</span><br><span class="line">    bayes.fit(X_train, y_train)</span><br><span class="line">    print(<span class="string">"sklearn库中Naive Bayes模型预测的准确率为：%.3f"</span> % bayes.score(X_test, y_test));</span><br><span class="line">    </span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+<p>由于30个属性全部都是连续值，我们使用朴素贝叶斯的时候需要将属性的值的范围分为几个区间，计算实例落在该区间的概率。这里每个属性我都以平均值作为间隔来划分区间。<br><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="2-1.jpg" alt=""></p>
+<h3 id="对每个连续的属性划分区间并统计个数"><a href="#对每个连续的属性划分区间并统计个数" class="headerlink" title="对每个连续的属性划分区间并统计个数"></a>对每个连续的属性划分区间并统计个数</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">distribution</span>(<span class="params">X_train, y_train</span>):</span><br><span class="line">    <span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">    先把区间分好，然后再计算概率。</span></span><br><span class="line"><span class="string">    &#x27;&#x27;&#x27;</span></span><br><span class="line">    <span class="comment">#===============区间划分====================#</span></span><br><span class="line">    attributes_max_min_mean = []</span><br><span class="line">    <span class="comment"># 记录所有属性的最大值、最小值和平均值</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(X_train[<span class="number">0</span>])):</span><br><span class="line">        <span class="comment">#属性循环</span></span><br><span class="line">        <span class="comment">#section = [max, min, mean]</span></span><br><span class="line">        section = [X_train[<span class="number">0</span>][i], X_train[<span class="number">0</span>][i], <span class="number">0</span>]</span><br><span class="line">        <span class="keyword">for</span> instance <span class="keyword">in</span> X_train:</span><br><span class="line">            <span class="comment">#训练样例循环</span></span><br><span class="line">            <span class="keyword">if</span> instance[i] &gt; section[<span class="number">0</span>]:</span><br><span class="line">                section[<span class="number">0</span>] = instance[i]</span><br><span class="line">            <span class="keyword">if</span> instance[i] &lt; section[<span class="number">1</span>]:</span><br><span class="line">                section[<span class="number">1</span>] = instance[i]</span><br><span class="line">            section[<span class="number">2</span>] += instance[i]</span><br><span class="line">        section[<span class="number">2</span>] /= <span class="built_in">len</span>(X_train)</span><br><span class="line">        attributes_max_min_mean.append(section)</span><br><span class="line">        </span><br><span class="line">    <span class="comment">#=========计算每个属性落在每个区间的样例个数=========#</span></span><br><span class="line">    instance_distribution = []</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(X_train[<span class="number">0</span>])):</span><br><span class="line">        <span class="comment">#属性循环</span></span><br><span class="line">        smaller_benign = <span class="number">0</span></span><br><span class="line">        larger_benign = <span class="number">0</span></span><br><span class="line">        smaller_malignant = <span class="number">0</span></span><br><span class="line">        larger_malignant = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(X_train)):</span><br><span class="line">            <span class="comment">#训练样例循环</span></span><br><span class="line">            <span class="keyword">if</span> X_train[j][i] &gt; attributes_max_min_mean[i][<span class="number">2</span>]:</span><br><span class="line">                <span class="keyword">if</span> y_train[j] == <span class="number">1</span>:</span><br><span class="line">                    larger_benign += <span class="number">1</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    larger_malignant +=<span class="number">1</span></span><br><span class="line">            <span class="keyword">elif</span> y_train[j] == <span class="number">1</span>:</span><br><span class="line">                smaller_benign += <span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                smaller_malignant += <span class="number">1</span>   </span><br><span class="line">        instance_distribution.append([smaller_benign, larger_benign, smaller_malignant, larger_malignant])</span><br><span class="line">        </span><br><span class="line">    <span class="keyword">return</span> instance_distribution, attributes_max_min_mean</span><br></pre></td></tr></table></figure>
+<h3 id="实现朴素贝叶斯"><a href="#实现朴素贝叶斯" class="headerlink" title="实现朴素贝叶斯"></a>实现朴素贝叶斯</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">Naive_Bayes</span>(<span class="params">X_test, y_predict, instance_distribution,attributes_max_min_mean</span>):</span><br><span class="line">    <span class="keyword">for</span> test_data <span class="keyword">in</span> X_test:</span><br><span class="line">        <span class="comment">#测试样例循环</span></span><br><span class="line">        <span class="comment">#训练集中良性和恶性肿瘤的数量</span></span><br><span class="line">        malignant = instance_distribution[<span class="number">0</span>][<span class="number">2</span>] + instance_distribution[<span class="number">0</span>][<span class="number">3</span>]</span><br><span class="line">        benign = instance_distribution[<span class="number">0</span>][<span class="number">0</span>] + instance_distribution[<span class="number">0</span>][<span class="number">1</span>]</span><br><span class="line">        <span class="comment">#概率初始化，下面计算每个属性的概率</span></span><br><span class="line">        p_xc0 = <span class="number">1</span></span><br><span class="line">        p_xc1 = <span class="number">1</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(X_train[<span class="number">0</span>])):</span><br><span class="line">            <span class="comment"># 属性循环</span></span><br><span class="line">            <span class="keyword">if</span> test_data[i] &gt; attributes_max_min_mean[i][<span class="number">2</span>]:</span><br><span class="line">                p_xc0 *= instance_distribution[i][<span class="number">3</span>] / malignant</span><br><span class="line">                p_xc1 *= instance_distribution[i][<span class="number">1</span>] / benign</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                p_xc0 *= instance_distribution[i][<span class="number">2</span>] / malignant</span><br><span class="line">                p_xc1 *= instance_distribution[i][<span class="number">0</span>] / benign</span><br><span class="line">        p0 = p_xc0 * malignant / (malignant + benign)</span><br><span class="line">        p1 = p_xc1 * benign / (malignant + benign)</span><br><span class="line">        <span class="keyword">if</span> p0 &gt; p1:</span><br><span class="line">            y_predict.append(<span class="number">0</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            y_predict.append(<span class="number">1</span>)      </span><br></pre></td></tr></table></figure>
+<h3 id="计算精确度"><a href="#计算精确度" class="headerlink" title="计算精确度"></a>计算精确度</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">accuracy</span>(<span class="params">y_predict, y_test</span>):</span><br><span class="line">    correct = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(y_predict)):</span><br><span class="line">        <span class="keyword">if</span> y_predict[i] == y_test[i]:</span><br><span class="line">            correct += <span class="number">1</span></span><br><span class="line">    accuracy_rate = correct / <span class="built_in">len</span>(y_predict)</span><br><span class="line">    <span class="keyword">return</span> correct, accuracy_rate</span><br></pre></td></tr></table></figure>
+<h3 id="主函数-1"><a href="#主函数-1" class="headerlink" title="主函数"></a>主函数</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    instance_distribution, attributes_max_min_mean = distribution(X_train, y_train)</span><br><span class="line">    Naive_Bayes(X_test, y_predict, instance_distribution, attributes_max_min_mean)</span><br><span class="line">    correct, accuracy_rate = accuracy(y_predict, y_test)</span><br><span class="line">    <span class="built_in">print</span>(y_predict)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Naive Bayes模型测试集预测的准确率为：%.3f&quot;</span> % accuracy_rate);</span><br><span class="line">    bayes = naive_bayes.GaussianNB()</span><br><span class="line">    bayes.fit(X_train, y_train)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;sklearn库中Naive Bayes模型预测的准确率为：%.3f&quot;</span> % bayes.score(X_test, y_test));</span><br><span class="line">    </span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
 <pre><code>[0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 1, 1, 1, 0, 0, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1, 0, 1, 1, 1, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 0, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 0, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 0, 1, 1, 0, 1, 0, 0, 0, 1, 1, 1]
 Naive Bayes模型测试集预测的准确率为：0.930
 sklearn库中Naive Bayes模型预测的准确率为：0.924
 </code></pre><p>通过实验结果可以发现，我们实现的朴素贝叶斯比SKlearn提供的朴素贝叶斯效果更好。<br>我们可以通过尝试各属性不同的区间划分，进一步优化精确度。而SKlearn提供的朴素贝叶斯效果不好的原因可能就是将连续值转换为离散值的区间划分没有做好。</p>
 
+
+<div class="article-footer reveal fs14"><section id="license"><div class="header"><span>许可协议</span></div><div class="body"><p>本文采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">署名-非商业性使用-相同方式共享 4.0 国际</a> 许可协议，转载请注明出处。</p>
+</div></section></div>
+
+</article>
+
+<div class="related-wrap reveal" id="read-next"><section class="header cap theme"><span>接下来阅读</span></section><section class="body fs14"><a id="next" href="/201910/CS229-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%90%B4%E6%81%A9%E8%BE%BE%EF%BC%88%E4%B8%80%EF%BC%89/">CS229-机器学习-吴恩达（一）<span class="note">较早</span></a><div class="line"></div><a id="prev" href="/201910/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80%E5%AE%9E%E9%AA%8C%E4%B8%80/">计算机系统基础实验一、Linux环境和GCC工具链<span class="note">较新</span></a></section></div>
+
+
+
+
+
+
+  <div class='related-wrap md reveal' id="comments">
+    <div class='cmt-title cap theme'>
+      快来参与讨论吧
     </div>
-
-    
-
-    
-    
-    
+    <div class='cmt-body beaudar'>
       
 
-        
-      
+<svg class="loading" style="vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2709"><path d="M832 512c0-176-144-320-320-320V128c211.2 0 384 172.8 384 384h-64zM192 512c0 176 144 320 320 320v64C300.8 896 128 723.2 128 512h64z" p-id="2710"></path></svg>
 
-      <footer class="post-footer">
+<div id="beaudar" repo="CrocodileZS/blog-comments" issue-term="pathname" theme="preferred-color-scheme" input-position="top" comment-order="desc" loading="false" branch="main"></div>
 
-        
-  <div class="post-widgets">
-    <div class="social-share">
-      
-      
-        <div id="needsharebutton-postbottom">
-          <span class="btn">
-            <i class="fa fa-share-alt" aria-hidden="true"></i>
-          </span>
-        </div>
-      
-    </div>
-  
-  </div>
-
-          <div class="post-nav">
-            <div class="post-nav-next post-nav-item">
-              
-                <a href="/201910/CS229-机器学习-吴恩达（一）/" rel="next" title="CS229-机器学习-吴恩达（一）">
-                  <i class="fa fa-chevron-left"></i> CS229-机器学习-吴恩达（一）
-                </a>
-              
-            </div>
-
-            <span class="post-nav-divider"></span>
-
-            <div class="post-nav-prev post-nav-item">
-              
-                <a href="/201910/计算机系统基础实验一/" rel="prev" title="计算机系统基础实验一、Linux环境和GCC工具链">
-                  计算机系统基础实验一、Linux环境和GCC工具链 <i class="fa fa-chevron-right"></i>
-                </a>
-              
-            </div>
-          </div>
-        
-      </footer>
-    
-  </div>
-  
-  
-  
-  </article>
-
-  </div>
-
-
-          </div>
-          
-    
-    <div class="comments" id="comments"></div>
-  
-
-        </div>
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
     </div>
   </div>
 
-  <aside id="sidebar" class="sidebar">
-    <div class="sidebar-inner">
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-overview">
-
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image"
-      src="/images/tom.jpg"
-      alt="CrocodileZS">
-  <p class="site-author-name" itemprop="name">CrocodileZS</p>
-  <div class="site-description motion-element" itemprop="description"></div>
-</div>
-  <nav class="site-state motion-element">
-      <div class="site-state-item site-state-posts">
-        
-          <a href="/archives">
-        
-          <span class="site-state-item-count">71</span>
-          <span class="site-state-item-name">日志</span>
-        </a>
-      </div>
-    
-      
-      
-      <div class="site-state-item site-state-categories">
-        
-          
-            <a href="/categories/">
-          
-        
-        
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-        <span class="site-state-item-count">16</span>
-        <span class="site-state-item-name">分类</span>
-        </a>
-      </div>
-    
-      
-      
-      <div class="site-state-item site-state-tags">
-        
-          
-            <a href="/tags/">
-          
-        
-        
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-        <span class="site-state-item-count">40</span>
-        <span class="site-state-item-name">标签</span>
-        </a>
-      </div>
-    
-  </nav>
-  <div class="feed-link motion-element">
-    <a href="/atom.xml" rel="alternate">
-      <i class="fa fa-rss"></i>RSS
-    </a>
-  </div>
-  <div class="links-of-author motion-element">
-      <span class="links-of-author-item">
-      
-      
-        
-      
-      
-        
-      
-        <a href="mailto:ammo@bupt.edu.cn" title="E-Mail &rarr; mailto:ammo@bupt.edu.cn" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
-      </span>
-    
-      <span class="links-of-author-item">
-      
-      
-        
-      
-      
-        
-      
-        <a href="https://instagram.com/crocodile_zs" title="Instagram &rarr; https://instagram.com/crocodile_zs" rel="noopener" target="_blank"><i class="fa fa-fw fa-instagram"></i>Instagram</a>
-      </span>
-    
-  </div>
 
 
-  <div class="links-of-blogroll motion-element links-of-blogroll-block">
-    <div class="links-of-blogroll-title">
-      <i class="fa  fa-fw fa-link"></i>
-      Links
-    </div>
-    <ul class="links-of-blogroll-list">
-        <li class="links-of-blogroll-item">
-          <a href="http://www.wangxiaofeng.me/" title="http://www.wangxiaofeng.me/" rel="noopener" target="_blank">不许联想</a>
-        </li>
       
-        <li class="links-of-blogroll-item">
-          <a href="https://idx0.dev/" title="https://idx0.dev/" rel="noopener" target="_blank">思维</a>
-        </li>
-      
-        <li class="links-of-blogroll-item">
-          <a href="https://128bit.top" title="https://128bit.top" rel="noopener" target="_blank">Dixeran</a>
-        </li>
-      
-        <li class="links-of-blogroll-item">
-          <a href="http://icontofig.leanote.com/" title="http://icontofig.leanote.com/" rel="noopener" target="_blank">Icontofig</a>
-        </li>
-      
-        <li class="links-of-blogroll-item">
-          <a href="https://www.nekomio.com" title="https://www.nekomio.com" rel="noopener" target="_blank">NekoMio</a>
-        </li>
-      
-        <li class="links-of-blogroll-item">
-          <a href="https://al0ha0e.github.io" title="https://al0ha0e.github.io" rel="noopener" target="_blank">Al0ha0e</a>
-        </li>
-      
-        <li class="links-of-blogroll-item">
-          <a href="http://gaokeyong.coding.me" title="http://gaokeyong.coding.me" rel="noopener" target="_blank">Keyong</a>
-        </li>
-      
-        <li class="links-of-blogroll-item">
-          <a href="http://poeroz.cn/" title="http://poeroz.cn/" rel="noopener" target="_blank">Poeroz</a>
-        </li>
-      
-    </ul>
-  </div>
+<footer class="page-footer reveal fs12"><hr><div class="text"><p>本博客所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议，转载请注明出处。</p>
+<p>本站由 <a href="https://blog.crocodilezs.top/">@CrocodileZS</a> 创建，使用 <a target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.7.0" title="v1.7.0">Stellar</a> 作为主题。</p>
+</div></footer>
 
-        </div>
-      </div>
-      <!--noindex-->
-        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-            
-            
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#KNN与Naive-Bayes代码实现"><span class="nav-text">KNN与Naive_Bayes代码实现</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#任务要求"><span class="nav-text">任务要求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#算法实现——kNN"><span class="nav-text">算法实现——kNN</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#源码"><span class="nav-text">源码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#导入数据"><span class="nav-text">导入数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#kNN算法实现"><span class="nav-text">kNN算法实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#精确度计算函数"><span class="nav-text">精确度计算函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#主函数"><span class="nav-text">主函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#算法实现——Naive-Bayes"><span class="nav-text">算法实现——Naive_Bayes</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#源码-1"><span class="nav-text">源码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#导入数据-1"><span class="nav-text">导入数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对每个连续的属性划分区间并统计个数"><span class="nav-text">对每个连续的属性划分区间并统计个数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实现朴素贝叶斯"><span class="nav-text">实现朴素贝叶斯</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#计算精确度"><span class="nav-text">计算精确度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#主函数-1"><span class="nav-text">主函数</span></a></li></ol></li></ol></li></ol></div>
-            
-
-          </div>
-        </div>
-      <!--/noindex-->
-      
-
-    </div>
-  </aside>
-  <div id="sidebar-dimmer"></div>
-
-
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
-  <span class="with-love" id="animate">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">鰐魚先生</span>
+      <div class='float-panel mobile-only blur' style='display:none'>
+  <button type='button' class='sidebar-toggle mobile' onclick='sidebar.toggle()'>
+    <svg class="icon" style="width: 1em; height: 1em;vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="15301"><path d="M566.407 808.3c26.9-0.1 49.3-20.8 51.6-47.6-1.9-27.7-23.9-49.7-51.6-51.6h-412.6c-28.2-1.4-52.6 19.5-55.5 47.6 2.3 26.8 24.6 47.5 51.6 47.6h416.5v4z m309.3-249.9c26.9-0.1 49.3-20.8 51.6-47.6-2.2-26.8-24.6-47.5-51.6-47.6h-721.9c-27.7-2.8-52.5 17.4-55.3 45.1-0.1 0.8-0.1 1.7-0.2 2.5 0.9 27.2 23.6 48.5 50.7 47.6H875.707z m-103.1-245.9c26.9-0.1 49.3-20.8 51.6-47.6-0.4-28.3-23.2-51.1-51.5-51.6h-618.9c-29.5-1.1-54.3 21.9-55.5 51.4v0.2c1.4 27.8 25.2 49.2 53 47.8 0.8 0 1.7-0.1 2.5-0.2h618.8z" p-id="15302"></path><path d="M566.407 808.3c26.9-0.1 49.3-20.8 51.6-47.6-1.9-27.7-23.9-49.7-51.6-51.6h-412.6c-28.2-1.4-52.6 19.5-55.5 47.6 1.9 27.7 23.9 49.7 51.6 51.6h416.5z m309.3-249.9c26.9-0.1 49.3-20.8 51.6-47.6-2.2-26.8-24.6-47.5-51.6-47.6h-721.9c-27.7-2.8-52.5 17.4-55.3 45.1-0.1 0.8-0.1 1.7-0.2 2.5 0.9 27.2 23.6 48.5 50.7 47.6H875.707z m-103.1-245.9c26.9-0.1 49.3-20.8 51.6-47.6-0.4-28.3-23.2-51.1-51.5-51.6h-618.9c-29.5-1.1-54.3 21.9-55.5 51.4v0.2c1.4 27.8 25.2 49.2 53 47.8 0.8 0 1.7-0.1 2.5-0.2h618.8z" p-id="15303"></path></svg>
+  </button>
 </div>
 
-
-        
-<div class="busuanzi-count">
-  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-    <span class="post-meta-item-icon">
-      <i class="fa fa-user"></i>
-    </span>
-    <span class="site-uv" title="总访客量">
-      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
-    </span>
-  
-    <span class="post-meta-divider">|</span>
-  
-    <span class="post-meta-item-icon">
-      <i class="fa fa-eye"></i>
-    </span>
-    <span class="site-pv" title="总访问量">
-      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
-    </span>
-  
-</div>
-
-
-
-
-
-
-
-
-        
-      </div>
-    </footer>
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-          <span id="scrollpercent"><span>0</span>%</span>
-        
-      </div>
-
-    
-  
-  <div id="needsharebutton-float">
-    <span class="btn">
-      <i class="fa fa-share-alt" aria-hidden="true"></i>
-    </span>
+    </div>
   </div>
-<script src="/lib/needsharebutton/needsharebutton.js"></script>
-<script>
-    pbOptions = {};
-      pbOptions.iconStyle = "default";
-    
-      pbOptions.boxForm = "horizontal";
-    
-      pbOptions.position = "bottomCenter";
-    
-      pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
-    
-    new needShareButton('#needsharebutton-postbottom', pbOptions);
-    flOptions = {};
-      flOptions.iconStyle = "box";
-    
-      flOptions.boxForm = "horizontal";
-    
-      flOptions.position = "middleRight";
-    
-      flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
-    
-    new needShareButton('#needsharebutton-float', flOptions);
+  <div class='scripts'>
+    <script type="text/javascript">
+  stellar = {
+    // 懒加载 css https://github.com/filamentgroup/loadCSS
+    loadCSS: (href, before, media, attributes) => {
+      var doc = window.document;
+      var ss = doc.createElement("link");
+      var ref;
+      if (before) {
+        ref = before;
+      } else {
+        var refs = (doc.body || doc.getElementsByTagName("head")[0]).childNodes;
+        ref = refs[refs.length - 1];
+      }
+      var sheets = doc.styleSheets;
+      if (attributes) {
+        for (var attributeName in attributes) {
+          if (attributes.hasOwnProperty(attributeName)) {
+            ss.setAttribute(attributeName, attributes[attributeName]);
+          }
+        }
+      }
+      ss.rel = "stylesheet";
+      ss.href = href;
+      ss.media = "only x";
+      function ready(cb) {
+        if (doc.body) {
+          return cb();
+        }
+        setTimeout(function () {
+          ready(cb);
+        });
+      }
+      ready(function () {
+        ref.parentNode.insertBefore(ss, before ? ref : ref.nextSibling);
+      });
+      var onloadcssdefined = function (cb) {
+        var resolvedHref = ss.href;
+        var i = sheets.length;
+        while (i--) {
+          if (sheets[i].href === resolvedHref) {
+            return cb();
+          }
+        }
+        setTimeout(function () {
+          onloadcssdefined(cb);
+        });
+      };
+      function loadCB() {
+        if (ss.addEventListener) {
+          ss.removeEventListener("load", loadCB);
+        }
+        ss.media = media || "all";
+      }
+      if (ss.addEventListener) {
+        ss.addEventListener("load", loadCB);
+      }
+      ss.onloadcssdefined = onloadcssdefined;
+      onloadcssdefined(loadCB);
+      return ss;
+    },
+
+    // 从 butterfly 和 volantis 获得灵感
+    loadScript: (src, opt) => new Promise((resolve, reject) => {
+      var script = document.createElement('script');
+      script.src = src;
+      if (opt) {
+        for (let key of Object.keys(opt)) {
+          script[key] = opt[key]
+        }
+      } else {
+        // 默认异步，如果需要同步，第二个参数传入 {} 即可
+        script.async = true
+      }
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    }),
+
+    // https://github.com/jerryc127/hexo-theme-butterfly
+    jQuery: (fn) => {
+      if (typeof jQuery === 'undefined') {
+        stellar.loadScript(stellar.plugins.jQuery).then(fn)
+      } else {
+        fn()
+      }
+    }
+  };
+  stellar.github = 'https://github.com/xaoxuu/hexo-theme-stellar/tree/1.7.0';
+  stellar.config = {
+    date_suffix: {
+      just: '刚刚',
+      min: '分钟前',
+      hour: '小时前',
+      day: '天前',
+      month: '个月前',
+    },
+  };
+
+  // required plugins (only load if needs)
+  stellar.plugins = {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js',
+    sitesjs: '/js/plugins/sites.js',
+    friendsjs: '/js/plugins/friends.js',
+  };
+
+  // optional plugins
+  if ('true' == 'true') {
+    stellar.plugins.lazyload = Object.assign({"enable":true,"js":"https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.3.1/dist/lazyload.min.js","transition":"blur"});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.swiper = Object.assign({"enable":true,"css":"https://unpkg.com/swiper@6/swiper-bundle.min.css","js":"https://unpkg.com/swiper@6/swiper-bundle.min.js"});
+  }
+  if ('' == 'true') {
+    stellar.plugins.scrollreveal = Object.assign({"enable":null,"js":"https://cdn.jsdelivr.net/npm/scrollreveal@4.0.9/dist/scrollreveal.min.js","distance":"8px","duration":500,"interval":100,"scale":1});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.preload = Object.assign({"enable":true,"service":"flying_pages","instant_page":"https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@4.1.2/js/instant_page.js","flying_pages":"https://cdn.jsdelivr.net/gh/gijo-varghese/flying-pages@2.1.2/flying-pages.min.js"});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.fancybox = Object.assign({"enable":true,"js":"https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js","css":"https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css","selector":".swiper-slide img"});
+  }
+  if ('false' == 'true') {
+    stellar.plugins.heti = Object.assign({"enable":false,"css":"https://unpkg.com/heti/umd/heti.min.css","js":"https://unpkg.com/heti/umd/heti-addon.min.js"});
+  }
 </script>
 
-
-  </div>
-
-  
-  <script src="/lib/jquery/index.js?v=3.4.1"></script>
-  <script src="/lib/fancybox/source/jquery.fancybox.pack.js"></script>
-  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-<script src="/js/utils.js?v=7.3.0"></script>
-  <script src="/js/motion.js?v=7.3.0"></script>
-
-
-  <script src="/js/schemes/muse.js?v=7.3.0"></script>
-
-
-<script src="/js/next-boot.js?v=7.3.0"></script>
-
-
-
+<!-- required -->
 
   
+<script src="/js/main.js" async></script>
+
+
+
+<!-- optional -->
+
   <script>
-    (function(){
-      var bp = document.createElement('script');
-      var curProtocol = window.location.protocol.split(':')[0];
-      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
-      var s = document.getElementsByTagName("script")[0];
-      s.parentNode.insertBefore(bp, s);
-    })();
-  </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-  
-
-  
-
-  
-
-
-  
-  <script src="/js/scrollspy.js?v=7.3.0"></script>
-<script src="/js/post-details.js?v=7.3.0"></script>
-
-
-    
-
-<script>
-NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', function() {
-  var GUEST = ['nick', 'mail', 'link'];
-  var guest = 'nick,mail,link';
-  guest = guest.split(',').filter(function(item) {
-    return GUEST.indexOf(item) > -1;
+  function loadBeaudar() {
+    const els = document.querySelectorAll("#comments #beaudar");
+    if (els.length === 0) return;
+    els.forEach((el, i) => {
+      try {
+        el.innerHTML = '';
+      } catch (error) {
+        console.log(error);
+      }
+      var script = document.createElement('script');
+      script.src = 'https://beaudar.lipk.org/client.js';
+      script.async = true;
+      for (let key of Object.keys(el.attributes)) {
+        let attr = el.attributes[key];
+        if (['class', 'id'].includes(attr.name) === false) {
+          script.setAttribute(attr.name, attr.value);
+        }
+      }
+      el.appendChild(script);
+    });
+  }
+  window.addEventListener('DOMContentLoaded', (event) => {
+      loadBeaudar();
   });
-  new Valine({
-    el: '#comments',
-    verify: false,
-    notify: false,
-    appId: '9VEOQepq1oDMG0XHxBOrKuwU-gzGzoHsz',
-    appKey: 'XVzSWQhACVUcrVzQDF0AJlb8',
-    placeholder: 'ヽ(✿ﾟ▽ﾟ)ノ',
-    avatar: 'zhouyuyang17@163.com',
-    meta: guest,
-    pageSize: '10' || 10,
-    visitor: false,
-    lang: 'zh-cn' || 'zh-cn',
-    path: location.pathname
-  });
-}, window.Valine);
 </script>
 
-  <script type="text/javascript" src="/lib/zclip/clipboard.min.js"></script>	
-<script type="text/javascript" src="/js/src/custom.js"></script>
+
+
+
+<!-- inject -->
+
+
+  </div>
 </body>
 </html>

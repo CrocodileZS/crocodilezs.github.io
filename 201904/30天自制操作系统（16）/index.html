@@ -1,920 +1,353 @@
 <!DOCTYPE html>
+<html lang='zh-CN'>
 
-
-
-
-
-<html class="theme-next muse use-motion" lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
-<meta name="generator" content="Hexo 3.9.0">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/rainbow.png?v=7.3.0">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/rainbow.png?v=7.3.0">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/rainbow.png?v=7.3.0">
-  <link rel="mask-icon" href="/images/rainbow.svg?v=7.3.0" color="#222">
-  <meta name="baidu-site-verification" content="MBR3SWgP01">
+  <meta name="generator" content="Hexo 5.4.2">
+  <meta charset="utf-8">
+  
 
-<link rel="stylesheet" href="/css/main.css?v=7.3.0">
+  <meta http-equiv='x-dns-prefetch-control' content='on' />
+  <link rel='dns-prefetch' href='https://cdn.jsdelivr.net'>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel='dns-prefetch' href='//unpkg.com'>
 
-<link rel="stylesheet" href="https://fonts.loli.net/css?family=Noto Serif SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
-<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
-  <link rel="stylesheet" href="/lib/fancybox/source/jquery.fancybox.css">
-  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
-  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
-  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2">
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="theme-color" content="#f8f8f8">
+  <title>30天自制操作系统（16） - 鳄鱼Crc2H0U</title>
 
+  
 
-<script id="hexo-configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Muse',
-    version: '7.3.0',
-    exturl: false,
-    sidebar: {"position":"left","display":"post","offset":12,"onmobile":true},
-    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
-    save_scroll: true,
-    copycode: {"enable":true,"show_result":true,"style":"flat"},
-    fancybox: true,
-    mediumzoom: false,
-    lazyload: false,
-    pangu: false,
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    },
-    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
-    path: 'search.xml',
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    translation: {
-      copy_button: '复制',
-      copy_success: '复制成功',
-      copy_failure: '复制失败'
-    }
-  };
-</script>
-
-  <meta name="description" content="DAY16_多任务（2）1.任务管理自动化 充分做好多任务机制的基础上，再利用多任务逐步完善操作系统本身。 如果我们想要运行三个任务的话，就必须改写mt_taskswitch的代码。如果能像当初定时器和窗口背景的做法一样更好。">
+  
+    <meta name="description" content="DAY16_多任务（2）1.任务管理自动化 充分做好多任务机制的基础上，再利用多任务逐步完善操作系统本身。 如果我们想要运行三个任务的话，就必须改写mt_taskswitch的代码。如果能像当初定时器和窗口背景的做法一样更好。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="30天自制操作系统（16）">
-<meta property="og:url" content="https://blog.crocodilezs.top/201904/30天自制操作系统（16）/index.html">
-<meta property="og:site_name" content="鰐魚先生的水族館">
+<meta property="og:url" content="https://blog.crocodilezs.top/201904/30%E5%A4%A9%E8%87%AA%E5%88%B6%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%EF%BC%8816%EF%BC%89/index.html">
+<meta property="og:site_name" content="鳄鱼Crc2H0U">
 <meta property="og:description" content="DAY16_多任务（2）1.任务管理自动化 充分做好多任务机制的基础上，再利用多任务逐步完善操作系统本身。 如果我们想要运行三个任务的话，就必须改写mt_taskswitch的代码。如果能像当初定时器和窗口背景的做法一样更好。">
-<meta property="og:locale" content="zh-CN">
+<meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://s2.ax1x.com/2019/04/07/AhpVk8.jpg">
-<meta property="og:updated_time" content="2019-09-27T09:52:57.736Z">
+<meta property="article:published_time" content="2019-04-07T09:14:50.000Z">
+<meta property="article:modified_time" content="2019-09-27T09:52:57.736Z">
+<meta property="article:author" content="CrocodileZS">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="30天自制操作系统（16）">
-<meta name="twitter:description" content="DAY16_多任务（2）1.任务管理自动化 充分做好多任务机制的基础上，再利用多任务逐步完善操作系统本身。 如果我们想要运行三个任务的话，就必须改写mt_taskswitch的代码。如果能像当初定时器和窗口背景的做法一样更好。">
 <meta name="twitter:image" content="https://s2.ax1x.com/2019/04/07/AhpVk8.jpg">
-  <link rel="alternate" href="/atom.xml" title="鰐魚先生的水族館" type="application/atom+xml">
-  <link rel="canonical" href="https://blog.crocodilezs.top/201904/30天自制操作系统（16）/">
-
-
-<script id="page-configurations">
-  // https://hexo.io/docs/variables.html
-  CONFIG.page = {
-    sidebar: "",
-    isHome: false,
-    isPost: true,
-    isPage: false,
-    isArchive: false
-  };
-</script>
-
-  <title>30天自制操作系统（16） | 鰐魚先生的水族館</title>
+  
   
 
+  <!-- feed -->
+  
+    <link rel="alternate" href="/atom.xml" title="鳄鱼Crc2H0U" type="application/atom+xml">
+  
 
+  
+    
+<link rel="stylesheet" href="/css/main.css">
 
+  
 
+  
 
-
-
-
-  <noscript>
-  <style>
-  .use-motion .motion-element,
-  .use-motion .brand,
-  .use-motion .menu-item,
-  .sidebar-inner,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-title { opacity: initial; }
-
-  .use-motion .logo,
-  .use-motion .site-title,
-  .use-motion .site-subtitle {
-    opacity: initial;
-    top: initial;
-  }
-
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
-  </style>
-</noscript>
-
+  
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+<body>
+  
 
-  <div class="container sidebar-position-left">
-    <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta">
 
-    <div class="custom-logo-site-title">
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">鰐魚先生的水族館</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
-    </div>
-        <p class="site-subtitle">言念君子，溫其如玉。</p>
-      
-  </div>
 
-  <div class="site-nav-toggle">
-    <button aria-label="切换导航栏">
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
-  </div>
+  <div class='l_body' id='start'>
+    <aside class='l_left' layout='post'>
+    
+
+
+<header class="header">
+
+<div class="logo-wrap"><a class="avatar" href="/about/"><div class="bg" style="opacity:0;background-image:url(https://cdn.jsdelivr.net/gh/cdn-x/placeholder@1.0.2/avatar/round/rainbow64@3x.webp);"></div><img no-lazy class="avatar" src="/media/avatar.png" onerror="javascript:this.classList.add('error');this.src='https://cdn.jsdelivr.net/gh/cdn-x/placeholder@1.0.1/image/2659360.svg';"></a><a class="title" href="/"><div class="main">鳄鱼Crc2H0U</div><div class="sub cap">野生鳄鱼的自留地</div></a></div>
+<nav class="menu dis-select"><a class="nav-item active" href="/">文章</a><a class="nav-item" href="/about/">关于</a><a class="nav-item" href="/timeline/">时间轴</a></nav></header>
+
+<div class="widgets">
+
+<div class="widget-wrap single" id="toc"><div class="widget-header cap dis-select"><span class="name">本文目录</span></div><div class="widget-body fs14"><div class="doc-tree active"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E4%BB%BB%E5%8A%A1%E7%AE%A1%E7%90%86%E8%87%AA%E5%8A%A8%E5%8C%96"><span class="toc-text">1.任务管理自动化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E8%AE%A9%E4%BB%BB%E5%8A%A1%E4%BC%91%E7%9C%A0"><span class="toc-text">2.让任务休眠</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E5%A2%9E%E5%8A%A0%E7%AA%97%E5%8F%A3%E6%95%B0%E9%87%8F"><span class="toc-text">3.增加窗口数量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E8%AE%BE%E5%AE%9A%E4%BB%BB%E5%8A%A1%E4%BC%98%E5%85%88%E7%BA%A7%EF%BC%881%EF%BC%89"><span class="toc-text">4.设定任务优先级（1）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E8%AE%BE%E5%AE%9A%E4%BB%BB%E5%8A%A1%E4%BC%98%E5%85%88%E7%BA%A7%EF%BC%882%EF%BC%89"><span class="toc-text">5.设定任务优先级（2）</span></a></li></ol></div></div></div>
+
+
 </div>
 
 
-<nav class="site-nav">
-  
-  <ul id="menu" class="menu">
+    </aside>
+    <div class='l_main'>
       
-      
-      
-        
-        <li class="menu-item menu-item-home">
-      
-    
-
-    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
-
-  </li>
-      
-      
-      
-        
-        <li class="menu-item menu-item-categories">
-      
-    
-
-    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
-
-  </li>
-      
-      
-      
-        
-        <li class="menu-item menu-item-tags">
-      
-    
-
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
-
-  </li>
-      
-      
-      
-        
-        <li class="menu-item menu-item-about">
-      
-    
-
-    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>关于</a>
-
-  </li>
-      
-      
-      
-        
-        <li class="menu-item menu-item-英文博客">
-      
-    
-
-    <a href="/eysblog_en/" rel="section"><i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>英文博客</a>
-
-  </li>
-  </ul>
-
-    
-
-</nav>
-</div>
-    </header>
-
-    
-
-
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          <div id="content" class="content page-post-detail">
-            
-
-  <div id="posts" class="posts-expand">
-    
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://blog.crocodilezs.top/201904/30天自制操作系统（16）/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="CrocodileZS">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/tom.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="鰐魚先生的水族館">
-    </span>
-      <header class="post-header">
-
-        
-          <h1 class="post-title" itemprop="name headline">30天自制操作系统（16）
-
-            
-          </h1>
-        
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              
-                
-              
-
-              <time title="创建时间：2019-04-07 17:14:50" itemprop="dateCreated datePublished" datetime="2019-04-07T17:14:50+08:00">2019-04-07</time>
-            </span>
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/操作系统/" itemprop="url" rel="index"><span itemprop="name">操作系统</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-        
-      
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/201904/30天自制操作系统（16）/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/201904/30天自制操作系统（16）/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-          
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">本文字数：</span>
-              
-              <span>4.8k</span>
-            </span>
-          
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              
-              <span>8 分钟</span>
-            </span>
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="DAY16-多任务（2）"><a href="#DAY16-多任务（2）" class="headerlink" title="DAY16_多任务（2）"></a>DAY16_多任务（2）</h1><h2 id="1-任务管理自动化"><a href="#1-任务管理自动化" class="headerlink" title="1.任务管理自动化"></a>1.任务管理自动化</h2><ul>
+
+<div class="bread-nav fs12"><div id="breadcrumb"><a class="cap breadcrumb" href="/">主页</a><span class="sep"></span><a class="cap breadcrumb" href="/">文章</a><span class="sep"></span><a class="cap breadcrumb-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a></div><div id="post-meta">发布于&nbsp;<time datetime="2019-04-07T09:14:50.000Z">2019-04-07</time></div></div>
+
+<article class='content md post'>
+<h1 class="article-title"><span>30天自制操作系统（16）</span></h1>
+<h1 id="DAY16-多任务（2）"><a href="#DAY16-多任务（2）" class="headerlink" title="DAY16_多任务（2）"></a>DAY16_多任务（2）</h1><h2 id="1-任务管理自动化"><a href="#1-任务管理自动化" class="headerlink" title="1.任务管理自动化"></a>1.任务管理自动化</h2><ul>
 <li>充分做好多任务机制的基础上，再利用多任务逐步完善操作系统本身。</li>
 <li>如果我们想要运行三个任务的话，就必须改写mt_taskswitch的代码。如果能像当初定时器和窗口背景的做法一样更好。</li>
 </ul>
-<a id="more"></a>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">struct TASKCTL *taskctl; </span><br><span class="line">struct TIMER *task_timer; </span><br><span class="line">struct TASK *task_init(struct MEMMAN *memman) </span><br><span class="line">&#123; </span><br><span class="line">     int i; </span><br><span class="line">     struct TASK *task; </span><br><span class="line">     struct SEGMENT_DESCRIPTOR *gdt = (struct SEGMENT_DESCRIPTOR *) ADR_GDT; </span><br><span class="line">     taskctl = (struct TASKCTL *) memman_alloc_4k(memman, sizeof (struct TASKCTL)); </span><br><span class="line">     for (i = 0; i &lt; MAX_TASKS; i++) &#123; </span><br><span class="line">         taskctl-&gt;tasks0[i].flags = 0; </span><br><span class="line">         taskctl-&gt;tasks0[i].sel = (TASK_GDT0 + i) * 8; </span><br><span class="line">         set_segmdesc(gdt + TASK_GDT0 + i, 103, (int) &amp;taskctl-&gt;tasks0[i].tss, AR_TSS32); </span><br><span class="line">     &#125; </span><br><span class="line">     task = task_alloc();</span><br><span class="line">     task-&gt;flags = 2; /*活动中标志*/ </span><br><span class="line">     taskctl-&gt;running = 1; </span><br><span class="line">     taskctl-&gt;now = 0; </span><br><span class="line">     taskctl-&gt;tasks[0] = task; </span><br><span class="line">     load_tr(task-&gt;sel); </span><br><span class="line">     task_timer = timer_alloc(); </span><br><span class="line">     timer_settime(task_timer, 2); </span><br><span class="line">     return task; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">struct TASKCTL *taskctl; </span><br><span class="line">struct TIMER *task_timer; </span><br><span class="line">struct TASK *task_init(struct MEMMAN *memman) </span><br><span class="line">&#123; </span><br><span class="line">     int i; </span><br><span class="line">     struct TASK *task; </span><br><span class="line">     struct SEGMENT_DESCRIPTOR *gdt = (struct SEGMENT_DESCRIPTOR *) ADR_GDT; </span><br><span class="line">     taskctl = (struct TASKCTL *) memman_alloc_4k(memman, sizeof (struct TASKCTL)); </span><br><span class="line">     for (i = 0; i &lt; MAX_TASKS; i++) &#123; </span><br><span class="line">         taskctl-&gt;tasks0[i].flags = 0; </span><br><span class="line">         taskctl-&gt;tasks0[i].sel = (TASK_GDT0 + i) * 8; </span><br><span class="line">         set_segmdesc(gdt + TASK_GDT0 + i, 103, (int) &amp;taskctl-&gt;tasks0[i].tss, AR_TSS32); </span><br><span class="line">     &#125; </span><br><span class="line">     task = task_alloc();</span><br><span class="line">     task-&gt;flags = 2; /*活动中标志*/ </span><br><span class="line">     taskctl-&gt;running = 1; </span><br><span class="line">     taskctl-&gt;now = 0; </span><br><span class="line">     taskctl-&gt;tasks[0] = task; </span><br><span class="line">     load_tr(task-&gt;sel); </span><br><span class="line">     task_timer = timer_alloc(); </span><br><span class="line">     timer_settime(task_timer, 2); </span><br><span class="line">     return task; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <ul>
 <li>调用task_init，会返回一个内存地址，意思是==现在正在运行的这个程序，已经变成一个任务了==。可能大家不是很能理解这个说法，在调用init之后，所有程序的运行都会被当成任务来进行管理，而调用init的这个程序，我们也要让它所属于某个任务，这样一来，通过调用任务的设置函数，就可以对任务进行各种控制，比如说修改优先级等。</li>
 </ul>
 <h2 id="2-让任务休眠"><a href="#2-让任务休眠" class="headerlink" title="2.让任务休眠"></a>2.让任务休眠</h2><ul>
 <li>给每个任务==分配不同的时间==——休眠+唤醒</li>
 <li><p>休眠：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">void task_sleep(struct TASK *task) </span><br><span class="line">&#123; </span><br><span class="line">     int i; </span><br><span class="line">     char ts = 0; </span><br><span class="line">     if (task-&gt;flags == 2) &#123; /*如果指定任务处于唤醒状态*/ </span><br><span class="line">         if (task == taskctl-&gt;tasks[taskctl-&gt;now]) &#123; </span><br><span class="line">            ts = 1; /*让自己休眠的话，稍后需要进行任务切换*/ </span><br><span class="line">         &#125; </span><br><span class="line">         /*寻找task所在的位置*/ </span><br><span class="line">         for (i = 0; i &lt; taskctl-&gt;running; i++) &#123; </span><br><span class="line">             if (taskctl-&gt;tasks[i] == task) &#123; </span><br><span class="line">                 /*在这里*/ </span><br><span class="line">                 break; </span><br><span class="line">             &#125; </span><br><span class="line">         &#125; </span><br><span class="line">         taskctl-&gt;running--; </span><br><span class="line">         if (i &lt; taskctl-&gt;now) &#123; </span><br><span class="line">            taskctl-&gt;now--; /*需要移动成员，要相应地处理*/ </span><br><span class="line">         &#125; </span><br><span class="line">         /*移动成员*/ </span><br><span class="line">         for (; i &lt; taskctl-&gt;running; i++) &#123; </span><br><span class="line">            taskctl-&gt;tasks[i] = taskctl-&gt;tasks[i + 1]; </span><br><span class="line">         &#125; </span><br><span class="line">         task-&gt;flags = 1; /*不工作的状态*/ </span><br><span class="line">         if (ts != 0) &#123; </span><br><span class="line">            /*任务切换*/ </span><br><span class="line">            if (taskctl-&gt;now &gt;= taskctl-&gt;running) &#123; </span><br><span class="line">                /*如果now的值出现异常，则进行修正*/ </span><br><span class="line">                taskctl-&gt;now = 0; </span><br><span class="line">            &#125; </span><br><span class="line">            farjmp(0, taskctl-&gt;tasks[taskctl-&gt;now]-&gt;sel); </span><br><span class="line">         &#125; </span><br><span class="line">     &#125; </span><br><span class="line">     return; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">void task_sleep(struct TASK *task) </span><br><span class="line">&#123; </span><br><span class="line">     int i; </span><br><span class="line">     char ts = 0; </span><br><span class="line">     if (task-&gt;flags == 2) &#123; /*如果指定任务处于唤醒状态*/ </span><br><span class="line">         if (task == taskctl-&gt;tasks[taskctl-&gt;now]) &#123; </span><br><span class="line">            ts = 1; /*让自己休眠的话，稍后需要进行任务切换*/ </span><br><span class="line">         &#125; </span><br><span class="line">         /*寻找task所在的位置*/ </span><br><span class="line">         for (i = 0; i &lt; taskctl-&gt;running; i++) &#123; </span><br><span class="line">             if (taskctl-&gt;tasks[i] == task) &#123; </span><br><span class="line">                 /*在这里*/ </span><br><span class="line">                 break; </span><br><span class="line">             &#125; </span><br><span class="line">         &#125; </span><br><span class="line">         taskctl-&gt;running--; </span><br><span class="line">         if (i &lt; taskctl-&gt;now) &#123; </span><br><span class="line">            taskctl-&gt;now--; /*需要移动成员，要相应地处理*/ </span><br><span class="line">         &#125; </span><br><span class="line">         /*移动成员*/ </span><br><span class="line">         for (; i &lt; taskctl-&gt;running; i++) &#123; </span><br><span class="line">            taskctl-&gt;tasks[i] = taskctl-&gt;tasks[i + 1]; </span><br><span class="line">         &#125; </span><br><span class="line">         task-&gt;flags = 1; /*不工作的状态*/ </span><br><span class="line">         if (ts != 0) &#123; </span><br><span class="line">            /*任务切换*/ </span><br><span class="line">            if (taskctl-&gt;now &gt;= taskctl-&gt;running) &#123; </span><br><span class="line">                /*如果now的值出现异常，则进行修正*/ </span><br><span class="line">                taskctl-&gt;now = 0; </span><br><span class="line">            &#125; </span><br><span class="line">            farjmp(0, taskctl-&gt;tasks[taskctl-&gt;now]-&gt;sel); </span><br><span class="line">         &#125; </span><br><span class="line">     &#125; </span><br><span class="line">     return; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>唤醒：</p>
 <ul>
-<li>在FIFO中添加用于记录要唤醒任务的信息的成员。<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">struct FIFO32 &#123; </span><br><span class="line">    int *buf; </span><br><span class="line">    int p, q, size, free, flags; </span><br><span class="line">    struct TASK *task; </span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-</li>
+<li>在FIFO中添加用于记录要唤醒任务的信息的成员。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">struct FIFO32 &#123; </span><br><span class="line">    int *buf; </span><br><span class="line">    int p, q, size, free, flags; </span><br><span class="line">    struct TASK *task; </span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="3-增加窗口数量"><a href="#3-增加窗口数量" class="headerlink" title="3.增加窗口数量"></a>3.增加窗口数量</h2></li>
 </ul>
 </li>
-</ul>
-<h2 id="3-增加窗口数量"><a href="#3-增加窗口数量" class="headerlink" title="3.增加窗口数量"></a>3.增加窗口数量</h2><ul>
 <li>形成任务A、任务B0、任务B1和任务B2的格局。</li>
 <li>任务B0～B2各自拥有自己的窗口，它们的功能都一样，即进行计数，这有点像在Windows中启动了一个应用程序及其2个副本的感觉。</li>
 </ul>
 <h2 id="4-设定任务优先级（1）"><a href="#4-设定任务优先级（1）" class="headerlink" title="4.设定任务优先级（1）"></a>4.设定任务优先级（1）</h2><ul>
-<li>改写mtask.c、task_switch<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">void task_switch(void) </span><br><span class="line">&#123; </span><br><span class="line">     struct TASK *task; </span><br><span class="line">     taskctl-&gt;now++; </span><br><span class="line">     if (taskctl-&gt;now == taskctl-&gt;running) &#123; </span><br><span class="line">        taskctl-&gt;now = 0; </span><br><span class="line">     &#125; </span><br><span class="line">     task = taskctl-&gt;tasks[taskctl-&gt;now]; </span><br><span class="line">     timer_settime(task_timer, task-&gt;priority); </span><br><span class="line">     if (taskctl-&gt;running &gt;= 2) &#123; </span><br><span class="line">        farjmp(0, task-&gt;sel); </span><br><span class="line">     &#125;</span><br><span class="line">     return; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<li>改写mtask.c、task_switch<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">void task_switch(void) </span><br><span class="line">&#123; </span><br><span class="line">     struct TASK *task; </span><br><span class="line">     taskctl-&gt;now++; </span><br><span class="line">     if (taskctl-&gt;now == taskctl-&gt;running) &#123; </span><br><span class="line">        taskctl-&gt;now = 0; </span><br><span class="line">     &#125; </span><br><span class="line">     task = taskctl-&gt;tasks[taskctl-&gt;now]; </span><br><span class="line">     timer_settime(task_timer, task-&gt;priority); </span><br><span class="line">     if (taskctl-&gt;running &gt;= 2) &#123; </span><br><span class="line">        farjmp(0, task-&gt;sel); </span><br><span class="line">     &#125;</span><br><span class="line">     return; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <h2 id="5-设定任务优先级（2）"><a href="#5-设定任务优先级（2）" class="headerlink" title="5.设定任务优先级（2）"></a>5.设定任务优先级（2）</h2><ul>
 <li>在操作系统中有一些处理，即使牺牲其他任务的性能也必须要尽快完成，否则会引起用户的不满，就比如这次对鼠标的处理。对于这类任务，我们可以让它在处理结束后马上休眠，而优先级则可以设置得非常高。</li>
-<li>我们需要设计一种架构，使得即便高优先级的任务同时运行，也能够区分哪个更加优先。<br><img src="https://s2.ax1x.com/2019/04/07/AhpVk8.jpg" alt="16.1"></li>
+<li>我们需要设计一种架构，使得即便高优先级的任务同时运行，也能够区分哪个更加优先。<br><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://s2.ax1x.com/2019/04/07/AhpVk8.jpg" alt="16.1"></li>
 <li>这种架构的工作原理是，最上层的LEVEL 0中只要存在哪怕一个任务，则完全忽略LEVEL 1和LEVEL 2中的任务，只在LEVEL 0的任务中进行任务切换。当LEVEL 0中的任务全部休眠，或者全部降到下层LEVEL，也就是当LEVEL 0中没有任何任务的时候，接下来开始轮到LEVEL 1中的任务进行任务切换。当LEVEL 0和LEVEL 1中都没有任务时，那就该轮到LEVEL2 出场了。<br>在这种架构下，只要把音乐播放任务设置在LEVEL 0中，就可以保证获得比鼠标更高的优先级。</li>
 </ul>
 <hr>
 <ul>
-<li><p>task_now 用于返回现在活动中的struct TASK的内存地址</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">struct TASK *task_now(void) </span><br><span class="line">&#123; </span><br><span class="line"> struct TASKLEVEL *tl = &amp;taskctl-&gt;level[taskctl-&gt;now_lv]; </span><br><span class="line"> return tl-&gt;tasks[tl-&gt;now]; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>task_add，用来向struct TASKLEVEL中添加一个任务</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">void task_add(struct TASK *task) </span><br><span class="line">&#123; </span><br><span class="line"> struct TASKLEVEL *tl = &amp;taskctl-&gt;level[task-&gt;level]; </span><br><span class="line"> tl-&gt;tasks[tl-&gt;running] = task; </span><br><span class="line"> tl-&gt;running++; </span><br><span class="line"> task-&gt;flags = 2; /*活动中*/ </span><br><span class="line"> return; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
+<li>task_now 用于返回现在活动中的struct TASK的内存地址<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">struct TASK *task_now(void) </span><br><span class="line">&#123; </span><br><span class="line"> struct TASKLEVEL *tl = &amp;taskctl-&gt;level[taskctl-&gt;now_lv]; </span><br><span class="line"> return tl-&gt;tasks[tl-&gt;now]; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>task_add，用来向struct TASKLEVEL中添加一个任务<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">void task_add(struct TASK *task) </span><br><span class="line">&#123; </span><br><span class="line"> struct TASKLEVEL *tl = &amp;taskctl-&gt;level[task-&gt;level]; </span><br><span class="line"> tl-&gt;tasks[tl-&gt;running] = task; </span><br><span class="line"> tl-&gt;running++; </span><br><span class="line"> task-&gt;flags = 2; /*活动中*/ </span><br><span class="line"> return; </span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
 <li><p>task_remove</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">void task_remove(struct TASK *task) </span><br><span class="line">&#123; </span><br><span class="line">     int i; </span><br><span class="line">     struct TASKLEVEL *tl = &amp;taskctl-&gt;level[task-&gt;level]; </span><br><span class="line">     /*寻找task所在的位置*/ </span><br><span class="line">     for (i = 0; i &lt; tl-&gt;running; i++) &#123; </span><br><span class="line">         if (tl-&gt;tasks[i] == task) &#123; </span><br><span class="line">             /*在这里 */ </span><br><span class="line">             break; </span><br><span class="line">         &#125; </span><br><span class="line">     &#125; </span><br><span class="line">     tl-&gt;running--; </span><br><span class="line">     if (i &lt; tl-&gt;now) &#123; </span><br><span class="line">        tl-&gt;now--; /*需要移动成员，要相应地处理 */ </span><br><span class="line">     &#125; </span><br><span class="line">     if (tl-&gt;now &gt;= tl-&gt;running) &#123; </span><br><span class="line">         /*如果now的值出现异常，则进行修正*/ </span><br><span class="line">         tl-&gt;now = 0; </span><br><span class="line">     &#125; </span><br><span class="line">     task-&gt;flags = 1; /* 休眠中 */ </span><br><span class="line">     /* 移动 */ </span><br><span class="line">     for (; i &lt; tl-&gt;running; i++) &#123;</span><br><span class="line">        tl-&gt;tasks[i] = tl-&gt;tasks[i + 1]; </span><br><span class="line">     &#125; </span><br><span class="line">     return; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">void task_remove(struct TASK *task) </span><br><span class="line">&#123; </span><br><span class="line">     int i; </span><br><span class="line">     struct TASKLEVEL *tl = &amp;taskctl-&gt;level[task-&gt;level]; </span><br><span class="line">     /*寻找task所在的位置*/ </span><br><span class="line">     for (i = 0; i &lt; tl-&gt;running; i++) &#123; </span><br><span class="line">         if (tl-&gt;tasks[i] == task) &#123; </span><br><span class="line">             /*在这里 */ </span><br><span class="line">             break; </span><br><span class="line">         &#125; </span><br><span class="line">     &#125; </span><br><span class="line">     tl-&gt;running--; </span><br><span class="line">     if (i &lt; tl-&gt;now) &#123; </span><br><span class="line">        tl-&gt;now--; /*需要移动成员，要相应地处理 */ </span><br><span class="line">     &#125; </span><br><span class="line">     if (tl-&gt;now &gt;= tl-&gt;running) &#123; </span><br><span class="line">         /*如果now的值出现异常，则进行修正*/ </span><br><span class="line">         tl-&gt;now = 0; </span><br><span class="line">     &#125; </span><br><span class="line">     task-&gt;flags = 1; /* 休眠中 */ </span><br><span class="line">     /* 移动 */ </span><br><span class="line">     for (; i &lt; tl-&gt;running; i++) &#123;</span><br><span class="line">        tl-&gt;tasks[i] = tl-&gt;tasks[i + 1]; </span><br><span class="line">     &#125; </span><br><span class="line">     return; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>task_switchsub,用来在任务切换时决定接下来切换到哪个LEVEL</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">void task_switchsub(void) </span><br><span class="line">&#123; </span><br><span class="line">     int i; </span><br><span class="line">     /*寻找最上层的LEVEL */ </span><br><span class="line">     for (i = 0; i &lt; MAX_TASKLEVELS; i++) &#123; </span><br><span class="line">     if (taskctl-&gt;level[i].running &gt; 0) &#123; </span><br><span class="line">     break; /*找到了*/ </span><br><span class="line">     &#125; </span><br><span class="line">     &#125; </span><br><span class="line">     taskctl-&gt;now_lv = i; </span><br><span class="line">     taskctl-&gt;lv_change = 0; </span><br><span class="line">     return; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">void task_switchsub(void) </span><br><span class="line">&#123; </span><br><span class="line">     int i; </span><br><span class="line">     /*寻找最上层的LEVEL */ </span><br><span class="line">     for (i = 0; i &lt; MAX_TASKLEVELS; i++) &#123; </span><br><span class="line">     if (taskctl-&gt;level[i].running &gt; 0) &#123; </span><br><span class="line">     break; /*找到了*/ </span><br><span class="line">     &#125; </span><br><span class="line">     &#125; </span><br><span class="line">     taskctl-&gt;now_lv = i; </span><br><span class="line">     taskctl-&gt;lv_change = 0; </span><br><span class="line">     return; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 </ul>
 
+
+<div class="article-footer reveal fs14"><section id="license"><div class="header"><span>许可协议</span></div><div class="body"><p>本文采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">署名-非商业性使用-相同方式共享 4.0 国际</a> 许可协议，转载请注明出处。</p>
+</div></section></div>
+
+</article>
+
+<div class="related-wrap reveal" id="read-next"><section class="header cap theme"><span>接下来阅读</span></section><section class="body fs14"><a id="next" href="/201904/30%E5%A4%A9%E8%87%AA%E5%88%B6%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%EF%BC%8815%EF%BC%89/">30天自制操作系统（15）<span class="note">较早</span></a><div class="line"></div><a id="prev" href="/201904/30%E5%A4%A9%E8%87%AA%E5%88%B6%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%EF%BC%8817%EF%BC%89/">30天自制操作系统（17）<span class="note">较新</span></a></section></div>
+
+
+
+
+
+
+  <div class='related-wrap md reveal' id="comments">
+    <div class='cmt-title cap theme'>
+      快来参与讨论吧
     </div>
-
-    
-
-    
-    
-    
+    <div class='cmt-body beaudar'>
       
 
-        
-      
+<svg class="loading" style="vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2709"><path d="M832 512c0-176-144-320-320-320V128c211.2 0 384 172.8 384 384h-64zM192 512c0 176 144 320 320 320v64C300.8 896 128 723.2 128 512h64z" p-id="2710"></path></svg>
 
-      <footer class="post-footer">
+<div id="beaudar" repo="CrocodileZS/blog-comments" issue-term="pathname" theme="preferred-color-scheme" input-position="top" comment-order="desc" loading="false" branch="main"></div>
 
-        
-  <div class="post-widgets">
-    <div class="social-share">
-      
-      
-        <div id="needsharebutton-postbottom">
-          <span class="btn">
-            <i class="fa fa-share-alt" aria-hidden="true"></i>
-          </span>
-        </div>
-      
-    </div>
-  
-  </div>
-
-          <div class="post-nav">
-            <div class="post-nav-next post-nav-item">
-              
-                <a href="/201904/30天自制操作系统（15）/" rel="next" title="30天自制操作系统（15）">
-                  <i class="fa fa-chevron-left"></i> 30天自制操作系统（15）
-                </a>
-              
-            </div>
-
-            <span class="post-nav-divider"></span>
-
-            <div class="post-nav-prev post-nav-item">
-              
-                <a href="/201904/30天自制操作系统（17）/" rel="prev" title="30天自制操作系统（17）">
-                  30天自制操作系统（17） <i class="fa fa-chevron-right"></i>
-                </a>
-              
-            </div>
-          </div>
-        
-      </footer>
-    
-  </div>
-  
-  
-  
-  </article>
-
-  </div>
-
-
-          </div>
-          
-    
-    <div class="comments" id="comments"></div>
-  
-
-        </div>
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
     </div>
   </div>
 
-  <aside id="sidebar" class="sidebar">
-    <div class="sidebar-inner">
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-overview">
-
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image"
-      src="/images/tom.jpg"
-      alt="CrocodileZS">
-  <p class="site-author-name" itemprop="name">CrocodileZS</p>
-  <div class="site-description motion-element" itemprop="description"></div>
-</div>
-  <nav class="site-state motion-element">
-      <div class="site-state-item site-state-posts">
-        
-          <a href="/archives">
-        
-          <span class="site-state-item-count">71</span>
-          <span class="site-state-item-name">日志</span>
-        </a>
-      </div>
-    
-      
-      
-      <div class="site-state-item site-state-categories">
-        
-          
-            <a href="/categories/">
-          
-        
-        
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-        <span class="site-state-item-count">16</span>
-        <span class="site-state-item-name">分类</span>
-        </a>
-      </div>
-    
-      
-      
-      <div class="site-state-item site-state-tags">
-        
-          
-            <a href="/tags/">
-          
-        
-        
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-        <span class="site-state-item-count">40</span>
-        <span class="site-state-item-name">标签</span>
-        </a>
-      </div>
-    
-  </nav>
-  <div class="feed-link motion-element">
-    <a href="/atom.xml" rel="alternate">
-      <i class="fa fa-rss"></i>RSS
-    </a>
-  </div>
-  <div class="links-of-author motion-element">
-      <span class="links-of-author-item">
-      
-      
-        
-      
-      
-        
-      
-        <a href="mailto:ammo@bupt.edu.cn" title="E-Mail &rarr; mailto:ammo@bupt.edu.cn" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
-      </span>
-    
-      <span class="links-of-author-item">
-      
-      
-        
-      
-      
-        
-      
-        <a href="https://instagram.com/crocodile_zs" title="Instagram &rarr; https://instagram.com/crocodile_zs" rel="noopener" target="_blank"><i class="fa fa-fw fa-instagram"></i>Instagram</a>
-      </span>
-    
-  </div>
 
 
-  <div class="links-of-blogroll motion-element links-of-blogroll-block">
-    <div class="links-of-blogroll-title">
-      <i class="fa  fa-fw fa-link"></i>
-      Links
-    </div>
-    <ul class="links-of-blogroll-list">
-        <li class="links-of-blogroll-item">
-          <a href="http://www.wangxiaofeng.me/" title="http://www.wangxiaofeng.me/" rel="noopener" target="_blank">不许联想</a>
-        </li>
       
-        <li class="links-of-blogroll-item">
-          <a href="https://idx0.dev/" title="https://idx0.dev/" rel="noopener" target="_blank">思维</a>
-        </li>
-      
-        <li class="links-of-blogroll-item">
-          <a href="https://128bit.top" title="https://128bit.top" rel="noopener" target="_blank">Dixeran</a>
-        </li>
-      
-        <li class="links-of-blogroll-item">
-          <a href="http://icontofig.leanote.com/" title="http://icontofig.leanote.com/" rel="noopener" target="_blank">Icontofig</a>
-        </li>
-      
-        <li class="links-of-blogroll-item">
-          <a href="https://www.nekomio.com" title="https://www.nekomio.com" rel="noopener" target="_blank">NekoMio</a>
-        </li>
-      
-        <li class="links-of-blogroll-item">
-          <a href="https://al0ha0e.github.io" title="https://al0ha0e.github.io" rel="noopener" target="_blank">Al0ha0e</a>
-        </li>
-      
-        <li class="links-of-blogroll-item">
-          <a href="http://gaokeyong.coding.me" title="http://gaokeyong.coding.me" rel="noopener" target="_blank">Keyong</a>
-        </li>
-      
-        <li class="links-of-blogroll-item">
-          <a href="http://poeroz.cn/" title="http://poeroz.cn/" rel="noopener" target="_blank">Poeroz</a>
-        </li>
-      
-    </ul>
-  </div>
+<footer class="page-footer reveal fs12"><hr><div class="text"><p>本博客所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议，转载请注明出处。</p>
+<p>本站由 <a href="https://blog.crocodilezs.top/">@CrocodileZS</a> 创建，使用 <a target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.7.0" title="v1.7.0">Stellar</a> 作为主题。</p>
+</div></footer>
 
-        </div>
-      </div>
-      <!--noindex-->
-        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-            
-            
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#DAY16-多任务（2）"><span class="nav-text">DAY16_多任务（2）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-任务管理自动化"><span class="nav-text">1.任务管理自动化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-让任务休眠"><span class="nav-text">2.让任务休眠</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-增加窗口数量"><span class="nav-text">3.增加窗口数量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-设定任务优先级（1）"><span class="nav-text">4.设定任务优先级（1）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-设定任务优先级（2）"><span class="nav-text">5.设定任务优先级（2）</span></a></li></ol></li></ol></div>
-            
-
-          </div>
-        </div>
-      <!--/noindex-->
-      
-
-    </div>
-  </aside>
-  <div id="sidebar-dimmer"></div>
-
-
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
-  <span class="with-love" id="animate">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">鰐魚先生</span>
+      <div class='float-panel mobile-only blur' style='display:none'>
+  <button type='button' class='sidebar-toggle mobile' onclick='sidebar.toggle()'>
+    <svg class="icon" style="width: 1em; height: 1em;vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="15301"><path d="M566.407 808.3c26.9-0.1 49.3-20.8 51.6-47.6-1.9-27.7-23.9-49.7-51.6-51.6h-412.6c-28.2-1.4-52.6 19.5-55.5 47.6 2.3 26.8 24.6 47.5 51.6 47.6h416.5v4z m309.3-249.9c26.9-0.1 49.3-20.8 51.6-47.6-2.2-26.8-24.6-47.5-51.6-47.6h-721.9c-27.7-2.8-52.5 17.4-55.3 45.1-0.1 0.8-0.1 1.7-0.2 2.5 0.9 27.2 23.6 48.5 50.7 47.6H875.707z m-103.1-245.9c26.9-0.1 49.3-20.8 51.6-47.6-0.4-28.3-23.2-51.1-51.5-51.6h-618.9c-29.5-1.1-54.3 21.9-55.5 51.4v0.2c1.4 27.8 25.2 49.2 53 47.8 0.8 0 1.7-0.1 2.5-0.2h618.8z" p-id="15302"></path><path d="M566.407 808.3c26.9-0.1 49.3-20.8 51.6-47.6-1.9-27.7-23.9-49.7-51.6-51.6h-412.6c-28.2-1.4-52.6 19.5-55.5 47.6 1.9 27.7 23.9 49.7 51.6 51.6h416.5z m309.3-249.9c26.9-0.1 49.3-20.8 51.6-47.6-2.2-26.8-24.6-47.5-51.6-47.6h-721.9c-27.7-2.8-52.5 17.4-55.3 45.1-0.1 0.8-0.1 1.7-0.2 2.5 0.9 27.2 23.6 48.5 50.7 47.6H875.707z m-103.1-245.9c26.9-0.1 49.3-20.8 51.6-47.6-0.4-28.3-23.2-51.1-51.5-51.6h-618.9c-29.5-1.1-54.3 21.9-55.5 51.4v0.2c1.4 27.8 25.2 49.2 53 47.8 0.8 0 1.7-0.1 2.5-0.2h618.8z" p-id="15303"></path></svg>
+  </button>
 </div>
 
-
-        
-<div class="busuanzi-count">
-  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-    <span class="post-meta-item-icon">
-      <i class="fa fa-user"></i>
-    </span>
-    <span class="site-uv" title="总访客量">
-      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
-    </span>
-  
-    <span class="post-meta-divider">|</span>
-  
-    <span class="post-meta-item-icon">
-      <i class="fa fa-eye"></i>
-    </span>
-    <span class="site-pv" title="总访问量">
-      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
-    </span>
-  
-</div>
-
-
-
-
-
-
-
-
-        
-      </div>
-    </footer>
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-          <span id="scrollpercent"><span>0</span>%</span>
-        
-      </div>
-
-    
-  
-  <div id="needsharebutton-float">
-    <span class="btn">
-      <i class="fa fa-share-alt" aria-hidden="true"></i>
-    </span>
+    </div>
   </div>
-<script src="/lib/needsharebutton/needsharebutton.js"></script>
-<script>
-    pbOptions = {};
-      pbOptions.iconStyle = "default";
-    
-      pbOptions.boxForm = "horizontal";
-    
-      pbOptions.position = "bottomCenter";
-    
-      pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
-    
-    new needShareButton('#needsharebutton-postbottom', pbOptions);
-    flOptions = {};
-      flOptions.iconStyle = "box";
-    
-      flOptions.boxForm = "horizontal";
-    
-      flOptions.position = "middleRight";
-    
-      flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
-    
-    new needShareButton('#needsharebutton-float', flOptions);
+  <div class='scripts'>
+    <script type="text/javascript">
+  stellar = {
+    // 懒加载 css https://github.com/filamentgroup/loadCSS
+    loadCSS: (href, before, media, attributes) => {
+      var doc = window.document;
+      var ss = doc.createElement("link");
+      var ref;
+      if (before) {
+        ref = before;
+      } else {
+        var refs = (doc.body || doc.getElementsByTagName("head")[0]).childNodes;
+        ref = refs[refs.length - 1];
+      }
+      var sheets = doc.styleSheets;
+      if (attributes) {
+        for (var attributeName in attributes) {
+          if (attributes.hasOwnProperty(attributeName)) {
+            ss.setAttribute(attributeName, attributes[attributeName]);
+          }
+        }
+      }
+      ss.rel = "stylesheet";
+      ss.href = href;
+      ss.media = "only x";
+      function ready(cb) {
+        if (doc.body) {
+          return cb();
+        }
+        setTimeout(function () {
+          ready(cb);
+        });
+      }
+      ready(function () {
+        ref.parentNode.insertBefore(ss, before ? ref : ref.nextSibling);
+      });
+      var onloadcssdefined = function (cb) {
+        var resolvedHref = ss.href;
+        var i = sheets.length;
+        while (i--) {
+          if (sheets[i].href === resolvedHref) {
+            return cb();
+          }
+        }
+        setTimeout(function () {
+          onloadcssdefined(cb);
+        });
+      };
+      function loadCB() {
+        if (ss.addEventListener) {
+          ss.removeEventListener("load", loadCB);
+        }
+        ss.media = media || "all";
+      }
+      if (ss.addEventListener) {
+        ss.addEventListener("load", loadCB);
+      }
+      ss.onloadcssdefined = onloadcssdefined;
+      onloadcssdefined(loadCB);
+      return ss;
+    },
+
+    // 从 butterfly 和 volantis 获得灵感
+    loadScript: (src, opt) => new Promise((resolve, reject) => {
+      var script = document.createElement('script');
+      script.src = src;
+      if (opt) {
+        for (let key of Object.keys(opt)) {
+          script[key] = opt[key]
+        }
+      } else {
+        // 默认异步，如果需要同步，第二个参数传入 {} 即可
+        script.async = true
+      }
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    }),
+
+    // https://github.com/jerryc127/hexo-theme-butterfly
+    jQuery: (fn) => {
+      if (typeof jQuery === 'undefined') {
+        stellar.loadScript(stellar.plugins.jQuery).then(fn)
+      } else {
+        fn()
+      }
+    }
+  };
+  stellar.github = 'https://github.com/xaoxuu/hexo-theme-stellar/tree/1.7.0';
+  stellar.config = {
+    date_suffix: {
+      just: '刚刚',
+      min: '分钟前',
+      hour: '小时前',
+      day: '天前',
+      month: '个月前',
+    },
+  };
+
+  // required plugins (only load if needs)
+  stellar.plugins = {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js',
+    sitesjs: '/js/plugins/sites.js',
+    friendsjs: '/js/plugins/friends.js',
+  };
+
+  // optional plugins
+  if ('true' == 'true') {
+    stellar.plugins.lazyload = Object.assign({"enable":true,"js":"https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.3.1/dist/lazyload.min.js","transition":"blur"});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.swiper = Object.assign({"enable":true,"css":"https://unpkg.com/swiper@6/swiper-bundle.min.css","js":"https://unpkg.com/swiper@6/swiper-bundle.min.js"});
+  }
+  if ('' == 'true') {
+    stellar.plugins.scrollreveal = Object.assign({"enable":null,"js":"https://cdn.jsdelivr.net/npm/scrollreveal@4.0.9/dist/scrollreveal.min.js","distance":"8px","duration":500,"interval":100,"scale":1});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.preload = Object.assign({"enable":true,"service":"flying_pages","instant_page":"https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@4.1.2/js/instant_page.js","flying_pages":"https://cdn.jsdelivr.net/gh/gijo-varghese/flying-pages@2.1.2/flying-pages.min.js"});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.fancybox = Object.assign({"enable":true,"js":"https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js","css":"https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css","selector":".swiper-slide img"});
+  }
+  if ('false' == 'true') {
+    stellar.plugins.heti = Object.assign({"enable":false,"css":"https://unpkg.com/heti/umd/heti.min.css","js":"https://unpkg.com/heti/umd/heti-addon.min.js"});
+  }
 </script>
 
-
-  </div>
-
-  
-  <script src="/lib/jquery/index.js?v=3.4.1"></script>
-  <script src="/lib/fancybox/source/jquery.fancybox.pack.js"></script>
-  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-<script src="/js/utils.js?v=7.3.0"></script>
-  <script src="/js/motion.js?v=7.3.0"></script>
-
-
-  <script src="/js/schemes/muse.js?v=7.3.0"></script>
-
-
-<script src="/js/next-boot.js?v=7.3.0"></script>
-
-
-
+<!-- required -->
 
   
+<script src="/js/main.js" async></script>
+
+
+
+<!-- optional -->
+
   <script>
-    (function(){
-      var bp = document.createElement('script');
-      var curProtocol = window.location.protocol.split(':')[0];
-      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
-      var s = document.getElementsByTagName("script")[0];
-      s.parentNode.insertBefore(bp, s);
-    })();
-  </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-  
-
-  
-
-  
-
-
-  
-  <script src="/js/scrollspy.js?v=7.3.0"></script>
-<script src="/js/post-details.js?v=7.3.0"></script>
-
-
-    
-
-<script>
-NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', function() {
-  var GUEST = ['nick', 'mail', 'link'];
-  var guest = 'nick,mail,link';
-  guest = guest.split(',').filter(function(item) {
-    return GUEST.indexOf(item) > -1;
+  function loadBeaudar() {
+    const els = document.querySelectorAll("#comments #beaudar");
+    if (els.length === 0) return;
+    els.forEach((el, i) => {
+      try {
+        el.innerHTML = '';
+      } catch (error) {
+        console.log(error);
+      }
+      var script = document.createElement('script');
+      script.src = 'https://beaudar.lipk.org/client.js';
+      script.async = true;
+      for (let key of Object.keys(el.attributes)) {
+        let attr = el.attributes[key];
+        if (['class', 'id'].includes(attr.name) === false) {
+          script.setAttribute(attr.name, attr.value);
+        }
+      }
+      el.appendChild(script);
+    });
+  }
+  window.addEventListener('DOMContentLoaded', (event) => {
+      loadBeaudar();
   });
-  new Valine({
-    el: '#comments',
-    verify: false,
-    notify: false,
-    appId: '9VEOQepq1oDMG0XHxBOrKuwU-gzGzoHsz',
-    appKey: 'XVzSWQhACVUcrVzQDF0AJlb8',
-    placeholder: 'ヽ(✿ﾟ▽ﾟ)ノ',
-    avatar: 'zhouyuyang17@163.com',
-    meta: guest,
-    pageSize: '10' || 10,
-    visitor: false,
-    lang: 'zh-cn' || 'zh-cn',
-    path: location.pathname
-  });
-}, window.Valine);
 </script>
 
-  <script type="text/javascript" src="/lib/zclip/clipboard.min.js"></script>	
-<script type="text/javascript" src="/js/src/custom.js"></script>
+
+
+
+<!-- inject -->
+
+
+  </div>
 </body>
 </html>

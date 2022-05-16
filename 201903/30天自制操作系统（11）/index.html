@@ -1,355 +1,106 @@
 <!DOCTYPE html>
+<html lang='zh-CN'>
 
-
-
-
-
-<html class="theme-next muse use-motion" lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
-<meta name="generator" content="Hexo 3.9.0">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/rainbow.png?v=7.3.0">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/rainbow.png?v=7.3.0">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/rainbow.png?v=7.3.0">
-  <link rel="mask-icon" href="/images/rainbow.svg?v=7.3.0" color="#222">
-  <meta name="baidu-site-verification" content="MBR3SWgP01">
+  <meta name="generator" content="Hexo 5.4.2">
+  <meta charset="utf-8">
+  
 
-<link rel="stylesheet" href="/css/main.css?v=7.3.0">
+  <meta http-equiv='x-dns-prefetch-control' content='on' />
+  <link rel='dns-prefetch' href='https://cdn.jsdelivr.net'>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel='dns-prefetch' href='//unpkg.com'>
 
-<link rel="stylesheet" href="https://fonts.loli.net/css?family=Noto Serif SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
-<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
-  <link rel="stylesheet" href="/lib/fancybox/source/jquery.fancybox.css">
-  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
-  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
-  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2">
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="theme-color" content="#f8f8f8">
+  <title>30天自制操作系统（11） - 鳄鱼Crc2H0U</title>
 
+  
 
-<script id="hexo-configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Muse',
-    version: '7.3.0',
-    exturl: false,
-    sidebar: {"position":"left","display":"post","offset":12,"onmobile":true},
-    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
-    save_scroll: true,
-    copycode: {"enable":true,"show_result":true,"style":"flat"},
-    fancybox: true,
-    mediumzoom: false,
-    lazyload: false,
-    pangu: false,
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    },
-    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
-    path: 'search.xml',
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    translation: {
-      copy_button: '复制',
-      copy_success: '复制成功',
-      copy_failure: '复制失败'
-    }
-  };
-</script>
-
-  <meta name="description" content="DAY11_制作窗口1.鼠标显示问题 我们系统的鼠标不能够向右或向下移动到画面之外隐藏起来。为此我们修改HariMain">
+  
+    <meta name="description" content="DAY11_制作窗口1.鼠标显示问题 我们系统的鼠标不能够向右或向下移动到画面之外隐藏起来。为此我们修改HariMain">
 <meta property="og:type" content="article">
 <meta property="og:title" content="30天自制操作系统（11）">
-<meta property="og:url" content="https://blog.crocodilezs.top/201903/30天自制操作系统（11）/index.html">
-<meta property="og:site_name" content="鰐魚先生的水族館">
+<meta property="og:url" content="https://blog.crocodilezs.top/201903/30%E5%A4%A9%E8%87%AA%E5%88%B6%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%EF%BC%8811%EF%BC%89/index.html">
+<meta property="og:site_name" content="鳄鱼Crc2H0U">
 <meta property="og:description" content="DAY11_制作窗口1.鼠标显示问题 我们系统的鼠标不能够向右或向下移动到画面之外隐藏起来。为此我们修改HariMain">
-<meta property="og:locale" content="zh-CN">
+<meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://s2.ax1x.com/2019/03/24/AYhJwF.png">
-<meta property="og:updated_time" content="2019-09-27T09:43:21.876Z">
+<meta property="article:published_time" content="2019-03-25T02:17:50.000Z">
+<meta property="article:modified_time" content="2019-09-27T09:43:21.876Z">
+<meta property="article:author" content="CrocodileZS">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="30天自制操作系统（11）">
-<meta name="twitter:description" content="DAY11_制作窗口1.鼠标显示问题 我们系统的鼠标不能够向右或向下移动到画面之外隐藏起来。为此我们修改HariMain">
 <meta name="twitter:image" content="https://s2.ax1x.com/2019/03/24/AYhJwF.png">
-  <link rel="alternate" href="/atom.xml" title="鰐魚先生的水族館" type="application/atom+xml">
-  <link rel="canonical" href="https://blog.crocodilezs.top/201903/30天自制操作系统（11）/">
-
-
-<script id="page-configurations">
-  // https://hexo.io/docs/variables.html
-  CONFIG.page = {
-    sidebar: "",
-    isHome: false,
-    isPost: true,
-    isPage: false,
-    isArchive: false
-  };
-</script>
-
-  <title>30天自制操作系统（11） | 鰐魚先生的水族館</title>
+  
   
 
+  <!-- feed -->
+  
+    <link rel="alternate" href="/atom.xml" title="鳄鱼Crc2H0U" type="application/atom+xml">
+  
 
+  
+    
+<link rel="stylesheet" href="/css/main.css">
 
+  
 
+  
 
-
-
-
-  <noscript>
-  <style>
-  .use-motion .motion-element,
-  .use-motion .brand,
-  .use-motion .menu-item,
-  .sidebar-inner,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-title { opacity: initial; }
-
-  .use-motion .logo,
-  .use-motion .site-title,
-  .use-motion .site-subtitle {
-    opacity: initial;
-    top: initial;
-  }
-
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
-  </style>
-</noscript>
-
+  
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+<body>
+  
 
-  <div class="container sidebar-position-left">
-    <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta">
 
-    <div class="custom-logo-site-title">
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">鰐魚先生的水族館</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
-    </div>
-        <p class="site-subtitle">言念君子，溫其如玉。</p>
-      
-  </div>
 
-  <div class="site-nav-toggle">
-    <button aria-label="切换导航栏">
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
-  </div>
+  <div class='l_body' id='start'>
+    <aside class='l_left' layout='post'>
+    
+
+
+<header class="header">
+
+<div class="logo-wrap"><a class="avatar" href="/about/"><div class="bg" style="opacity:0;background-image:url(https://cdn.jsdelivr.net/gh/cdn-x/placeholder@1.0.2/avatar/round/rainbow64@3x.webp);"></div><img no-lazy class="avatar" src="/media/avatar.png" onerror="javascript:this.classList.add('error');this.src='https://cdn.jsdelivr.net/gh/cdn-x/placeholder@1.0.1/image/2659360.svg';"></a><a class="title" href="/"><div class="main">鳄鱼Crc2H0U</div><div class="sub cap">野生鳄鱼的自留地</div></a></div>
+<nav class="menu dis-select"><a class="nav-item active" href="/">文章</a><a class="nav-item" href="/about/">关于</a><a class="nav-item" href="/timeline/">时间轴</a></nav></header>
+
+<div class="widgets">
+
+<div class="widget-wrap single" id="toc"><div class="widget-header cap dis-select"><span class="name">本文目录</span></div><div class="widget-body fs14"><div class="doc-tree active"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E9%BC%A0%E6%A0%87%E6%98%BE%E7%A4%BA%E9%97%AE%E9%A2%98"><span class="toc-text">1.鼠标显示问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E5%AE%9E%E7%8E%B0%E7%94%BB%E9%9D%A2%E5%A4%96%E7%9A%84%E6%94%AF%E6%8C%81"><span class="toc-text">2.实现画面外的支持</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-shtctl%E7%9A%84%E6%8C%87%E5%AE%9A%E7%9C%81%E7%95%A5"><span class="toc-text">3.shtctl的指定省略</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E6%98%BE%E7%A4%BA%E7%AA%97%E5%8F%A3"><span class="toc-text">4.显示窗口</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E5%B0%8F%E5%AE%9E%E9%AA%8C"><span class="toc-text">5.小实验</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-%E9%AB%98%E9%80%9F%E8%AE%A1%E6%95%B0%E5%99%A8"><span class="toc-text">6.高速计数器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-%E6%B6%88%E9%99%A4%E9%97%AA%E7%83%81%EF%BC%881%EF%BC%89"><span class="toc-text">7.消除闪烁（1）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-%E6%B6%88%E9%99%A4%E9%97%AA%E7%83%81%EF%BC%882%EF%BC%89"><span class="toc-text">8.消除闪烁（2）</span></a></li></ol></div></div></div>
+
+
 </div>
 
 
-<nav class="site-nav">
-  
-  <ul id="menu" class="menu">
+    </aside>
+    <div class='l_main'>
       
-      
-      
-        
-        <li class="menu-item menu-item-home">
-      
-    
-
-    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
-
-  </li>
-      
-      
-      
-        
-        <li class="menu-item menu-item-categories">
-      
-    
-
-    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
-
-  </li>
-      
-      
-      
-        
-        <li class="menu-item menu-item-tags">
-      
-    
-
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
-
-  </li>
-      
-      
-      
-        
-        <li class="menu-item menu-item-about">
-      
-    
-
-    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>关于</a>
-
-  </li>
-      
-      
-      
-        
-        <li class="menu-item menu-item-英文博客">
-      
-    
-
-    <a href="/eysblog_en/" rel="section"><i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>英文博客</a>
-
-  </li>
-  </ul>
-
-    
-
-</nav>
-</div>
-    </header>
-
-    
-
-
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          <div id="content" class="content page-post-detail">
-            
-
-  <div id="posts" class="posts-expand">
-    
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://blog.crocodilezs.top/201903/30天自制操作系统（11）/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="CrocodileZS">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/tom.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="鰐魚先生的水族館">
-    </span>
-      <header class="post-header">
-
-        
-          <h1 class="post-title" itemprop="name headline">30天自制操作系统（11）
-
-            
-          </h1>
-        
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              
-                
-              
-
-              <time title="创建时间：2019-03-25 10:17:50" itemprop="dateCreated datePublished" datetime="2019-03-25T10:17:50+08:00">2019-03-25</time>
-            </span>
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/操作系统/" itemprop="url" rel="index"><span itemprop="name">操作系统</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-        
-      
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/201903/30天自制操作系统（11）/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/201903/30天自制操作系统（11）/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-          
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">本文字数：</span>
-              
-              <span>4.2k</span>
-            </span>
-          
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              
-              <span>7 分钟</span>
-            </span>
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="DAY11-制作窗口"><a href="#DAY11-制作窗口" class="headerlink" title="DAY11_制作窗口"></a>DAY11_制作窗口</h1><h2 id="1-鼠标显示问题"><a href="#1-鼠标显示问题" class="headerlink" title="1.鼠标显示问题"></a>1.鼠标显示问题</h2><ul>
+
+<div class="bread-nav fs12"><div id="breadcrumb"><a class="cap breadcrumb" href="/">主页</a><span class="sep"></span><a class="cap breadcrumb" href="/">文章</a><span class="sep"></span><a class="cap breadcrumb-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a></div><div id="post-meta">发布于&nbsp;<time datetime="2019-03-25T02:17:50.000Z">2019-03-25</time></div></div>
+
+<article class='content md post'>
+<h1 class="article-title"><span>30天自制操作系统（11）</span></h1>
+<h1 id="DAY11-制作窗口"><a href="#DAY11-制作窗口" class="headerlink" title="DAY11_制作窗口"></a>DAY11_制作窗口</h1><h2 id="1-鼠标显示问题"><a href="#1-鼠标显示问题" class="headerlink" title="1.鼠标显示问题"></a>1.鼠标显示问题</h2><ul>
 <li>我们系统的鼠标不能够向右或向下移动到画面之外隐藏起来。为此我们修改HariMain</li>
 </ul>
-<a id="more"></a>
-<p>将<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">if (mx &gt; binfo-&gt;scrnx - 16) &#123; </span><br><span class="line">    mx = binfo-&gt;scrnx - 16; </span><br><span class="line"> &#125; </span><br><span class="line"> if (my &gt; binfo-&gt;scrny - 16) &#123; </span><br><span class="line">    my = binfo-&gt;scrny - 16; </span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure></p>
-<p>修改为<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">if (mx &gt; binfo-&gt;scrnx - 1) &#123; </span><br><span class="line">    mx = binfo-&gt;scrnx - 1; </span><br><span class="line"> &#125; </span><br><span class="line"> if (my &gt; binfo-&gt;scrny - 1) &#123; </span><br><span class="line">    my = binfo-&gt;scrny - 1; </span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure></p>
+<span id="more"></span>
+<p>将<br><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">if (mx &gt; binfo-&gt;scrnx - 16) &#123; </span><br><span class="line">    mx = binfo-&gt;scrnx - 16; </span><br><span class="line"> &#125; </span><br><span class="line"> if (my &gt; binfo-&gt;scrny - 16) &#123; </span><br><span class="line">    my = binfo-&gt;scrny - 16; </span><br><span class="line"> &#125; </span><br></pre></td></tr></table></figure><br>修改为<br><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">if (mx &gt; binfo-&gt;scrnx - 1) &#123; </span><br><span class="line">    mx = binfo-&gt;scrnx - 1; </span><br><span class="line"> &#125; </span><br><span class="line"> if (my &gt; binfo-&gt;scrny - 1) &#123; </span><br><span class="line">    my = binfo-&gt;scrny - 1; </span><br><span class="line"> &#125; </span><br></pre></td></tr></table></figure></p>
 <h2 id="2-实现画面外的支持"><a href="#2-实现画面外的支持" class="headerlink" title="2.实现画面外的支持"></a>2.实现画面外的支持</h2><h2 id="3-shtctl的指定省略"><a href="#3-shtctl的指定省略" class="headerlink" title="3.shtctl的指定省略"></a>3.shtctl的指定省略</h2><p>仅仅是上下移动图层就必须指定ctl太麻烦了。修改将sheet_refresh、sheet_slide、sheet_free等函数，让它们不再指定ctl</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">sheet_refresh</span><span class="params">(struct SHEET *sht, <span class="keyword">int</span> bx0, <span class="keyword">int</span> by0, <span class="keyword">int</span> bx1, <span class="keyword">int</span> by1)</span> </span></span><br><span class="line"><span class="function"></span>&#123; </span><br><span class="line"> <span class="keyword">if</span> (sht-&gt;height &gt;= <span class="number">0</span>) &#123; <span class="comment">/* 如果正在显示，则按新图层的信息进行刷新*/</span> </span><br><span class="line"> sheet_refreshsub(sht-&gt;ctl, sht-&gt;vx0 + bx0, sht-&gt;vy0 + by0, sht-&gt;vx0 + bx1, sht-&gt;vy0 + by1); </span><br><span class="line"> &#125; </span><br><span class="line"> <span class="keyword">return</span>; </span><br><span class="line">&#125; </span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">sheet_slide</span><span class="params">(struct SHEET *sht, <span class="keyword">int</span> vx0, <span class="keyword">int</span> vy0)</span> </span></span><br><span class="line"><span class="function"></span>&#123; </span><br><span class="line"> <span class="keyword">int</span> old_vx0 = sht-&gt;vx0, old_vy0 = sht-&gt;vy0; </span><br><span class="line"> sht-&gt;vx0 = vx0; </span><br><span class="line"> sht-&gt;vy0 = vy0; </span><br><span class="line"> <span class="keyword">if</span> (sht-&gt;height &gt;= <span class="number">0</span>) &#123; <span class="comment">/* 如果正在显示，则按新图层的信息进行刷新 */</span> </span><br><span class="line"> sheet_refreshsub(sht-&gt;ctl, old_vx0, old_vy0, old_vx0 + sht-&gt;bxsize, old_vy0 + </span><br><span class="line">sht-&gt;bysize); </span><br><span class="line"> sheet_refreshsub(sht-&gt;ctl, vx0, vy0, vx0 + sht-&gt;bxsize, vy0 + sht-&gt;bysize); </span><br><span class="line"> &#125; </span><br><span class="line"> <span class="keyword">return</span>; </span><br><span class="line">&#125; </span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">sheet_free</span><span class="params">(struct SHEET *sht)</span> </span></span><br><span class="line"><span class="function"></span>&#123; </span><br><span class="line"> <span class="keyword">if</span> (sht-&gt;height &gt;= <span class="number">0</span>) &#123; </span><br><span class="line"> sheet_updown(sht, <span class="number">-1</span>); <span class="comment">/* 如果正在显示，则先设置为隐藏 */</span> </span><br><span class="line"> &#125; </span><br><span class="line"> sht-&gt;flags = <span class="number">0</span>; <span class="comment">/* 未使用标记 */</span> </span><br><span class="line"> <span class="keyword">return</span>; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">sheet_refresh</span><span class="params">(<span class="keyword">struct</span> SHEET *sht, <span class="type">int</span> bx0, <span class="type">int</span> by0, <span class="type">int</span> bx1, <span class="type">int</span> by1)</span> </span><br><span class="line">&#123; </span><br><span class="line"> <span class="keyword">if</span> (sht-&gt;height &gt;= <span class="number">0</span>) &#123; <span class="comment">/* 如果正在显示，则按新图层的信息进行刷新*/</span> </span><br><span class="line"> sheet_refreshsub(sht-&gt;ctl, sht-&gt;vx0 + bx0, sht-&gt;vy0 + by0, sht-&gt;vx0 + bx1, sht-&gt;vy0 + by1); </span><br><span class="line"> &#125; </span><br><span class="line"> <span class="keyword">return</span>; </span><br><span class="line">&#125; </span><br><span class="line"><span class="type">void</span> <span class="title function_">sheet_slide</span><span class="params">(<span class="keyword">struct</span> SHEET *sht, <span class="type">int</span> vx0, <span class="type">int</span> vy0)</span> </span><br><span class="line">&#123; </span><br><span class="line"> <span class="type">int</span> old_vx0 = sht-&gt;vx0, old_vy0 = sht-&gt;vy0; </span><br><span class="line"> sht-&gt;vx0 = vx0; </span><br><span class="line"> sht-&gt;vy0 = vy0; </span><br><span class="line"> <span class="keyword">if</span> (sht-&gt;height &gt;= <span class="number">0</span>) &#123; <span class="comment">/* 如果正在显示，则按新图层的信息进行刷新 */</span> </span><br><span class="line"> sheet_refreshsub(sht-&gt;ctl, old_vx0, old_vy0, old_vx0 + sht-&gt;bxsize, old_vy0 + </span><br><span class="line">sht-&gt;bysize); </span><br><span class="line"> sheet_refreshsub(sht-&gt;ctl, vx0, vy0, vx0 + sht-&gt;bxsize, vy0 + sht-&gt;bysize); </span><br><span class="line"> &#125; </span><br><span class="line"> <span class="keyword">return</span>; </span><br><span class="line">&#125; </span><br><span class="line"><span class="type">void</span> <span class="title function_">sheet_free</span><span class="params">(<span class="keyword">struct</span> SHEET *sht)</span> </span><br><span class="line">&#123; </span><br><span class="line"> <span class="keyword">if</span> (sht-&gt;height &gt;= <span class="number">0</span>) &#123; </span><br><span class="line"> sheet_updown(sht, <span class="number">-1</span>); <span class="comment">/* 如果正在显示，则先设置为隐藏 */</span> </span><br><span class="line"> &#125; </span><br><span class="line"> sht-&gt;flags = <span class="number">0</span>; <span class="comment">/* 未使用标记 */</span> </span><br><span class="line"> <span class="keyword">return</span>; </span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
 <h2 id="4-显示窗口"><a href="#4-显示窗口" class="headerlink" title="4.显示窗口"></a>4.显示窗口</h2><ul>
 <li>先准备一张图层，然后在图层缓冲区内描绘一个貌似窗口的图就可以了。</li>
 </ul>
-<p>只是对graph.c的init_screen8函数稍微进行修改。<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">void make_window8(unsigned char *buf, int xsize, int ysize, char *title) </span><br><span class="line">&#123; </span><br><span class="line">     static char closebtn[14][16] = &#123; </span><br><span class="line">     &quot;OOOOOOOOOOOOOOO@&quot;, </span><br><span class="line">     &quot;OQQQQQQQQQQQQQ$@&quot;, </span><br><span class="line">     &quot;OQQQQQQQQQQQQQ$@&quot;, </span><br><span class="line">     &quot;OQQQ@@QQQQ@@QQ$@&quot;, </span><br><span class="line">     &quot;OQQQQ@@QQ@@QQQ$@&quot;, </span><br><span class="line">     &quot;OQQQQQ@@@@QQQQ$@&quot;, </span><br><span class="line">     &quot;OQQQQQQ@@QQQQQ$@&quot;, </span><br><span class="line">     &quot;OQQQQQ@@@@QQQQ$@&quot;, </span><br><span class="line">     &quot;OQQQQ@@QQ@@QQQ$@&quot;, </span><br><span class="line">     &quot;OQQQ@@QQQQ@@QQ$@&quot;, </span><br><span class="line">     &quot;OQQQQQQQQQQQQQ$@&quot;, </span><br><span class="line">     &quot;OQQQQQQQQQQQQQ$@&quot;, </span><br><span class="line">     &quot;O$$$$$$$$$$$$$$@&quot;, </span><br><span class="line">     &quot;@@@@@@@@@@@@@@@@&quot; </span><br><span class="line">     &#125;; </span><br><span class="line">     int x, y; </span><br><span class="line">     char c; </span><br><span class="line">     boxfill8(buf, xsize, COL8_C6C6C6, 0, 0, xsize - 1, 0 ); </span><br><span class="line">     boxfill8(buf, xsize, COL8_FFFFFF, 1, 1, xsize - 2, 1 ); </span><br><span class="line">     boxfill8(buf, xsize, COL8_C6C6C6, 0, 0, 0, ysize - 1); </span><br><span class="line">     boxfill8(buf, xsize, COL8_FFFFFF, 1, 1, 1, ysize - 2); </span><br><span class="line">     boxfill8(buf, xsize, COL8_848484, xsize - 2, 1, xsize - 2, ysize - 2); </span><br><span class="line">     boxfill8(buf, xsize, COL8_000000, xsize - 1, 0, xsize - 1, ysize - 1); </span><br><span class="line">     boxfill8(buf, xsize, COL8_C6C6C6, 2, 2, xsize - 3, ysize - 3); </span><br><span class="line">     boxfill8(buf, xsize, COL8_000084, 3, 3, xsize - 4, 20 ); </span><br><span class="line">     boxfill8(buf, xsize, COL8_848484, 1, ysize - 2, xsize - 2, ysize - 2); </span><br><span class="line">     boxfill8(buf, xsize, COL8_000000, 0, ysize - 1, xsize - 1, ysize - 1); </span><br><span class="line">     putfonts8_asc(buf, xsize, 24, 4, COL8_FFFFFF, title); </span><br><span class="line">     for (y = 0; y &lt; 14; y++) &#123; </span><br><span class="line">        for (x = 0; x &lt; 16; x++) &#123; </span><br><span class="line">            c = closebtn[y][x]; </span><br><span class="line">            if (c == &apos;@&apos;) &#123; </span><br><span class="line">                c = COL8_000000; </span><br><span class="line">            &#125; else if (c == &apos;$&apos;) &#123; </span><br><span class="line">            c = COL8_848484; </span><br><span class="line">            &#125; else if (c == &apos;Q&apos;) &#123; </span><br><span class="line">            c = COL8_C6C6C6; </span><br><span class="line">            &#125; else &#123; </span><br><span class="line">            c = COL8_FFFFFF; </span><br><span class="line">            &#125; </span><br><span class="line">            buf[(5 + y) * xsize + (xsize - 21 + x)] = c; </span><br><span class="line">        &#125;   </span><br><span class="line">     &#125; </span><br><span class="line">     return; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h2 id="5-小实验"><a href="#5-小实验" class="headerlink" title="5.小实验"></a>5.小实验</h2><p>HariMain中有设置图层高度的地方，如果像下面这样，把窗口图层放在最上面，光标图层放在其次，会变成什么样呢？<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sheet_updown(sht_back, 0); </span><br><span class="line">sheet_updown(sht_mouse, 1); </span><br><span class="line">sheet_updown(sht_win, 2);</span><br></pre></td></tr></table></figure></p>
-<p>鼠标会跑到窗口图层的下面。</p>
+<p>只是对graph.c的init_screen8函数稍微进行修改。<br><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">void make_window8(unsigned char *buf, int xsize, int ysize, char *title) </span><br><span class="line">&#123; </span><br><span class="line">     static char closebtn[14][16] = &#123; </span><br><span class="line">     &quot;OOOOOOOOOOOOOOO@&quot;, </span><br><span class="line">     &quot;OQQQQQQQQQQQQQ$@&quot;, </span><br><span class="line">     &quot;OQQQQQQQQQQQQQ$@&quot;, </span><br><span class="line">     &quot;OQQQ@@QQQQ@@QQ$@&quot;, </span><br><span class="line">     &quot;OQQQQ@@QQ@@QQQ$@&quot;, </span><br><span class="line">     &quot;OQQQQQ@@@@QQQQ$@&quot;, </span><br><span class="line">     &quot;OQQQQQQ@@QQQQQ$@&quot;, </span><br><span class="line">     &quot;OQQQQQ@@@@QQQQ$@&quot;, </span><br><span class="line">     &quot;OQQQQ@@QQ@@QQQ$@&quot;, </span><br><span class="line">     &quot;OQQQ@@QQQQ@@QQ$@&quot;, </span><br><span class="line">     &quot;OQQQQQQQQQQQQQ$@&quot;, </span><br><span class="line">     &quot;OQQQQQQQQQQQQQ$@&quot;, </span><br><span class="line">     &quot;O$$$$$$$$$$$$$$@&quot;, </span><br><span class="line">     &quot;@@@@@@@@@@@@@@@@&quot; </span><br><span class="line">     &#125;; </span><br><span class="line">     int x, y; </span><br><span class="line">     char c; </span><br><span class="line">     boxfill8(buf, xsize, COL8_C6C6C6, 0, 0, xsize - 1, 0 ); </span><br><span class="line">     boxfill8(buf, xsize, COL8_FFFFFF, 1, 1, xsize - 2, 1 ); </span><br><span class="line">     boxfill8(buf, xsize, COL8_C6C6C6, 0, 0, 0, ysize - 1); </span><br><span class="line">     boxfill8(buf, xsize, COL8_FFFFFF, 1, 1, 1, ysize - 2); </span><br><span class="line">     boxfill8(buf, xsize, COL8_848484, xsize - 2, 1, xsize - 2, ysize - 2); </span><br><span class="line">     boxfill8(buf, xsize, COL8_000000, xsize - 1, 0, xsize - 1, ysize - 1); </span><br><span class="line">     boxfill8(buf, xsize, COL8_C6C6C6, 2, 2, xsize - 3, ysize - 3); </span><br><span class="line">     boxfill8(buf, xsize, COL8_000084, 3, 3, xsize - 4, 20 ); </span><br><span class="line">     boxfill8(buf, xsize, COL8_848484, 1, ysize - 2, xsize - 2, ysize - 2); </span><br><span class="line">     boxfill8(buf, xsize, COL8_000000, 0, ysize - 1, xsize - 1, ysize - 1); </span><br><span class="line">     putfonts8_asc(buf, xsize, 24, 4, COL8_FFFFFF, title); </span><br><span class="line">     for (y = 0; y &lt; 14; y++) &#123; </span><br><span class="line">        for (x = 0; x &lt; 16; x++) &#123; </span><br><span class="line">            c = closebtn[y][x]; </span><br><span class="line">            if (c == &#x27;@&#x27;) &#123; </span><br><span class="line">                c = COL8_000000; </span><br><span class="line">            &#125; else if (c == &#x27;$&#x27;) &#123; </span><br><span class="line">            c = COL8_848484; </span><br><span class="line">            &#125; else if (c == &#x27;Q&#x27;) &#123; </span><br><span class="line">            c = COL8_C6C6C6; </span><br><span class="line">            &#125; else &#123; </span><br><span class="line">            c = COL8_FFFFFF; </span><br><span class="line">            &#125; </span><br><span class="line">            buf[(5 + y) * xsize + (xsize - 21 + x)] = c; </span><br><span class="line">        &#125;   </span><br><span class="line">     &#125; </span><br><span class="line">     return; </span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure></p>
+<h2 id="5-小实验"><a href="#5-小实验" class="headerlink" title="5.小实验"></a>5.小实验</h2><p>HariMain中有设置图层高度的地方，如果像下面这样，把窗口图层放在最上面，光标图层放在其次，会变成什么样呢？<br><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sheet_updown(sht_back, 0); </span><br><span class="line">sheet_updown(sht_mouse, 1); </span><br><span class="line">sheet_updown(sht_win, 2); </span><br></pre></td></tr></table></figure><br>鼠标会跑到窗口图层的下面。</p>
 <h2 id="6-高速计数器"><a href="#6-高速计数器" class="headerlink" title="6.高速计数器"></a>6.高速计数器</h2><ul>
 <li>我们要做一个能够计数，并且能够把计数结果显示出来的窗口。</li>
 <li>但是在刷新的时候，总是先刷新refresh范围内的背景图层，然后再刷新窗口图层，导致数字闪烁。</li>
@@ -361,543 +112,229 @@
 </ul>
 <h2 id="8-消除闪烁（2）"><a href="#8-消除闪烁（2）" class="headerlink" title="8.消除闪烁（2）"></a>8.消除闪烁（2）</h2><ul>
 <li>闪烁现象是由于一会儿描绘一会儿消除造成的。所以说要想消除闪烁，就要在刷新窗口时避开鼠标所在的地方对VRAM进行写入处理。</li>
-<li><p>方法：先开辟一块儿内存，大小和VRAM一样，这块内存用来表示画面上的点是哪个图层的像素，相当于图层的地图。<br><img src="https://s2.ax1x.com/2019/03/24/AYhJwF.png" alt="d11.1"></p>
+<li><p>方法：先开辟一块儿内存，大小和VRAM一样，这块内存用来表示画面上的点是哪个图层的像素，相当于图层的地图。<br><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://s2.ax1x.com/2019/03/24/AYhJwF.png" alt="d11.1"></p>
 </li>
 <li><p>今后程序会对照map内容来向VRAM中写入，所以有时没必要从下面开始一直刷新到最上面<br>一层。</p>
 </li>
 <li>在sheet_slide函数里，首先重写map，分别对应移动前后的图层，然后调用sheet_refreshsub函数。在移动前的地方，只针对上层图层移走之后而露出的下层图层进行重绘就可以了。在移动目的地处仅重绘了一张移动过去的图层。</li>
 </ul>
 
+
+<div class="article-footer reveal fs14"><section id="license"><div class="header"><span>许可协议</span></div><div class="body"><p>本文采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">署名-非商业性使用-相同方式共享 4.0 国际</a> 许可协议，转载请注明出处。</p>
+</div></section></div>
+
+</article>
+
+<div class="related-wrap reveal" id="read-next"><section class="header cap theme"><span>接下来阅读</span></section><section class="body fs14"><a id="next" href="/201903/30%E5%A4%A9%E8%87%AA%E5%88%B6%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%EF%BC%8810%EF%BC%89/">30天自制操作系统（10）<span class="note">较早</span></a><div class="line"></div><a id="prev" href="/201903/30%E5%A4%A9%E8%87%AA%E5%88%B6%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%EF%BC%8812%EF%BC%89/">30天自制操作系统（12）<span class="note">较新</span></a></section></div>
+
+
+
+
+
+
+  <div class='related-wrap md reveal' id="comments">
+    <div class='cmt-title cap theme'>
+      快来参与讨论吧
     </div>
-
-    
-
-    
-    
-    
+    <div class='cmt-body beaudar'>
       
 
-        
-      
+<svg class="loading" style="vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2709"><path d="M832 512c0-176-144-320-320-320V128c211.2 0 384 172.8 384 384h-64zM192 512c0 176 144 320 320 320v64C300.8 896 128 723.2 128 512h64z" p-id="2710"></path></svg>
 
-      <footer class="post-footer">
+<div id="beaudar" repo="CrocodileZS/blog-comments" issue-term="pathname" theme="preferred-color-scheme" input-position="top" comment-order="desc" loading="false" branch="main"></div>
 
-        
-  <div class="post-widgets">
-    <div class="social-share">
-      
-      
-        <div id="needsharebutton-postbottom">
-          <span class="btn">
-            <i class="fa fa-share-alt" aria-hidden="true"></i>
-          </span>
-        </div>
-      
-    </div>
-  
-  </div>
-
-          <div class="post-nav">
-            <div class="post-nav-next post-nav-item">
-              
-                <a href="/201903/30天自制操作系统（10）/" rel="next" title="30天自制操作系统（10）">
-                  <i class="fa fa-chevron-left"></i> 30天自制操作系统（10）
-                </a>
-              
-            </div>
-
-            <span class="post-nav-divider"></span>
-
-            <div class="post-nav-prev post-nav-item">
-              
-                <a href="/201903/30天自制操作系统（12）/" rel="prev" title="30天自制操作系统（12）">
-                  30天自制操作系统（12） <i class="fa fa-chevron-right"></i>
-                </a>
-              
-            </div>
-          </div>
-        
-      </footer>
-    
-  </div>
-  
-  
-  
-  </article>
-
-  </div>
-
-
-          </div>
-          
-    
-    <div class="comments" id="comments"></div>
-  
-
-        </div>
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
     </div>
   </div>
 
-  <aside id="sidebar" class="sidebar">
-    <div class="sidebar-inner">
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-overview">
-
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image"
-      src="/images/tom.jpg"
-      alt="CrocodileZS">
-  <p class="site-author-name" itemprop="name">CrocodileZS</p>
-  <div class="site-description motion-element" itemprop="description"></div>
-</div>
-  <nav class="site-state motion-element">
-      <div class="site-state-item site-state-posts">
-        
-          <a href="/archives">
-        
-          <span class="site-state-item-count">71</span>
-          <span class="site-state-item-name">日志</span>
-        </a>
-      </div>
-    
-      
-      
-      <div class="site-state-item site-state-categories">
-        
-          
-            <a href="/categories/">
-          
-        
-        
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-        <span class="site-state-item-count">16</span>
-        <span class="site-state-item-name">分类</span>
-        </a>
-      </div>
-    
-      
-      
-      <div class="site-state-item site-state-tags">
-        
-          
-            <a href="/tags/">
-          
-        
-        
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-        <span class="site-state-item-count">40</span>
-        <span class="site-state-item-name">标签</span>
-        </a>
-      </div>
-    
-  </nav>
-  <div class="feed-link motion-element">
-    <a href="/atom.xml" rel="alternate">
-      <i class="fa fa-rss"></i>RSS
-    </a>
-  </div>
-  <div class="links-of-author motion-element">
-      <span class="links-of-author-item">
-      
-      
-        
-      
-      
-        
-      
-        <a href="mailto:ammo@bupt.edu.cn" title="E-Mail &rarr; mailto:ammo@bupt.edu.cn" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
-      </span>
-    
-      <span class="links-of-author-item">
-      
-      
-        
-      
-      
-        
-      
-        <a href="https://instagram.com/crocodile_zs" title="Instagram &rarr; https://instagram.com/crocodile_zs" rel="noopener" target="_blank"><i class="fa fa-fw fa-instagram"></i>Instagram</a>
-      </span>
-    
-  </div>
 
 
-  <div class="links-of-blogroll motion-element links-of-blogroll-block">
-    <div class="links-of-blogroll-title">
-      <i class="fa  fa-fw fa-link"></i>
-      Links
-    </div>
-    <ul class="links-of-blogroll-list">
-        <li class="links-of-blogroll-item">
-          <a href="http://www.wangxiaofeng.me/" title="http://www.wangxiaofeng.me/" rel="noopener" target="_blank">不许联想</a>
-        </li>
       
-        <li class="links-of-blogroll-item">
-          <a href="https://idx0.dev/" title="https://idx0.dev/" rel="noopener" target="_blank">思维</a>
-        </li>
-      
-        <li class="links-of-blogroll-item">
-          <a href="https://128bit.top" title="https://128bit.top" rel="noopener" target="_blank">Dixeran</a>
-        </li>
-      
-        <li class="links-of-blogroll-item">
-          <a href="http://icontofig.leanote.com/" title="http://icontofig.leanote.com/" rel="noopener" target="_blank">Icontofig</a>
-        </li>
-      
-        <li class="links-of-blogroll-item">
-          <a href="https://www.nekomio.com" title="https://www.nekomio.com" rel="noopener" target="_blank">NekoMio</a>
-        </li>
-      
-        <li class="links-of-blogroll-item">
-          <a href="https://al0ha0e.github.io" title="https://al0ha0e.github.io" rel="noopener" target="_blank">Al0ha0e</a>
-        </li>
-      
-        <li class="links-of-blogroll-item">
-          <a href="http://gaokeyong.coding.me" title="http://gaokeyong.coding.me" rel="noopener" target="_blank">Keyong</a>
-        </li>
-      
-        <li class="links-of-blogroll-item">
-          <a href="http://poeroz.cn/" title="http://poeroz.cn/" rel="noopener" target="_blank">Poeroz</a>
-        </li>
-      
-    </ul>
-  </div>
+<footer class="page-footer reveal fs12"><hr><div class="text"><p>本博客所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议，转载请注明出处。</p>
+<p>本站由 <a href="https://blog.crocodilezs.top/">@CrocodileZS</a> 创建，使用 <a target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.7.0" title="v1.7.0">Stellar</a> 作为主题。</p>
+</div></footer>
 
-        </div>
-      </div>
-      <!--noindex-->
-        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-            
-            
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#DAY11-制作窗口"><span class="nav-text">DAY11_制作窗口</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-鼠标显示问题"><span class="nav-text">1.鼠标显示问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-实现画面外的支持"><span class="nav-text">2.实现画面外的支持</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-shtctl的指定省略"><span class="nav-text">3.shtctl的指定省略</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-显示窗口"><span class="nav-text">4.显示窗口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-小实验"><span class="nav-text">5.小实验</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-高速计数器"><span class="nav-text">6.高速计数器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-消除闪烁（1）"><span class="nav-text">7.消除闪烁（1）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-消除闪烁（2）"><span class="nav-text">8.消除闪烁（2）</span></a></li></ol></li></ol></div>
-            
-
-          </div>
-        </div>
-      <!--/noindex-->
-      
-
-    </div>
-  </aside>
-  <div id="sidebar-dimmer"></div>
-
-
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
-  <span class="with-love" id="animate">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">鰐魚先生</span>
+      <div class='float-panel mobile-only blur' style='display:none'>
+  <button type='button' class='sidebar-toggle mobile' onclick='sidebar.toggle()'>
+    <svg class="icon" style="width: 1em; height: 1em;vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="15301"><path d="M566.407 808.3c26.9-0.1 49.3-20.8 51.6-47.6-1.9-27.7-23.9-49.7-51.6-51.6h-412.6c-28.2-1.4-52.6 19.5-55.5 47.6 2.3 26.8 24.6 47.5 51.6 47.6h416.5v4z m309.3-249.9c26.9-0.1 49.3-20.8 51.6-47.6-2.2-26.8-24.6-47.5-51.6-47.6h-721.9c-27.7-2.8-52.5 17.4-55.3 45.1-0.1 0.8-0.1 1.7-0.2 2.5 0.9 27.2 23.6 48.5 50.7 47.6H875.707z m-103.1-245.9c26.9-0.1 49.3-20.8 51.6-47.6-0.4-28.3-23.2-51.1-51.5-51.6h-618.9c-29.5-1.1-54.3 21.9-55.5 51.4v0.2c1.4 27.8 25.2 49.2 53 47.8 0.8 0 1.7-0.1 2.5-0.2h618.8z" p-id="15302"></path><path d="M566.407 808.3c26.9-0.1 49.3-20.8 51.6-47.6-1.9-27.7-23.9-49.7-51.6-51.6h-412.6c-28.2-1.4-52.6 19.5-55.5 47.6 1.9 27.7 23.9 49.7 51.6 51.6h416.5z m309.3-249.9c26.9-0.1 49.3-20.8 51.6-47.6-2.2-26.8-24.6-47.5-51.6-47.6h-721.9c-27.7-2.8-52.5 17.4-55.3 45.1-0.1 0.8-0.1 1.7-0.2 2.5 0.9 27.2 23.6 48.5 50.7 47.6H875.707z m-103.1-245.9c26.9-0.1 49.3-20.8 51.6-47.6-0.4-28.3-23.2-51.1-51.5-51.6h-618.9c-29.5-1.1-54.3 21.9-55.5 51.4v0.2c1.4 27.8 25.2 49.2 53 47.8 0.8 0 1.7-0.1 2.5-0.2h618.8z" p-id="15303"></path></svg>
+  </button>
 </div>
 
-
-        
-<div class="busuanzi-count">
-  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-    <span class="post-meta-item-icon">
-      <i class="fa fa-user"></i>
-    </span>
-    <span class="site-uv" title="总访客量">
-      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
-    </span>
-  
-    <span class="post-meta-divider">|</span>
-  
-    <span class="post-meta-item-icon">
-      <i class="fa fa-eye"></i>
-    </span>
-    <span class="site-pv" title="总访问量">
-      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
-    </span>
-  
-</div>
-
-
-
-
-
-
-
-
-        
-      </div>
-    </footer>
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-          <span id="scrollpercent"><span>0</span>%</span>
-        
-      </div>
-
-    
-  
-  <div id="needsharebutton-float">
-    <span class="btn">
-      <i class="fa fa-share-alt" aria-hidden="true"></i>
-    </span>
+    </div>
   </div>
-<script src="/lib/needsharebutton/needsharebutton.js"></script>
-<script>
-    pbOptions = {};
-      pbOptions.iconStyle = "default";
-    
-      pbOptions.boxForm = "horizontal";
-    
-      pbOptions.position = "bottomCenter";
-    
-      pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
-    
-    new needShareButton('#needsharebutton-postbottom', pbOptions);
-    flOptions = {};
-      flOptions.iconStyle = "box";
-    
-      flOptions.boxForm = "horizontal";
-    
-      flOptions.position = "middleRight";
-    
-      flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
-    
-    new needShareButton('#needsharebutton-float', flOptions);
+  <div class='scripts'>
+    <script type="text/javascript">
+  stellar = {
+    // 懒加载 css https://github.com/filamentgroup/loadCSS
+    loadCSS: (href, before, media, attributes) => {
+      var doc = window.document;
+      var ss = doc.createElement("link");
+      var ref;
+      if (before) {
+        ref = before;
+      } else {
+        var refs = (doc.body || doc.getElementsByTagName("head")[0]).childNodes;
+        ref = refs[refs.length - 1];
+      }
+      var sheets = doc.styleSheets;
+      if (attributes) {
+        for (var attributeName in attributes) {
+          if (attributes.hasOwnProperty(attributeName)) {
+            ss.setAttribute(attributeName, attributes[attributeName]);
+          }
+        }
+      }
+      ss.rel = "stylesheet";
+      ss.href = href;
+      ss.media = "only x";
+      function ready(cb) {
+        if (doc.body) {
+          return cb();
+        }
+        setTimeout(function () {
+          ready(cb);
+        });
+      }
+      ready(function () {
+        ref.parentNode.insertBefore(ss, before ? ref : ref.nextSibling);
+      });
+      var onloadcssdefined = function (cb) {
+        var resolvedHref = ss.href;
+        var i = sheets.length;
+        while (i--) {
+          if (sheets[i].href === resolvedHref) {
+            return cb();
+          }
+        }
+        setTimeout(function () {
+          onloadcssdefined(cb);
+        });
+      };
+      function loadCB() {
+        if (ss.addEventListener) {
+          ss.removeEventListener("load", loadCB);
+        }
+        ss.media = media || "all";
+      }
+      if (ss.addEventListener) {
+        ss.addEventListener("load", loadCB);
+      }
+      ss.onloadcssdefined = onloadcssdefined;
+      onloadcssdefined(loadCB);
+      return ss;
+    },
+
+    // 从 butterfly 和 volantis 获得灵感
+    loadScript: (src, opt) => new Promise((resolve, reject) => {
+      var script = document.createElement('script');
+      script.src = src;
+      if (opt) {
+        for (let key of Object.keys(opt)) {
+          script[key] = opt[key]
+        }
+      } else {
+        // 默认异步，如果需要同步，第二个参数传入 {} 即可
+        script.async = true
+      }
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    }),
+
+    // https://github.com/jerryc127/hexo-theme-butterfly
+    jQuery: (fn) => {
+      if (typeof jQuery === 'undefined') {
+        stellar.loadScript(stellar.plugins.jQuery).then(fn)
+      } else {
+        fn()
+      }
+    }
+  };
+  stellar.github = 'https://github.com/xaoxuu/hexo-theme-stellar/tree/1.7.0';
+  stellar.config = {
+    date_suffix: {
+      just: '刚刚',
+      min: '分钟前',
+      hour: '小时前',
+      day: '天前',
+      month: '个月前',
+    },
+  };
+
+  // required plugins (only load if needs)
+  stellar.plugins = {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js',
+    sitesjs: '/js/plugins/sites.js',
+    friendsjs: '/js/plugins/friends.js',
+  };
+
+  // optional plugins
+  if ('true' == 'true') {
+    stellar.plugins.lazyload = Object.assign({"enable":true,"js":"https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.3.1/dist/lazyload.min.js","transition":"blur"});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.swiper = Object.assign({"enable":true,"css":"https://unpkg.com/swiper@6/swiper-bundle.min.css","js":"https://unpkg.com/swiper@6/swiper-bundle.min.js"});
+  }
+  if ('' == 'true') {
+    stellar.plugins.scrollreveal = Object.assign({"enable":null,"js":"https://cdn.jsdelivr.net/npm/scrollreveal@4.0.9/dist/scrollreveal.min.js","distance":"8px","duration":500,"interval":100,"scale":1});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.preload = Object.assign({"enable":true,"service":"flying_pages","instant_page":"https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@4.1.2/js/instant_page.js","flying_pages":"https://cdn.jsdelivr.net/gh/gijo-varghese/flying-pages@2.1.2/flying-pages.min.js"});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.fancybox = Object.assign({"enable":true,"js":"https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js","css":"https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css","selector":".swiper-slide img"});
+  }
+  if ('false' == 'true') {
+    stellar.plugins.heti = Object.assign({"enable":false,"css":"https://unpkg.com/heti/umd/heti.min.css","js":"https://unpkg.com/heti/umd/heti-addon.min.js"});
+  }
 </script>
 
-
-  </div>
-
-  
-  <script src="/lib/jquery/index.js?v=3.4.1"></script>
-  <script src="/lib/fancybox/source/jquery.fancybox.pack.js"></script>
-  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-<script src="/js/utils.js?v=7.3.0"></script>
-  <script src="/js/motion.js?v=7.3.0"></script>
-
-
-  <script src="/js/schemes/muse.js?v=7.3.0"></script>
-
-
-<script src="/js/next-boot.js?v=7.3.0"></script>
-
-
-
+<!-- required -->
 
   
+<script src="/js/main.js" async></script>
+
+
+
+<!-- optional -->
+
   <script>
-    (function(){
-      var bp = document.createElement('script');
-      var curProtocol = window.location.protocol.split(':')[0];
-      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
-      var s = document.getElementsByTagName("script")[0];
-      s.parentNode.insertBefore(bp, s);
-    })();
-  </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-  
-
-  
-
-  
-
-
-  
-  <script src="/js/scrollspy.js?v=7.3.0"></script>
-<script src="/js/post-details.js?v=7.3.0"></script>
-
-
-    
-
-<script>
-NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', function() {
-  var GUEST = ['nick', 'mail', 'link'];
-  var guest = 'nick,mail,link';
-  guest = guest.split(',').filter(function(item) {
-    return GUEST.indexOf(item) > -1;
+  function loadBeaudar() {
+    const els = document.querySelectorAll("#comments #beaudar");
+    if (els.length === 0) return;
+    els.forEach((el, i) => {
+      try {
+        el.innerHTML = '';
+      } catch (error) {
+        console.log(error);
+      }
+      var script = document.createElement('script');
+      script.src = 'https://beaudar.lipk.org/client.js';
+      script.async = true;
+      for (let key of Object.keys(el.attributes)) {
+        let attr = el.attributes[key];
+        if (['class', 'id'].includes(attr.name) === false) {
+          script.setAttribute(attr.name, attr.value);
+        }
+      }
+      el.appendChild(script);
+    });
+  }
+  window.addEventListener('DOMContentLoaded', (event) => {
+      loadBeaudar();
   });
-  new Valine({
-    el: '#comments',
-    verify: false,
-    notify: false,
-    appId: '9VEOQepq1oDMG0XHxBOrKuwU-gzGzoHsz',
-    appKey: 'XVzSWQhACVUcrVzQDF0AJlb8',
-    placeholder: 'ヽ(✿ﾟ▽ﾟ)ノ',
-    avatar: 'zhouyuyang17@163.com',
-    meta: guest,
-    pageSize: '10' || 10,
-    visitor: false,
-    lang: 'zh-cn' || 'zh-cn',
-    path: location.pathname
-  });
-}, window.Valine);
 </script>
 
-  <script type="text/javascript" src="/lib/zclip/clipboard.min.js"></script>	
-<script type="text/javascript" src="/js/src/custom.js"></script>
+
+
+
+<!-- inject -->
+
+
+  </div>
 </body>
 </html>
