@@ -1,190 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>实验室苦逼搬砖暑假生活纪实</title>
-    <url>/201909/%E5%AE%9E%E9%AA%8C%E5%AE%A4%E8%8B%A6%E9%80%BC%E6%90%AC%E7%A0%96%E6%9A%91%E5%81%87%E7%94%9F%E6%B4%BB%E7%BA%AA%E5%AE%9E/</url>
-    <content><![CDATA[<div class="note primary">
-    记录一下自己暑假在实验室做的一些事情和收获吧。<br />
-    虽然进步很小很缓慢，但总归是有的。
-</div>
-
-<h2 id="7月13日"><a href="#7月13日" class="headerlink" title="7月13日"></a>7月13日</h2><ol>
-<li><p>关于论文的主要内容，学长进行了讲解：<br /><br> <strong>任务目标：</strong>通过迁移学习实现用户对齐问题，并将对齐结果与其他的用户对其方法进行比较：其中的方法包括“监督类型的”和“非监督类型的”，最终论文里要将我们的方法与其他至少三四种方法进行比较。</p>
- <span id="more"></span>
-</li>
-<li><p>下面的时间应该做到：<br> 0）熟悉各数据集，每个数据集经过哪个函数变成什么样子？<br> <code>myspace</code>文件夹中，<code>.node</code>文件前一个数字表示结点标号，后面的表示用户名。<br> <code>.edges</code>文件每一行的两个数字表示边连接的两个节点。<br> <code>aminer.tar.gz</code>,<code>flicker.tar.gz</code>,<code>lastfm.tar.gz</code>,<code>linkedin.tar,gz</code>,<code>livejournal.tar.gz</code>这五个压缩包都是上面形式的点和边<br> <code>aminer-linkedin.map.raw</code>文件，将<code>aminer.tar.gz</code>文件中的结点映射到<code>linkedin</code>上  </p>
-<p> 1）<code>DRNE</code>（将图表示矩阵转化成向量）<br> 转化成的向量是什么格式？它是怎样表示矩阵的？它的输入和输出是怎样的？</p>
-<p> 2）<code>wGAN</code>的一个变种函数（生成相应的对齐结果）<br> 它的输入和输出是怎样的？</p>
-</li>
-</ol>
-<h2 id="7月14日"><a href="#7月14日" class="headerlink" title="7月14日"></a>7月14日</h2><p>非常艰难的一天，<code>DRNE</code>作者的<code>readme</code>文档写错了，指令是错误的，我第一次接触这个看不懂debug信息，学长也没发现。最后发邮件问原作者才知道<code>readme</code>中把<code>\</code>打成了<code>/</code>🤬<br>这一件事情花了我三天的时间，一开始以为自己的环境没搭建好，安装了各种库，利用<code>anaconda</code>创造了许多环境测试，我哭了。</p>
-<ol>
-<li><p>关于安装<code>tensorflow</code>的方法：<br> <a href="https://morvanzhou.github.io/tutorials/machine-learning/tensorflow/1-2-install/">莫凡Python</a><br> <a href="https://www.cnblogs.com/lvsling/p/8672404.html">ling’s bolg</a></p>
-<p> <a href="https://www.jianshu.com/p/28e2ae6fbd75">安装时遇到的问题</a></p>
-</li>
-<li><p>上面这些乱七八糟的都不如直接<code>pip install</code>，觉得慢的话换成清华镜像资源<a href="https://mirrors.tuna.tsinghua.edu.cn/">清华大学开源软件镜像站</a></p>
-</li>
-</ol>
-<p><a href="https://mirrors.tuna.tsinghua.edu.cn/help/pypi/">pypi镜像使用帮助</a></p>
-<h2 id="7月15日"><a href="#7月15日" class="headerlink" title="7月15日"></a>7月15日</h2><div class="note primary">
-    学长又分配了两个任务，第一个是判断图是否为连通图。 <br /> 
-    其实要是只有几个点倒简单，但是仅仅接触了一点`Python`就要写个几千点判断连通图的程序，我想到的第一点是效率会非常低。。。最后这个代码学长亲自写了。
-</div>
-
-<p>这里顺带复习了一下数据结构的东西</p>
-<ol>
-<li>邻接矩阵与邻接表<br> <a href="https://www.cnblogs.com/icode-girl/p/5273209.html">邻接矩阵</a></li>
-<li>边表<br> 边集表，图的储存结构之一。边表由表头结点和表结点两部分组成，图中每个顶点均对应一个存储在数组中的表头结点。<br> 边表存储了以点为起点的边的信息，邻接表存储了以点为出发点的点的信息。 </li>
-<li>edgelist边表中每行有两个数，表示这两个结点之间有边</li>
-<li>python nx.has_path(G, source, target)用来判断是否为连通图</li>
-<li>networkx库查阅资料：<br><a href="https://www.cnblogs.com/kaituorensheng/p/5423131.html">network资料</a><br>NetworkX是一个用Python语言开发的图论与复杂网络建模工具，内置了常用的图与复杂网络分析算法，可以方便的进行复杂网络数据分析、仿真建模等工作。networkx支持创建简单无向图、有向图和多重图（multigraph）；内置许多标准的图论算法，节点可为任意数据；支持任意的边值维度，功能丰富，简单易用。<br><a href="https://networkx.github.io/documentation/stable/tutorial.html">network官方文档</a>  </li>
-</ol>
-<p>发现文档里举的例子都是自己输入的个别的点，我可以先研究一下DRNE的代码，从里面得到一些有用的内容。</p>
-<p>代码看不懂的地方，首先就是embedding：<br><a href="https://blog.csdn.net/songyunli1111/article/details/85100616">关于embedding</a></p>
-<h2 id="7月16日"><a href="#7月16日" class="headerlink" title="7月16日"></a>7月16日</h2><ol>
-<li>CONSNET数据集：<br> deepwalk-master先不用，做对比算法的<br> DRNE-master 用来做embedding的<br> GAN用来生成模型  </li>
-<li>关于anaconda的使用：<br> Anaconda是一个方便的python包管理和环境管理软件，一般用来配置不同的项目环境。<br> 我们常常会遇到这样的情况，正在做的项目A和项目B分别基于python2和python3，而第电脑只能安装一个环境，这个时候Anaconda就派上了用场，它可以创建多个互不干扰的环境，分别运行不同版本的软件包，以达到兼容的目的。<br> Anaconda通过管理工具包、开发环境、Python版本，大大简化了你的工作流程。不仅可以方便地安装、更新、卸载工具包，而且安装时能自动安装相应的依赖包，同时还能使用不同的虚拟环境隔离不同要求的项目。<br> <a href="https://www.jianshu.com/p/742dc4d8f4c5">Anaconda入门</a></li>
-</ol>
-<h2 id="7月17日"><a href="#7月17日" class="headerlink" title="7月17日"></a>7月17日</h2><div class="note success">
-    conda有一点好处是，如果你需要安装一个包，系统将自动检查这个包需要的前置包并且安装，比如你要安装TensorFlow，而TensorFlow会用到很多像前置包像pandas、matiplot等，如果你在单纯的python下没有安装pandas等包就直接安装TensorFlow，那么和有可能无法使用，而使用conda安装TensorFlow将会询问你并自动帮你把缺少的前置包安装好
-</div>
-
-<ol>
-<li><p>使用anaconda先创建一个用于drne的环境<br> <img src="https://s2.ax1x.com/2019/09/28/u1d88U.png" alt=""><br> 安装以上环境<br> 其中添加的资源库都没有tensorflow == 1.2.0<br> 按照提示 </p>
- <blockquote><p>To search for alternate channels that may provide the conda package you’re looking for, navigate to <a href="https://anaconda.org">https://anaconda.org</a> and use the search bar at the top of the page.</p>
-</blockquote>
-<p> 去官网搜索资源即可下载</p>
-<p> 环境安装完成</p>
-</li>
-<li><p>anaconda跑不出来，先学习anaconda的使用方法：<br> <a href="https://www.jianshu.com/p/eaee1fadc1e9">anaconda1</a></p>
-<p> <a href="https://i.xdc.at/2017/08/13/add-anaconda-prompt-to-context-menu-of-explorer/">anaconda2</a></p>
-<p> <a href="https://blog.csdn.net/c20081052/article/details/88839479">anaconda3</a></p>
-</li>
-</ol>
-<h2 id="7月19日"><a href="#7月19日" class="headerlink" title="7月19日"></a>7月19日</h2><p>继续研究network库</p>
-<h2 id="7月21日"><a href="#7月21日" class="headerlink" title="7月21日"></a>7月21日</h2><p>研读networkx的文档，在后面处理相关问题的时候会简单很多。<br>在学习图的过程中，遇到的问题：<br><img src="https://s2.ax1x.com/2019/09/28/u1wzTI.png" alt=""><br><img src="https://s2.ax1x.com/2019/09/28/u1wx0A.png" alt=""></p>
-<p>最后一行输出，我记得莫凡python里有讲这个，关于迭代器的东西，然后搜索了一下，继续进行学习：<br><a href="https://blog.csdn.net/u014028063/article/details/80572234">Python迭代器</a></p>
-<p><strong>任务：</strong><br>写一个可以将ground truth抽样的函数，给定一个列表，例如[0.3， 0.5， 0.7]，<br>0.3表示在groundtruth里面随机抽样30%，并生成名为new-gt-0.3.txt的文件，列表长度为多少，就生成多少个这样的文件。</p>
-<h2 id="7月22日"><a href="#7月22日" class="headerlink" title="7月22日"></a>7月22日</h2><p>readme文档中AcrossNetworkEmbeddingData文件夹里的文件和实际文件夹里的不一样，是否有问题？</p>
-<p>anchor users 定位用户</p>
-<h2 id="7月23日"><a href="#7月23日" class="headerlink" title="7月23日"></a>7月23日</h2><p>读学长写的：</p>
-<ol>
-<li><p>连通图代码<br>numpy.zeros<br><a href="https://blog.csdn.net/qq_28618765/article/details/78085457">https://blog.csdn.net/qq_28618765/article/details/78085457</a></p>
-</li>
-<li><p>抽样代码<br>自己完成：数据转换代码<br>python open函数的参数<br><a href="https://www.runoob.com/python/python-func-open.html">https://www.runoob.com/python/python-func-open.html</a></p>
-</li>
-</ol>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
-<p><a href="https://blog.csdn.net/qq_33254870/article/details/81668297">https://blog.csdn.net/qq_33254870/article/details/81668297</a></p>
-<p><a href="https://cloud.tencent.com/developer/ask/172682">https://cloud.tencent.com/developer/ask/172682</a></p>
-<font color="FF0000">一定要系统地学一下python！要不然什么都不会，写起来效率太低了！！</font>
-
-<p>怎样用csvreader读入用tab分隔的文件——直接用\t</p>
-<p><a href="https://www.runoob.com/python/att-list-len.html">https://www.runoob.com/python/att-list-len.html</a></p>
-<p>for while if后面都要有冒号</p>
-<p>python的‘和’符号是 and</p>
-<p>关于newline参数</p>
-<h2 id="7月24日"><a href="#7月24日" class="headerlink" title="7月24日"></a>7月24日</h2><div class="note danger">
-    把trans_result打成了tranns_result，出现问题，，，，，
-    python也没有报错，还好自己发现了
-</div>
-
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">i = <span class="number">0</span></span><br><span class="line">	<span class="keyword">while</span>(i &lt; <span class="built_in">len</span>(trans_result)):</span><br><span class="line">		<span class="comment"># print(&quot;Delete process...&quot;)</span></span><br><span class="line">		<span class="keyword">if</span>(trans_result[i][<span class="number">0</span>] == <span class="number">0</span> <span class="keyword">or</span> trans_result[i][<span class="number">1</span>] == <span class="number">0</span>):</span><br><span class="line">			trans_result = np.delete(trans_result, i, axis = <span class="number">0</span>)</span><br><span class="line">		<span class="keyword">else</span>:<span class="comment">#！！！！注意这里的else！！！否则会出错</span></span><br><span class="line">			i = i + <span class="number">1</span></span><br></pre></td></tr></table></figure>
-<center>❤️ 🧡 💛 💚 💙 💜 </center>
-<center>中间几天帮张老师查项目资料来着——关于“认知计算”和“意图推理”</center>
-
-<h2 id="7月31日"><a href="#7月31日" class="headerlink" title="7月31日"></a>7月31日</h2><p>如何调出eclipse左边文件栏<br><a href="https://jingyan.baidu.com/article/a24b33cd3af41119ff002b7a.html"></a></p>
-<p>anaconda prompt 切换到e盘：<br><a href="https://blog.csdn.net/c20081052/article/details/88839479"></a></p>
-<p>drne配适自己的代码：<br>activate for_drne<br>e:</p>
-<h2 id="8月4日"><a href="#8月4日" class="headerlink" title="8月4日"></a>8月4日</h2><p>coursera视频无法播放<br><a href="https://blog.csdn.net/qq_39521554/article/details/79039548">https://blog.csdn.net/qq_39521554/article/details/79039548</a></p>
-<p>欧式距离</p>
-<p><a href="https://www.cnblogs.com/kimkat/p/9938475.html">https://www.cnblogs.com/kimkat/p/9938475.html</a></p>
-<p>测试程序（把程序拆成几小部分）</p>
-<ol>
-<li>np.linalg.norm(vec1 - vec2)</li>
-<li>读入部分，怎样读出来两个向量</li>
-</ol>
-<p>python cookbook 真的能学到很多东西！！<br>挺有用！</p>
-<p><a href="https://zhidao.baidu.com/question/115008008.html">https://zhidao.baidu.com/question/115008008.html</a></p>
-<p><a href="https://www.cnblogs.com/bakari/p/4807847.html">https://www.cnblogs.com/bakari/p/4807847.html</a></p>
-<h2 id="8月5日"><a href="#8月5日" class="headerlink" title="8月5日"></a>8月5日</h2><ol>
-<li><p>查数据类型：<br><a href="https://www.cnblogs.com/carlber/p/9362584.html">https://www.cnblogs.com/carlber/p/9362584.html</a></p>
-</li>
-<li><p>列表最后有一个逗号，就会多出来一个空元素<br><a href="https://www.cnblogs.com/lostme/articles/8857083.html">https://www.cnblogs.com/lostme/articles/8857083.html</a></p>
-</li>
-<li><p>operands could not be broadcast together with shapes (2,) (250,)<br><a href="https://blog.csdn.net/Odyssues_lee/article/details/85244735">https://blog.csdn.net/Odyssues_lee/article/details/85244735</a></p>
-</li>
-<li><p>运行map（）后，报：map object at 0x02629E50解决方法与原因分析​​​​​​​<br><a href="https://blog.csdn.net/weixin_40807247/article/details/82797378">https://blog.csdn.net/weixin_40807247/article/details/82797378</a></p>
-</li>
-</ol>
-<p><a href="https://www.cnblogs.com/hwd9654/p/5707920.html">https://www.cnblogs.com/hwd9654/p/5707920.html</a></p>
-<ol>
-<li><p>从字符串中提取数字：<br><a href="https://www.cnblogs.com/dancesir/p/11021829.html">https://www.cnblogs.com/dancesir/p/11021829.html</a></p>
-</li>
-<li><p>python中，“<filter object at 0x028A2050>”是什么意思？怎么解决？<br><a href="https://zhidao.baidu.com/question/329317296.html">https://zhidao.baidu.com/question/329317296.html</a></p>
-</li>
-<li><p>数据格式要求很严格：<br>3   2<br>5  4<br>7  6<br>9  7<br>tab和x个空格不一样</p>
-</li>
-<li><p>输出百分比：<br><a href="https://blog.csdn.net/u013553529/article/details/78567696">https://blog.csdn.net/u013553529/article/details/78567696</a></p>
-</li>
-</ol>
-<h2 id="8月7日"><a href="#8月7日" class="headerlink" title="8月7日"></a>8月7日</h2><p>博客搭建<br><a href="https://blog.csdn.net/fangquan1980/article/details/80648171">https://blog.csdn.net/fangquan1980/article/details/80648171</a></p>
-<p><a href="https://blog.csdn.net/zyupupup/article/details/85098366">https://blog.csdn.net/zyupupup/article/details/85098366</a></p>
-<p><a href="https://blog.csdn.net/weixin_42419856/article/details/81141546">https://blog.csdn.net/weixin_42419856/article/details/81141546</a></p>
-<p><a href="https://blog.csdn.net/lvsehaiyang1993/article/details/80881433">https://blog.csdn.net/lvsehaiyang1993/article/details/80881433</a></p>
-<p><a href="http://zhangchunlei.com/blog/2014/12/01/modify-a-record-of-my-website-dns/">http://zhangchunlei.com/blog/2014/12/01/modify-a-record-of-my-website-dns/</a></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">On a Windows machine, you&#x27;ll want to run nslookup your-domain.com and ensure that the output does not include any of the deprecated IP addresses (207.97.227.XXX, 204.232.175.XX, or 199.27.73.XXX).</span><br><span class="line">If you&#x27;re on a Mac or Linux machine, simply paste this command into a terminal window, replacing your-domain.com with, your site&#x27;s domain. dig your-domain.com | grep -E &#x27;(207.97.227.245|204.232.175.78|199.27.73.133)&#x27; || echo &quot;OK&quot;. If you see the word &quot;OK&quot;, you&#x27;re all set.</span><br></pre></td></tr></table></figure>
-<p><a href="https://blog.csdn.net/a1023182899/article/details/77461567">https://blog.csdn.net/a1023182899/article/details/77461567</a></p>
-<h2 id="8月8日"><a href="#8月8日" class="headerlink" title="8月8日"></a>8月8日</h2><p><a href="https://www.v2ex.com/amp/t/465570">https://www.v2ex.com/amp/t/465570</a></p>
-<p>LINE（PALE中）<br>GAN<br>画圈</p>
-<h2 id="8月11日"><a href="#8月11日" class="headerlink" title="8月11日"></a>8月11日</h2><p>xlrd模块：<br><a href="https://www.cnblogs.com/insane-Mr-Li/p/9092619.html">https://www.cnblogs.com/insane-Mr-Li/p/9092619.html</a></p>
-<h2 id="8月13日"><a href="#8月13日" class="headerlink" title="8月13日"></a>8月13日</h2><ol>
-<li><p>random.choices<br><a href="https://blog.csdn.net/lcqin111/article/details/83504029">https://blog.csdn.net/lcqin111/article/details/83504029</a></p>
-</li>
-<li><p>Cannot feed value of shape (256, 255) for Tensor ‘Placeholder:0’, which has shape ‘(?, 256)’<br><a href="http://www.mamicode.com/info-detail-2346029.html">http://www.mamicode.com/info-detail-2346029.html</a></p>
-</li>
-</ol>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">4000</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;--------------training---------DDDDDD----------EPOCH：&quot;</span> + <span class="built_in">str</span>(i) + <span class="string">&quot;-----------------------&quot;</span>)</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">5</span>):</span><br><span class="line">        mm = np.reshape(random.choices(f_d, f_g, k=<span class="number">256</span>))</span><br><span class="line">        nn = np.reshape(random.choices(t_d, t_g, k=<span class="number">256</span>))</span><br><span class="line">        rms_train1, loss1 = sess.run([model.rms_train_op1, model.loss_d], feed_dict=&#123;model.s: np.array(random.choices(f_d, f_g, k=<span class="number">256</span>)), model.t: np.array(random.choices(t_d, t_g, k=<span class="number">256</span>))&#125;)</span><br><span class="line">        <span class="keyword">for</span> every <span class="keyword">in</span> model.clip:</span><br><span class="line">            sess.run(every)</span><br></pre></td></tr></table></figure>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>7.13<br>了解任务详情<br /></p>
-<p>7.14<br>装相应的环境，跑DRNE，发现了文档的错误<br>DRNE在命令行窗口运行。<br>输入：edgelist<br>输出：.npy（需要再写程序转换为embedding）<br /></p>
-<p>7.15<br>想要完成任务：判断是否为连通图<br>结果就是不行，，<br /></p>
-<p>7.16<br>还在为DRNE的无脑错误 debug<br /></p>
-<p>7.17<br>学习了anaconda的使用，还在跑DRNE，，<br /></p>
-<p>7.18<br>DRNE，，<br /></p>
-<p>7.19<br>完成一个可以将ground truth抽样的函数，例如[0.3, 0.5, 0.7]<br /></p>
-<p>7.21<br>学习关于图的内容，不敢下手自己写代码<br /></p>
-<p>7.22<br>开始跑IONE（java）<br /></p>
-<p>7.23<br>数据转换代码，将cosnet数据集中的用户名转换成结点号<br /></p>
-<p>7.24<br>删去edges里面没有在groundtruth中出现的记录，以此来缩小数据集<br /></p>
-<p>7.25<br>用学长改过的代码跑ione<br /></p>
-<p>7.31<br>用anaconda环境跑DRNE<br /></p>
-<p>8.4<br>写计算距离，画圈的代码<br /></p>
-<p>8.5<br>计算距离的代码，注意数据格式<br /></p>
-<p>8.7<br>博客搭建<br /></p>
-<p>8.8<br>跑PALE中的LINE，尝试WGAN<br /></p>
-<p>8.11<br>跑学长改过的WGAN<br /></p>
-<p>8.11<br>跑学长改过的WGAN完成，DRNE结果的npy转成txt<br /></p>
-]]></content>
-      <categories>
-        <category>机器学习</category>
-      </categories>
-      <tags>
-        <tag>迁移学习</tag>
-        <tag>Anaconda</tag>
-        <tag>DRNE</tag>
-        <tag>IONE</tag>
-        <tag>WGAN</tag>
-        <tag>PALE</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>博客内容归档和英文博客</title>
     <url>/202111/%E5%8D%9A%E5%AE%A2%E5%86%85%E5%AE%B9%E5%BD%92%E6%A1%A3%E5%92%8C%E8%8B%B1%E6%96%87%E5%8D%9A%E5%AE%A2/</url>
-    <content><![CDATA[<div class="tag-plugin note" ><div class="body"><p>从2019年开始尝试搭建自己的博客，到现在已经本科毕业。这三年的时间虽然没有坚持更新博客，但是一直在坚持记录。无论是理论知识的学习、Debug的记录，还是读书健身笔记和感慨万千时的随笔，他们都散落在各种在线笔记软件和手机的备忘录中。</p><p>随着时间的推移，我对博客的认识也发生了很多变化。“记录”对我来说仍然具有非常大的意义，但是“博客”最重要的价值不应该是“记录”，而是“分享”——传递有价值的信息。我把平时的日常生活和学习经历记录在各种笔记中，过一段时间再去回顾和整理，选取其中有价值的东西去分享。</p><p>过去的一年再次参加了美赛，加入了几个和区块链有关的项目，也完成了不少专利和论文。更多的时间忙于运用知识，以需求为导向迫使自己进行广泛而不深刻的学习。对我来说真正有价值的输入变少了，输出和表达的欲望也降低了很多。</p><p>   我在原先的博客域名之下又建立了一个英文博客<a href="blog.crocodilezs.top/eysblog_en/">BLOG-EN</a>，旨在整理自己过去一年经历的各种项目。同时也将原博客中的内容进行整理归档，便于自己和访客的查阅。</p></div></div>
+    <content><![CDATA[<div class="tag-plugin note" ><div class="body"><p>从2019年开始尝试搭建自己的博客，到现在已经本科毕业。这三年的时间虽然没有坚持更新博客，但是一直在坚持记录。无论是理论知识的学习、Debug的记录，还是读书健身笔记和感慨万千时的随笔，他们都散落在各种在线笔记软件和手机的备忘录中。</p><p>随着时间的推移，我对博客的认识也发生了很多变化。“记录”对我来说仍然具有非常大的意义，但是“博客”最重要的价值不应该是“记录”，而是“分享”——传递有价值的信息。我把平时的日常生活和学习经历记录在各种笔记中，过一段时间再去回顾和整理，选取其中有价值的东西去分享。</p><p>过去的一年再次参加了美赛，加入了几个和区块链有关的项目，也完成了不少专利和论文。更多的时间忙于运用知识，以需求为导向迫使自己进行广泛而不深刻的学习。对我来说真正有价值的输入变少了，输出和表达的欲望也降低了很多。</p><p>   我在原先的博客域名之下又建立了一个英文博客<a href="https://blog.crocodilezs.top/eysblog_en/">BLOG-EN</a>，旨在整理自己过去一年经历的各种项目。同时也将原博客中的内容进行整理归档，便于自己和访客的查阅。</p></div></div>
 <span id="more"></span>
 <h2 id="课程设计与实验"><a href="#课程设计与实验" class="headerlink" title="课程设计与实验"></a>课程设计与实验</h2><p><a href="/201911/Linux开发环境及应用作业%2020191031/" itemprop="url"> Linux文本处理作业 </a> &emsp;&emsp;<br><a href="/categories/操作系统/" itemprop="url"> 《30天自制操作系统》实验合辑 </a> &emsp;&emsp;<br><a href="/201909/周宇洋_「学生宿舍管理系统」实验报告/" itemprop="url"> 学生宿舍管理系统Python开发 </a> &emsp;&emsp;<br><a href="/201911/KNN与Naive_Bayes代码实现/" itemprop="url"> KNN和朴素贝叶斯的代码实现 </a> &emsp;&emsp;<br><a href="/201911/Price_Suggestion_Chanllenge/" itemprop="url"> 商品价格预测挑战 </a> &emsp;&emsp;<br><a href="/201911/Fisher算法&SVM&K-Means及其优化/" itemprop="url"> Fisher算法 &amp; SVM &amp; K-Means的实现和优化 </a> &emsp;&emsp;<br><a href="/201910/FINDS算法和ID3算法/" itemprop="url"> FINDS算法和ID3算法 </a> &emsp;&emsp;<br><a href="/201904/插入排序归并排序和快速排序/" itemprop="url"> 算法设计之排序 </a> &emsp;&emsp;<br><a href="/201904/循环赛赛程安排/" itemprop="url"> 算法设计之循环赛赛程安排 </a> &emsp;&emsp;</p>
 <h2 id="展示和汇报"><a href="#展示和汇报" class="headerlink" title="展示和汇报"></a>展示和汇报</h2><p><a href="/201904/基于链接内容的社区发现（一）/" itemprop="url"> 基于链接内容的社区发现（一） </a> &emsp;&emsp;<br><a href="/201904/基于链接内容的社区发现（二）/" itemprop="url"> 基于链接内容的社区发现（二） </a> &emsp;&emsp;</p>
-<h2 id="学习笔记"><a href="#学习笔记" class="headerlink" title="学习笔记"></a>学习笔记</h2><p><a href="/201908/「迁移学习简明手册」学习笔记（1）/" itemprop="url"> 《迁移学习简明手册》学习笔记 </a> &emsp;&emsp;<br><a href="/201909/实验室苦逼搬砖暑假生活纪实/" itemprop="url"> 用户对齐（实验室搬砖纪实） </a> &emsp;&emsp;<br><a href="/202002/支持向量机算法的介绍及数学推导/" itemprop="url"> 支持向量机算法数学推导 </a> &emsp;&emsp;</p>
+<h2 id="学习笔记"><a href="#学习笔记" class="headerlink" title="学习笔记"></a>学习笔记</h2><p><a href="/201908/「迁移学习简明手册」学习笔记（1）/" itemprop="url"> 《迁移学习简明手册》学习笔记 </a> &emsp;&emsp;<br><a href="/201909/实验室苦逼搬砖暑假生活纪实/" itemprop="url"> 用户对齐（实验室搬砖纪实） </a> &emsp;&emsp;</p>
 <h2 id="读书笔记"><a href="#读书笔记" class="headerlink" title="读书笔记"></a>读书笔记</h2><p><a href="/202005/《苏东坡传》摘录/" itemprop="url"> 《苏东坡传》 </a> &emsp;&emsp;<br><a href="/202002/祭亡妻程氏文/" itemprop="url"> 《祭亡妻程氏文》 </a> &emsp;&emsp; </p>
 ]]></content>
   </entry>
@@ -322,8 +145,8 @@
     <title>《极简欧洲史》读书笔记</title>
     <url>/202002/%E6%9E%81%E7%AE%80%E6%AC%A7%E6%B4%B2%E5%8F%B2%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</url>
     <content><![CDATA[<p><img src="https://i.loli.net/2020/02/11/EG6KiIgvJp5sq4m.png" alt=""></p>
-<span id="more"></span>
 <p>从2019年年底到2020年年初我一直在读的这本书——《极简欧洲史》，我应该不会向身边的人推荐这本书，因为这是一本比较枯燥的历史课本。唯一能让我对历史提起兴趣的描写性语言少之又少。在我读到大概三分之二的时候就想放弃，然而最后还是因为微职的读书小组坚持读下来了。这本书越往后节奏越快，到后面快要变成了流水账。不过通过这本书我也做了非常多的思考：像我这样对历史毫无兴趣的理科生还需不需要读历史？有没有更舒服的、更有趣地了解历史的方式？</p>
+<span id="more"></span>
 <blockquote>
 <p>本书的内容原本是授课用的讲义，目的是让澳大利亚的大学生对欧洲历史有个初步的认识。但身为老师的我并不是从最前面开始，按部就班讲到最后。我的做法是先为学生很快地做个概论，再回头补充细节。<br>——《极简欧洲史》引言</p>
 </blockquote>
@@ -347,142 +170,6 @@
       <tags>
         <tag>极简欧洲史</tag>
         <tag>历史</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>支持向量机算法（Support Vector Machine Alg）的介绍及数学推导</title>
-    <url>/202002/%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA%E7%AE%97%E6%B3%95%E7%9A%84%E4%BB%8B%E7%BB%8D%E5%8F%8A%E6%95%B0%E5%AD%A6%E6%8E%A8%E5%AF%BC/</url>
-    <content><![CDATA[<div class="note info">
-    🌟上个学期周文安老师教我们专业的机器学习课程，在讲每一个算法的时候老师都会强调数学推导的重要性。<br />
-    她希望大家能够不仅仅会调库，还能明白算法最底层的原理，并且能够自己推导。然而上学期我在数学推导这里一直在划水😖，没有理解透各种推导过程，所以趁着寒假在家里比较有时间，把机器学习部分算法的数学推导部分补全。<br />
-    <br />
-    🌟SVM算法的证明用到了求解对偶问题的思想，石川老师在课上也说过这个算法的证明过程非常🕺“漂亮”🚶‍♂️。所以数学推导这一系列我决定从SVM开始。<br />
-</div>
-
-<p>在学期中我也有尝试手推过一次 <code>SVM</code>，但是并不是很理解，<strong>尤其是几何间隔、函数间隔和对偶问题等概念都没有理解，而这些概念对于推导过程都十分重要。</strong>现在的这篇文章将会展开得更详细。<br>这是上学期的文章👉<a href="https://blog.crocodilezs.top/201911/Fisher%E7%AE%97%E6%B3%95&amp;SVM&amp;K-Means%E5%8F%8A%E5%85%B6%E4%BC%98%E5%8C%96/#more">SVM优化对偶问题的详细推导过程</a></p>
-<p>文章的大致思路是 <code>SVM</code> 的介绍、推导过程中的基本概念介绍、数学推导。我会把问题描述到最容易理解。参考资料主要有李航老师的《统计学习方法》、<a href="https://www.coursera.org/learn/machine-learning?">吴恩达老师的机器学习课程</a>、<a href="https://scikit-learn.org/stable/modules/svm.html">python scikit learn的官方文档</a>和上个学期的课件。</p>
-<span id="more"></span>
-<h1 id="支持向量机介绍"><a href="#支持向量机介绍" class="headerlink" title="支持向量机介绍"></a>支持向量机介绍</h1><blockquote>
-<p>支持向量机（support vector machines, <code>SVM</code>）是一种二分类模型。它的基本模型是定义在特征空间上的间隔最大的线性分类器，间隔最大使它有别于感知机，支持向量机还包括核技巧，这使它成为实质上的非线性分类器。（关于“间隔”、“核技巧”的介绍在下文中会讲）</p>
-</blockquote>
-<h2 id="支持向量机的应用"><a href="#支持向量机的应用" class="headerlink" title="支持向量机的应用"></a>支持向量机的应用</h2><blockquote>
-<p>Support vector machines (SVMs) are a set of supervised learning methods used for classification, regression and outliers detection.</p>
-</blockquote>
-<p>译：支持向量机是一种监督学习算法，可以用于分类问题、回归问题和异常点识别问题。</p>
-<h2 id="直观理解支持向量机"><a href="#直观理解支持向量机" class="headerlink" title="直观理解支持向量机"></a>直观理解支持向量机</h2><p><a href="https://sm.ms/image/AU3tYprag8ckDGl" target="_blank"><img src="https://i.loli.net/2020/02/10/AU3tYprag8ckDGl.jpg" alt="pic0" width="350" height="350" ></a></p>
-<p>假设在一个二分类问题中，我们的样例中有四个正例和五个反例（其中正例由圆形表示，反例由叉表示），如 <code>pic0</code> 所示。  </p>
-<p>现在我们想通过一条直线将正例和反例区分开。显而易见，能够实现分类的有无数条直线，图中我们给出了三条分类直线：<code>l1</code>、<code>l2</code>、<code>l3</code>，如 <code>pic1</code> 所示。</p>
-<p><a href="https://sm.ms/image/MHhx6BwTSzrQqZL" target="_blank"><img src="https://i.loli.net/2020/02/10/MHhx6BwTSzrQqZL.jpg" alt="pic1" width="350" height="350" ></a></p>
-<p>然而，这三条直线的分类能力并不相同。假设我们再向训练样例中添加两个正样例（在 <code>pic2</code> 中用绿色的圆点表示），此时我们可以发现，直线 <code>l1</code> 和直线 <code>l3</code> 失去了完美的分类能力，因为它们没法将新加入的样例成功分类。</p>
-<p>由此我们可以看出，<code>l2</code> 的分类能力比 <code>l1</code> 和 <code>l3</code> 的分类能力更强。<strong>而支持向量机算法就是去寻找所有直线中分类最强的那一条直线。</strong>在后面的推导过程中，我们也会证明：在这样的线性可分问题中，分类能力最强的直线（也就是“超平面”，后面会介绍）<strong>有且仅有一条</strong>。</p>
-<p><a href="https://sm.ms/image/KpYh7ZNoMQCXDAH" target="_blank"><img src="https://i.loli.net/2020/02/10/KpYh7ZNoMQCXDAH.jpg" alt="pic2" width="350" height="350" ></a></p>
-<h2 id="支持向量机的优势和劣势"><a href="#支持向量机的优势和劣势" class="headerlink" title="支持向量机的优势和劣势"></a>支持向量机的优势和劣势</h2><p>了解 <code>SVM</code> 的优势能够帮助我们在合适的问题中选择合适的算法。  </p>
-<p><em>在看过后面算法的推导过程之后，会对支持向量机的优势和劣势有更深刻的了解。</em>  </p>
-<h3 id="支持向量机的优势"><a href="#支持向量机的优势" class="headerlink" title="支持向量机的优势"></a>支持向量机的优势</h3><ol>
-<li>Effective in high dimensional spaces.<em>在高维空间中比较容易使用。</em></li>
-<li>Still effective in cases where number of dimensions is greater than the number of samples. <em>当样本特征数比样本数更多的时候，支持向量机仍然可以用。</em></li>
-<li>Uses a subset of training points in the decision function (called support vectors), so it is also memory efficient.<em>仅仅用到了训练集中的部分样例（即支持向量），所以会节省内存空间。</em></li>
-<li>Versatile: different Kernel functions can be specified for the decision function. Common kernels are provided, but it is also possible to specify custom kernels.<em>不同的核函数决定不同的决策函数。在python的scikit learn库中提供了普遍使用的核函数，当然我们也可以自定义核函数。</em></li>
-</ol>
-<h3 id="支持向量机的劣势"><a href="#支持向量机的劣势" class="headerlink" title="支持向量机的劣势"></a>支持向量机的劣势</h3><ol>
-<li>If the number of features is much greater than the number of samples, avoid over-fitting in choosing Kernel functions and regularization term is crucial.<em>当样本特征数比样本数多的时候要注意防止过拟合，这个时候核函数的选择至关重要。</em></li>
-<li>SVMs do not directly provide probability estimates, these are calculated using an expensive five-fold cross-validation (see Scores and probabilities, below).<em>sklearn包并不直接提供概率评估，是通过代价很大的五折交叉运算来实现的。</em></li>
-</ol>
-<h2 id="支持向量机的分类"><a href="#支持向量机的分类" class="headerlink" title="支持向量机的分类"></a>支持向量机的分类</h2><ol>
-<li><p><strong>线性可分支持向量机（linear support vector machine in linearly separable case）</strong><br>通过硬间隔最大化（hard margin maximization）学习一个线性的分类器，又称为硬间隔支持向量机。</p>
-</li>
-<li><p><strong>线性支持向量机（linear support vector machine）</strong><br>当训练数据近似可分时，通过软间隔最大化（soft margin maximization）形成线性不可分支持向量机，简称为线性支持向量机</p>
-</li>
-<li><p><strong>非线性支持向量机（non-linear support vector machine）</strong><br>当训练数据集线性不可分时，通过使用核技巧以及软间隔最大化来学习非线性支持向量机。</p>
-</li>
-</ol>
-<h1 id="相关定义和方法介绍"><a href="#相关定义和方法介绍" class="headerlink" title="相关定义和方法介绍"></a>相关定义和方法介绍</h1><h2 id="L0-L1-L2范数"><a href="#L0-L1-L2范数" class="headerlink" title="L0, L1, L2范数"></a><code>L0</code>, <code>L1</code>, <code>L2</code>范数</h2><p>直观地说，</p>
-<ol>
-<li><code>L0</code>范数：$||x||<em>0 := \sum</em>{i = 1}^n x^0$ 即<strong>向量中所有非零元素的个数</strong>；</li>
-<li><code>L1</code>范数：$||x||<em>1 := \sum</em>{i = 1}^n |x|$  即<strong>向量中所有元素绝对值的和</strong>；</li>
-<li><code>L2</code>范数：$||x||<em>2 := \sqrt{\sum</em>{i = 1}^n x^2}$ 即<strong>欧几里得（Euclidean）范数</strong>；</li>
-</ol>
-<p>范数是一个函数，其赋予某个向量空间（或矩阵）中的每个向量以长度或大小。对于零向量，另其长度为零。<br>直观的说，向量或矩阵的范数越大，则我们可以说这个向量或矩阵也就越大。有时范数有很多更为常见的叫法，如绝对值其实便是一维向量空间中实数或复数的范数，而Euclidean距离也是一种范数。</p>
-<p><strong>p范数（p-norm）的表达公式</strong>：</p>
-<script type="math/tex; mode=display">||x||_p := (\sum_{i = 1}^n x^p)^{\frac{1}{p}}</script><h2 id="函数间隔和几何间隔"><a href="#函数间隔和几何间隔" class="headerlink" title="函数间隔和几何间隔"></a>函数间隔和几何间隔</h2><p>首先在这里补充<strong>超平面</strong>的概念，<strong>超平面</strong>即分离不同类样本的分界面，在二维空间中的超平面就是线。</p>
-<p>我们回到最开始的二分类问题，如<code>pic3</code>所示。<br><a href="https://sm.ms/image/PrVZwIlm2voCKHU" target="_blank"><img src="https://i.loli.net/2020/02/12/PrVZwIlm2voCKHU.png" alt="几何间隔示意图" width="350" height="350"></a></p>
-<p>假设我们用直线 $l_2$ 对样例进行划分，图中的横轴表示样例的第一个属性$x^{(1)}$ ，纵轴表示样例的第二个属性 $x^{(2)}$。图中的点 $m_1(x_1^{(1)}, x_1^{(2)})$ 和 $m_2(x_2^{(1)}, x_2^{(2)})$ 都被划分为正类。一般来说，一个点距离超平面的远近可以表示分类预测确信程度，距离超平面越远的点确信程度越高，这个从直观上也比较容易理解。  </p>
-<p>假设图中 $l_2$ 的方程确定为 $w_1x^{(1)} + w_2x^{(2)} + b = 0$ ，通过点到直线的距离公式$d = \frac{|w_1x^{(1)} + w_2x^{(2)} + b|}{\sqrt{w_1^2 + w_2^2}}$ 我们可以求得 $m_1$ 和 $m_2$ 到超平面的距离，以此来评判这些点分类的确信程度。这里的 $d$ 就被我们称为<strong>几何间隔</strong>。  </p>
-<p>但如果我们仅仅想比较点 $m_1$ 和 $m_2$ 确信程度的大小，我们可以仅用距离公式的分子：$d’ = |w_1x^{(1)} + w_2x^{(2)} + b|$ 进行比较，因为同一条直线分类的点的分母都是相同的。这里的 $d’$ 我们称为<strong>函数间隔</strong>。 $d’$ 在图中的几何意义表示如下图所示：</p>
-<p><a href="https://sm.ms/image/4m8PjYT2iS9rsf3" target="_blank"><img src="https://i.loli.net/2020/02/12/4m8PjYT2iS9rsf3.jpg" alt="函数间隔示意图" width="350" height="350"></a></p>
-<p>一般来说，在超平面 $w·x+b=0$ 确定的情况下，$|w·x+b|$ 能够相对地表示点$x$距离超平面的远近，而 $w·x+b$ 的符号与类标记 $y$ 的符号是否一致能够表示分类是否正确。（在这里 $y$ 表示样本的标签）所以可以用$\widehat{\gamma_i} =  y_i(w·x_i+b)$ 来表示点 $m_i$ 分类的正确性及确信度，这就是样本的函数间隔的概念。</p>
-<p>定义超平面 $(w, b)$ 关于训练数据集 $T$ 的函数间隔为超平面$(w, b)$ 关于 $T$ 中所有样本点$(x_i, y_i)$ 的函数间隔的最小值，即：</p>
-<script type="math/tex; mode=display">\widehat\gamma = min_{i=1,...,N}\widehat{\gamma_i}</script><p>函数间隔可以表示分类预测的正确性和及确信度。但是选择分离超平面时，只有函数间隔还不够。因为只要成比例地改变$w$和$b$，例如将它们改为$2w$和$2b$，超平面并没有改变，但函数的间隔却变为原来的两倍。这一事实启示我们，可以对分离超平面的法向量$w$加某些约束，如规范化，$||w||=1$，使得间隔是确定的。这是函数间隔成为几何间隔（geometric margin）。</p>
-<p><strong>定义（几何间隔）</strong></p>
-<p>对于给定的训练数据集$T$和超平面$(w, b)$ ，定义超平面$(w,b)$ 关于样本点$(x_i, y_i)$ 的几何间隔为</p>
-<script type="math/tex; mode=display">\gamma_i = y_i(\frac{w}{||w||}·x_i+\frac{b}{||w||})</script><p>定义超平面$(w,b)$ 关于训练数据集$T$ 的几何间隔为超平面$(w, b)$ 关于 $T$ 中所有样本点$(x_i, y_i)$的几何间隔最小值，即：</p>
-<script type="math/tex; mode=display">\gamma=min_{i=1,...,N}\gamma_i</script><h2 id="拉格朗日对偶性"><a href="#拉格朗日对偶性" class="headerlink" title="拉格朗日对偶性"></a>拉格朗日对偶性</h2><p>首先举例直观理解，求解 $min<em>xmax</em>{\alpha, \beta} L(x, \alpha, \beta)$ 和求解 $max_{\alpha, \beta}min_x L(x, \alpha, \beta)$ 是对偶问题。前者是极小极大问题，后者是极大极小问题。</p>
-<p>在约束优化问题中，常常利用拉格朗日对偶性（Lagrange duality）将原始问题转换为对偶问题，<strong>通过对偶问题而得到原始问题的解</strong>。该方法应用在许多统计学习方法中，例如，最大熵模型与支持向量机。这里简要叙述拉格朗日对偶性的主要概念和结果。</p>
-<h3 id="原始问题"><a href="#原始问题" class="headerlink" title="原始问题"></a>原始问题</h3><p>假设$f(x)$, $c_i(x)$, $h_j(x)$  是定义在 $R^n$ 的连续可微函数。考虑约束最优化问题：</p>
-<script type="math/tex; mode=display">min_{x \in R^n} f(x) \tag {C.1}</script><script type="math/tex; mode=display">s.t. c_i(x) \leq 0, i = 1, 2, ..., k \tag {C.2}</script><script type="math/tex; mode=display">h_j(x)=0, j=1,2,...,l \tag {C.3}</script><p>称此最优化问题为原始最优化问题或原始问题。</p>
-<p>首先引进广义拉格朗日函数（generalized Lagrange function）</p>
-<script type="math/tex; mode=display">L(x, \alpha, \beta) = f(x)+\sum_{i=0}^k\alpha_ic_i(x)+\sum_{j=1}^l\beta_jh_j(x) \tag {C.4}</script><p>这里，$x=(x^{(1)}, x^{(2)}, …, x^{(3)})^T \in R^n$ ，$\alpha_i, \beta_j$ 是拉格朗日乘子，$\alpha \geq 0$。考虑 $x$ 的函数：</p>
-<script type="math/tex; mode=display">\theta_P(x) = max_{\alpha,\beta:\alpha_i \geq 0} L(x, \alpha, \beta) \tag {C.5}</script><p>这里，下标 $P$ 表示原始问题。</p>
-<p>假设给定某个$x$。如果 $x$ 违反原始问题的约束条件，即存在某个 $i$ 使得 $c_i(x) &gt; 0$ 或者存在某个 $j$ 使得 $h_j(x) \neq 0$，那么就有</p>
-<script type="math/tex; mode=display">\theta_P(x) = max_{\alpha, \beta:\alpha_i \geq 0} [f(x)+\sum_{i=0}^k\alpha_ic_i(x)+\sum_{j=1}^l\beta_jh_j(x)]=+ \infty \tag {C.6}</script><p>因为若某个 $i$ 使约束 $c_i(x) &gt; 0$ ，则可令 $\alpha_i \rightarrow + \infty $ ，若某个 $j$ 使 $h_j(x) \neq 0$，则可令 $\beta_j$ 使 $\beta_jh_j(x) \rightarrow + \infty$  ，而将其余各 $\alpha_i$， $\beta_j$ 均取为0.</p>
-<p>相反地，如果 $x$ 满足约束条件$(C.2)$ 和$(C.3)$ ，此时 $\theta_P(x)=f(x)$.</p>
-<p>所以，如果考虑极小化问题</p>
-<script type="math/tex; mode=display">min_x\theta_P(x) = min_x max_{\alpha, \beta:\alpha_i \geq 0} L(x, \alpha, \beta)</script><p>$min<em>x max</em>{\alpha, \beta:\alpha_i \geq 0} L(x, \alpha, \beta)$ 称为广义拉格朗日函数的极小极大问题。</p>
-<p>为了方便，定义原始问题的最优值</p>
-<script type="math/tex; mode=display">p* = min_x\theta_P(x)</script><h3 id="对偶问题"><a href="#对偶问题" class="headerlink" title="对偶问题"></a>对偶问题</h3><script type="math/tex; mode=display">\theta_D(x) = min_{x} L(x, \alpha, \beta) \tag {C.8}</script><p>再考虑极大化 $\theta<em>D(x) = min</em>{x} L(x, \alpha, \beta)$ ，即</p>
-<script type="math/tex; mode=display">max_{\alpha, \beta:\alpha_i \geq 0}\theta_D(\alpha, \beta) = max_{\alpha, \beta:\alpha_i \geq 0}min_{x} L(x, \alpha, \beta) \tag {C.9}</script><p>问题 $max<em>{\alpha, \beta:\alpha_i \geq 0}min</em>{x} L(x, \alpha, \beta)$ 称为广义拉格朗日函数的极大极小问题。</p>
-<p>可以将广义拉格朗日定理函数的极大极小问题表示为约束最优化问题：</p>
-<script type="math/tex; mode=display">max_{\alpha, \beta}\theta_D(\alpha, \beta) = max_{\alpha, \beta}min_{x} L(x, \alpha, \beta)</script><script type="math/tex; mode=display">s.t. \alpha_i \geq 0, i=1, 2,...,k</script><p>称为原始问题的对偶问题，定义对偶问题的最优值：</p>
-<script type="math/tex; mode=display">d^* = max_{\alpha, \beta:\alpha_i \geq 0} \tag {C.10}</script><h3 id="原始问题和对偶问题的关系"><a href="#原始问题和对偶问题的关系" class="headerlink" title="原始问题和对偶问题的关系"></a>原始问题和对偶问题的关系</h3><p>这里只给出了定理，证明略去。</p>
-<p><strong>定理C.1</strong>  </p>
-<p>若原始问题和对偶问题都有最优值，则</p>
-<script type="math/tex; mode=display">d^* = max_{\alpha, \beta : \alpha_i \geq 0} min_x L(x, \alpha, \beta) \leq min_x max_{\alpha, \beta:\alpha_i \geq 0} L(x, \alpha, \beta) = p^* \tag {C.11}</script><p><strong>推论C.1</strong>  </p>
-<p>设 $x^<em>$ 和 $\alpha^</em>$ ， $\beta^<em>$ 分别是原始问题和对偶问题的可行解，并且 $d^</em> = p^<em>$ ，则 $x^</em>$ 和 $\alpha^<em>, \beta^</em>$ 分别是原始问题和对偶问题的最优解。</p>
-<p><strong>定理C.2</strong></p>
-<p>假设函数 $f(x)$ 和 $c_i(x)$ 是凸函数，$h_j(x)$ 是仿射函数；并且假设不等式约束$c_i(x)$ 是严格可行的，即存在 $x$ ，对所有$i$有$c_i(x) &lt;0$，则存在 $x^\ast , \alpha^\ast ,  \beta^\ast $ ，使 $x^\ast$ 是原始问题的解，$\alpha^\ast$ , $\beta^\ast$ 是对偶问题的解，并且</p>
-<script type="math/tex; mode=display">p^* = d^* = L(x^*, \alpha^*, \beta^*) \tag {C.12}</script><p><strong>定理C.3</strong></p>
-<p>假设函数 $f(x)$ 和 $c_i(x)$ 是凸函数，$h_j(x)$ 是仿射函数；并且假设不等式约束$c_i(x)$ 是严格可行的，则 $ x^\ast $ 和 $\alpha^\ast, \beta^\ast$ 分别是原始问题和对偶问题的解的充分必要条件是 $x^\ast, \alpha^\ast, \beta^\ast$ 满足下面的 <code>Karush-Kuhn-Trucker(KKT)</code> 条件：</p>
-<script type="math/tex; mode=display">\triangledown_xL(x^*, \alpha^*, \beta^*)=0 \tag {C.13}</script><script type="math/tex; mode=display">\alpha_i^*c_i(x^*)=0,i=1,2,...,k \tag {C.14}</script><script type="math/tex; mode=display">c_i(x) \leq 0, i=1,2,...,k \tag {C.15}</script><script type="math/tex; mode=display">\alpha_i^* \geq ,i=1,2,...,k \tag {C.16}</script><script type="math/tex; mode=display">h_j(x^*)=0,j=1,2,...,l \tag {C.17}</script><p>特别指出，式$(C.24)$ 称为 <code>KKT</code> 的对偶互补条件。由此条件可知：若 $\alpha_i^<em> &gt;0$ ， 则 $c_i(x^</em>)=0$。</p>
-<p>简单的总结一下这一小节：<strong>在某些条件下，原始问题和对偶问题的解相同，我们可以通过求解对偶问题的解来解决原问题。</strong></p>
-<h2 id="核技巧"><a href="#核技巧" class="headerlink" title="核技巧"></a>核技巧</h2><p> 核技巧我们可以通过一张图来理解：<br> <img src="https://i.loli.net/2020/02/13/4rjnEpbuylieSIs.jpg" alt="pic5"></p>
-<p> <strong>核函数是二元函数，输入是映射之前的两个向量，其输出等价于两个向量映射之后的内积。</strong></p>
-<p>下面这个链接里有关于核函数更详细的描述：</p>
-<p><a href="https://zhuanlan.zhihu.com/p/47541349?utm_source=qq&amp;utm_medium=social&amp;utm_oi=809760155267903488">关于核函数</a></p>
-<h1 id="支持向量机数学推导"><a href="#支持向量机数学推导" class="headerlink" title="支持向量机数学推导"></a>支持向量机数学推导</h1><p>关于支持向量机的推导，重点还是在<strong>线性可分支持向量机</strong>这里。在明白了线性可分支持向量机的推导之后，线性支持向量机仅仅是在此基础上加了一个软间隔，非线性支持向量机是加上了核技巧。  </p>
-<div class="note warning">
-注意，在看下面的推导过程之前，请务必保证理解了上面的函数间隔和几何间隔、对偶问题等概念。
-</div>
-
-<h2 id="线性可分支持向量机"><a href="#线性可分支持向量机" class="headerlink" title="线性可分支持向量机"></a>线性可分支持向量机</h2><p><strong>支持向量机</strong>学习的<strong>基本想法</strong>是求解<strong>能够正确划分数据集</strong>并且<strong>几何间隔最大</strong>的分离超平面。这里的间隔最大化又称<strong>硬间隔最大化</strong>（与后面讨论的软间隔最大化相对应）。</p>
-<div class="info">
-    间隔最大化的直观理解：<br />
-    对训练数据集找到几何间隔最大的超平面意味着以充分大的确信度对训练数据进行分类。也就是说，不仅将正负实例点分开，而且对最难分的实例点（离超平面最近的点）也有足够大的确信度将它们分开。这样的超平面应该对未知的新实例有很好的分类预测能力。
-</div>
-
-<h3 id="最大间隔算法"><a href="#最大间隔算法" class="headerlink" title="最大间隔算法"></a>最大间隔算法</h3><p>我们的目标是求解一个几何间隔最大的分离超平面，可以表示为下面的约束最优化问题：</p>
-<script type="math/tex; mode=display">max_{w,b} \gamma \tag {1.1}</script><script type="math/tex; mode=display">y_i(\frac{w}{||w||}·x_i+\frac{b}{||w||}) \geq \gamma,i=1,2,...,N \tag {1.2}</script><p>考虑到几何间隔和函数间隔的关系（$\gamma$ 表示几何间隔，$\widehat{\gamma}$ 表示函数间隔），可以将这个问题改写为：</p>
-<script type="math/tex; mode=display">max_{w,b} \gamma</script><script type="math/tex; mode=display">s.t. y_i(w·x_i+b) \geq \widehat{\gamma},i=1,2,...,N</script><p>函数间隔$\widehat{\gamma}$ 的取值并不影响最优化问题的解。事实上，假设将$w$ 和 $b$ 按比例改编为 $\lambda w$ 和 $\lambda b$ ，这时函数间隔成为 $\lambda \widehat{\gamma}$ ，函数间隔的这一改变对等式约束没有影响，对目标函数的优化也没有影响。</p>
-<p>这样，我们可以取$\widehat{\gamma} =1$ ，带入到上面的式子，同时我们注意到最大化$\frac{1}{||w||}$ 和最小化 $\frac{1}{2}||w||^2$ 是等价的，于是约束规划问题可以转换成如下的形式：</p>
-<p>$min_{w,b} \frac{1}{2}||w||^2 \tag {1.3}$</p>
-<script type="math/tex; mode=display">s.t.y_i(w·x_i+b)-1 \geq 0,i=1,2,...,N \tag {1.4}</script><p>综上，我们得到了线性可分的<strong>支持向量机算法</strong>——<strong>最大间隔法</strong>，在后文中我们会对这个算法进行求解。</p>
-<hr>
-<p><strong>算法（线性可分支持向量机学习算法）：</strong></p>
-<ul>
-<li>输入：线性可分训练数据集 $T={(x_1,y_1),(x_2,y_2),…,(x_N,y_N)}$，其中，$x_i \in X =R^n,y_i \in Y ={-1, +1},i=1,2,…,N$;</li>
-<li>输出：最大间隔分离超平面和分类决策函数</li>
-</ul>
-<p>（1） 构造并求解约束最优化问题：</p>
-<script type="math/tex; mode=display">min_{w,b} \frac{1}{2}||w||^2</script><script type="math/tex; mode=display">s.t. y_i(w_i ·x+b)-1 \geq 0,i=1,2,...,N</script><p>求得最优解$w^<em>,b^</em>$。</p>
-<p>（2） 由此得到分类超平面啊：</p>
-<script type="math/tex; mode=display">w^* · x+b^*=0</script><p>分类决策函数</p>
-<script type="math/tex; mode=display">f(x)=sign(w^*·x+b^*)</script><h3 id="算法求解"><a href="#算法求解" class="headerlink" title="算法求解"></a>算法求解</h3><h2 id="线性支持向量机"><a href="#线性支持向量机" class="headerlink" title="线性支持向量机"></a>线性支持向量机</h2><h2 id="非线性支持向量机"><a href="#非线性支持向量机" class="headerlink" title="非线性支持向量机"></a>非线性支持向量机</h2><h1 id="归纳和总结"><a href="#归纳和总结" class="headerlink" title="归纳和总结"></a>归纳和总结</h1>]]></content>
-      <categories>
-        <category>算法</category>
-      </categories>
-      <tags>
-        <tag>SVM</tag>
-        <tag>机器学习</tag>
-        <tag>算法推导</tag>
       </tags>
   </entry>
   <entry>
@@ -1292,6 +979,183 @@ clf.coef_: [[0.95070185 1.15607502]]
       </categories>
       <tags>
         <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>实验室苦逼搬砖暑假生活纪实</title>
+    <url>/201909/%E5%AE%9E%E9%AA%8C%E5%AE%A4%E8%8B%A6%E9%80%BC%E6%90%AC%E7%A0%96%E6%9A%91%E5%81%87%E7%94%9F%E6%B4%BB%E7%BA%AA%E5%AE%9E/</url>
+    <content><![CDATA[<div class="note primary">
+    记录一下自己暑假在实验室做的一些事情和收获吧。<br />
+    虽然进步很小很缓慢，但总归是有的。
+</div>
+
+<h2 id="7月13日"><a href="#7月13日" class="headerlink" title="7月13日"></a>7月13日</h2><ol>
+<li><p>关于论文的主要内容，学长进行了讲解：<br /><br> <strong>任务目标：</strong>通过迁移学习实现用户对齐问题，并将对齐结果与其他的用户对其方法进行比较：其中的方法包括“监督类型的”和“非监督类型的”，最终论文里要将我们的方法与其他至少三四种方法进行比较。</p>
+ <span id="more"></span>
+</li>
+<li><p>下面的时间应该做到：<br> 0）熟悉各数据集，每个数据集经过哪个函数变成什么样子？<br> <code>myspace</code>文件夹中，<code>.node</code>文件前一个数字表示结点标号，后面的表示用户名。<br> <code>.edges</code>文件每一行的两个数字表示边连接的两个节点。<br> <code>aminer.tar.gz</code>,<code>flicker.tar.gz</code>,<code>lastfm.tar.gz</code>,<code>linkedin.tar,gz</code>,<code>livejournal.tar.gz</code>这五个压缩包都是上面形式的点和边<br> <code>aminer-linkedin.map.raw</code>文件，将<code>aminer.tar.gz</code>文件中的结点映射到<code>linkedin</code>上  </p>
+<p> 1）<code>DRNE</code>（将图表示矩阵转化成向量）<br> 转化成的向量是什么格式？它是怎样表示矩阵的？它的输入和输出是怎样的？</p>
+<p> 2）<code>wGAN</code>的一个变种函数（生成相应的对齐结果）<br> 它的输入和输出是怎样的？</p>
+</li>
+</ol>
+<h2 id="7月14日"><a href="#7月14日" class="headerlink" title="7月14日"></a>7月14日</h2><p>非常艰难的一天，<code>DRNE</code>作者的<code>readme</code>文档写错了，指令是错误的，我第一次接触这个看不懂debug信息，学长也没发现。最后发邮件问原作者才知道<code>readme</code>中把<code>\</code>打成了<code>/</code>🤬<br>这一件事情花了我三天的时间，一开始以为自己的环境没搭建好，安装了各种库，利用<code>anaconda</code>创造了许多环境测试，我哭了。</p>
+<ol>
+<li><p>关于安装<code>tensorflow</code>的方法：<br> <a href="https://morvanzhou.github.io/tutorials/machine-learning/tensorflow/1-2-install/">莫凡Python</a><br> <a href="https://www.cnblogs.com/lvsling/p/8672404.html">ling’s bolg</a></p>
+<p> <a href="https://www.jianshu.com/p/28e2ae6fbd75">安装时遇到的问题</a></p>
+</li>
+<li><p>上面这些乱七八糟的都不如直接<code>pip install</code>，觉得慢的话换成清华镜像资源<a href="https://mirrors.tuna.tsinghua.edu.cn/">清华大学开源软件镜像站</a></p>
+</li>
+</ol>
+<p><a href="https://mirrors.tuna.tsinghua.edu.cn/help/pypi/">pypi镜像使用帮助</a></p>
+<h2 id="7月15日"><a href="#7月15日" class="headerlink" title="7月15日"></a>7月15日</h2><div class="note primary">
+    学长又分配了两个任务，第一个是判断图是否为连通图。 <br /> 
+    其实要是只有几个点倒简单，但是仅仅接触了一点`Python`就要写个几千点判断连通图的程序，我想到的第一点是效率会非常低。。。最后这个代码学长亲自写了。
+</div>
+
+<p>这里顺带复习了一下数据结构的东西</p>
+<ol>
+<li>邻接矩阵与邻接表<br> <a href="https://www.cnblogs.com/icode-girl/p/5273209.html">邻接矩阵</a></li>
+<li>边表<br> 边集表，图的储存结构之一。边表由表头结点和表结点两部分组成，图中每个顶点均对应一个存储在数组中的表头结点。<br> 边表存储了以点为起点的边的信息，邻接表存储了以点为出发点的点的信息。 </li>
+<li>edgelist边表中每行有两个数，表示这两个结点之间有边</li>
+<li>python nx.has_path(G, source, target)用来判断是否为连通图</li>
+<li>networkx库查阅资料：<br><a href="https://www.cnblogs.com/kaituorensheng/p/5423131.html">network资料</a><br>NetworkX是一个用Python语言开发的图论与复杂网络建模工具，内置了常用的图与复杂网络分析算法，可以方便的进行复杂网络数据分析、仿真建模等工作。networkx支持创建简单无向图、有向图和多重图（multigraph）；内置许多标准的图论算法，节点可为任意数据；支持任意的边值维度，功能丰富，简单易用。<br><a href="https://networkx.github.io/documentation/stable/tutorial.html">network官方文档</a>  </li>
+</ol>
+<p>发现文档里举的例子都是自己输入的个别的点，我可以先研究一下DRNE的代码，从里面得到一些有用的内容。</p>
+<p>代码看不懂的地方，首先就是embedding：<br><a href="https://blog.csdn.net/songyunli1111/article/details/85100616">关于embedding</a></p>
+<h2 id="7月16日"><a href="#7月16日" class="headerlink" title="7月16日"></a>7月16日</h2><ol>
+<li>CONSNET数据集：<br> deepwalk-master先不用，做对比算法的<br> DRNE-master 用来做embedding的<br> GAN用来生成模型  </li>
+<li>关于anaconda的使用：<br> Anaconda是一个方便的python包管理和环境管理软件，一般用来配置不同的项目环境。<br> 我们常常会遇到这样的情况，正在做的项目A和项目B分别基于python2和python3，而第电脑只能安装一个环境，这个时候Anaconda就派上了用场，它可以创建多个互不干扰的环境，分别运行不同版本的软件包，以达到兼容的目的。<br> Anaconda通过管理工具包、开发环境、Python版本，大大简化了你的工作流程。不仅可以方便地安装、更新、卸载工具包，而且安装时能自动安装相应的依赖包，同时还能使用不同的虚拟环境隔离不同要求的项目。<br> <a href="https://www.jianshu.com/p/742dc4d8f4c5">Anaconda入门</a></li>
+</ol>
+<h2 id="7月17日"><a href="#7月17日" class="headerlink" title="7月17日"></a>7月17日</h2><div class="note success">
+    conda有一点好处是，如果你需要安装一个包，系统将自动检查这个包需要的前置包并且安装，比如你要安装TensorFlow，而TensorFlow会用到很多像前置包像pandas、matiplot等，如果你在单纯的python下没有安装pandas等包就直接安装TensorFlow，那么和有可能无法使用，而使用conda安装TensorFlow将会询问你并自动帮你把缺少的前置包安装好
+</div>
+
+<ol>
+<li><p>使用anaconda先创建一个用于drne的环境<br> <img src="https://s2.ax1x.com/2019/09/28/u1d88U.png" alt=""><br> 安装以上环境<br> 其中添加的资源库都没有tensorflow == 1.2.0<br> 按照提示 </p>
+ <blockquote><p>To search for alternate channels that may provide the conda package you’re looking for, navigate to <a href="https://anaconda.org">https://anaconda.org</a> and use the search bar at the top of the page.</p>
+</blockquote>
+<p> 去官网搜索资源即可下载</p>
+<p> 环境安装完成</p>
+</li>
+<li><p>anaconda跑不出来，先学习anaconda的使用方法：<br> <a href="https://www.jianshu.com/p/eaee1fadc1e9">anaconda1</a></p>
+<p> <a href="https://i.xdc.at/2017/08/13/add-anaconda-prompt-to-context-menu-of-explorer/">anaconda2</a></p>
+<p> <a href="https://blog.csdn.net/c20081052/article/details/88839479">anaconda3</a></p>
+</li>
+</ol>
+<h2 id="7月19日"><a href="#7月19日" class="headerlink" title="7月19日"></a>7月19日</h2><p>继续研究network库</p>
+<h2 id="7月21日"><a href="#7月21日" class="headerlink" title="7月21日"></a>7月21日</h2><p>研读networkx的文档，在后面处理相关问题的时候会简单很多。<br>在学习图的过程中，遇到的问题：<br><img src="https://s2.ax1x.com/2019/09/28/u1wzTI.png" alt=""><br><img src="https://s2.ax1x.com/2019/09/28/u1wx0A.png" alt=""></p>
+<p>最后一行输出，我记得莫凡python里有讲这个，关于迭代器的东西，然后搜索了一下，继续进行学习：<br><a href="https://blog.csdn.net/u014028063/article/details/80572234">Python迭代器</a></p>
+<p><strong>任务：</strong><br>写一个可以将ground truth抽样的函数，给定一个列表，例如[0.3， 0.5， 0.7]，<br>0.3表示在groundtruth里面随机抽样30%，并生成名为new-gt-0.3.txt的文件，列表长度为多少，就生成多少个这样的文件。</p>
+<h2 id="7月22日"><a href="#7月22日" class="headerlink" title="7月22日"></a>7月22日</h2><p>readme文档中AcrossNetworkEmbeddingData文件夹里的文件和实际文件夹里的不一样，是否有问题？</p>
+<p>anchor users 定位用户</p>
+<h2 id="7月23日"><a href="#7月23日" class="headerlink" title="7月23日"></a>7月23日</h2><p>读学长写的：</p>
+<ol>
+<li><p>连通图代码<br>numpy.zeros<br><a href="https://blog.csdn.net/qq_28618765/article/details/78085457">https://blog.csdn.net/qq_28618765/article/details/78085457</a></p>
+</li>
+<li><p>抽样代码<br>自己完成：数据转换代码<br>python open函数的参数<br><a href="https://www.runoob.com/python/python-func-open.html">https://www.runoob.com/python/python-func-open.html</a></p>
+</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+<p><a href="https://blog.csdn.net/qq_33254870/article/details/81668297">https://blog.csdn.net/qq_33254870/article/details/81668297</a></p>
+<p><a href="https://cloud.tencent.com/developer/ask/172682">https://cloud.tencent.com/developer/ask/172682</a></p>
+<font color="FF0000">一定要系统地学一下python！要不然什么都不会，写起来效率太低了！！</font>
+
+<p>怎样用csvreader读入用tab分隔的文件——直接用\t</p>
+<p><a href="https://www.runoob.com/python/att-list-len.html">https://www.runoob.com/python/att-list-len.html</a></p>
+<p>for while if后面都要有冒号</p>
+<p>python的‘和’符号是 and</p>
+<p>关于newline参数</p>
+<h2 id="7月24日"><a href="#7月24日" class="headerlink" title="7月24日"></a>7月24日</h2><div class="note danger">
+    把trans_result打成了tranns_result，出现问题，，，，，
+    python也没有报错，还好自己发现了
+</div>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">i = <span class="number">0</span></span><br><span class="line">	<span class="keyword">while</span>(i &lt; <span class="built_in">len</span>(trans_result)):</span><br><span class="line">		<span class="comment"># print(&quot;Delete process...&quot;)</span></span><br><span class="line">		<span class="keyword">if</span>(trans_result[i][<span class="number">0</span>] == <span class="number">0</span> <span class="keyword">or</span> trans_result[i][<span class="number">1</span>] == <span class="number">0</span>):</span><br><span class="line">			trans_result = np.delete(trans_result, i, axis = <span class="number">0</span>)</span><br><span class="line">		<span class="keyword">else</span>:<span class="comment">#！！！！注意这里的else！！！否则会出错</span></span><br><span class="line">			i = i + <span class="number">1</span></span><br></pre></td></tr></table></figure>
+<center>❤️ 🧡 💛 💚 💙 💜 </center>
+<center>中间几天帮张老师查项目资料来着——关于“认知计算”和“意图推理”</center>
+
+<h2 id="7月31日"><a href="#7月31日" class="headerlink" title="7月31日"></a>7月31日</h2><p>如何调出eclipse左边文件栏<br><a href="https://jingyan.baidu.com/article/a24b33cd3af41119ff002b7a.html"></a></p>
+<p>anaconda prompt 切换到e盘：<br><a href="https://blog.csdn.net/c20081052/article/details/88839479"></a></p>
+<p>drne配适自己的代码：<br>activate for_drne<br>e:</p>
+<h2 id="8月4日"><a href="#8月4日" class="headerlink" title="8月4日"></a>8月4日</h2><p>coursera视频无法播放<br><a href="https://blog.csdn.net/qq_39521554/article/details/79039548">https://blog.csdn.net/qq_39521554/article/details/79039548</a></p>
+<p>欧式距离</p>
+<p><a href="https://www.cnblogs.com/kimkat/p/9938475.html">https://www.cnblogs.com/kimkat/p/9938475.html</a></p>
+<p>测试程序（把程序拆成几小部分）</p>
+<ol>
+<li>np.linalg.norm(vec1 - vec2)</li>
+<li>读入部分，怎样读出来两个向量</li>
+</ol>
+<p>python cookbook 真的能学到很多东西！！<br>挺有用！</p>
+<p><a href="https://zhidao.baidu.com/question/115008008.html">https://zhidao.baidu.com/question/115008008.html</a></p>
+<p><a href="https://www.cnblogs.com/bakari/p/4807847.html">https://www.cnblogs.com/bakari/p/4807847.html</a></p>
+<h2 id="8月5日"><a href="#8月5日" class="headerlink" title="8月5日"></a>8月5日</h2><ol>
+<li><p>查数据类型：<br><a href="https://www.cnblogs.com/carlber/p/9362584.html">https://www.cnblogs.com/carlber/p/9362584.html</a></p>
+</li>
+<li><p>列表最后有一个逗号，就会多出来一个空元素<br><a href="https://www.cnblogs.com/lostme/articles/8857083.html">https://www.cnblogs.com/lostme/articles/8857083.html</a></p>
+</li>
+<li><p>operands could not be broadcast together with shapes (2,) (250,)<br><a href="https://blog.csdn.net/Odyssues_lee/article/details/85244735">https://blog.csdn.net/Odyssues_lee/article/details/85244735</a></p>
+</li>
+<li><p>运行map（）后，报：map object at 0x02629E50解决方法与原因分析​​​​​​​<br><a href="https://blog.csdn.net/weixin_40807247/article/details/82797378">https://blog.csdn.net/weixin_40807247/article/details/82797378</a></p>
+</li>
+</ol>
+<p><a href="https://www.cnblogs.com/hwd9654/p/5707920.html">https://www.cnblogs.com/hwd9654/p/5707920.html</a></p>
+<ol>
+<li><p>从字符串中提取数字：<br><a href="https://www.cnblogs.com/dancesir/p/11021829.html">https://www.cnblogs.com/dancesir/p/11021829.html</a></p>
+</li>
+<li><p>python中，“<filter object at 0x028A2050>”是什么意思？怎么解决？<br><a href="https://zhidao.baidu.com/question/329317296.html">https://zhidao.baidu.com/question/329317296.html</a></p>
+</li>
+<li><p>数据格式要求很严格：<br>3   2<br>5  4<br>7  6<br>9  7<br>tab和x个空格不一样</p>
+</li>
+<li><p>输出百分比：<br><a href="https://blog.csdn.net/u013553529/article/details/78567696">https://blog.csdn.net/u013553529/article/details/78567696</a></p>
+</li>
+</ol>
+<h2 id="8月7日"><a href="#8月7日" class="headerlink" title="8月7日"></a>8月7日</h2><p>博客搭建<br><a href="https://blog.csdn.net/fangquan1980/article/details/80648171">https://blog.csdn.net/fangquan1980/article/details/80648171</a></p>
+<p><a href="https://blog.csdn.net/zyupupup/article/details/85098366">https://blog.csdn.net/zyupupup/article/details/85098366</a></p>
+<p><a href="https://blog.csdn.net/weixin_42419856/article/details/81141546">https://blog.csdn.net/weixin_42419856/article/details/81141546</a></p>
+<p><a href="https://blog.csdn.net/lvsehaiyang1993/article/details/80881433">https://blog.csdn.net/lvsehaiyang1993/article/details/80881433</a></p>
+<p><a href="http://zhangchunlei.com/blog/2014/12/01/modify-a-record-of-my-website-dns/">http://zhangchunlei.com/blog/2014/12/01/modify-a-record-of-my-website-dns/</a></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">On a Windows machine, you&#x27;ll want to run nslookup your-domain.com and ensure that the output does not include any of the deprecated IP addresses (207.97.227.XXX, 204.232.175.XX, or 199.27.73.XXX).</span><br><span class="line">If you&#x27;re on a Mac or Linux machine, simply paste this command into a terminal window, replacing your-domain.com with, your site&#x27;s domain. dig your-domain.com | grep -E &#x27;(207.97.227.245|204.232.175.78|199.27.73.133)&#x27; || echo &quot;OK&quot;. If you see the word &quot;OK&quot;, you&#x27;re all set.</span><br></pre></td></tr></table></figure>
+<p><a href="https://blog.csdn.net/a1023182899/article/details/77461567">https://blog.csdn.net/a1023182899/article/details/77461567</a></p>
+<h2 id="8月8日"><a href="#8月8日" class="headerlink" title="8月8日"></a>8月8日</h2><p><a href="https://www.v2ex.com/amp/t/465570">https://www.v2ex.com/amp/t/465570</a></p>
+<p>LINE（PALE中）<br>GAN<br>画圈</p>
+<h2 id="8月11日"><a href="#8月11日" class="headerlink" title="8月11日"></a>8月11日</h2><p>xlrd模块：<br><a href="https://www.cnblogs.com/insane-Mr-Li/p/9092619.html">https://www.cnblogs.com/insane-Mr-Li/p/9092619.html</a></p>
+<h2 id="8月13日"><a href="#8月13日" class="headerlink" title="8月13日"></a>8月13日</h2><ol>
+<li><p>random.choices<br><a href="https://blog.csdn.net/lcqin111/article/details/83504029">https://blog.csdn.net/lcqin111/article/details/83504029</a></p>
+</li>
+<li><p>Cannot feed value of shape (256, 255) for Tensor ‘Placeholder:0’, which has shape ‘(?, 256)’<br><a href="http://www.mamicode.com/info-detail-2346029.html">http://www.mamicode.com/info-detail-2346029.html</a></p>
+</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">4000</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;--------------training---------DDDDDD----------EPOCH：&quot;</span> + <span class="built_in">str</span>(i) + <span class="string">&quot;-----------------------&quot;</span>)</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">5</span>):</span><br><span class="line">        mm = np.reshape(random.choices(f_d, f_g, k=<span class="number">256</span>))</span><br><span class="line">        nn = np.reshape(random.choices(t_d, t_g, k=<span class="number">256</span>))</span><br><span class="line">        rms_train1, loss1 = sess.run([model.rms_train_op1, model.loss_d], feed_dict=&#123;model.s: np.array(random.choices(f_d, f_g, k=<span class="number">256</span>)), model.t: np.array(random.choices(t_d, t_g, k=<span class="number">256</span>))&#125;)</span><br><span class="line">        <span class="keyword">for</span> every <span class="keyword">in</span> model.clip:</span><br><span class="line">            sess.run(every)</span><br></pre></td></tr></table></figure>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>7.13<br>了解任务详情<br /></p>
+<p>7.14<br>装相应的环境，跑DRNE，发现了文档的错误<br>DRNE在命令行窗口运行。<br>输入：edgelist<br>输出：.npy（需要再写程序转换为embedding）<br /></p>
+<p>7.15<br>想要完成任务：判断是否为连通图<br>结果就是不行，，<br /></p>
+<p>7.16<br>还在为DRNE的无脑错误 debug<br /></p>
+<p>7.17<br>学习了anaconda的使用，还在跑DRNE，，<br /></p>
+<p>7.18<br>DRNE，，<br /></p>
+<p>7.19<br>完成一个可以将ground truth抽样的函数，例如[0.3, 0.5, 0.7]<br /></p>
+<p>7.21<br>学习关于图的内容，不敢下手自己写代码<br /></p>
+<p>7.22<br>开始跑IONE（java）<br /></p>
+<p>7.23<br>数据转换代码，将cosnet数据集中的用户名转换成结点号<br /></p>
+<p>7.24<br>删去edges里面没有在groundtruth中出现的记录，以此来缩小数据集<br /></p>
+<p>7.25<br>用学长改过的代码跑ione<br /></p>
+<p>7.31<br>用anaconda环境跑DRNE<br /></p>
+<p>8.4<br>写计算距离，画圈的代码<br /></p>
+<p>8.5<br>计算距离的代码，注意数据格式<br /></p>
+<p>8.7<br>博客搭建<br /></p>
+<p>8.8<br>跑PALE中的LINE，尝试WGAN<br /></p>
+<p>8.11<br>跑学长改过的WGAN<br /></p>
+<p>8.11<br>跑学长改过的WGAN完成，DRNE结果的npy转成txt<br /></p>
+]]></content>
+      <categories>
+        <category>机器学习</category>
+      </categories>
+      <tags>
+        <tag>迁移学习</tag>
+        <tag>Anaconda</tag>
+        <tag>DRNE</tag>
+        <tag>IONE</tag>
+        <tag>WGAN</tag>
+        <tag>PALE</tag>
       </tags>
   </entry>
   <entry>
