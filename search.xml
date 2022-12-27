@@ -169,8 +169,14 @@
   <entry>
     <title>博客内容归档和英文博客</title>
     <url>/202111/%E5%8D%9A%E5%AE%A2%E5%86%85%E5%AE%B9%E5%BD%92%E6%A1%A3%E5%92%8C%E8%8B%B1%E6%96%87%E5%8D%9A%E5%AE%A2/</url>
-    <content><![CDATA[<div class="tag-plugin note" ><div class="body"><p>从2019年开始尝试搭建自己的博客，到现在已经本科毕业。这三年的时间虽然没有坚持更新博客，但是一直在坚持记录。无论是理论知识的学习、Debug的记录，还是读书健身笔记和感慨万千时的随笔，他们都散落在各种在线笔记软件和手机的备忘录中。</p><p>随着时间的推移，我对博客的认识也发生了很多变化。“记录”对我来说仍然具有非常大的意义，但是“博客”最重要的价值不应该是“记录”，而是“分享”——传递有价值的信息。我把平时的日常生活和学习经历记录在各种笔记中，过一段时间再去回顾和整理，选取其中有价值的东西去分享。</p><p>过去的一年再次参加了美赛，加入了几个和区块链有关的项目，也完成了不少专利和论文。更多的时间忙于运用知识，以需求为导向迫使自己进行广泛而不深刻的学习。对我来说真正有价值的输入变少了，输出和表达的欲望也降低了很多。</p><p>   我在原先的博客域名之下又建立了一个英文博客<a href="https://blog.crocodilezs.top/eysblog_en/">BLOG-EN</a>，旨在整理自己过去一年经历的各种项目。同时也将原博客中的内容进行整理归档，便于自己和访客的查阅。</p></div></div>
-<span id="more"></span>
+    <content><![CDATA[<pre><code>从2019年开始尝试搭建自己的博客，到现在已经本科毕业。这三年的时间虽然没有坚持更新博客，但是一直在坚持记录。无论是理论知识的学习、Debug的记录，还是读书健身笔记和感慨万千时的随笔，他们都散落在各种在线笔记软件和手机的备忘录中。
+
+随着时间的推移，我对博客的认识也发生了很多变化。“记录”对我来说仍然具有非常大的意义，但是“博客”最重要的价值不应该是“记录”，而是“分享”——传递有价值的信息。我把平时的日常生活和学习经历记录在各种笔记中，过一段时间再去回顾和整理，选取其中有价值的东西去分享。
+
+过去的一年再次参加了美赛，加入了几个和区块链有关的项目，也完成了不少专利和论文。更多的时间忙于运用知识，以需求为导向迫使自己进行广泛而不深刻的学习。对我来说真正有价值的输入变少了，输出和表达的欲望也降低了很多。
+
+我在原先的博客域名之下又建立了一个英文博客&lt;a href=&quot;https://enblog.crocodilezs.top/&quot;&gt;BLOG-EN&lt;/a&gt;，旨在整理自己过去一年经历的各种项目。同时也将原博客中的内容进行整理归档，便于自己和访客的查阅。
+</code></pre><span id="more"></span>
 <h2 id="课程设计与实验"><a href="#课程设计与实验" class="headerlink" title="课程设计与实验"></a>课程设计与实验</h2><p><a href="/201911/Linux开发环境及应用作业%2020191031/" itemprop="url"> Linux文本处理作业 </a> &emsp;&emsp;<br><a href="/categories/操作系统/" itemprop="url"> 《30天自制操作系统》实验合辑 </a> &emsp;&emsp;<br><a href="/201909/周宇洋_「学生宿舍管理系统」实验报告/" itemprop="url"> 学生宿舍管理系统Python开发 </a> &emsp;&emsp;<br><a href="/201911/KNN与Naive_Bayes代码实现/" itemprop="url"> KNN和朴素贝叶斯的代码实现 </a> &emsp;&emsp;<br><a href="/201911/Price_Suggestion_Chanllenge/" itemprop="url"> 商品价格预测挑战 </a> &emsp;&emsp;<br><a href="/201911/Fisher算法&SVM&K-Means及其优化/" itemprop="url"> Fisher算法 &amp; SVM &amp; K-Means的实现和优化 </a> &emsp;&emsp;<br><a href="/201910/FINDS算法和ID3算法/" itemprop="url"> FINDS算法和ID3算法 </a> &emsp;&emsp;<br><a href="/201904/插入排序归并排序和快速排序/" itemprop="url"> 算法设计之排序 </a> &emsp;&emsp;<br><a href="/201904/循环赛赛程安排/" itemprop="url"> 算法设计之循环赛赛程安排 </a> &emsp;&emsp;</p>
 <h2 id="展示和汇报"><a href="#展示和汇报" class="headerlink" title="展示和汇报"></a>展示和汇报</h2><p><a href="/201904/基于链接内容的社区发现（一）/" itemprop="url"> 基于链接内容的社区发现（一） </a> &emsp;&emsp;<br><a href="/201904/基于链接内容的社区发现（二）/" itemprop="url"> 基于链接内容的社区发现（二） </a> &emsp;&emsp;</p>
 <h2 id="学习笔记"><a href="#学习笔记" class="headerlink" title="学习笔记"></a>学习笔记</h2><p><a href="/201908/「迁移学习简明手册」学习笔记（1）/" itemprop="url"> 《迁移学习简明手册》学习笔记 </a> &emsp;&emsp;<br><a href="/201909/实验室苦逼搬砖暑假生活纪实/" itemprop="url"> 用户对齐（实验室搬砖纪实） </a> &emsp;&emsp;</p>
@@ -992,7 +998,7 @@ clf.coef_: [[0.95070185 1.15607502]]
     <title>写于10月15日——博客正式对外开放之际</title>
     <url>/201909/%E5%86%99%E4%BA%8E%E5%8D%9A%E5%AE%A2%E6%AD%A3%E5%BC%8F%E5%AF%B9%E5%A4%96%E5%BC%80%E6%94%BE%E4%B9%8B%E9%99%85/</url>
     <content><![CDATA[<p><img src="https://s2.ax1x.com/2019/10/15/KPwEYd.jpg" alt=""></p>
-<p class="tag-plugin quot" type="text">If you can quite, then quite.<br /> If you can't quite, you're a writer. <div style=text-align:right>——R.A.Salvatore</div></p>
+<div class="tag-plugin quot"><p class="content" type="text">If you can quite, then quite.<br /> If you can't quite, you're a writer. <div style=text-align:right>——R.A.Salvatore</div></p></div>
 <span id="more"></span>
 <p>经过四个月的磨叽，新的博客基本已经完善。<a href="www.crocodilezs.top">鳄鱼先生的水族馆</a><br>本来想着把原先<code>wordpress</code>博客的文章慢慢搬过来再向大家开放博客，但是仔细看看自己原来的那些文章，要么是没什么深度的书评和影评，要么是平淡的流水账。  </p>
 <p>但是讲真话，看到自己以前的文字觉得很有成就感，因为那些文章的信息量虽然没那么高、有很多无意义的情绪宣泄，但是里面都有很有意思的闪光点，自己大一大二还真是一个有些自负的天马行空少年。如果这个学期还有时间，就把自己曾经的一些想法整理一下发到博客上来。  </p>
@@ -1594,43 +1600,6 @@ clf.coef_: [[0.95070185 1.15607502]]
       </categories>
   </entry>
   <entry>
-    <title>基于链接内容的社区发现算法（二）</title>
-    <url>/201904/%E5%9F%BA%E4%BA%8E%E9%93%BE%E6%8E%A5%E5%86%85%E5%AE%B9%E7%9A%84%E7%A4%BE%E5%8C%BA%E5%8F%91%E7%8E%B0%EF%BC%88%E4%BA%8C%EF%BC%89/</url>
-    <content><![CDATA[<h1 id="Robust-Detection-of-Link-Communities-in-Large-Social-Network-by-Exploiting-Link-Semantics"><a href="#Robust-Detection-of-Link-Communities-in-Large-Social-Network-by-Exploiting-Link-Semantics" class="headerlink" title="Robust Detection of Link Communities in Large Social Network by Exploiting Link Semantics"></a>Robust Detection of Link Communities in Large Social Network by Exploiting Link Semantics</h1><div class="note primary">这一部分没什么难点，ppt里写的都很清楚了。。</div>
-
-<h3 id="三、试验"><a href="#三、试验" class="headerlink" title="三、试验"></a>三、试验</h3><h4 id="1-数据集"><a href="#1-数据集" class="headerlink" title="1.数据集"></a>1.数据集</h4><p>我们选择了两个数据集，包括美国安然能源公司内部的邮件内容（安然公司丑闻，加州能源危机）和Reddit新闻网站三天的的三个论坛的内容。如果用户A对用户B的帖子进行评论，就产生了一条从A到B的链接，链接内容为评论的内容。</p>
-<span id="more"></span>
-<p><img src="https://s2.ax1x.com/2019/04/11/A7JUNd.md.png" alt="2.1"></p>
-<p>那么如何判断我们社区发现的结果是正确的呢？<br>对于第一个数据集，伯克利大学的学生已经将这些用户节点分成了11个用户社区，我们可以直接将社区发现的结果与这十一个社区比对。对于第二个数据集，我们可以直接将发现的社区和三个论坛内容相比较。</p>
-<p><img src="https://s2.ax1x.com/2019/04/11/A7J03t.png" alt="2.2"></p>
-<h4 id="2-对比的方法"><a href="#2-对比的方法" class="headerlink" title="2.对比的方法"></a>2.对比的方法</h4><p>我们采取了8种最先进的社区发现算法，包括利用拓扑结构的、利用结点内容的、利用链接内容的、可重叠的、不可重叠的（可重叠的意思就是可以将一个用户结点放进多个社区里）等，如图：</p>
-<p><img src="https://s2.ax1x.com/2019/04/11/A7JBgP.png" alt="2.3"></p>
-<h4 id="3-测评参数"><a href="#3-测评参数" class="headerlink" title="3.测评参数"></a>3.测评参数</h4><p>F-score和Jaccard similarity，用于测评相似度的两个参数，结果两个参数越大，说明社区发现的结果越好。</p>
-<p><img src="https://s2.ax1x.com/2019/04/11/A7JgEQ.png" alt="2.4"></p>
-<h4 id="4-结果"><a href="#4-结果" class="headerlink" title="4.结果"></a>4.结果</h4><p><img src="https://s2.ax1x.com/2019/04/11/A7JDjf.md.png" alt="2.5"></p>
-<p><img src="https://s2.ax1x.com/2019/04/11/A7J5vV.png" alt="2.6"></p>
-<h4 id="5-个例研究"><a href="#5-个例研究" class="headerlink" title="5.个例研究"></a>5.个例研究</h4><p>我们选择了Reddit网站2012年8月27号的数据集进行分析，与我们的方法对比的是SCI</p>
-<p>SCI方法的结果如下：</p>
-<p><img src="https://s2.ax1x.com/2019/04/11/A7JyDS.png" alt="2.7"></p>
-<p>我们的方法：<br><img src="https://s2.ax1x.com/2019/04/17/AxqfbT.jpg" alt="2.8"></p>
-<p><img src="https://s2.ax1x.com/2019/04/17/Axq4VU.png" alt="2.9"></p>
-<p>我们的方法还有一个好处，就是可以通过fai和Y找到社区的词云：</p>
-<p><img src="https://s2.ax1x.com/2019/04/11/A7JR4s.md.png" alt="2.10"></p>
-<p>我们方法的应用建议：</p>
-<p><img src="https://s2.ax1x.com/2019/04/11/A7Jh3q.png" alt="2.11"></p>
-<h3 id="四、结论"><a href="#四、结论" class="headerlink" title="四、结论"></a>四、结论</h3><p><img src="https://s2.ax1x.com/2019/04/11/A7JfCn.md.png" alt="2.12"></p>
-<p>这是文章的标题，下面我们对标题的关键词进行讨论和总结。<br>Robust:健壮性。在传统的方法中，当网络拓朴和话题群聚不重合的时候，方法的效率就会变得很低，而我们的方法将网络拓朴和话题群聚分开来讨论，具有一定的健壮性。</p>
-<p>Detection of Link Communities：本论文的主要内容——社区发现。</p>
-<p>Exploiting Link Semantics: 基于链接语义。</p>
-]]></content>
-      <categories>
-        <category>社区发现</category>
-      </categories>
-      <tags>
-        <tag>社区发现</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>基于链接内容的社区发现算法（一）</title>
     <url>/201904/%E5%9F%BA%E4%BA%8E%E9%93%BE%E6%8E%A5%E5%86%85%E5%AE%B9%E7%9A%84%E7%A4%BE%E5%8C%BA%E5%8F%91%E7%8E%B0%EF%BC%88%E4%B8%80%EF%BC%89/</url>
     <content><![CDATA[<h1 id="Robust-Detection-of-Link-Communities-in-Large-Social-Network-by-Exploiting-Link-Semantics"><a href="#Robust-Detection-of-Link-Communities-in-Large-Social-Network-by-Exploiting-Link-Semantics" class="headerlink" title="Robust Detection of Link Communities in Large Social Network by Exploiting Link Semantics"></a>Robust Detection of Link Communities in Large Social Network by Exploiting Link Semantics</h1><p><a href="https://www.aaai.org/ocs/index.php/AAAI/AAAI18/paper/viewPaper/17345">Robust Detection of Link Communities in Large Social Network by Exploiting Link Semantics </a></p>
@@ -1695,6 +1664,43 @@ clf.coef_: [[0.95070185 1.15607502]]
 <p><img src="https://s2.ax1x.com/2019/04/11/A7Jw9I.md.png" alt="1.19"></p>
 <p>下面我们给出整个算法的伪代码，看懂这个图整个算法的思路就差不多了。</p>
 <p><img src="https://s2.ax1x.com/2019/04/11/A7Jsu8.png" alt="1.20"></p>
+]]></content>
+      <categories>
+        <category>社区发现</category>
+      </categories>
+      <tags>
+        <tag>社区发现</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>基于链接内容的社区发现算法（二）</title>
+    <url>/201904/%E5%9F%BA%E4%BA%8E%E9%93%BE%E6%8E%A5%E5%86%85%E5%AE%B9%E7%9A%84%E7%A4%BE%E5%8C%BA%E5%8F%91%E7%8E%B0%EF%BC%88%E4%BA%8C%EF%BC%89/</url>
+    <content><![CDATA[<h1 id="Robust-Detection-of-Link-Communities-in-Large-Social-Network-by-Exploiting-Link-Semantics"><a href="#Robust-Detection-of-Link-Communities-in-Large-Social-Network-by-Exploiting-Link-Semantics" class="headerlink" title="Robust Detection of Link Communities in Large Social Network by Exploiting Link Semantics"></a>Robust Detection of Link Communities in Large Social Network by Exploiting Link Semantics</h1><div class="note primary">这一部分没什么难点，ppt里写的都很清楚了。。</div>
+
+<h3 id="三、试验"><a href="#三、试验" class="headerlink" title="三、试验"></a>三、试验</h3><h4 id="1-数据集"><a href="#1-数据集" class="headerlink" title="1.数据集"></a>1.数据集</h4><p>我们选择了两个数据集，包括美国安然能源公司内部的邮件内容（安然公司丑闻，加州能源危机）和Reddit新闻网站三天的的三个论坛的内容。如果用户A对用户B的帖子进行评论，就产生了一条从A到B的链接，链接内容为评论的内容。</p>
+<span id="more"></span>
+<p><img src="https://s2.ax1x.com/2019/04/11/A7JUNd.md.png" alt="2.1"></p>
+<p>那么如何判断我们社区发现的结果是正确的呢？<br>对于第一个数据集，伯克利大学的学生已经将这些用户节点分成了11个用户社区，我们可以直接将社区发现的结果与这十一个社区比对。对于第二个数据集，我们可以直接将发现的社区和三个论坛内容相比较。</p>
+<p><img src="https://s2.ax1x.com/2019/04/11/A7J03t.png" alt="2.2"></p>
+<h4 id="2-对比的方法"><a href="#2-对比的方法" class="headerlink" title="2.对比的方法"></a>2.对比的方法</h4><p>我们采取了8种最先进的社区发现算法，包括利用拓扑结构的、利用结点内容的、利用链接内容的、可重叠的、不可重叠的（可重叠的意思就是可以将一个用户结点放进多个社区里）等，如图：</p>
+<p><img src="https://s2.ax1x.com/2019/04/11/A7JBgP.png" alt="2.3"></p>
+<h4 id="3-测评参数"><a href="#3-测评参数" class="headerlink" title="3.测评参数"></a>3.测评参数</h4><p>F-score和Jaccard similarity，用于测评相似度的两个参数，结果两个参数越大，说明社区发现的结果越好。</p>
+<p><img src="https://s2.ax1x.com/2019/04/11/A7JgEQ.png" alt="2.4"></p>
+<h4 id="4-结果"><a href="#4-结果" class="headerlink" title="4.结果"></a>4.结果</h4><p><img src="https://s2.ax1x.com/2019/04/11/A7JDjf.md.png" alt="2.5"></p>
+<p><img src="https://s2.ax1x.com/2019/04/11/A7J5vV.png" alt="2.6"></p>
+<h4 id="5-个例研究"><a href="#5-个例研究" class="headerlink" title="5.个例研究"></a>5.个例研究</h4><p>我们选择了Reddit网站2012年8月27号的数据集进行分析，与我们的方法对比的是SCI</p>
+<p>SCI方法的结果如下：</p>
+<p><img src="https://s2.ax1x.com/2019/04/11/A7JyDS.png" alt="2.7"></p>
+<p>我们的方法：<br><img src="https://s2.ax1x.com/2019/04/17/AxqfbT.jpg" alt="2.8"></p>
+<p><img src="https://s2.ax1x.com/2019/04/17/Axq4VU.png" alt="2.9"></p>
+<p>我们的方法还有一个好处，就是可以通过fai和Y找到社区的词云：</p>
+<p><img src="https://s2.ax1x.com/2019/04/11/A7JR4s.md.png" alt="2.10"></p>
+<p>我们方法的应用建议：</p>
+<p><img src="https://s2.ax1x.com/2019/04/11/A7Jh3q.png" alt="2.11"></p>
+<h3 id="四、结论"><a href="#四、结论" class="headerlink" title="四、结论"></a>四、结论</h3><p><img src="https://s2.ax1x.com/2019/04/11/A7JfCn.md.png" alt="2.12"></p>
+<p>这是文章的标题，下面我们对标题的关键词进行讨论和总结。<br>Robust:健壮性。在传统的方法中，当网络拓朴和话题群聚不重合的时候，方法的效率就会变得很低，而我们的方法将网络拓朴和话题群聚分开来讨论，具有一定的健壮性。</p>
+<p>Detection of Link Communities：本论文的主要内容——社区发现。</p>
+<p>Exploiting Link Semantics: 基于链接语义。</p>
 ]]></content>
       <categories>
         <category>社区发现</category>
