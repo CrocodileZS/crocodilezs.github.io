@@ -1,6 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title></title>
+    <url>/202302/%E6%B8%B8%E8%AE%B0/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title>【前端学习】Survey Form</title>
+    <url>/202301/%5B%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0%5DForm/</url>
+    <content><![CDATA[<p>FreeCodeCamp 前端学习笔记(4) — Survey Form</p>
+<span id="more"></span>
+<p><strong>label tag 的好处</strong><br>便于用户点击/便于屏幕阅读器的使用<br>Proper use of labels with the elements above will benefit:</p>
+<ul>
+<li>Screen reader users (will read out loud the label, when the user is focused on the element)</li>
+<li>Users who have difficulty clicking on very small regions (such as checkboxes) - because when a user clicks the text within the <label> element, it toggles the input (this increases the hit area). </li>
+</ul>
+<p>label可以通过for属性连接input; 也可以直接把input包含在label里</p>
+<u>在这个项目里, 每一个input tag都分配了一个label; 下拉式的 select tag 没有分配 label;</u>
+<hr>
+<p>对于checkbox元素, 每一个选项都和label绑定.</p>
+<p>当一个区域出现多个checkbox的时候, 可以用div括起来.</p>
+<hr>
+<p><strong>input tag 的属性</strong></p>
+<p><code>id</code> 用于和label绑定;<br><code>name</code> 可以用来绑定多个input tag (比如多个radio)<br><code>class</code> 用于css设定;</p>
+<hr>
+<p><strong><input type="submit"> 和 <button type="submit"></strong></p>
+<p><a href="https://stackoverflow.com/questions/7117639/input-type-submit-vs-button-tag-are-they-interchangeable">StackOverflow参考链接</a></p>
+<p>尽管两者功能上相同, 但推荐使用button tag来进行submit, 原因如下:</p>
+<ol>
+<li>button更明确易理解. 因为input tag一般都是可编辑元素, 而 submit 不能被用户编辑;</li>
+<li>button在css中更好使用. 因为<code>input[type=&quot;submit&quot;]</code> 在火狐和ie浏览器中可能出现奇怪的问题;</li>
+<li>button可以嵌套更多内容;</li>
+</ol>
+]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>前端</tag>
+        <tag>CSS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【前端学习】CSS Color</title>
+    <url>/202301/%5B%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0%5DBasicCSSColor/</url>
+    <content><![CDATA[<p>FreeCodeCamp 前端学习笔记(3) — CSS color.</p>
+<span id="more"></span>
+<p><img src="https://imgurlcrcz.oss-cn-hangzhou.aliyuncs.com/img/img.png" alt=""></p>
+<p>这个章节比较简单, 主要是形状和颜色的表示. 具体函数的参数就不写在blog里了, 用到的时候自己去查.</p>
+<h2 id="颜色的表示方法"><a href="#颜色的表示方法" class="headerlink" title="颜色的表示方法"></a>颜色的表示方法</h2><ol>
+<li>RGB <code>rgb(255, 99, 71)</code></li>
+<li>HEX <code>#ff6347</code></li>
+<li>HSL <code>hsl(9, 100%, 64%)</code></li>
+<li>RGBA <code>rgba(255, 99, 71, 0.5)</code> 最后一个参数为不透明度.</li>
+<li>HSLA <code>hsla(9, 100%, 64%, 0.5)</code> 最后一个参数为不透明度.</li>
+</ol>
+<ul>
+<li><code>linear-gradient(direction, color-stop1, color-stop2, ...)</code><br>direction默认为180deg(从上到下), 从左到右是90deg.</li>
+<li><code>box-shadow property</code> 用来表示阴影.</li>
+<li>这里还一个值得说的点, 是用了double的border表示马克笔连接处 <code>border-left: 10px double rgba(0, 0, 0, 0.75);</code></li>
+</ul>
+<h2 id="一些简略表示方法"><a href="#一些简略表示方法" class="headerlink" title="一些简略表示方法"></a>一些简略表示方法</h2><p><a href="https://www.w3schools.com/css/css_margin.asp">margin的参数</a><br>后面跟4/3个参数时, 顺时针表示; 后面跟2个参数时, 上(下)/左(右)</p>
+]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>前端</tag>
+        <tag>CSS</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>2023冬春季留学申请总结</title>
     <url>/202301/%E7%94%B3%E8%AF%B7Log/</url>
     <content><![CDATA[<span id="more"></span>
@@ -63,7 +133,7 @@
   <entry>
     <title>【前端学习】Basic CSS</title>
     <url>/202301/%5B%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0%5DBasicCSS/</url>
-    <content><![CDATA[<p>FreeCodeCamp 前端学习记录(2) — CSS.</p>
+    <content><![CDATA[<p>FreeCodeCamp 前端学习笔记(2) — CSS.</p>
 <span id="more"></span>
 <h2 id="CSS-Basic-知识点总览"><a href="#CSS-Basic-知识点总览" class="headerlink" title="CSS Basic 知识点总览"></a>CSS Basic 知识点总览</h2><p><img src="https://imgurlcrcz.oss-cn-hangzhou.aliyuncs.com/img/202301202210830.png" alt="一图汇总"></p>
 <p>代码在这里👉 <a href="https://github.com/Sslnnw/FreeCodeCamp/tree/main/CafeMenu">代码地址</a></p>
@@ -92,7 +162,7 @@
   <entry>
     <title>【前端学习】Basic HTML</title>
     <url>/202301/%5B%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0%5DBasicHTML/</url>
-    <content><![CDATA[<p>FreeCodeCamp 前端学习记录(1) — HTML.</p>
+    <content><![CDATA[<p>FreeCodeCamp 前端学习笔记(1) — HTML.</p>
 <span id="more"></span>
 <p>HTML这里比较简单, 就记录学习过程中的几个之前不了解的点.<br>代码在这里👉 <a href="https://github.com/Sslnnw/FreeCodeCamp/blob/main/CatPhotoApp/index.html">Code</a></p>
 <div class="tag-plugin note" ><div class="title"><strong>关于main标签</strong></div><div class="body"><p>These elements make your HTML easier to read and help with Search Engine Optimization (SEO) and accessibility.</p></div></div>
