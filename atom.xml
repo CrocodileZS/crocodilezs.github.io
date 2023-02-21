@@ -6,7 +6,7 @@
   <link href="https://blog.crocodilezs.top/atom.xml" rel="self"/>
   
   <link href="https://blog.crocodilezs.top/"/>
-  <updated>2023-02-21T07:01:38.629Z</updated>
+  <updated>2023-02-21T07:47:52.895Z</updated>
   <id>https://blog.crocodilezs.top/</id>
   
   <author>
@@ -17,26 +17,13 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title></title>
-    <link href="https://blog.crocodilezs.top/202302/%E6%B8%B8%E8%AE%B0/"/>
-    <id>https://blog.crocodilezs.top/202302/%E6%B8%B8%E8%AE%B0/</id>
-    <published>2023-02-21T07:01:38.629Z</published>
-    <updated>2023-02-21T07:01:38.629Z</updated>
-    
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
     <title>【前端学习】Survey Form</title>
     <link href="https://blog.crocodilezs.top/202301/[%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0]Form/"/>
     <id>https://blog.crocodilezs.top/202301/[%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0]Form/</id>
     <published>2023-02-01T15:11:01.000Z</published>
-    <updated>2023-02-21T05:45:27.990Z</updated>
+    <updated>2023-02-21T07:47:52.895Z</updated>
     
-    <content type="html"><![CDATA[<p>FreeCodeCamp 前端学习笔记(4) — Survey Form</p><span id="more"></span><p><strong>label tag 的好处</strong><br>便于用户点击/便于屏幕阅读器的使用<br>Proper use of labels with the elements above will benefit:</p><ul><li>Screen reader users (will read out loud the label, when the user is focused on the element)</li><li>Users who have difficulty clicking on very small regions (such as checkboxes) - because when a user clicks the text within the <label> element, it toggles the input (this increases the hit area). </li></ul><p>label可以通过for属性连接input; 也可以直接把input包含在label里</p><u>在这个项目里, 每一个input tag都分配了一个label; 下拉式的 select tag 没有分配 label;</u><hr><p>对于checkbox元素, 每一个选项都和label绑定.</p><p>当一个区域出现多个checkbox的时候, 可以用div括起来.</p><hr><p><strong>input tag 的属性</strong></p><p><code>id</code> 用于和label绑定;<br><code>name</code> 可以用来绑定多个input tag (比如多个radio)<br><code>class</code> 用于css设定;</p><hr><p><strong><input type="submit"> 和 <button type="submit"></strong></p><p><a href="https://stackoverflow.com/questions/7117639/input-type-submit-vs-button-tag-are-they-interchangeable">StackOverflow参考链接</a></p><p>尽管两者功能上相同, 但推荐使用button tag来进行submit, 原因如下:</p><ol><li>button更明确易理解. 因为input tag一般都是可编辑元素, 而 submit 不能被用户编辑;</li><li>button在css中更好使用. 因为<code>input[type=&quot;submit&quot;]</code> 在火狐和ie浏览器中可能出现奇怪的问题;</li><li>button可以嵌套更多内容;</li></ol>]]></content>
+    <content type="html"><![CDATA[<p>FreeCodeCamp 前端学习笔记(4) — Survey Form</p><span id="more"></span><p><strong>label tag 的好处</strong><br>便于用户点击/便于屏幕阅读器的使用<br>Proper use of labels with the elements above will benefit:</p><ul><li>Screen reader users (will read out loud the label, when the user is focused on the element)</li><li>Users who have difficulty clicking on very small regions (such as checkboxes) - because when a user clicks the text within the <label> element, it toggles the input (this increases the hit area).</li></ul><p>label可以通过for属性连接input; 也可以直接把input包含在label里</p><u>在这个项目里, 每一个input tag都分配了一个label; 下拉式的 select tag 没有分配 label;</u><hr><p>对于checkbox元素, 每一个选项都和label绑定.</p><p>当一个区域出现多个checkbox的时候, 可以用div括起来.</p><hr><p><strong>input tag 的属性</strong></p><p><code>id</code> 用于和label绑定;<br><code>name</code> 可以用来绑定多个input tag (比如多个radio)<br><code>class</code> 用于css设定;</p><hr><p><code>&lt;input type=&quot;submit&quot;&gt;</code> 和 <code>&lt;button type=&quot;submit&quot;&gt;</code></p><p><a href="https://stackoverflow.com/questions/7117639/input-type-submit-vs-button-tag-are-they-interchangeable">StackOverflow参考链接</a></p><p>尽管两者功能上相同, 但推荐使用button tag来进行submit, 原因如下:</p><ol><li>button更明确易理解. 因为input tag一般都是可编辑元素, 而 submit 不能被用户编辑;</li><li>button在css中更好使用. 因为<code>input[type=&quot;submit&quot;]</code> 在火狐和ie浏览器中可能出现奇怪的问题;</li><li>button可以嵌套更多内容;</li></ol>]]></content>
     
     
     <summary type="html">&lt;p&gt;FreeCodeCamp 前端学习笔记(4) — Survey Form&lt;/p&gt;</summary>
@@ -224,6 +211,29 @@
     
     
     <category term="雅思" scheme="https://blog.crocodilezs.top/tags/%E9%9B%85%E6%80%9D/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>2022年2月产品实习面经</title>
+    <link href="https://blog.crocodilezs.top/202202/pm%E9%9D%A2%E7%BB%8F/"/>
+    <id>https://blog.crocodilezs.top/202202/pm%E9%9D%A2%E7%BB%8F/</id>
+    <published>2022-04-06T18:16:21.000Z</published>
+    <updated>2022-08-21T04:39:19.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>一共面了6个部门的产品实习 (字节Pico, 字节飞书, 滴滴地图事业部, Momenta, 小米互部, 小冰算法), 拿到两个offer最后选择了小米.</p><span id="more"></span><div class="table-container"><table><thead><tr><th>Job Positions</th><th>Enterprise</th><th>Final Result</th></tr></thead><tbody><tr><td>VR和AR产品经理实习生</td><td>字节Pico</td><td>一面挂</td></tr><tr><td>地图点产品经理实习生</td><td>滴滴地图事业部</td><td>三面oc</td></tr><tr><td>产品架构实习生</td><td>Momenta</td><td>一面挂</td></tr><tr><td>商业平台产品经理实习生</td><td>小米互联网业务部</td><td>二面oc</td></tr><tr><td>算法产品经理实习生</td><td>红棉小冰</td><td>一面挂</td></tr><tr><td>测试产品经理实习生</td><td>字节飞书</td><td>一面挂</td></tr></tbody></table></div><p>面试中简历挖掘和业务问题基本是五五开，简历挖掘部分不再赘述.</p><h2 id="字节Pico"><a href="#字节Pico" class="headerlink" title="字节Pico"></a>字节Pico</h2><p>方向：vr and ar<br>2月9日投递简历，安排在2月11日一面。一共1h40min，给我面麻了</p><ul><li>一面<br>1、自我介绍<br>2、来聊一聊你曾经的项目，你想先聊哪一个？<br>（选择了小猴启蒙的用户增长运营，因为和产品岗位更加相关。）<br>3、向我介绍一下这段实习你做了什么？（共分成了三点进行描述，微信平台数据跟踪、裂变活动策划、其他渠道向微信引流）<br>4、详细介绍你在其中做了什么事情？（在裂变活动策划中，ab test 制定新的微信推送sop，制定了稳定时间频率的；在微信平台数据跟踪中，通过漏斗分析数据，中间还提问了各种细节）<br>5、介绍一下区块链项目你在其中做的内容？（介绍）你觉得如果不用区块链能够解决这个问题吗？（可，把农民工的工资让开发方质押在银行）你觉得你的这个想法为什么没有人实施呢？（我这个问题说不出个所以然，减分点）<br>6、你的职业规划是什么？（想来体验一下产品，再决定自己未来的职业道路规划）<br>7、你对ar/mr有了解吗？（整个由两部分组成：硬件和内容。介绍了我体验过的两个产品，但是忘记爱奇艺那个产品的名字了，是一个挺大的减分点吧）<br>8、你对未来ar、mr的畅想？（ar野生动物园导览）<br>9、现场做一个产品调研，调研一下arkit，向我介绍一下它？（这个问题说的太笼统了，在我看网页的过程中面试官给我细化了一些sdk，我看了一下哪些sdk然后向面试官进行介绍，面试官也给我讲了很多相关的技术介绍）<br>10、你平时玩游戏吗？（玩，巫师三 凯娜精神之桥）你觉得游戏中哪些最吸引你？（我最后选了“双人成行”，我觉得他比较牛逼的地方是两个人的游戏交互形式非常的多）如果你自己要做一个游戏，你该怎么借鉴双人成行呢？（我说的非常的不清楚）<br>11、关于实习的时间<br>12、反问环节，我问了pico的具体业务（</li></ul><p>总结：其实整个过程还是聊的很愉快的，但是后续我觉得自己其实是非常缺少“产品逻辑”，整个面试过程中聊的都是自己的直观体验，而没有从产品的角度去看待问题。这就是自己的不足。应该更多的了解产品岗位的视角是怎样的，从更专业的角度去剖析各种产品。</p><p>业务反馈被挂原因：对ar和vr的了解不够。</p><h2 id="滴滴地图事业部"><a href="#滴滴地图事业部" class="headerlink" title="滴滴地图事业部"></a>滴滴地图事业部</h2><p>主要方向：地图点<br>共三面, oc，每一面都有30min，2.16一面；2.17二面；2.18三面</p><ul><li>一面<br>1、简历项目挖掘，关于学而思小猴的那一段用户增长运营经历<br>2、如果你的mentor让你去给她买一杯咖啡，你会怎么做？（用pm项目管理的思路去答）<br>3、在学校里最让你有成就感的一件事（3rd人工智能论坛）项目如何推进（项目管理），如果遇到不同意见如何说服？（pm沟通）<br>4、如何快速估计出北京的公交车站点数（开放问题，采样思路随便说说）</li></ul><p>面试官是一个非常和蔼的姐姐，面完当场告诉我通过了，准备二面</p><ul><li>二面<br>1、简历挖掘，关于区块链的项目，如何从pm的角度思考产品的可行性<br>2、竞品分析：滴滴和高德打车流程的异同。<br>（1）都是自动推荐周围上车点，没有给用户提示<br>（2）下车点的选择大同小异（滴滴 添加途经点， 高德可以对调出发和到达）<br>（3）打车界面（高德有价格筛选、应答率、多平台支持） 应答速度还是滴滴更快<br>我还讲了一下关于高德的助老打车，无论是app还是小程序，用户路径都比滴滴的要好。</li></ul><p>二面面试官觉得问题不大，说三面不出差错就没大问题。</p><ul><li>三面<br>1、对上车点和下车点的异同分析<br>2、为什么打车软件从高德换到了滴滴<br>3、高德和滴滴的分析（问的好笼统）<br>最后向我介绍了地图事业部的业务</li></ul><h2 id="momenta-产品架构"><a href="#momenta-产品架构" class="headerlink" title="momenta 产品架构"></a>momenta 产品架构</h2><p>方向：产品系统架构 一面挂<br>明显地感觉出来对面不想说话 kpi面 互相介绍了一下就没了</p><h2 id="小米-商业平台"><a href="#小米-商业平台" class="headerlink" title="小米 商业平台"></a>小米 商业平台</h2><p>方向：adpm<br>一共两面，oc</p><ul><li><p>一面<br>简历挖掘；关于广告的兴趣；职业规划</p></li><li><p>二面<br>广告计费方式的考察；简历挖掘；然后就是leader向我介绍工作内容了<br>最后问了广告的一些算法（我懵了，还好没瞎编，后来知道leader也是cs出身的）</p></li></ul><h2 id="小冰"><a href="#小冰" class="headerlink" title="小冰"></a>小冰</h2><p>方向：算法pm（听说小冰的pm数量比rd多很多，，）<br>一面挂. 因为当时已经拿了滴滴offer，小米的offer也觉得停稳，小冰和字节飞书就面着玩儿了</p><ul><li>一面</li></ul><p>1、简历挖掘<br>2、nlp的算法问我了解多少（<br>3、在一个充满机器人的群聊（只有用户一个真人），发现这个用户非常喜欢说晚安，该如何构建用户场景？<br>（用户画像建立-群聊场景-功能性建立）</p><h2 id="字节飞书"><a href="#字节飞书" class="headerlink" title="字节飞书"></a>字节飞书</h2><p>我之前真的超想去飞书，在字节做校园大使的时候就觉得飞书真的好用，大三的时候投简历被挂了。今年飞书toB业务开展比较缺人，，然而我面试的时候懈怠了，又是一面挂。</p><p>方向：测试软件的pm<br>简历挖掘 + 问了些软工课程里的东西，关于测试的内容。<br>如何测试微信朋友圈发送图片的功能</p><p>其实这个方向离我的预想差的太远了，我以为是toC体验的方向</p>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;一共面了6个部门的产品实习 (字节Pico, 字节飞书, 滴滴地图事业部, Momenta, 小米互部, 小冰算法), 拿到两个offer最后选择了小米.&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="产品" scheme="https://blog.crocodilezs.top/categories/%E4%BA%A7%E5%93%81/"/>
+    
+    
+    <category term="产品" scheme="https://blog.crocodilezs.top/tags/%E4%BA%A7%E5%93%81/"/>
+    
+    <category term="面经" scheme="https://blog.crocodilezs.top/tags/%E9%9D%A2%E7%BB%8F/"/>
     
   </entry>
   

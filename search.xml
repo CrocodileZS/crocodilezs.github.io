@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title></title>
-    <url>/202302/%E6%B8%B8%E8%AE%B0/</url>
-    <content><![CDATA[]]></content>
-  </entry>
-  <entry>
     <title>【前端学习】Survey Form</title>
     <url>/202301/%5B%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0%5DForm/</url>
     <content><![CDATA[<p>FreeCodeCamp 前端学习笔记(4) — Survey Form</p>
@@ -13,7 +8,7 @@
 <p><strong>label tag 的好处</strong><br>便于用户点击/便于屏幕阅读器的使用<br>Proper use of labels with the elements above will benefit:</p>
 <ul>
 <li>Screen reader users (will read out loud the label, when the user is focused on the element)</li>
-<li>Users who have difficulty clicking on very small regions (such as checkboxes) - because when a user clicks the text within the <label> element, it toggles the input (this increases the hit area). </li>
+<li>Users who have difficulty clicking on very small regions (such as checkboxes) - because when a user clicks the text within the <label> element, it toggles the input (this increases the hit area).</li>
 </ul>
 <p>label可以通过for属性连接input; 也可以直接把input包含在label里</p>
 <u>在这个项目里, 每一个input tag都分配了一个label; 下拉式的 select tag 没有分配 label;</u>
@@ -24,7 +19,7 @@
 <p><strong>input tag 的属性</strong></p>
 <p><code>id</code> 用于和label绑定;<br><code>name</code> 可以用来绑定多个input tag (比如多个radio)<br><code>class</code> 用于css设定;</p>
 <hr>
-<p><strong><input type="submit"> 和 <button type="submit"></strong></p>
+<p><code>&lt;input type=&quot;submit&quot;&gt;</code> 和 <code>&lt;button type=&quot;submit&quot;&gt;</code></p>
 <p><a href="https://stackoverflow.com/questions/7117639/input-type-submit-vs-button-tag-are-they-interchangeable">StackOverflow参考链接</a></p>
 <p>尽管两者功能上相同, 但推荐使用button tag来进行submit, 原因如下:</p>
 <ol>

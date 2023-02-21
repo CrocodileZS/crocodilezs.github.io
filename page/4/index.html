@@ -104,14 +104,7 @@
 
 <div class="nav-wrap"><nav class="sub post cap"><a class="active" href="/">近期发布</a><a href="/categories">分类</a><a href="/tags">标签</a><a href="/archives">归档</a></nav></div>
 
-  <div class="post-list post"><a class="post-card post " href="/201908/%E3%80%8C%E8%BF%81%E7%A7%BB%E5%AD%A6%E4%B9%A0%E7%AE%80%E6%98%8E%E6%89%8B%E5%86%8C%E3%80%8D%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%881%EF%BC%89/">
-<article class="md-text"><h2 class="post-title">「迁移学习简明手册」学习笔记（1）</h2><div class="excerpt"><p>1.迁移学习的基本概念1.2 迁移学习基本概念
-核心问题：找到新问题和原问题之间的相似性，才可以顺利地实现知识的迁移。
-定义：迁移学习，是指利用数据、任务、或模型之间的相似性，将在旧领域学习过的模型，应用在新领域的一种学习过程。
-
-1.3 为什么要迁移学习这个表格包括了1.3的所有内容，可以只看这个表格：
-</p></div><div class="meta cap"><span class="cap" id="post-meta">发布于&nbsp;<time datetime="2019-04-25T05:03:50.000Z">2019-04-25</time></span><span class="cap breadcrumb">机器学习</span></div></article>
-</a><a class="post-card post " href="/201904/30%E5%A4%A9%E8%87%AA%E5%88%B6%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%EF%BC%8823%EF%BC%89/">
+  <div class="post-list post"><a class="post-card post " href="/201904/30%E5%A4%A9%E8%87%AA%E5%88%B6%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%EF%BC%8823%EF%BC%89/">
 <article class="md-text"><h2 class="post-title">30天自制操作系统（23）</h2><div class="excerpt"><p>DAY23_图形处理相关1.编写malloc如果api_malloc只是调用操作系统中的memman_alloc，并将分配到的内存空间地址返回给应用程序的话，是行不通的，因为通过memman_alloc所获得的内存空间并不位于应用程序的数据段范围内，应用程序是无法进行读写操作的。如果应用程序在不知情的情况下执行了读写操作，将会产生异常并强制结束。</p></div><div class="meta cap"><span class="cap" id="post-meta">发布于&nbsp;<time datetime="2019-04-21T07:50:50.000Z">2019-04-21</time></span><span class="cap breadcrumb">操作系统</span></div></article>
 </a><a class="post-card post " href="/201904/30%E5%A4%A9%E8%87%AA%E5%88%B6%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%EF%BC%8822%EF%BC%89/">
 <article class="md-text"><h2 class="post-title">30天自制操作系统（22）</h2><div class="excerpt"><p>DAY22_用C语言编写应用程序1.保护操作系统（5）问题：在定时器上做手脚，光标闪烁变得异常缓慢，任务切换的速度也会变得缓慢。[INSTRSET &quot;i486p&quot;] [BITS 32]     MOV AL,0x34     OUT 0x43,AL     MOV AL,0xff    OUT 0x40,AL     MOV AL,0xff     OUT 0x40,AL    ; 上述代码的功能与下面代码相当; io_out8(PIT_CTRL, 0x34); ; io_out8(PIT_CNT0, 0xff); ; io_out8(PIT_CNT0, 0xff);      MOV EDX,4     INT 0x40</p></div><div class="meta cap"><span class="cap" id="post-meta">发布于&nbsp;<time datetime="2019-04-21T04:50:50.000Z">2019-04-21</time></span><span class="cap breadcrumb">操作系统</span></div></article>
@@ -149,6 +142,12 @@
 在Windows中，只有可以接受键盘输入的窗口有光标闪烁，而其他的窗口中是不显示光标的。
 对HariMain进行改写
 </p></div><div class="meta cap"><span class="cap" id="post-meta">发布于&nbsp;<time datetime="2019-04-07T13:14:50.000Z">2019-04-07</time></span><span class="cap breadcrumb">操作系统</span></div></article>
+</a><a class="post-card post " href="/201904/30%E5%A4%A9%E8%87%AA%E5%88%B6%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%EF%BC%8817%EF%BC%89/">
+<article class="md-text"><h2 class="post-title">30天自制操作系统（17）</h2><div class="excerpt"><p>DAY17_命令行窗口1.闲置任务
+即使不改写程序，也能自动在适当的LEVEL运行适当的任务，这样的操作系统才是优秀的操作系统
+因此，一般情况下可以让任务休眠，但当所有LEVEL中都没有任务存在的时候，就需要HTL了。接下来我们就按照这个要求来改写mtask.c。
+如果“所有LEVEL中都没有任务”就会出问题，那我们只要避免这种情况发生不就可以了吗？这类似于我们写定时器的时候所采用的“卫兵”的思路。
+</p></div><div class="meta cap"><span class="cap" id="post-meta">发布于&nbsp;<time datetime="2019-04-07T11:14:50.000Z">2019-04-07</time></span><span class="cap breadcrumb">操作系统</span></div></article>
 </a></div>
   
   <div class='paginator-wrap dis-select'>
