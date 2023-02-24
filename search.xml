@@ -1898,6 +1898,43 @@ clf.coef_: [[0.95070185 1.15607502]]
       </categories>
   </entry>
   <entry>
+    <title>基于链接内容的社区发现算法（二）</title>
+    <url>/201904/%E5%9F%BA%E4%BA%8E%E9%93%BE%E6%8E%A5%E5%86%85%E5%AE%B9%E7%9A%84%E7%A4%BE%E5%8C%BA%E5%8F%91%E7%8E%B0%EF%BC%88%E4%BA%8C%EF%BC%89/</url>
+    <content><![CDATA[<h1 id="Robust-Detection-of-Link-Communities-in-Large-Social-Network-by-Exploiting-Link-Semantics"><a href="#Robust-Detection-of-Link-Communities-in-Large-Social-Network-by-Exploiting-Link-Semantics" class="headerlink" title="Robust Detection of Link Communities in Large Social Network by Exploiting Link Semantics"></a>Robust Detection of Link Communities in Large Social Network by Exploiting Link Semantics</h1><div class="note primary">这一部分没什么难点，ppt里写的都很清楚了。。</div>
+
+<h3 id="三、试验"><a href="#三、试验" class="headerlink" title="三、试验"></a>三、试验</h3><h4 id="1-数据集"><a href="#1-数据集" class="headerlink" title="1.数据集"></a>1.数据集</h4><p>我们选择了两个数据集，包括美国安然能源公司内部的邮件内容（安然公司丑闻，加州能源危机）和Reddit新闻网站三天的的三个论坛的内容。如果用户A对用户B的帖子进行评论，就产生了一条从A到B的链接，链接内容为评论的内容。</p>
+<span id="more"></span>
+<p><img src="https://s2.ax1x.com/2019/04/11/A7JUNd.md.png" alt="2.1"></p>
+<p>那么如何判断我们社区发现的结果是正确的呢？<br>对于第一个数据集，伯克利大学的学生已经将这些用户节点分成了11个用户社区，我们可以直接将社区发现的结果与这十一个社区比对。对于第二个数据集，我们可以直接将发现的社区和三个论坛内容相比较。</p>
+<p><img src="https://s2.ax1x.com/2019/04/11/A7J03t.png" alt="2.2"></p>
+<h4 id="2-对比的方法"><a href="#2-对比的方法" class="headerlink" title="2.对比的方法"></a>2.对比的方法</h4><p>我们采取了8种最先进的社区发现算法，包括利用拓扑结构的、利用结点内容的、利用链接内容的、可重叠的、不可重叠的（可重叠的意思就是可以将一个用户结点放进多个社区里）等，如图：</p>
+<p><img src="https://s2.ax1x.com/2019/04/11/A7JBgP.png" alt="2.3"></p>
+<h4 id="3-测评参数"><a href="#3-测评参数" class="headerlink" title="3.测评参数"></a>3.测评参数</h4><p>F-score和Jaccard similarity，用于测评相似度的两个参数，结果两个参数越大，说明社区发现的结果越好。</p>
+<p><img src="https://s2.ax1x.com/2019/04/11/A7JgEQ.png" alt="2.4"></p>
+<h4 id="4-结果"><a href="#4-结果" class="headerlink" title="4.结果"></a>4.结果</h4><p><img src="https://s2.ax1x.com/2019/04/11/A7JDjf.md.png" alt="2.5"></p>
+<p><img src="https://s2.ax1x.com/2019/04/11/A7J5vV.png" alt="2.6"></p>
+<h4 id="5-个例研究"><a href="#5-个例研究" class="headerlink" title="5.个例研究"></a>5.个例研究</h4><p>我们选择了Reddit网站2012年8月27号的数据集进行分析，与我们的方法对比的是SCI</p>
+<p>SCI方法的结果如下：</p>
+<p><img src="https://s2.ax1x.com/2019/04/11/A7JyDS.png" alt="2.7"></p>
+<p>我们的方法：<br><img src="https://s2.ax1x.com/2019/04/17/AxqfbT.jpg" alt="2.8"></p>
+<p><img src="https://s2.ax1x.com/2019/04/17/Axq4VU.png" alt="2.9"></p>
+<p>我们的方法还有一个好处，就是可以通过fai和Y找到社区的词云：</p>
+<p><img src="https://s2.ax1x.com/2019/04/11/A7JR4s.md.png" alt="2.10"></p>
+<p>我们方法的应用建议：</p>
+<p><img src="https://s2.ax1x.com/2019/04/11/A7Jh3q.png" alt="2.11"></p>
+<h3 id="四、结论"><a href="#四、结论" class="headerlink" title="四、结论"></a>四、结论</h3><p><img src="https://s2.ax1x.com/2019/04/11/A7JfCn.md.png" alt="2.12"></p>
+<p>这是文章的标题，下面我们对标题的关键词进行讨论和总结。<br>Robust:健壮性。在传统的方法中，当网络拓朴和话题群聚不重合的时候，方法的效率就会变得很低，而我们的方法将网络拓朴和话题群聚分开来讨论，具有一定的健壮性。</p>
+<p>Detection of Link Communities：本论文的主要内容——社区发现。</p>
+<p>Exploiting Link Semantics: 基于链接语义。</p>
+]]></content>
+      <categories>
+        <category>社区发现</category>
+      </categories>
+      <tags>
+        <tag>社区发现</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>基于链接内容的社区发现算法（一）</title>
     <url>/201904/%E5%9F%BA%E4%BA%8E%E9%93%BE%E6%8E%A5%E5%86%85%E5%AE%B9%E7%9A%84%E7%A4%BE%E5%8C%BA%E5%8F%91%E7%8E%B0%EF%BC%88%E4%B8%80%EF%BC%89/</url>
     <content><![CDATA[<h1 id="Robust-Detection-of-Link-Communities-in-Large-Social-Network-by-Exploiting-Link-Semantics"><a href="#Robust-Detection-of-Link-Communities-in-Large-Social-Network-by-Exploiting-Link-Semantics" class="headerlink" title="Robust Detection of Link Communities in Large Social Network by Exploiting Link Semantics"></a>Robust Detection of Link Communities in Large Social Network by Exploiting Link Semantics</h1><p><a href="https://www.aaai.org/ocs/index.php/AAAI/AAAI18/paper/viewPaper/17345">Robust Detection of Link Communities in Large Social Network by Exploiting Link Semantics </a></p>
@@ -1962,43 +1999,6 @@ clf.coef_: [[0.95070185 1.15607502]]
 <p><img src="https://s2.ax1x.com/2019/04/11/A7Jw9I.md.png" alt="1.19"></p>
 <p>下面我们给出整个算法的伪代码，看懂这个图整个算法的思路就差不多了。</p>
 <p><img src="https://s2.ax1x.com/2019/04/11/A7Jsu8.png" alt="1.20"></p>
-]]></content>
-      <categories>
-        <category>社区发现</category>
-      </categories>
-      <tags>
-        <tag>社区发现</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>基于链接内容的社区发现算法（二）</title>
-    <url>/201904/%E5%9F%BA%E4%BA%8E%E9%93%BE%E6%8E%A5%E5%86%85%E5%AE%B9%E7%9A%84%E7%A4%BE%E5%8C%BA%E5%8F%91%E7%8E%B0%EF%BC%88%E4%BA%8C%EF%BC%89/</url>
-    <content><![CDATA[<h1 id="Robust-Detection-of-Link-Communities-in-Large-Social-Network-by-Exploiting-Link-Semantics"><a href="#Robust-Detection-of-Link-Communities-in-Large-Social-Network-by-Exploiting-Link-Semantics" class="headerlink" title="Robust Detection of Link Communities in Large Social Network by Exploiting Link Semantics"></a>Robust Detection of Link Communities in Large Social Network by Exploiting Link Semantics</h1><div class="note primary">这一部分没什么难点，ppt里写的都很清楚了。。</div>
-
-<h3 id="三、试验"><a href="#三、试验" class="headerlink" title="三、试验"></a>三、试验</h3><h4 id="1-数据集"><a href="#1-数据集" class="headerlink" title="1.数据集"></a>1.数据集</h4><p>我们选择了两个数据集，包括美国安然能源公司内部的邮件内容（安然公司丑闻，加州能源危机）和Reddit新闻网站三天的的三个论坛的内容。如果用户A对用户B的帖子进行评论，就产生了一条从A到B的链接，链接内容为评论的内容。</p>
-<span id="more"></span>
-<p><img src="https://s2.ax1x.com/2019/04/11/A7JUNd.md.png" alt="2.1"></p>
-<p>那么如何判断我们社区发现的结果是正确的呢？<br>对于第一个数据集，伯克利大学的学生已经将这些用户节点分成了11个用户社区，我们可以直接将社区发现的结果与这十一个社区比对。对于第二个数据集，我们可以直接将发现的社区和三个论坛内容相比较。</p>
-<p><img src="https://s2.ax1x.com/2019/04/11/A7J03t.png" alt="2.2"></p>
-<h4 id="2-对比的方法"><a href="#2-对比的方法" class="headerlink" title="2.对比的方法"></a>2.对比的方法</h4><p>我们采取了8种最先进的社区发现算法，包括利用拓扑结构的、利用结点内容的、利用链接内容的、可重叠的、不可重叠的（可重叠的意思就是可以将一个用户结点放进多个社区里）等，如图：</p>
-<p><img src="https://s2.ax1x.com/2019/04/11/A7JBgP.png" alt="2.3"></p>
-<h4 id="3-测评参数"><a href="#3-测评参数" class="headerlink" title="3.测评参数"></a>3.测评参数</h4><p>F-score和Jaccard similarity，用于测评相似度的两个参数，结果两个参数越大，说明社区发现的结果越好。</p>
-<p><img src="https://s2.ax1x.com/2019/04/11/A7JgEQ.png" alt="2.4"></p>
-<h4 id="4-结果"><a href="#4-结果" class="headerlink" title="4.结果"></a>4.结果</h4><p><img src="https://s2.ax1x.com/2019/04/11/A7JDjf.md.png" alt="2.5"></p>
-<p><img src="https://s2.ax1x.com/2019/04/11/A7J5vV.png" alt="2.6"></p>
-<h4 id="5-个例研究"><a href="#5-个例研究" class="headerlink" title="5.个例研究"></a>5.个例研究</h4><p>我们选择了Reddit网站2012年8月27号的数据集进行分析，与我们的方法对比的是SCI</p>
-<p>SCI方法的结果如下：</p>
-<p><img src="https://s2.ax1x.com/2019/04/11/A7JyDS.png" alt="2.7"></p>
-<p>我们的方法：<br><img src="https://s2.ax1x.com/2019/04/17/AxqfbT.jpg" alt="2.8"></p>
-<p><img src="https://s2.ax1x.com/2019/04/17/Axq4VU.png" alt="2.9"></p>
-<p>我们的方法还有一个好处，就是可以通过fai和Y找到社区的词云：</p>
-<p><img src="https://s2.ax1x.com/2019/04/11/A7JR4s.md.png" alt="2.10"></p>
-<p>我们方法的应用建议：</p>
-<p><img src="https://s2.ax1x.com/2019/04/11/A7Jh3q.png" alt="2.11"></p>
-<h3 id="四、结论"><a href="#四、结论" class="headerlink" title="四、结论"></a>四、结论</h3><p><img src="https://s2.ax1x.com/2019/04/11/A7JfCn.md.png" alt="2.12"></p>
-<p>这是文章的标题，下面我们对标题的关键词进行讨论和总结。<br>Robust:健壮性。在传统的方法中，当网络拓朴和话题群聚不重合的时候，方法的效率就会变得很低，而我们的方法将网络拓朴和话题群聚分开来讨论，具有一定的健壮性。</p>
-<p>Detection of Link Communities：本论文的主要内容——社区发现。</p>
-<p>Exploiting Link Semantics: 基于链接语义。</p>
 ]]></content>
       <categories>
         <category>社区发现</category>
