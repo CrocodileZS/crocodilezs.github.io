@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang='zh-CN'>
+
+<head>
+  <meta name="generator" content="Hexo 5.4.2">
+  <meta name="hexo-theme" content="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.18.5">
+  <meta charset="utf-8">
+  
+
+  <meta http-equiv='x-dns-prefetch-control' content='on' />
+  <link rel='dns-prefetch' href='https://gcore.jsdelivr.net'>
+  <link rel="preconnect" href="https://gcore.jsdelivr.net" crossorigin>
+  <link rel='dns-prefetch' href='//unpkg.com'>
+
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="theme-color" content="#f8f8f8">
+  
+  <title>Java面经问题汇总 - 鳄鱼的博客</title>
+
+  
+    <meta name="description" content="计网计算机网络基础 OSI七层模型是什么? 每一层的作用是什么? TCP&#x2F;IP四层模型是什么? 每一层的作用是什么? 为什么网络要分层? 应用层常见的协议有哪些? 电子邮件的发送过程? 如何判断邮箱是真正存在的?   TCP和UDP ⭐ TCP和UDP的区别? 什么时候用TCP, 什么时候用UDP? HTTP是基于TCP还是UDP? 使用TCP的协议有哪些? 使用UDP的协议有哪些? ⭐⭐ TC">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java面经问题汇总">
+<meta property="og:url" content="https://blog.crocodilezs.top/202304/Java%E9%9D%A2%E7%BB%8F%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/index.html">
+<meta property="og:site_name" content="鳄鱼的博客">
+<meta property="og:description" content="计网计算机网络基础 OSI七层模型是什么? 每一层的作用是什么? TCP&#x2F;IP四层模型是什么? 每一层的作用是什么? 为什么网络要分层? 应用层常见的协议有哪些? 电子邮件的发送过程? 如何判断邮箱是真正存在的?   TCP和UDP ⭐ TCP和UDP的区别? 什么时候用TCP, 什么时候用UDP? HTTP是基于TCP还是UDP? 使用TCP的协议有哪些? 使用UDP的协议有哪些? ⭐⭐ TC">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-04-05T14:40:00.000Z">
+<meta property="article:modified_time" content="2023-04-05T14:41:35.943Z">
+<meta property="article:author" content="CrocodileZS">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="计算机网络">
+<meta property="article:tag" content="操作系统">
+<meta name="twitter:card" content="summary">
+  
+  
+
+  <!-- feed -->
+  
+    <link rel="alternate" href="/atom.xml" title="鳄鱼的博客" type="application/atom+xml">
+  
+
+  
+    
+<link rel="stylesheet" href="/css/main.css">
+
+  
+
+  
+    <link rel="shortcut icon" href="https://bu.dusays.com/2022/05/24/628bb5874996a.jpg">
+  
+
+  
+
+  
+
+
+  
+    
+      <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC&display=swap" rel="stylesheet">
+    
+  
+</head>
+
+<body>
+  
+
+
+
+
+  <div class='l_body' id='start'>
+    <aside class='l_left' layout='post'>
+    
+
+  
+
+<header class="header"><div class="logo-wrap"><a class="avatar" href="/about/"><div class="bg" style="opacity:0;background-image:url(https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.4/avatar/round/rainbow64@3x.webp);"></div><img no-lazy class="avatar" src="/media/avatar.png" onerror="javascript:this.classList.add('error');this.src='https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.4/image/2659360.svg';"></a><a class="title" href="/"><div class="main" ff="title">鳄鱼的博客</div><div class="sub cap">一只野生鳄鱼的互联网自留地</div></a></div>
+
+<nav class="menu dis-select"><a class="nav-item active" href="/">博客</a><a class="nav-item" href="/chat/">动态</a><a class="nav-item" href="/about/">更多</a></nav>
+</header>
+
+
+<div class="widgets">
+<widget class="widget-wrapper search"><div class="widget-body"><div class="search-wrapper" id="search"><form class="search-form"><input type="text" class="search-input" id="search-input" data-filter="/blog/" placeholder="文章搜索"><svg t="1670596976048" class="icon search-icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2676" width="200" height="200"><path d="M938.2 832.6L723.8 618.1c-2.5-2.5-5.3-4.4-7.9-6.4 36.2-55.6 57.3-121.8 57.3-193.1C773.3 222.8 614.6 64 418.7 64S64 222.8 64 418.6c0 195.9 158.8 354.6 354.6 354.6 71.3 0 137.5-21.2 193.2-57.4 2 2.7 3.9 5.4 6.3 7.8L832.5 938c14.6 14.6 33.7 21.9 52.8 21.9 19.1 0 38.2-7.3 52.8-21.8 29.2-29.1 29.2-76.4 0.1-105.5M418.7 661.3C284.9 661.3 176 552.4 176 418.6 176 284.9 284.9 176 418.7 176c133.8 0 242.6 108.9 242.6 242.7 0 133.7-108.9 242.6-242.6 242.6" p-id="2677"></path></svg></form><div id="search-result"></div><div class="search-no-result">没有找到内容！</div></div></div></widget>
+
+
+<widget class="widget-wrapper toc single" id="data-toc"><div class="widget-header cap dis-select"><span class="name">Java面经问题汇总</span></div><div class="widget-body fs14"><div class="doc-tree active"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%A1%E7%BD%91"><span class="toc-text">计网</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80"><span class="toc-text">计算机网络基础</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TCP%E5%92%8CUDP"><span class="toc-text">TCP和UDP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HTTP"><span class="toc-text">HTTP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ARP"><span class="toc-text">ARP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9F%A5%E8%AF%86%E7%82%B9%E8%A1%A5%E5%85%85"><span class="toc-text">知识点补充</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#OS"><span class="toc-text">OS</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#OS%E5%9F%BA%E7%A1%80"><span class="toc-text">OS基础</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#OS%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86%E5%9F%BA%E7%A1%80"><span class="toc-text">OS内存管理基础</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98"><span class="toc-text">虚拟内存</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Java%E5%9F%BA%E7%A1%80"><span class="toc-text">Java基础</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Java%E5%9F%BA%E7%A1%80%E4%B8%8E%E5%B8%B8%E8%AF%86"><span class="toc-text">Java基础与常识</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95"><span class="toc-text">基本语法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-text">基本数据类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E5%9F%BA%E7%A1%80"><span class="toc-text">面向对象基础</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java%E5%B8%B8%E8%A7%81%E7%B1%BB"><span class="toc-text">Java常见类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%82%E5%B8%B8"><span class="toc-text">异常</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%9B%E5%9E%8B"><span class="toc-text">泛型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%8D%E5%B0%84"><span class="toc-text">反射(?)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%A8%E8%A7%A3"><span class="toc-text">注解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SPI"><span class="toc-text">SPI</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BA%8F%E5%88%97%E5%8C%96-%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96"><span class="toc-text">序列化 &#x2F; 反序列化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#I-O"><span class="toc-text">I&#x2F;O</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%AD%E6%B3%95%E7%B3%96"><span class="toc-text">语法糖</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Java%E9%9B%86%E5%90%88"><span class="toc-text">Java集合</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9B%86%E5%90%88%E6%A6%82%E8%BF%B0"><span class="toc-text">集合概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Collection-%E4%B9%8B-List"><span class="toc-text">Collection 之 List</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Collection-%E4%B9%8B-Set"><span class="toc-text">Collection 之 Set</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Collection-%E4%B9%8B-Queue"><span class="toc-text">Collection 之 Queue</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Map%E6%8E%A5%E5%8F%A3"><span class="toc-text">Map接口</span></a></li></ol></li></ol></div></div></widget>
+
+<widget class="widget-wrapper recent"><div class="widget-header cap theme dis-select"><span class="name">最近更新</span><a class="cap-action" id="rss" title="Subscribe" href="atom.xml"><svg class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="8938"><path d="M800.966 947.251c0-404.522-320.872-732.448-716.69-732.448V62.785c477.972 0 865.44 395.987 865.44 884.466h-148.75z m-162.273 0h-148.74c0-228.98-181.628-414.598-405.678-414.598v-152.01c306.205 0 554.418 253.68 554.418 566.608z m-446.24-221.12c59.748 0 108.189 49.503 108.189 110.557 0 61.063-48.44 110.563-108.188 110.563-59.747 0-108.18-49.5-108.18-110.563 0-61.054 48.433-110.556 108.18-110.556z" p-id="8939"></path></svg></a></div><div class="widget-body related-posts fs14"><a class="item title" href="/202304/Java%E9%9D%A2%E7%BB%8F%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/"><span class="title">Java面经问题汇总</span></a><a class="item title" href="/202301/%E7%94%B3%E8%AF%B7Log/"><span class="title">2023冬春季留学申请总结</span></a><a class="item title" href="/202212/2022%E5%B9%B4%E4%B9%A6%E5%BD%B1%E6%B8%B8%E9%9F%B3%E9%80%9F%E8%AF%84/"><span class="title">2022年的书籍/影视/游戏/音乐总结</span></a><a class="item title" href="/202212/2022%E5%B9%B4%E4%B8%AA%E4%BA%BAOKR%E6%A0%B8%E9%AA%8C/"><span class="title">2022年个人OKR核验</span></a><a class="item title" href="/202111/%E5%8D%9A%E5%AE%A2%E5%86%85%E5%AE%B9%E5%BD%92%E6%A1%A3%E5%92%8C%E8%8B%B1%E6%96%87%E5%8D%9A%E5%AE%A2/"><span class="title">博客内容归档和英文博客</span></a></div></widget>
+</div>
+
+
+    </aside>
+    <div class='l_main'>
+      
+
+      
+
+
+<div class="bread-nav fs12"><div id="breadcrumb"><a class="cap breadcrumb" href="/">主页</a><span class="sep"></span><a class="cap breadcrumb" href="/">文章</a><span class="sep"></span><a class="cap breadcrumb-link" href="/categories/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/">后端开发</a></div><div id="post-meta">发布于&nbsp;<time datetime="2023-04-05T14:40:00.000Z">2023-04-05</time></div></div>
+
+<article class='md-text content post'>
+<h1 class="article-title"><span>Java面经问题汇总</span></h1>
+<span id="more"></span>
+<h2 id="计网"><a href="#计网" class="headerlink" title="计网"></a>计网</h2><h3 id="计算机网络基础"><a href="#计算机网络基础" class="headerlink" title="计算机网络基础"></a>计算机网络基础</h3><ol>
+<li>OSI七层模型是什么? 每一层的作用是什么?</li>
+<li>TCP/IP四层模型是什么? 每一层的作用是什么?</li>
+<li>为什么网络要分层?</li>
+<li>应用层常见的协议有哪些?</li>
+<li>电子邮件的发送过程?</li>
+<li>如何判断邮箱是真正存在的?</li>
+</ol>
+<hr>
+<h3 id="TCP和UDP"><a href="#TCP和UDP" class="headerlink" title="TCP和UDP"></a>TCP和UDP</h3><ol>
+<li>⭐ TCP和UDP的区别?</li>
+<li>什么时候用TCP, 什么时候用UDP?</li>
+<li>HTTP是基于TCP还是UDP?</li>
+<li>使用TCP的协议有哪些? 使用UDP的协议有哪些?</li>
+<li>⭐⭐ TCP的三次握手和四次挥手(握手和挥手均可由客户端或服务端发起)<ul>
+<li>为什么建立连接时要三次握手?</li>
+<li>第二次握手传回了ACK, 为什么还要回传SYN?</li>
+<li>为什么要四次挥手</li>
+<li>为什么不能把服务器发送的ACK和FIN合并起来, 变成三次挥手?</li>
+<li>如果第二次挥手时服务器的ACK没有送达客户端, 会怎样?</li>
+<li>为什么第四次挥手客户端要等待2MSL(报文段最长寿命)后才进入CLOSE状态?</li>
+</ul>
+</li>
+<li>⭐ TCP如何保证传输可靠性保证.<ul>
+<li>TCP 如何保证数据可靠性?</li>
+<li>TCP 如何实现流量控制?</li>
+<li>TCP的拥塞控制是怎么实现的?</li>
+<li>ARQ协议了解吗?</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h3><ol>
+<li>⭐⭐ 从输入URL到页面展示发生了什么?</li>
+<li>HTTP状态码有哪些?</li>
+<li>⭐ HTTP和HTTPS有什么区别?</li>
+<li>HTTP 1.0 和 HTTP 1.1 有什么区别?</li>
+<li>HTTP是不保存状态的协议, 如何保存用户状态?</li>
+<li>URL 和 URI的区别?</li>
+</ol>
+<hr>
+<h3 id="ARP"><a href="#ARP" class="headerlink" title="ARP"></a>ARP</h3><ol>
+<li>什么是MAC地址?</li>
+<li>ARP协议解决了什么问题, 地位如何?</li>
+<li>ARP协议的工作原理? ARP表 / 广播问询 / 单播响应</li>
+</ol>
+<h3 id="知识点补充"><a href="#知识点补充" class="headerlink" title="知识点补充"></a>知识点补充</h3><ol>
+<li>网络攻击常见手段?</li>
+</ol>
+<hr>
+<h2 id="OS"><a href="#OS" class="headerlink" title="OS"></a>OS</h2><h3 id="OS基础"><a href="#OS基础" class="headerlink" title="OS基础"></a>OS基础</h3><ol>
+<li>什么是操作系统?</li>
+<li>什么是系统调用?</li>
+<li>进程和线程的区别?</li>
+<li>进程有哪几种状态?</li>
+<li>进程间的通信方式?</li>
+<li>线程间同步的方式?</li>
+<li>进程的调度算法有哪些?</li>
+<li>什么是死锁?</li>
+<li>死锁的四个必要条件是什么?</li>
+<li>如何解决死锁?</li>
+</ol>
+<hr>
+<h3 id="OS内存管理基础"><a href="#OS内存管理基础" class="headerlink" title="OS内存管理基础"></a>OS内存管理基础</h3><ol>
+<li>操作系统内存管理主要是做什么?</li>
+<li>内存管理有哪几种方式?</li>
+<li>介绍一下快表和多级表?</li>
+<li>分页机制和分段机制有哪些共同点和区别呢?</li>
+<li>逻辑地址和物理地址的区别?</li>
+<li>CPU寻址了解吗? 为什么需要虚拟地址空间?</li>
+</ol>
+<hr>
+<h3 id="虚拟内存"><a href="#虚拟内存" class="headerlink" title="虚拟内存"></a>虚拟内存</h3><ol>
+<li>什么是虚拟内存?</li>
+<li>局部性原理?</li>
+<li>虚拟内存是如何实现的呢?</li>
+<li>什么是页面置换算法? 有哪些常见的页面置换算法?</li>
+</ol>
+<hr>
+<h2 id="Java基础"><a href="#Java基础" class="headerlink" title="Java基础"></a>Java基础</h2><h3 id="Java基础与常识"><a href="#Java基础与常识" class="headerlink" title="Java基础与常识"></a>Java基础与常识</h3><ol>
+<li>Java语言有哪些特点?</li>
+<li>JVM &amp; JDK &amp; JRE</li>
+<li>什么是字节码? 采用字节码的好处是什么?</li>
+<li>为什么不全部使用AOT?</li>
+<li>为什么说Java语言”编译与解释共存”?</li>
+<li>Oracle JDK vs OpenJDK</li>
+<li>Java 和 C++的区别?</li>
+</ol>
+<h3 id="基本语法"><a href="#基本语法" class="headerlink" title="基本语法"></a>基本语法</h3><ol>
+<li>java的注释类型有哪些?</li>
+<li>标识符和关键字的区别是什么?</li>
+</ol>
+<h3 id="基本数据类型"><a href="#基本数据类型" class="headerlink" title="基本数据类型"></a>基本数据类型</h3><ol>
+<li>Java的几种基本数据类型了解吗? (8)</li>
+<li>基本类型和包装类型的区别?</li>
+<li>包装类型的缓存机制了解吗?</li>
+<li>自动装箱与拆箱了解吗? 原理是什么?</li>
+<li>为什么浮点数运算时会有精度丢失的危险?</li>
+<li>如何解决浮点数精度丢失的问题? (BigDecimal)</li>
+<li>超过long整型的数据应该如何表示? (BigInteger)</li>
+</ol>
+<h3 id="面向对象基础"><a href="#面向对象基础" class="headerlink" title="面向对象基础"></a>面向对象基础</h3><ol>
+<li>面向对象和面向过程的区别?</li>
+<li>创建一个对象用什么运算符? 对象实体与对象引用有何不同?</li>
+<li>构造方法有哪些特点? 时候可以被override?</li>
+<li>面向对象的三大特征? 封装, 继承, 多态.</li>
+<li>接口和抽象类有什么共同点和区别?</li>
+<li>深拷贝和浅拷贝的区别? 什么是引用拷贝?</li>
+</ol>
+<h3 id="Java常见类"><a href="#Java常见类" class="headerlink" title="Java常见类"></a>Java常见类</h3><ol>
+<li>Object类的常见方法有哪些?</li>
+<li>hashCode()有什么用?</li>
+<li><code>String</code>, <code>StringBuffer</code>, <code>StringBuilder</code>的区别?</li>
+<li>为什么String类型值不能被修改?</li>
+<li>字符串常量池的作用了解吗?</li>
+<li><code>String s1 = new String(&quot;abc&quot;);</code> 这句话创建了几个字符串对象?</li>
+</ol>
+<h3 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常</h3><ol>
+<li><code>Exception</code>和<code>Error</code>有什么区别?</li>
+<li><code>Checked Exception</code> 和 <code>Unchecked Exception</code> 有什么区别?</li>
+<li><code>Throwable</code> 类常用方法有哪些?</li>
+<li><code>try-catch-finally</code>如何使用?</li>
+<li>如何使用<code>try-with-resources</code>代替<code>try-catch-finally</code>?</li>
+</ol>
+<h3 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h3><ol>
+<li>什么是泛型? 有什么作用?</li>
+<li>泛型的使用方式有哪几种?</li>
+</ol>
+<h3 id="反射"><a href="#反射" class="headerlink" title="反射(?)"></a>反射(?)</h3><h3 id="注解"><a href="#注解" class="headerlink" title="注解"></a>注解</h3><h3 id="SPI"><a href="#SPI" class="headerlink" title="SPI"></a>SPI</h3><h3 id="序列化-反序列化"><a href="#序列化-反序列化" class="headerlink" title="序列化 / 反序列化"></a>序列化 / 反序列化</h3><ol>
+<li>什么是序列化? 反序列化?</li>
+</ol>
+<h3 id="I-O"><a href="#I-O" class="headerlink" title="I/O"></a>I/O</h3><ol>
+<li>Java IO流了解吗?</li>
+<li>IO流为什么要分为字节流和字符流呢?</li>
+<li>Java IO中的设计模式有哪些?</li>
+<li>BIO, NIO 和 AIO的区别?</li>
+</ol>
+<h3 id="语法糖"><a href="#语法糖" class="headerlink" title="语法糖"></a>语法糖</h3><ol>
+<li>什么是语法糖?</li>
+<li>Java中有哪些常用的语法糖?</li>
+</ol>
+<h2 id="Java集合"><a href="#Java集合" class="headerlink" title="Java集合"></a>Java集合</h2><h3 id="集合概述"><a href="#集合概述" class="headerlink" title="集合概述"></a>集合概述</h3><ol>
+<li>说说List, Set, Queue, Map四者的区别?</li>
+</ol>
+<h3 id="Collection-之-List"><a href="#Collection-之-List" class="headerlink" title="Collection 之 List"></a>Collection 之 List</h3><ol>
+<li>ArrayList和LinkedList有什么区别?</li>
+<li><del>说说ArrayList的扩容机制吧?</del></li>
+</ol>
+<h3 id="Collection-之-Set"><a href="#Collection-之-Set" class="headerlink" title="Collection 之 Set"></a>Collection 之 Set</h3><ol>
+<li>comparable 和 Comparator 的区别?</li>
+<li>比较HashSet, LinkedHashSet, TreeSet 三者的异同.</li>
+</ol>
+<h3 id="Collection-之-Queue"><a href="#Collection-之-Queue" class="headerlink" title="Collection 之 Queue"></a>Collection 之 Queue</h3><ol>
+<li>Queue和Deque的区别.</li>
+<li>ArrayDeque和LinkedList的区别.</li>
+<li>介绍一下 PriorityQueue.</li>
+</ol>
+<h3 id="Map接口"><a href="#Map接口" class="headerlink" title="Map接口"></a>Map接口</h3><ol>
+<li>HashMap和Hashtable的区别.</li>
+<li>HashMap和HashSet的区别.</li>
+<li>HashMap和TreeMap的区别.</li>
+<li>HashSet如何检查重复?</li>
+</ol>
+
+
+<div class="article-footer reveal fs14"><section id="license"><div class="header"><span>许可协议</span></div><div class="body"><p>本文采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">署名-非商业性使用-相同方式共享 4.0 国际</a> 许可协议，转载请注明出处。</p>
+</div></section></div>
+
+</article>
+
+<div class="related-wrap reveal" id="read-next"><section class="body"><div class="item" id="prev"></div><div class="item" id="next"><div class="note">较早文章</div><a href="/202301/%E7%94%B3%E8%AF%B7Log/">2023冬春季留学申请总结</a></div></section></div>
+
+
+
+
+
+
+  <div class='related-wrap md-text reveal' id="comments">
+    <section class='header cmt-title cap theme'>
+      快来参与讨论吧
+    </section>
+    <section class='body cmt-body giscus'>
+      
+
+<svg class="loading" style="vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2709"><path d="M832 512c0-176-144-320-320-320V128c211.2 0 384 172.8 384 384h-64zM192 512c0 176 144 320 320 320v64C300.8 896 128 723.2 128 512h64z" p-id="2710"></path></svg>
+
+<div id="giscus" data-repo="CrocodileZS/comments-giscus" data-repo-id="R_kgDOIsk7ag" data-category="Announcements" data-category-id="DIC_kwDOIsk7as4CTU1s" data-mapping="title" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="zh-CN" data-loading="lazy" crossorigin="anonymous"></div>
+
+    </section>
+  </div>
+
+
+
+      
+<footer class="page-footer reveal fs12"><hr><div class="text"><p>本站由 <a href="/">@CrocodileZS</a> 使用 <a target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar">Stellar</a> 主题创建。<br>本博客所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议，转载请注明出处。</p>
+</div></footer>
+
+      <div class='float-panel mobile-only blur' style='display:none'>
+  <button type='button' class='sidebar-toggle mobile' onclick='sidebar.toggle()'>
+    <svg class="icon" style="width: 1em; height: 1em;vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="15301"><path d="M566.407 808.3c26.9-0.1 49.3-20.8 51.6-47.6-1.9-27.7-23.9-49.7-51.6-51.6h-412.6c-28.2-1.4-52.6 19.5-55.5 47.6 2.3 26.8 24.6 47.5 51.6 47.6h416.5v4z m309.3-249.9c26.9-0.1 49.3-20.8 51.6-47.6-2.2-26.8-24.6-47.5-51.6-47.6h-721.9c-27.7-2.8-52.5 17.4-55.3 45.1-0.1 0.8-0.1 1.7-0.2 2.5 0.9 27.2 23.6 48.5 50.7 47.6H875.707z m-103.1-245.9c26.9-0.1 49.3-20.8 51.6-47.6-0.4-28.3-23.2-51.1-51.5-51.6h-618.9c-29.5-1.1-54.3 21.9-55.5 51.4v0.2c1.4 27.8 25.2 49.2 53 47.8 0.8 0 1.7-0.1 2.5-0.2h618.8z" p-id="15302"></path><path d="M566.407 808.3c26.9-0.1 49.3-20.8 51.6-47.6-1.9-27.7-23.9-49.7-51.6-51.6h-412.6c-28.2-1.4-52.6 19.5-55.5 47.6 1.9 27.7 23.9 49.7 51.6 51.6h416.5z m309.3-249.9c26.9-0.1 49.3-20.8 51.6-47.6-2.2-26.8-24.6-47.5-51.6-47.6h-721.9c-27.7-2.8-52.5 17.4-55.3 45.1-0.1 0.8-0.1 1.7-0.2 2.5 0.9 27.2 23.6 48.5 50.7 47.6H875.707z m-103.1-245.9c26.9-0.1 49.3-20.8 51.6-47.6-0.4-28.3-23.2-51.1-51.5-51.6h-618.9c-29.5-1.1-54.3 21.9-55.5 51.4v0.2c1.4 27.8 25.2 49.2 53 47.8 0.8 0 1.7-0.1 2.5-0.2h618.8z" p-id="15303"></path></svg>
+  </button>
+</div>
+
+    </div>
+  </div>
+  <div class='scripts'>
+    <script type="text/javascript">
+  const stellar = {
+    // 懒加载 css https://github.com/filamentgroup/loadCSS
+    loadCSS: (href, before, media, attributes) => {
+      var doc = window.document;
+      var ss = doc.createElement("link");
+      var ref;
+      if (before) {
+        ref = before;
+      } else {
+        var refs = (doc.body || doc.getElementsByTagName("head")[0]).childNodes;
+        ref = refs[refs.length - 1];
+      }
+      var sheets = doc.styleSheets;
+      if (attributes) {
+        for (var attributeName in attributes) {
+          if (attributes.hasOwnProperty(attributeName)) {
+            ss.setAttribute(attributeName, attributes[attributeName]);
+          }
+        }
+      }
+      ss.rel = "stylesheet";
+      ss.href = href;
+      ss.media = "only x";
+      function ready(cb) {
+        if (doc.body) {
+          return cb();
+        }
+        setTimeout(function () {
+          ready(cb);
+        });
+      }
+      ready(function () {
+        ref.parentNode.insertBefore(ss, before ? ref : ref.nextSibling);
+      });
+      var onloadcssdefined = function (cb) {
+        var resolvedHref = ss.href;
+        var i = sheets.length;
+        while (i--) {
+          if (sheets[i].href === resolvedHref) {
+            return cb();
+          }
+        }
+        setTimeout(function () {
+          onloadcssdefined(cb);
+        });
+      };
+      function loadCB() {
+        if (ss.addEventListener) {
+          ss.removeEventListener("load", loadCB);
+        }
+        ss.media = media || "all";
+      }
+      if (ss.addEventListener) {
+        ss.addEventListener("load", loadCB);
+      }
+      ss.onloadcssdefined = onloadcssdefined;
+      onloadcssdefined(loadCB);
+      return ss;
+    },
+
+    // 从 butterfly 和 volantis 获得灵感
+    loadScript: (src, opt) => new Promise((resolve, reject) => {
+      var script = document.createElement('script');
+      script.src = src;
+      if (opt) {
+        for (let key of Object.keys(opt)) {
+          script[key] = opt[key]
+        }
+      } else {
+        // 默认异步，如果需要同步，第二个参数传入 {} 即可
+        script.async = true
+      }
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    }),
+
+    // https://github.com/jerryc127/hexo-theme-butterfly
+    jQuery: (fn) => {
+      if (typeof jQuery === 'undefined') {
+        stellar.loadScript(stellar.plugins.jQuery).then(fn)
+      } else {
+        fn()
+      }
+    }
+  };
+  stellar.version = '1.18.5';
+  stellar.github = 'https://github.com/xaoxuu/hexo-theme-stellar/tree/1.18.5';
+  stellar.config = {
+    date_suffix: {
+      just: '刚刚',
+      min: '分钟前',
+      hour: '小时前',
+      day: '天前',
+      month: '个月前',
+    },
+  };
+
+  // required plugins (only load if needs)
+  stellar.plugins = {
+    jQuery: 'https://gcore.jsdelivr.net/npm/jquery@3.6.2/dist/jquery.min.js'
+  };
+
+  if ('local_search') {
+    stellar.search = {};
+    stellar.search.service = 'local_search';
+    if (stellar.search.service == 'local_search') {
+      let service_obj = Object.assign({}, {"field":"all","path":"/search.json","content":true,"sort":"-date"});
+      stellar.search[stellar.search.service] = service_obj;
+    }
+  }
+
+  // stellar js
+  stellar.plugins.stellar = Object.assign({"sites":"/js/plugins/sites.js","friends":"/js/plugins/friends.js","ghinfo":"/js/plugins/ghinfo.js","timeline":"/js/plugins/timeline.js","linkcard":"/js/plugins/linkcard.js","fcircle":"/js/plugins/fcircle.js","weibo":"/js/plugins/weibo.js"});
+
+  stellar.plugins.marked = Object.assign("https://cdn.bootcdn.net/ajax/libs/marked/4.0.18/marked.min.js");
+  // optional plugins
+  if ('true' == 'true') {
+    stellar.plugins.lazyload = Object.assign({"enable":true,"js":"https://gcore.jsdelivr.net/npm/vanilla-lazyload@17.8.3/dist/lazyload.min.js","transition":"blur"});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.swiper = Object.assign({"enable":true,"css":"https://unpkg.com/swiper@8.4.5/swiper-bundle.min.css","js":"https://unpkg.com/swiper@8.4.5/swiper-bundle.min.js"});
+  }
+  if ('' == 'true') {
+    stellar.plugins.scrollreveal = Object.assign({"enable":null,"js":"https://gcore.jsdelivr.net/npm/scrollreveal@4.0.9/dist/scrollreveal.min.js","distance":"8px","duration":500,"interval":100,"scale":1});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.preload = Object.assign({"enable":true,"service":"flying_pages","instant_page":"https://gcore.jsdelivr.net/gh/volantis-x/cdn-volantis@4.1.2/js/instant_page.js","flying_pages":"https://gcore.jsdelivr.net/gh/gijo-varghese/flying-pages@2.1.2/flying-pages.min.js"});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.fancybox = Object.assign({"enable":true,"js":"https://gcore.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js","css":"https://gcore.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css","selector":".swiper-slide img"});
+  }
+  if ('false' == 'true') {
+    stellar.plugins.heti = Object.assign({"enable":false,"css":"https://unpkg.com/heti@0.9.2/umd/heti.min.css","js":"https://unpkg.com/heti@0.9.2/umd/heti-addon.min.js"});
+  }
+</script>
+
+<!-- required -->
+
+  
+<script src="/js/main.js" async></script>
+
+
+
+<!-- optional -->
+
+  <script>
+  function loadJS() {
+    const els = document.querySelectorAll("#comments #giscus");
+    if (els.length === 0) return;
+    els.forEach((el, i) => {
+      try {
+        el.innerHTML = '';
+      } catch (error) {
+        console.log(error);
+      }
+      var script = document.createElement('script');
+      script.src = 'https://giscus.app/client.js';
+      script.async = true;
+      for (let key of Object.keys(el.attributes)) {
+        let attr = el.attributes[key];
+        if (['class', 'id'].includes(attr.name) === false) {
+          script.setAttribute(attr.name, attr.value);
+        }
+      }
+      el.appendChild(script);
+    });
+  }
+  window.addEventListener('DOMContentLoaded', (event) => {
+    loadJS();
+  });
+</script>
+
+
+
+
+<!-- inject -->
+
+
+  </div>
+</body>
+</html>
