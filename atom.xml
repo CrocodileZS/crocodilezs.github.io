@@ -6,7 +6,7 @@
   <link href="https://blog.crocodilezs.top/atom.xml" rel="self"/>
   
   <link href="https://blog.crocodilezs.top/"/>
-  <updated>2023-05-12T18:54:26.131Z</updated>
+  <updated>2023-07-17T17:50:56.339Z</updated>
   <id>https://blog.crocodilezs.top/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>23Fall申请总结</title>
+    <link href="https://blog.crocodilezs.top/202307/23Fall%E7%94%B3%E8%AF%B7%E6%80%BB%E7%BB%93/"/>
+    <id>https://blog.crocodilezs.top/202307/23Fall%E7%94%B3%E8%AF%B7%E6%80%BB%E7%BB%93/</id>
+    <published>2023-07-17T10:36:00.000Z</published>
+    <updated>2023-07-17T17:50:56.339Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="BG"><a href="#BG" class="headerlink" title="BG"></a>BG</h2><p>标化: 北邮本, 数据科学与大数据技术, 均分87/100; 雅思6.5(6.5), 无G;<br>实习: 三段不相关实习, 一段中科院 NLP RA, 一段快手JAVA后端;<br>论文: 一篇NLP顶会挂名, 一篇水刊挂名;<br>奖项: 三年三等奖学金, 一个数学竞赛奖三;</p><h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><p>澳新欧 CS or EE Master;<br>factors:</p><ul><li>优先拿身份;</li><li>奖后预算在一年20w (gap一年可以凑够的cost);</li></ul><h2 id="申请结果"><a href="#申请结果" class="headerlink" title="申请结果"></a>申请结果</h2><p>申请的时候最优先考虑的是奖学金(因为要自己攒学费), 所以申了很多明显 overqualified 的学校比如Wollongong/Tampere/Twente. 瑞典只有第一志愿可以申请奖学金, 所以一志愿非常保守地选择了SU.<br>因为当时我还在做港新PhD的陶瓷和面试, 所以下面硕士申请的系统都是对象帮填的. 虽然不了解具体细节但是我知道真的很麻烦 (本来想申请丹麦的但是因为需要的材料太繁琐了, 我对象懒得搞了). 呜呜感谢我强宝! <span class="tag-plugin emoji"><img no-lazy="" class="inline" src="https://gcore.jsdelivr.net/gh/cdn-x/emoji/aru-l/8030.gif" style="height:3em"/></span></p><div class="table-container"><table><thead><tr><th></th><th>录取状态</th><th>国家</th><th>学校</th><th>专业/方向</th><th>Ms/PhD</th><th>奖学金情况</th><th>提交申请/收到结果日期</th></tr></thead><tbody><tr><td>1</td><td>AD</td><td>NL</td><td>Eindhoven University of Technology</td><td>CSE</td><td>Ms</td><td>/</td><td>Feb. 15</td></tr><tr><td>2</td><td>OFFER</td><td>AU</td><td>University of Wollongong</td><td>CS</td><td>Ms</td><td>30%学费</td><td>Nov. 26</td></tr><tr><td>3</td><td>AD</td><td>NL</td><td>University of Twente</td><td>CS</td><td>Ms</td><td>/</td><td>Dec. 12</td></tr><tr><td>4</td><td>AD</td><td>NL</td><td>Universiteit Leiden</td><td>CS</td><td>Ms</td><td>/</td><td>Dec. 27</td></tr><tr><td>5</td><td>AD</td><td>NL</td><td>University of Amsterdam &amp; Vrije Universiteit Amsterdam 联合项目</td><td>CS</td><td>Ms</td><td>/</td><td>Jan. 2</td></tr><tr><td>6</td><td>AD</td><td>FI</td><td>Aalto University</td><td>Speech and Language Technology</td><td>Ms</td><td>/</td><td>Mar. 29</td></tr><tr><td>7</td><td>AD</td><td>SE</td><td>Stockholm University</td><td>CS</td><td>Ms</td><td>/</td><td>Mar. 30</td></tr><tr><td>8</td><td>AD</td><td>FI</td><td>Tampere University</td><td>CSE</td><td>Ms</td><td>/</td><td>Apr. 25</td></tr><tr><td>9</td><td>AD</td><td>AU</td><td>the University of Sydney</td><td>SE</td><td>Ms</td><td>/</td><td>Dec. 13</td></tr><tr><td>10</td><td>REJ</td><td>SG</td><td>Nanyang Technological University</td><td>AI</td><td>Ms</td><td>/</td><td>Jul. 14</td></tr></tbody></table></div><h2 id="择校"><a href="#择校" class="headerlink" title="择校"></a>择校</h2><p>首先因为预算pass掉了悉大. 最终还是选择欧洲的学校.<br>我先在每个国家选择一个学校, 瑞典不用说第一志愿SU; 芬兰的Aalto是我申请到的最好的学校, 也没有纠结太久;<br>荷兰在三个项目中纠结了好久, 最终因为阿姆生活成本太高放弃了uva和uv的联合项目; 本来想选择Twente省点钱的的, 但最终还是因为学校质量选择了TU/e.<br>在 芬兰 / 荷兰 / 瑞典的三个项目之间纠结了很久, 简单对比以下三者:</p><div class="table-container"><table><thead><tr><th></th><th>Pros</th><th>Cons</th></tr></thead><tbody><tr><td>Aalto</td><td>学校质量最高; 学费便宜; 拿PR的年限最短</td><td>项目偏研究类型, 容易被限制; 冬天日照时间短; 找工难度在三个国家中最大;</td></tr><tr><td>SU</td><td>学费便宜; 瑞典好找工;</td><td>学校名气不如其他两所; 瑞典PR最难拿;</td></tr><tr><td>TU/e</td><td>学校有名; 找工最好找; PR好拿;</td><td>贵;</td></tr></tbody></table></div><p>最后想来想去觉得TU/e除了贵没什么缺点, 最终咬咬牙选了TU/e.</p><h2 id="一些感想"><a href="#一些感想" class="headerlink" title="一些感想"></a>一些感想</h2><p>申请这段时间的日子非常难熬, 一边做着手上的套词一边等待着学校的结果. 最后也算是有学上了. 荷兰找房真的太难了, 还好最后找到了还不错的studio, 就是通勤时间太长了.<br>因为上个季度申请phd手里的材料都准备的差不多, 所以没花太多功夫.<br>七月份从北邮退学了, 明天也是快手的lastday.<br>月底订婚, 年底帮对象申请伴侣签之后强宝也有居住证啦. 希望后续的学习和生活一切顺利!</p><p><img src="https://imgurlcrcz.oss-cn-hangzhou.aliyuncs.com/img/5aa37e1f512063f865c6d0ad72d43b5d_0.png" alt=""><br><img src="https://imgurlcrcz.oss-cn-hangzhou.aliyuncs.com/img/0d3404b792e438abceea681e1f291940_0.png" alt=""></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;BG&quot;&gt;&lt;a href=&quot;#BG&quot; class=&quot;headerlink&quot; title=&quot;BG&quot;&gt;&lt;/a&gt;BG&lt;/h2&gt;&lt;p&gt;标化: 北邮本, 数据科学与大数据技术, 均分87/100; 雅思6.5(6.5), 无G;&lt;br&gt;实习: 三段不相关实习, 一段中科院 N</summary>
+      
+    
+    
+    
+    <category term="留学" scheme="https://blog.crocodilezs.top/categories/%E7%95%99%E5%AD%A6/"/>
+    
+    
+    <category term="留学" scheme="https://blog.crocodilezs.top/tags/%E7%95%99%E5%AD%A6/"/>
+    
+  </entry>
   
   <entry>
     <title>零经验 转sde 找日常实习总结</title>
@@ -241,30 +265,6 @@
     
     
     
-    
-  </entry>
-  
-  <entry>
-    <title>2022年个人OKR核验</title>
-    <link href="https://blog.crocodilezs.top/202212/2022%E5%B9%B4%E4%B8%AA%E4%BA%BAOKR%E6%A0%B8%E9%AA%8C/"/>
-    <id>https://blog.crocodilezs.top/202212/2022%E5%B9%B4%E4%B8%AA%E4%BA%BAOKR%E6%A0%B8%E9%AA%8C/</id>
-    <published>2022-12-25T16:03:27.000Z</published>
-    <updated>2022-12-28T06:02:21.017Z</updated>
-    
-    <content type="html"><![CDATA[<p>写于 2022.12.25.</p><p>现在的我正在中关村东路租的小房间里写下2022年的回顾与展望. 这个小房间刚搬进来的时候我还万分不满, 但现在住久了也渐渐习惯了, 书桌旁边就有一扇大窗户, 能够享受白天的阳光, 真的是一件很美好的事情. </p><p>我好像已经很久很久没有写过类似总结归纳的东西了, 很久没有在关心自己的状态. 过去一段时间的日程管理也仅仅是记录学习/工作上的事情. 好像我不敢写总结, 是因为害怕面对自己. </p><p>我突然想到, &lt;想见你&gt;里面黄雨萱跟陈思源讲的道理, “大人之所以是大人, 是因为他们知道什么事情比较重要.” 为了那件重要的事情, 就可以忽略其他不重要的事情. 在乎方方面面(维护一个完美的人设)是很累的, 找准最主要的事情然后针对它去努力就可以了, 其他的都可以不用在乎.</p><h2 id="年度OKR核验12-26-2022-4-30-修订版本"><a href="#年度OKR核验12-26-2022-4-30-修订版本" class="headerlink" title="年度OKR核验12.26 (2022.4.30 修订版本)"></a>年度OKR核验12.26 (2022.4.30 修订版本)</h2><div class="tag-plugin note" color="blue"><div class="body"><p><b>O: 【事业发展】<s>对广告行业和NLP领域有深入的了解，能够独立负责项目。申请NUS或NTU博士并拿到offer.</s> 申请PhD或Master项目并拿到Offer.<br>Rv: 【90%】 了解计算广告行业的大框架, 在NLP领域有了很大的进步, 申请过程虽不是一帆风顺但自己也努力取得了成果. </b><br><s>KR1: 了解广告行业知识和现状（看完《计算广告》和相关网文），对小米广告（浏览器和内容中心）内部框架有一个清晰的认知（看完小米商业平台部的文档）；每月复盘自己的工作内容，对工作负责。</s></p><p>KR1: 了解NLP学术知识和企业应用现状，积累能写入简历的科研经历(以cv为导向), 发表论文一篇.<br>Rv1: 【85%】 基本达成, EMNLP2022 Demo track非一作一篇. 没有一作的文章有点遗憾.</p><p>KR2: 语言ielts &gt;= 6.5; GRE &gt;= 320 + 3.5 （英语成绩够用就好，有这个时间不如花在科研上）<br>Rv2: 【100%】 ielts分数超出预期, GRE暂时不需要就没有考了.</p><p>KR: 完成推荐信等, 联系导师套词, 争取拿到博士机会. 期间了解新加坡读博的各种政策, 整理.<br>Rv3: 【100%】 Good Job.</p></div></div><div class="tag-plugin note" color="green"><div class="body"><p><b>O: 【内心成长】追求心理健康和稳定，用理论框架梳理解释情绪和行为.<br>Rv: 【99%】对自己过去一年内心的成长感到十分的钦佩. 勇敢面对自己和自己的选择, 没有丧失同理心.</b></p><p>KR1: 定期看心理医生、按时吃药，争取减药or停药。<br>Rv1: 【90%】 Good Job.</p><p>KR2: 定期整理自己的情绪和领悟到的东西, 情绪以事业服务, 勇敢一些, 无需获得他人的认可. <s>看心理学方面的书籍并思考，记录关键笔记。如《被讨厌的勇气》、《蛤蟆先生去看心理医生》、《津巴多普通心理学》、《乌合之众》、《自卑与超越》、《社会性动物》。能够对生活中常见的问题或困扰自己的问题做出心理学角度的解释。</s><br>Rv2: 【70%】 用理论框架梳理生活情绪, 能够站在比较高的位置观察自己的心态.</p></div></div><div class="tag-plugin note" color="yellow"><div class="body"><p><b>O: 【身体健康】保持运动习惯，注重形象管理，身材变好，体脂降低。<br>Rv: 【60%】勉强及格. 下半年做的不是太好, 虽然有客观原因, 但是仍然没有坚持健康管理.</b></p><p>KR1: 个人护理。坚持好好洗脸和护肤，定期面膜护理，减糖。<br>Rv1: 【75%】前三个季度都做的不错, 最后一个季度甜食吃的太多。</p><p>KR2: 健康饮食。限制零食的购买和食用。不加餐，加餐只吃健康食品。<br>Rv2: 【60%】前半年做的很好, 后半年由于身体原因和疫情原因属实是放纵了.</p><p>KR: 运动。每周至少运动2三次，没有时间的话就只做有氧(游泳)。每周至少一次力量训练。<br>Rv3: 【50%】学会了蛙泳. 5月之前做的很好, 后半年有少量有氧, 完全舍弃了力量运动. 疫情和身体原因都是借口.</p></div></div><div class="tag-plugin note" color="orange"><div class="body"><p><b>O: 【技艺才情】寻求多变<br>Rv: 【75%】做的好. 能够达到75%真的超过我的预期了. 没想到自己这么棒.</b></p><p>KR1: 视频制作/vlog。提高作品质量，不盲目追求投稿打卡。一年发布一条十分优质的视频内容。不以核心数据作为视频质量的评价指标.<br>Rv1: 【75%】视频拍摄技巧/录音技巧/视频剪辑软件的使用(pr, 剪映, fcp) 都更加熟练, 技术方面取得了很大的进步. 但是有非常多的idea没有付诸现实. 原因: 没有考虑目标的可达成性, 没有合理制定目标和时间节点. 截至Dec. 26, 累计播放12.3万, 累计粉丝1472. 个人觉得最优秀的视频是拆花的视频, 最受欢迎的是化妆刷.</p><p>KR2: 游泳。学会蛙泳和自由泳。<br>Rv2: 【70%】Good Job. 学会了蛙泳.</p></div></div><h2 id="一些感想"><a href="#一些感想" class="headerlink" title="一些感想"></a>一些感想</h2><p>回顾过去的2022, 它不像过去的年份那样平淡, 这一年里发生的事情都太激烈了, 每有一件新事情出现我的情绪就被震撼一次, 所以我对之前发生的事情记忆力就没有那么深刻. 留学 收到3份口头 Offer, 4份 Condition offer, 因为敏感背景被加澳 admission officer 拒2次, 被新加坡拒签1次, 收到小米和中科院的Offer, 雅思考出成绩. 这一年的情绪一直在被这些事情牵动着, 也没有想象中那么稳定. 在新的一年, 我希望自己能够坚定自己目标而不被这些事情的结果影响. 同时制定计划的时候也不应该把不能预料结果的事情算进去. 不能制定 “如果A那么我就做B” 这样的计划. </p><ul><li><p>在同理心和钝感之间平衡, 不要过多得揣测别人话中莫须有的「深意」.</p></li><li><p>只有留给自己充分的休息时间, 才能更高效率的工作.</p></li><li><p>对话时降低语速, 注意表达时的眼神和神态控制, 去掉「然后」的口癖, 用停顿或动作来代替.</p></li><li><p>避免假性高效, 根据重要性等级为每件事情设置分数, 为自己创造深度工作的时间.</p></li><li><p>项目管理流程强化: 对交付信息- 主动汇报关键节点 - 复盘.</p></li><li><p>焦虑控制四象限. 焦虑原因: 想要证明成绩/获得认可.</p></li></ul>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;写于 2022.12.25.&lt;/p&gt;
-&lt;p&gt;现在的我正在中关村东路租的小房间里写下2022年的回顾与展望. 这个小房间刚搬进来的时候我还万分不满, 但现在住久了也渐渐习惯了, 书桌旁边就有一扇大窗户, 能够享受白天的阳光, 真的是一件很美好的事情. &lt;/p&gt;
-&lt;p&gt;我好像已</summary>
-      
-    
-    
-    
-    
-    <category term="项目管理" scheme="https://blog.crocodilezs.top/tags/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/"/>
     
   </entry>
   
