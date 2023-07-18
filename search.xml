@@ -97,12 +97,12 @@
 </tr>
 <tr>
 <td>8</td>
-<td>AD</td>
+<td>OFFER</td>
 <td>FI</td>
 <td>Tampere University</td>
 <td>CSE</td>
 <td>Ms</td>
-<td>/</td>
+<td>100%学费</td>
 <td>Apr. 25</td>
 </tr>
 <tr>
@@ -310,9 +310,9 @@
         <category>面经</category>
       </categories>
       <tags>
-        <tag>面经</tag>
         <tag>Java</tag>
         <tag>算法</tag>
+        <tag>面经</tag>
       </tags>
   </entry>
   <entry>
@@ -377,9 +377,9 @@
         <category>面经</category>
       </categories>
       <tags>
-        <tag>面经</tag>
         <tag>Java</tag>
         <tag>算法</tag>
+        <tag>面经</tag>
       </tags>
   </entry>
   <entry>
@@ -470,9 +470,9 @@
         <category>面经</category>
       </categories>
       <tags>
-        <tag>面经</tag>
         <tag>Java</tag>
         <tag>算法</tag>
+        <tag>面经</tag>
       </tags>
   </entry>
   <entry>
@@ -523,9 +523,9 @@
         <category>面经</category>
       </categories>
       <tags>
-        <tag>面经</tag>
         <tag>Java</tag>
         <tag>算法</tag>
+        <tag>面经</tag>
       </tags>
   </entry>
   <entry>
@@ -1037,8 +1037,8 @@
         <category>产品</category>
       </categories>
       <tags>
-        <tag>产品</tag>
         <tag>面经</tag>
+        <tag>产品</tag>
       </tags>
   </entry>
   <entry>
