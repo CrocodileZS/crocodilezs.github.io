@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang='zh-CN'>
+
+<head>
+  <meta name="generator" content="Hexo 5.4.2">
+  <meta name="hexo-theme" content="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.18.5">
+  <meta charset="utf-8">
+  
+
+  <meta http-equiv='x-dns-prefetch-control' content='on' />
+  <link rel='dns-prefetch' href='https://gcore.jsdelivr.net'>
+  <link rel="preconnect" href="https://gcore.jsdelivr.net" crossorigin>
+  <link rel='dns-prefetch' href='//unpkg.com'>
+
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="theme-color" content="#f8f8f8">
+  
+  <title>30天自制操作系统（12） - 鳄鱼的博客</title>
+
+  
+    <meta name="description" content="DAY12_定时器（1）1.使用定时器介绍定时器的作用，添加定时器实现中断。  定时器（Timer）对于操作系统十分重要，每隔一段时间就发送一个中断信号给CPU。有了定时器，CPU就不用辛苦地计量时间。 没有定时器，我们就没法使用HLT指令，意味着要浪费很多电能。 有了定时器中断，程序只需要以自己的步调处理自己的问题就可以了。至于到底经过了多少时间，只要在中断处理程序中数一数定时器中断发生的次数就">
+<meta property="og:type" content="article">
+<meta property="og:title" content="30天自制操作系统（12）">
+<meta property="og:url" content="https://blog.crocodilezs.top/201903/30%E5%A4%A9%E8%87%AA%E5%88%B6%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%EF%BC%8812%EF%BC%89/index.html">
+<meta property="og:site_name" content="鳄鱼的博客">
+<meta property="og:description" content="DAY12_定时器（1）1.使用定时器介绍定时器的作用，添加定时器实现中断。  定时器（Timer）对于操作系统十分重要，每隔一段时间就发送一个中断信号给CPU。有了定时器，CPU就不用辛苦地计量时间。 没有定时器，我们就没法使用HLT指令，意味着要浪费很多电能。 有了定时器中断，程序只需要以自己的步调处理自己的问题就可以了。至于到底经过了多少时间，只要在中断处理程序中数一数定时器中断发生的次数就">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-03-25T03:17:50.000Z">
+<meta property="article:modified_time" content="2019-09-27T09:45:02.000Z">
+<meta property="article:author" content="CrocodileZS">
+<meta name="twitter:card" content="summary">
+  
+  
+
+  <!-- feed -->
+  
+    <link rel="alternate" href="/atom.xml" title="鳄鱼的博客" type="application/atom+xml">
+  
+
+  
+    
+<link rel="stylesheet" href="/css/main.css">
+
+  
+
+  
+    <link rel="shortcut icon" href="https://bu.dusays.com/2022/05/24/628bb5874996a.jpg">
+  
+
+  
+
+  
+
+
+  
+    
+      <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC&display=swap" rel="stylesheet">
+    
+  
+</head>
+
+<body>
+  
+
+
+
+
+  <div class='l_body' id='start'>
+    <aside class='l_left' layout='post'>
+    
+
+  
+
+<header class="header"><div class="logo-wrap"><a class="avatar" href="/about/"><div class="bg" style="opacity:0;background-image:url(https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.4/avatar/round/rainbow64@3x.webp);"></div><img no-lazy class="avatar" src="/media/avatar.png" onerror="javascript:this.classList.add('error');this.src='https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.4/image/2659360.svg';"></a><a class="title" href="/"><div class="main" ff="title">鳄鱼的博客</div><div class="sub cap">一只野生鳄鱼的互联网自留地</div></a></div>
+
+<nav class="menu dis-select"><a class="nav-item active" href="/">博客</a><a class="nav-item" href="/chat/">动态</a><a class="nav-item" href="/about/">更多</a></nav>
+</header>
+
+
+<div class="widgets">
+<widget class="widget-wrapper search"><div class="widget-body"><div class="search-wrapper" id="search"><form class="search-form"><input type="text" class="search-input" id="search-input" data-filter="/blog/" placeholder="文章搜索"><svg t="1670596976048" class="icon search-icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2676" width="200" height="200"><path d="M938.2 832.6L723.8 618.1c-2.5-2.5-5.3-4.4-7.9-6.4 36.2-55.6 57.3-121.8 57.3-193.1C773.3 222.8 614.6 64 418.7 64S64 222.8 64 418.6c0 195.9 158.8 354.6 354.6 354.6 71.3 0 137.5-21.2 193.2-57.4 2 2.7 3.9 5.4 6.3 7.8L832.5 938c14.6 14.6 33.7 21.9 52.8 21.9 19.1 0 38.2-7.3 52.8-21.8 29.2-29.1 29.2-76.4 0.1-105.5M418.7 661.3C284.9 661.3 176 552.4 176 418.6 176 284.9 284.9 176 418.7 176c133.8 0 242.6 108.9 242.6 242.7 0 133.7-108.9 242.6-242.6 242.6" p-id="2677"></path></svg></form><div id="search-result"></div><div class="search-no-result">没有找到内容！</div></div></div></widget>
+
+
+<widget class="widget-wrapper toc single" id="data-toc"><div class="widget-header cap dis-select"><span class="name">30天自制操作系统（12）</span></div><div class="widget-body fs14"><div class="doc-tree active"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E4%BD%BF%E7%94%A8%E5%AE%9A%E6%97%B6%E5%99%A8"><span class="toc-text">1.使用定时器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E8%AE%A1%E9%87%8F%E6%97%B6%E9%97%B4"><span class="toc-text">2.计量时间</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E8%B6%85%E6%97%B6%E5%8A%9F%E8%83%BD"><span class="toc-text">3.超时功能</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E8%AE%BE%E5%AE%9A%E5%A4%9A%E4%B8%AA%E5%AE%9A%E6%97%B6%E5%99%A8"><span class="toc-text">4.设定多个定时器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E5%8A%A0%E5%BF%AB%E4%B8%AD%E6%96%AD%E5%A4%84%E7%90%86%EF%BC%881%EF%BC%89"><span class="toc-text">5.加快中断处理（1）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-%E5%8A%A0%E5%BF%AB%E4%B8%AD%E6%96%AD%E5%A4%84%E7%90%86%EF%BC%882%EF%BC%89"><span class="toc-text">6.加快中断处理（2）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-%E5%8A%A0%E5%BF%AB%E4%B8%AD%E6%96%AD%E5%A4%84%E7%90%86%EF%BC%883%EF%BC%89"><span class="toc-text">7.加快中断处理（3）</span></a></li></ol></div></div></widget>
+
+<widget class="widget-wrapper recent"><div class="widget-header cap theme dis-select"><span class="name">最近更新</span><a class="cap-action" id="rss" title="Subscribe" href="atom.xml"><svg class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="8938"><path d="M800.966 947.251c0-404.522-320.872-732.448-716.69-732.448V62.785c477.972 0 865.44 395.987 865.44 884.466h-148.75z m-162.273 0h-148.74c0-228.98-181.628-414.598-405.678-414.598v-152.01c306.205 0 554.418 253.68 554.418 566.608z m-446.24-221.12c59.748 0 108.189 49.503 108.189 110.557 0 61.063-48.44 110.563-108.188 110.563-59.747 0-108.18-49.5-108.18-110.563 0-61.054 48.433-110.556 108.18-110.556z" p-id="8939"></path></svg></a></div><div class="widget-body related-posts fs14"><a class="item title" href="/202308/%E8%8D%B7%E5%85%B0%E4%BF%9D%E9%99%A9%E9%80%89%E8%B4%AD/"><span class="title">荷兰保险选购 Aon v.s. Swisscare (附PrEP Programme指南)</span></a><a class="item title" href="/202307/23Fall%E7%94%B3%E8%AF%B7%E6%80%BB%E7%BB%93/"><span class="title">23Fall申请总结</span></a><a class="item title" href="/202305/%E9%9B%B6%E7%BB%8F%E9%AA%8C%E8%BD%ACSDE%E6%89%BE%E5%AE%9E%E4%B9%A0%E7%BB%8F%E5%8E%86/"><span class="title">零经验 转sde 找日常实习总结</span></a><a class="item title" href="/202304/%E9%98%BF%E9%87%8C%E5%A4%A7%E6%B7%98%E5%AE%9D%E5%90%8E%E7%AB%AF%E7%AC%94%E9%9D%A2%E8%AF%950412/"><span class="title">阿里大淘宝技术后端实习笔面经</span></a><a class="item title" href="/202304/Java%E9%9D%A2%E7%BB%8F%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/"><span class="title">Java常见面试问题汇总(一)</span></a></div></widget>
+</div>
+
+
+    </aside>
+    <div class='l_main'>
+      
+
+      
+
+
+<div class="bread-nav fs12"><div id="breadcrumb"><a class="cap breadcrumb" href="/">主页</a><span class="sep"></span><a class="cap breadcrumb" href="/">文章</a><span class="sep"></span><a class="cap breadcrumb-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a></div><div id="post-meta">发布于&nbsp;<time datetime="2019-03-25T03:17:50.000Z">2019-03-25</time></div></div>
+
+<article class='md-text content post'>
+<h1 class="article-title"><span>30天自制操作系统（12）</span></h1>
+<h1 id="DAY12-定时器（1）"><a href="#DAY12-定时器（1）" class="headerlink" title="DAY12_定时器（1）"></a>DAY12_定时器（1）</h1><h2 id="1-使用定时器"><a href="#1-使用定时器" class="headerlink" title="1.使用定时器"></a>1.使用定时器</h2><p><font color="FF0000">介绍定时器的作用，添加定时器实现中断。</font></p>
+<ul>
+<li>定时器（Timer）对于操作系统十分重要，每隔一段时间就发送一个中断信号给CPU。有了定时器，CPU就不用辛苦地计量时间。</li>
+<li>没有定时器，我们就没法使用HLT指令，意味着要浪费很多电能。</li>
+<li>有了定时器中断，程序只需要以自己的步调处理自己的问题就可以了。至于到底经过了多少时间，只要在中断处理程序中数一数定时器中断发生的次数就可以了。</li>
+</ul>
+<span id="more"></span>
+<hr>
+<ul>
+<li>要在电脑中管理定时器，只需要对PIT（Programmable Interval Timer可编程的间隔型定时器）进行设定就可以了。通过设定PIT，让定时器每隔多少秒就产生一次中断。</li>
+<li>在电脑中PIT连接着IRQ（interrupt request）的0号，所以只要设定了PIT就可以设定IRQ0的中断间隔。</li>
+<li>我们不清楚其中的详细原理，只知道只要执行3次OUT指令设定就完成了。将中断周期设定为11932的话，中断频率好像就是100Hz，也就是说1秒钟会发生100次中断。</li>
+<li>IRQ0发生时所调用的中断处理程序几乎和键盘的中断处理程序一样。</li>
+</ul>
+<h2 id="2-计量时间"><a href="#2-计量时间" class="headerlink" title="2.计量时间"></a>2.计量时间</h2><p>==加入计时器显示时间==</p>
+<ul>
+<li>让中断执行下面的程序</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">struct TIMERCTL &#123; </span><br><span class="line">    unsigned int count; </span><br><span class="line">&#125;; </span><br></pre></td></tr></table></figure>
+<ul>
+<li>实现方法<ul>
+<li>定义struct TIMERCTL结构体，在结构体内定义一个计数变量。</li>
+<li>初始化PIT时，计数变量为0，每次发生定时器中断时，计数变量就以1递增。</li>
+<li>即计数变量在HariMain中不进行加算，每1s也会增加100.</li>
+</ul>
+</li>
+</ul>
+<h2 id="3-超时功能"><a href="#3-超时功能" class="headerlink" title="3.超时功能"></a>3.超时功能</h2><p>==超时功能的定义，添加超时功能==</p>
+<ul>
+<li>我们可以计量处理所花费的时间。具体做法：处理前看一下时间并把它存放到一个变量变量里，处理结束后再看一下时间，做差即可。根据这个可以编制==基准测试程序==</li>
+<li>超时（timeout）：过了一段时间，定时器提示操作系统。</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">struct TIMERCTL &#123; </span><br><span class="line">     unsigned int count; </span><br><span class="line">     unsigned int timeout; </span><br><span class="line">     struct FIFO8 *fifo; </span><br><span class="line">     unsigned char data; </span><br><span class="line">&#125;; </span><br></pre></td></tr></table></figure>
+<p>timeout用于记录离超时还有多长时间，当剩余时间到达0时，程序就往IFIFO缓冲区里发送数据。</p>
+<h2 id="4-设定多个定时器"><a href="#4-设定多个定时器" class="headerlink" title="4.设定多个定时器"></a>4.设定多个定时器</h2><ul>
+<li>在上一节做的超时功能，超时结束后如果再设定1000的话，那我们就可以让它每10秒显示一<br>次，或是让它一闪一灭地显示。</li>
+<li>开发操作系统时，超时功能非常方便，所以在很多地方都可以使用它。比如可以让电子时钟<br>每隔1秒重新显示一次；演奏音乐时，可以用它计量音符的长短；也可以让它以0.1秒1次的频率来监视没有中断功能的装置；另外，还可以用它实现光标的闪烁功能。<br>为了简单地实现这些功能，我们要准备很多能够设定超时的定时器。</li>
+</ul>
+<h2 id="5-加快中断处理（1）"><a href="#5-加快中断处理（1）" class="headerlink" title="5.加快中断处理（1）"></a>5.加快中断处理（1）</h2><ul>
+<li>问题：inthandler20中断花费了很长的时间</li>
+<li>优化部分：现每次进行定时器中断处理的时候，都会对所有活动中的定时器进行“timerctl.timer[i].timeout—;”处理。也就是说，CPU要完成从内存中读取变量值，减去1，然后又往内存中写入的操作。</li>
+<li>time[i].timeout不再是“所剩时间”而是“予定时刻”，将timerctl.count和timer[i].timeout进行比较，不用再经过内存计算。</li>
+<li>问题：count设定成最大值，一段时间后需要重新启动操作系统。</li>
+</ul>
+<h2 id="6-加快中断处理（2）"><a href="#6-加快中断处理（2）" class="headerlink" title="6.加快中断处理（2）"></a>6.加快中断处理（2）</h2><p>==优化if语句==<br>解决方案：添加timerctl.next，让它记住下一个时刻</p>
+<h2 id="7-加快中断处理（3）"><a href="#7-加快中断处理（3）" class="headerlink" title="7.加快中断处理（3）"></a>7.加快中断处理（3）</h2><ul>
+<li>问题：到达next时刻和没到next时刻的定时器中断，它们的处理时间差别很大。<br>这样的程序结构不好。因为平常运行一直都很快的程序，会偶尔由于中断处理拖得太长，而搞得像是主程序要停了似的。</li>
+</ul>
+
+
+<div class="article-footer reveal fs14"><section id="license"><div class="header"><span>许可协议</span></div><div class="body"><p>本文采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">署名-非商业性使用-相同方式共享 4.0 国际</a> 许可协议，转载请注明出处。</p>
+</div></section></div>
+
+</article>
+
+<div class="related-wrap reveal" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">较新文章</div><a href="/201903/30%E5%A4%A9%E8%87%AA%E5%88%B6%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%EF%BC%8813%EF%BC%89/">30天自制操作系统（13）</a></div><div class="item" id="next"><div class="note">较早文章</div><a href="/201903/30%E5%A4%A9%E8%87%AA%E5%88%B6%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%EF%BC%8811%EF%BC%89/">30天自制操作系统（11）</a></div></section></div>
+
+
+
+
+
+
+  <div class='related-wrap md-text reveal' id="comments">
+    <section class='header cmt-title cap theme'>
+      快来参与讨论吧
+    </section>
+    <section class='body cmt-body giscus'>
+      
+
+<svg class="loading" style="vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2709"><path d="M832 512c0-176-144-320-320-320V128c211.2 0 384 172.8 384 384h-64zM192 512c0 176 144 320 320 320v64C300.8 896 128 723.2 128 512h64z" p-id="2710"></path></svg>
+
+<div id="giscus" data-repo="CrocodileZS/comments-giscus" data-repo-id="R_kgDOIsk7ag" data-category="Announcements" data-category-id="DIC_kwDOIsk7as4CTU1s" data-mapping="title" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="zh-CN" data-loading="lazy" crossorigin="anonymous"></div>
+
+    </section>
+  </div>
+
+
+
+      
+<footer class="page-footer reveal fs12"><hr><div class="text"><p>本站由 <a href="/">@CrocodileZS</a> 使用 <a target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar">Stellar</a> 主题创建。<br>本博客所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议，转载请注明出处。</p>
+</div></footer>
+
+      <div class='float-panel mobile-only blur' style='display:none'>
+  <button type='button' class='sidebar-toggle mobile' onclick='sidebar.toggle()'>
+    <svg class="icon" style="width: 1em; height: 1em;vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="15301"><path d="M566.407 808.3c26.9-0.1 49.3-20.8 51.6-47.6-1.9-27.7-23.9-49.7-51.6-51.6h-412.6c-28.2-1.4-52.6 19.5-55.5 47.6 2.3 26.8 24.6 47.5 51.6 47.6h416.5v4z m309.3-249.9c26.9-0.1 49.3-20.8 51.6-47.6-2.2-26.8-24.6-47.5-51.6-47.6h-721.9c-27.7-2.8-52.5 17.4-55.3 45.1-0.1 0.8-0.1 1.7-0.2 2.5 0.9 27.2 23.6 48.5 50.7 47.6H875.707z m-103.1-245.9c26.9-0.1 49.3-20.8 51.6-47.6-0.4-28.3-23.2-51.1-51.5-51.6h-618.9c-29.5-1.1-54.3 21.9-55.5 51.4v0.2c1.4 27.8 25.2 49.2 53 47.8 0.8 0 1.7-0.1 2.5-0.2h618.8z" p-id="15302"></path><path d="M566.407 808.3c26.9-0.1 49.3-20.8 51.6-47.6-1.9-27.7-23.9-49.7-51.6-51.6h-412.6c-28.2-1.4-52.6 19.5-55.5 47.6 1.9 27.7 23.9 49.7 51.6 51.6h416.5z m309.3-249.9c26.9-0.1 49.3-20.8 51.6-47.6-2.2-26.8-24.6-47.5-51.6-47.6h-721.9c-27.7-2.8-52.5 17.4-55.3 45.1-0.1 0.8-0.1 1.7-0.2 2.5 0.9 27.2 23.6 48.5 50.7 47.6H875.707z m-103.1-245.9c26.9-0.1 49.3-20.8 51.6-47.6-0.4-28.3-23.2-51.1-51.5-51.6h-618.9c-29.5-1.1-54.3 21.9-55.5 51.4v0.2c1.4 27.8 25.2 49.2 53 47.8 0.8 0 1.7-0.1 2.5-0.2h618.8z" p-id="15303"></path></svg>
+  </button>
+</div>
+
+    </div>
+  </div>
+  <div class='scripts'>
+    <script type="text/javascript">
+  const stellar = {
+    // 懒加载 css https://github.com/filamentgroup/loadCSS
+    loadCSS: (href, before, media, attributes) => {
+      var doc = window.document;
+      var ss = doc.createElement("link");
+      var ref;
+      if (before) {
+        ref = before;
+      } else {
+        var refs = (doc.body || doc.getElementsByTagName("head")[0]).childNodes;
+        ref = refs[refs.length - 1];
+      }
+      var sheets = doc.styleSheets;
+      if (attributes) {
+        for (var attributeName in attributes) {
+          if (attributes.hasOwnProperty(attributeName)) {
+            ss.setAttribute(attributeName, attributes[attributeName]);
+          }
+        }
+      }
+      ss.rel = "stylesheet";
+      ss.href = href;
+      ss.media = "only x";
+      function ready(cb) {
+        if (doc.body) {
+          return cb();
+        }
+        setTimeout(function () {
+          ready(cb);
+        });
+      }
+      ready(function () {
+        ref.parentNode.insertBefore(ss, before ? ref : ref.nextSibling);
+      });
+      var onloadcssdefined = function (cb) {
+        var resolvedHref = ss.href;
+        var i = sheets.length;
+        while (i--) {
+          if (sheets[i].href === resolvedHref) {
+            return cb();
+          }
+        }
+        setTimeout(function () {
+          onloadcssdefined(cb);
+        });
+      };
+      function loadCB() {
+        if (ss.addEventListener) {
+          ss.removeEventListener("load", loadCB);
+        }
+        ss.media = media || "all";
+      }
+      if (ss.addEventListener) {
+        ss.addEventListener("load", loadCB);
+      }
+      ss.onloadcssdefined = onloadcssdefined;
+      onloadcssdefined(loadCB);
+      return ss;
+    },
+
+    // 从 butterfly 和 volantis 获得灵感
+    loadScript: (src, opt) => new Promise((resolve, reject) => {
+      var script = document.createElement('script');
+      script.src = src;
+      if (opt) {
+        for (let key of Object.keys(opt)) {
+          script[key] = opt[key]
+        }
+      } else {
+        // 默认异步，如果需要同步，第二个参数传入 {} 即可
+        script.async = true
+      }
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    }),
+
+    // https://github.com/jerryc127/hexo-theme-butterfly
+    jQuery: (fn) => {
+      if (typeof jQuery === 'undefined') {
+        stellar.loadScript(stellar.plugins.jQuery).then(fn)
+      } else {
+        fn()
+      }
+    }
+  };
+  stellar.version = '1.18.5';
+  stellar.github = 'https://github.com/xaoxuu/hexo-theme-stellar/tree/1.18.5';
+  stellar.config = {
+    date_suffix: {
+      just: '刚刚',
+      min: '分钟前',
+      hour: '小时前',
+      day: '天前',
+      month: '个月前',
+    },
+  };
+
+  // required plugins (only load if needs)
+  stellar.plugins = {
+    jQuery: 'https://gcore.jsdelivr.net/npm/jquery@3.6.2/dist/jquery.min.js'
+  };
+
+  if ('local_search') {
+    stellar.search = {};
+    stellar.search.service = 'local_search';
+    if (stellar.search.service == 'local_search') {
+      let service_obj = Object.assign({}, {"field":"all","path":"/search.json","content":true,"sort":"-date"});
+      stellar.search[stellar.search.service] = service_obj;
+    }
+  }
+
+  // stellar js
+  stellar.plugins.stellar = Object.assign({"sites":"/js/plugins/sites.js","friends":"/js/plugins/friends.js","ghinfo":"/js/plugins/ghinfo.js","timeline":"/js/plugins/timeline.js","linkcard":"/js/plugins/linkcard.js","fcircle":"/js/plugins/fcircle.js","weibo":"/js/plugins/weibo.js"});
+
+  stellar.plugins.marked = Object.assign("https://cdn.bootcdn.net/ajax/libs/marked/4.0.18/marked.min.js");
+  // optional plugins
+  if ('true' == 'true') {
+    stellar.plugins.lazyload = Object.assign({"enable":true,"js":"https://gcore.jsdelivr.net/npm/vanilla-lazyload@17.8.3/dist/lazyload.min.js","transition":"blur"});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.swiper = Object.assign({"enable":true,"css":"https://unpkg.com/swiper@8.4.5/swiper-bundle.min.css","js":"https://unpkg.com/swiper@8.4.5/swiper-bundle.min.js"});
+  }
+  if ('' == 'true') {
+    stellar.plugins.scrollreveal = Object.assign({"enable":null,"js":"https://gcore.jsdelivr.net/npm/scrollreveal@4.0.9/dist/scrollreveal.min.js","distance":"8px","duration":500,"interval":100,"scale":1});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.preload = Object.assign({"enable":true,"service":"flying_pages","instant_page":"https://gcore.jsdelivr.net/gh/volantis-x/cdn-volantis@4.1.2/js/instant_page.js","flying_pages":"https://gcore.jsdelivr.net/gh/gijo-varghese/flying-pages@2.1.2/flying-pages.min.js"});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.fancybox = Object.assign({"enable":true,"js":"https://gcore.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js","css":"https://gcore.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css","selector":".swiper-slide img"});
+  }
+  if ('false' == 'true') {
+    stellar.plugins.heti = Object.assign({"enable":false,"css":"https://unpkg.com/heti@0.9.2/umd/heti.min.css","js":"https://unpkg.com/heti@0.9.2/umd/heti-addon.min.js"});
+  }
+</script>
+
+<!-- required -->
+
+  
+<script src="/js/main.js" async></script>
+
+
+
+<!-- optional -->
+
+  <script>
+  function loadJS() {
+    const els = document.querySelectorAll("#comments #giscus");
+    if (els.length === 0) return;
+    els.forEach((el, i) => {
+      try {
+        el.innerHTML = '';
+      } catch (error) {
+        console.log(error);
+      }
+      var script = document.createElement('script');
+      script.src = 'https://giscus.app/client.js';
+      script.async = true;
+      for (let key of Object.keys(el.attributes)) {
+        let attr = el.attributes[key];
+        if (['class', 'id'].includes(attr.name) === false) {
+          script.setAttribute(attr.name, attr.value);
+        }
+      }
+      el.appendChild(script);
+    });
+  }
+  window.addEventListener('DOMContentLoaded', (event) => {
+    loadJS();
+  });
+</script>
+
+
+
+
+<!-- inject -->
+
+
+  </div>
+</body>
+</html>
